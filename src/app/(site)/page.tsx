@@ -103,8 +103,8 @@ export default function HomePage() {
       <Section>
         <ScrollReveal>
           <div className="flex flex-col items-start gap-6 rounded-xl border border-gray-100 bg-white p-8 shadow-sm sm:flex-row sm:items-center">
-            <div className="flex h-16 w-32 shrink-0 items-center justify-center rounded-lg bg-gray-100 text-sm font-bold text-gray-400">
-              RCH
+            <div className="flex h-16 w-32 shrink-0 items-center justify-center">
+              <img src="/images/rch_logo.svg" alt="Logo RCH" className="h-full w-full object-contain" />
             </div>
             <div className="flex-1">
               <h2 className="text-lg font-semibold text-gray-900">

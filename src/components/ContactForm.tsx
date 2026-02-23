@@ -74,7 +74,7 @@ export default function ContactForm() {
             value={form.subject}
             onChange={(e) => setForm({ ...form, subject: e.target.value })}
             className={inputClass}
-            placeholder="Richiesta preventivo"
+            placeholder="Oggetto"
           />
         </div>
 

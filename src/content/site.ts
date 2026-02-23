@@ -25,7 +25,7 @@ export const siteConfig = {
     phone: "+39 0461 512777",
     fax: "+39 0461 539340",
     email: "mifro@mifro.it",
-    facebook: "https://www.facebook.com/mifro", // TODO: confermare link
+    facebook: "https://www.facebook.com/mifrosas",
     googleMapsQuery:
       "Mifro+S.a.s.+Via+Giuseppe+Verdi+13+Pergine+Valsugana+TN",
     googleMapsEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2746.5!2d11.2386!3d46.0654!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47781e5b0a0a0a0b%3A0x0!2sVia%20Giuseppe%20Verdi%2C%2013%2C%2038057%20Pergine%20Valsugana%20TN!5e0!3m2!1sit!2sit!4v1700000000000!5m2!1sit!2sit",
@@ -56,7 +56,7 @@ export const siteConfig = {
     title: "Soluzioni di cassa e IT per il tuo punto vendita in Trentino",
     subtitle:
       "Registratori di cassa telematici RT, software per ristorazione, assistenza tecnica e riparazioni. Da Pergine Valsugana, al fianco delle imprese dal 1990.",
-    cta1: { label: "Richiedi un preventivo", href: "/contatti" },
+    cta1: { label: "Contattaci", href: "/contatti" },
     cta2: { label: "Scopri le soluzioni", href: "/soluzioni" },
     image: "/images/hero.jpg", // sostituire con immagine reale
   },
@@ -126,7 +126,7 @@ export const siteConfig = {
   partner: {
     name: "RCH",
     url: "https://www.rch.it/",
-    logo: "/images/logo-rch.png", // sostituire con logo reale
+    logo: "/images/rch_logo.svg",
     description:
       "Rivenditore e consulente per soluzioni RCH per il punto cassa: registratori, POS, hardware e software per la gestione del punto vendita.",
   },
@@ -292,7 +292,7 @@ export const siteConfig = {
   contactPage: {
     title: "Contattaci",
     description:
-      "Hai bisogno di informazioni, un preventivo o assistenza? Compila il modulo e ti risponderemo al più presto.",
+      "Hai bisogno di informazioni o assistenza? Compila il modulo e ti risponderemo al più presto.",
     formFields: {
       name: "Nome e cognome",
       email: "Email",
@@ -323,7 +323,7 @@ export const siteConfig = {
     contatti: {
       title: "Contatti – Mifro S.a.s.",
       description:
-        "Contatta Mifro a Pergine Valsugana: richiedi un preventivo, informazioni o assistenza tecnica per registratori di cassa, software e hardware.",
+        "Contatta Mifro a Pergine Valsugana: informazioni o assistenza tecnica per registratori di cassa, software e hardware.",
     },
   },
 

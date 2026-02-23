@@ -46,7 +46,7 @@ export default function Navbar() {
               href="/contatti"
               className="inline-flex items-center rounded-lg bg-brand-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-brand-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600"
             >
-              Preventivo
+              Contattaci
             </Link>
           </li>
         </ul>
@@ -87,7 +87,7 @@ export default function Navbar() {
                 onClick={() => setOpen(false)}
                 className="block rounded-lg bg-brand-600 px-4 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-brand-700"
               >
-                Preventivo
+                Contattaci
               </Link>
             </li>
           </ul>
