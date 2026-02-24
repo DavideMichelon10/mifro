@@ -11,7 +11,7 @@ export const siteConfig = {
   url: "https://www.mifro.it",
   claim: "Dedicatevi totalmente al vostro lavoro… al resto ci pensiamo noi!",
   foundedYear: 1990,
-  logo: "/images/logo-mifro.png", // sostituire con il logo reale
+  logo: "/images/logo-mifro.svg",
 
   /* ── Contatti ───────────────────────────────────────── */
   contact: {
@@ -68,7 +68,7 @@ export const siteConfig = {
       description:
         "Installazione, configurazione e assistenza per sistemi di cassa omologati.",
       icon: "Monitor" as const,
-      image: "/images/registratiore_cassa.png",
+      image: "/images/registratore_cassa.jpg",
       href: "/soluzioni#registratori-di-cassa",
     },
     {
@@ -92,7 +92,7 @@ export const siteConfig = {
       description:
         "Diagnosi e riparazione di PC, stampanti e multifunzioni.",
       icon: "Cpu" as const,
-      image: "/images/stampanti.png",
+      image: "/images/stampanti.jpg",
       href: "/soluzioni#riparazioni",
     },
   ],
@@ -157,7 +157,7 @@ export const siteConfig = {
         description:
           "Forniamo e installiamo registratori di cassa telematici e misuratori fiscali omologati RT. Ti accompagniamo nella scelta del modello più adatto, nella configurazione e nell'avvio, con assistenza tecnica continuativa e verificazioni periodiche certificate ISO 9001.",
         icon: "Monitor" as const,
-        image: "/images/registratiore_cassa.png",
+        image: "/images/registratore_cassa.jpg",
         features: [
           "Misuratori fiscali omologati RT",
           "Consulenza per la scelta del modello",
@@ -185,7 +185,7 @@ export const siteConfig = {
         description:
           "Integriamo soluzioni di pagamento elettronico nel tuo punto cassa: POS, terminali contactless e sistemi integrati per una gestione fluida e sicura delle transazioni.",
         icon: "CreditCard" as const,
-        image: "/images/registratiore_cassa.png",
+        image: "/images/pagamento.jpg",
         features: [
           "POS e terminali di pagamento",
           "Pagamenti contactless",
@@ -199,7 +199,7 @@ export const siteConfig = {
         description:
           "PC, notebook, tablet, stampanti multifunzione A4 e A3, scanner documentali e materiali di consumo dei principali marchi. Consulenza prevendita per individuare l'hardware giusto per il tuo ambiente di lavoro, con assistenza post-vendita dedicata.",
         icon: "Printer" as const,
-        image: "/images/stampanti.png",
+        image: "/images/stampanti.jpg",
         features: [
           "PC, notebook e tablet",
           "Stampanti e multifunzioni A4/A3",
@@ -264,6 +264,26 @@ export const siteConfig = {
       "Mifro nasce nel 1990 a Pergine Valsugana con l'obiettivo di offrire soluzioni informatiche affidabili alle attività commerciali del territorio. In oltre trent'anni di attività, abbiamo accompagnato centinaia di aziende nella transizione tecnologica, mantenendo un approccio diretto e personale che ci distingue ancora oggi.",
     approach:
       "Il nostro metodo parte dall'ascolto: comprendiamo le esigenze specifiche di ogni cliente per proporre soluzioni concrete, senza complicazioni inutili. Dalla consulenza alla fornitura, dall'installazione all'assistenza continuativa, siamo il riferimento unico per tutta la filiera tecnologica del punto vendita.",
+    team: [
+      {
+        name: "Claudio",
+        role: "Titolare",
+        bio: "Fondatore di Mifro, guida l'azienda con oltre trent'anni di esperienza nel settore delle tecnologie per il punto vendita.",
+        image: "/images/team/claudio.svg",
+      },
+      {
+        name: "Fabio",
+        role: "Tecnico – Sistemi di cassa",
+        bio: "Specializzato su registratori di cassa telematici RT e sistemi punto vendita. Gestisce installazioni, configurazioni e assistenza tecnica on-site e da remoto.",
+        image: "/images/team/fabio.svg",
+      },
+      {
+        name: "Alessandro",
+        role: "Tecnico – Software gestionale",
+        bio: "Esperto di software gestionali per la ristorazione e il retail. Conosce a fondo anche i sistemi di cassa e segue i clienti a 360° sull'intera soluzione.",
+        image: "/images/team/alessandro.svg",
+      },
+    ],
     values: [
       {
         title: "Esperienza trentennale",
