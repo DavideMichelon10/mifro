@@ -8,6 +8,7 @@ import Section, { SectionHeader } from "@/components/Section";
 export const metadata: Metadata = {
   title: siteConfig.seo.chiSiamo.title,
   description: siteConfig.seo.chiSiamo.description,
+  alternates: { canonical: "/chi-siamo" },
   openGraph: {
     title: siteConfig.seo.chiSiamo.title,
     description: siteConfig.seo.chiSiamo.description,
@@ -26,13 +27,13 @@ export default function ChiSiamoPage() {
 
       {/* ── Storia ────────────────────────────────────── */}
       <Section gray>
-        <div className="mx-auto max-w-5xl flex flex-col gap-10 md:flex-row md:items-start">
-          <div className="flex-shrink-0 md:w-[28rem]">
+        <div className="flex flex-col gap-10 md:flex-row md:items-start">
+          <div className="flex-shrink-0 md:w-[36rem]">
             <Image
               src="/images/chi_siamo.jpg"
               alt="Team Mifro"
-              width={448}
-              height={560}
+              width={576}
+              height={720}
               className="w-full rounded-2xl object-cover shadow-md"
             />
           </div>

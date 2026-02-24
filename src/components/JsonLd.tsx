@@ -6,10 +6,13 @@ export function OrganizationJsonLd() {
     "@type": "LocalBusiness",
     name: siteConfig.name,
     url: siteConfig.url,
+    logo: `${siteConfig.url}/images/logo500x500.png`,
+    image: `${siteConfig.url}/images/logo500x500.png`,
     telephone: siteConfig.contact.phone,
     email: siteConfig.contact.email,
     foundingDate: String(siteConfig.foundedYear),
     description: siteConfig.seo.home.description,
+    sameAs: [siteConfig.contact.facebook],
     address: {
       "@type": "PostalAddress",
       streetAddress: siteConfig.contact.address,
@@ -25,13 +28,13 @@ export function OrganizationJsonLd() {
     openingHoursSpecification: [
       {
         "@type": "OpeningHoursSpecification",
-        dayOfWeek: ["Monday", "Tuesday", "Thursday", "Friday"],
+        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
         opens: "08:00",
         closes: "12:00",
       },
       {
         "@type": "OpeningHoursSpecification",
-        dayOfWeek: ["Monday", "Tuesday", "Thursday", "Friday"],
+        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
         opens: "14:30",
         closes: "18:30",
       },

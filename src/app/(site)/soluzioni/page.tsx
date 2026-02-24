@@ -10,6 +10,7 @@ import ScrollReveal from "@/components/ScrollReveal";
 export const metadata: Metadata = {
   title: siteConfig.seo.soluzioni.title,
   description: siteConfig.seo.soluzioni.description,
+  alternates: { canonical: "/soluzioni" },
   openGraph: {
     title: siteConfig.seo.soluzioni.title,
     description: siteConfig.seo.soluzioni.description,

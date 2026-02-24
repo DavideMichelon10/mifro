@@ -7,6 +7,7 @@ import ContactForm from "@/components/ContactForm";
 export const metadata: Metadata = {
   title: siteConfig.seo.contatti.title,
   description: siteConfig.seo.contatti.description,
+  alternates: { canonical: "/contatti" },
   openGraph: {
     title: siteConfig.seo.contatti.title,
     description: siteConfig.seo.contatti.description,

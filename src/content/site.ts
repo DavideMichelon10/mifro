@@ -35,13 +35,13 @@ export const siteConfig = {
   hours: [
     { days: "Lunedì", time: "08:00 – 12:00 / 14:30 – 18:30" },
     { days: "Martedì", time: "08:00 – 12:00 / 14:30 – 18:30" },
-    { days: "Mercoledì", time: "Chiuso" },
+    { days: "Mercoledì", time: "08:00 – 12:00 / 14:30 – 18:30" },
     { days: "Giovedì", time: "08:00 – 12:00 / 14:30 – 18:30" },
     { days: "Venerdì", time: "08:00 – 12:00 / 14:30 – 18:30" },
     { days: "Sabato", time: "Chiuso" },
     { days: "Domenica", time: "Chiuso" },
   ],
-  hoursShort: "Lun–Mar–Gio–Ven 08:00–12:00 / 14:30–18:30",
+  hoursShort: "Lun–Ven 08:00–12:00 / 14:30–18:30",
 
   /* ── Navigazione ────────────────────────────────────── */
   nav: [
