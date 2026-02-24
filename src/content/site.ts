@@ -84,7 +84,7 @@ export const siteConfig = {
       description:
         "Interventi puntuali on-site e da remoto, con contratti su misura.",
       icon: "Wrench" as const,
-      image: "/images/assistenza.png",
+      image: "/images/assistenza.jpg",
       href: "/soluzioni#riparazioni",
     },
     {
@@ -213,7 +213,7 @@ export const siteConfig = {
         description:
           "Il nostro laboratorio tecnico esegue diagnosi, manutenzione e riparazioni su PC, stampanti e multifunzioni. Interveniamo in sede o presso il tuo ufficio, con tempestività e competenza.",
         icon: "Wrench" as const,
-        image: "/images/assistenza.png",
+        image: "/images/assistenza.jpg",
         features: [
           "Diagnosi hardware e software",
           "Riparazioni PC e notebook",
