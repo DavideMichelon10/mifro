@@ -8,13 +8,18 @@ interface LogoProps {
 
 export default function Logo({ className, size = 32 }: LogoProps) {
   return (
-    <Image
-      src={siteConfig.logo}
-      alt={`${siteConfig.shortName} logo`}
-      height={size}
-      width={size * 4}
-      className={className}
-      priority
-    />
+    <div
+      className={`flex items-center justify-center overflow-hidden rounded-lg ${className ?? ""}`}
+      style={{ width: size * 3, height: size }}
+    >
+      <Image
+        src="/images/logo500x500.png"
+        alt={`${siteConfig.shortName} logo`}
+        height={size * 3}
+        width={size * 3}
+        priority
+        className="shrink-0"
+      />
+    </div>
   );
 }
