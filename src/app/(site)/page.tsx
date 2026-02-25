@@ -105,7 +105,7 @@ export default function HomePage() {
         <ScrollReveal>
           <div className="flex flex-col items-start gap-6 rounded-xl border border-gray-100 bg-white p-8 shadow-sm sm:flex-row sm:items-center">
             <div className="flex h-16 w-32 shrink-0 items-center justify-center">
-              <img src="/images/rch_logo.svg" alt="Logo RCH" className="h-full w-full object-contain" />
+              <Image src="/images/rch_logo.svg" alt="Logo RCH" width={128} height={64} className="h-full w-full object-contain" />
             </div>
             <div className="flex-1">
               <h2 className="text-lg font-semibold text-gray-900">

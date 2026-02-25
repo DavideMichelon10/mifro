@@ -33,10 +33,10 @@ export default function PrivacyPage() {
 
         <h2 className="mt-8 text-base font-semibold text-gray-800">2. Dati raccolti e finalità</h2>
         <p>
-          Il sito non raccoglie dati personali in modo automatico. L'unica modalità di raccolta avviene
-          tramite il <strong>modulo di contatto</strong>, che genera un'email indirizzata direttamente
+          Il sito non raccoglie dati personali in modo automatico. L&apos;unica modalità di raccolta avviene
+          tramite il <strong>modulo di contatto</strong>, che genera un&apos;email indirizzata direttamente
           alla nostra casella di posta. I dati forniti (nome, indirizzo email, messaggio) sono utilizzati
-          esclusivamente per rispondere alla richiesta dell'utente.
+          esclusivamente per rispondere alla richiesta dell&apos;utente.
         </p>
         <p>
           I dati non vengono ceduti a terzi, né utilizzati per finalità di marketing o profilazione.
@@ -49,7 +49,7 @@ export default function PrivacyPage() {
         </p>
         <p>
           La pagina dei contatti include una mappa fornita da <strong>Google Maps</strong> (Google LLC).
-          La mappa viene caricata solo su esplicita azione dell'utente (click sul riquadro). Al momento
+          La mappa viene caricata solo su esplicita azione dell&apos;utente (click sul riquadro). Al momento
           del caricamento, Google Maps può installare propri cookie secondo la sua{" "}
           <a
             href="https://policies.google.com/privacy"
@@ -64,8 +64,8 @@ export default function PrivacyPage() {
         <h2 className="mt-8 text-base font-semibold text-gray-800">4. Base giuridica del trattamento</h2>
         <p>
           Il trattamento dei dati inviati tramite il modulo di contatto è basato sul
-          <strong> consenso dell'interessato</strong> (art. 6, par. 1, lett. a del GDPR) e
-          sull'<strong>interesse legittimo</strong> del Titolare a rispondere alle richieste ricevute
+          <strong> consenso dell&apos;interessato</strong> (art. 6, par. 1, lett. a del GDPR) e
+          sull&apos;<strong>interesse legittimo</strong> del Titolare a rispondere alle richieste ricevute
           (art. 6, par. 1, lett. f del GDPR).
         </p>
 
@@ -75,8 +75,8 @@ export default function PrivacyPage() {
           la richiesta e, ove applicabile, per adempiere agli obblighi di legge.
         </p>
 
-        <h2 className="mt-8 text-base font-semibold text-gray-800">6. Diritti dell'interessato</h2>
-        <p>Ai sensi degli artt. 15–22 del GDPR, l'utente ha diritto di:</p>
+        <h2 className="mt-8 text-base font-semibold text-gray-800">6. Diritti dell&apos;interessato</h2>
+        <p>Ai sensi degli artt. 15–22 del GDPR, l&apos;utente ha diritto di:</p>
         <ul className="ml-5 mt-2 list-disc space-y-1">
           <li>accedere ai propri dati personali;</li>
           <li>chiederne la rettifica o la cancellazione;</li>
@@ -84,14 +84,14 @@ export default function PrivacyPage() {
           <li>proporre reclamo al Garante per la protezione dei dati personali (<a href="https://www.garanteprivacy.it" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">www.garanteprivacy.it</a>).</li>
         </ul>
         <p className="mt-3">
-          Per esercitare i propri diritti è possibile contattare il Titolare all'indirizzo{" "}
+          Per esercitare i propri diritti è possibile contattare il Titolare all&apos;indirizzo{" "}
           <a href={`mailto:${contact.email}`} className="text-brand-600 hover:underline">{contact.email}</a>.
         </p>
 
         <h2 className="mt-8 text-base font-semibold text-gray-800">7. Aggiornamenti</h2>
         <p>
           Questa informativa può essere aggiornata per adeguarsi a modifiche normative o del sito.
-          La data dell'ultima revisione è indicata in calce.
+          La data dell&apos;ultima revisione è indicata in calce.
         </p>
 
         <p className="mt-10 text-xs text-gray-400">
