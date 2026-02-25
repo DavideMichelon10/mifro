@@ -6,6 +6,7 @@ import Section, { SectionHeader } from "@/components/Section";
 import Card from "@/components/Card";
 import { type IconName } from "@/components/Icons";
 import ScrollReveal from "@/components/ScrollReveal";
+import MapEmbed from "@/components/MapEmbed";
 
 export default function HomePage() {
   const { hero, services, sectors, partner, certifications, ctaFinal, contact, hoursShort } =
@@ -183,12 +184,8 @@ export default function HomePage() {
             </div>
 
             {contact.googleMapsEmbed ? (
-              <iframe
+              <MapEmbed
                 src={contact.googleMapsEmbed}
-                className="h-64 w-full rounded-xl border-0"
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
                 title="Posizione Mifro su Google Maps"
               />
             ) : (

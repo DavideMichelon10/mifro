@@ -355,7 +355,7 @@ export const siteConfig = {
       { label: "Soluzioni", href: "/soluzioni" },
       { label: "Chi siamo", href: "/chi-siamo" },
       { label: "Contatti", href: "/contatti" },
-      { label: "Privacy Policy", href: "#" }, // TODO: aggiungere pagina privacy
+      { label: "Privacy Policy", href: "/privacy" },
     ],
     credits: "Mifro S.a.s. – Tutti i diritti riservati.",
   },
