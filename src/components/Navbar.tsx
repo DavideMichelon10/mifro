@@ -22,7 +22,7 @@ export default function Navbar() {
           href="/"
           aria-label={`${siteConfig.shortName} – Torna alla home`}
         >
-          <Logo size={40} />
+          <Logo size={28} />
         </Link>
 
         <ul className="hidden items-center gap-1 md:flex">

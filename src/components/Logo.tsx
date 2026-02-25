@@ -9,14 +9,14 @@ interface LogoProps {
 export default function Logo({ className, size = 32 }: LogoProps) {
   return (
     <div
-      className={`flex items-center justify-center overflow-hidden rounded-lg ${className ?? ""}`}
-      style={{ width: size * 3, height: size }}
+      className={`flex items-center justify-center overflow-hidden ${className ?? ""}`}
+      style={{ width: size * 4.27, height: size }}
     >
       <Image
-        src="/images/logo500x500.png"
+        src="/images/logo-mifro.png"
         alt={`${siteConfig.shortName} logo`}
-        height={size * 3}
-        width={size * 3}
+        height={size}
+        width={size * 4.27}
         priority
         className="shrink-0"
       />
