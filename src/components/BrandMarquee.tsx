@@ -8,7 +8,7 @@ type Brand = {
 
 export default function BrandMarquee({ brands }: { brands: readonly Brand[] }) {
   return (
-    <div className="grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-6">
+    <div className="mx-auto grid max-w-3xl grid-cols-2 gap-5 sm:grid-cols-4">
       {brands.map((brand) => (
         <div
           key={brand.name}

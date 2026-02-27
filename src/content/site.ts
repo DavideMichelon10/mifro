@@ -131,8 +131,6 @@ export const siteConfig = {
     { name: "Epson", description: "Stampanti telematiche", logo: "/images/brands/epson.svg" },
     { name: "Cashmatic", description: "Cassetti automatici", logo: "/images/brands/cashmatic.svg" },
     { name: "Canon", description: "Stampanti multifunzioni", logo: "/images/brands/canon.svg" },
-    { name: "D-Link", description: "Soluzioni di rete", logo: "/images/brands/dlink.svg" },
-    { name: "Fujitsu", description: "Hardware IT", logo: "/images/brands/fujitsu.svg" },
   ],
 
   /* ── Certificazioni ─────────────────────────────────── */
