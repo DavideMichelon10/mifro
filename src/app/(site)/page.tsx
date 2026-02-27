@@ -16,27 +16,28 @@ export default function HomePage() {
   return (
     <>
       {/* ── Hero ──────────────────────────────────────── */}
-      <section className="bg-gradient-to-br from-gray-50 to-brand-50">
-        <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-24">
-          <div className="max-w-3xl">
-            <h1 className="text-3xl font-extrabold leading-tight tracking-tight text-gray-900 sm:text-4xl md:text-5xl">
+      <section className="relative overflow-hidden bg-gradient-to-b from-gray-50 via-white to-brand-50/40">
+        <div className="mx-auto max-w-6xl px-4 pb-16 pt-20 sm:px-6 md:pb-24 md:pt-28">
+          <div className="mx-auto max-w-4xl text-center">
+            <p className="mb-4 text-sm font-semibold uppercase tracking-widest text-brand-500">
+              {hero.tagline}
+            </p>
+            <h1 className="text-3xl font-extrabold leading-[1.1] tracking-tight text-gray-900 sm:text-4xl md:text-5xl">
               {hero.title}
             </h1>
-            <p className="mt-5 text-base leading-relaxed text-gray-500 sm:text-lg">
+            <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-gray-500 sm:text-xl">
               {hero.subtitle}
-              <br />
-              <span>{hero.tagline}</span>
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
               <Link
                 href={hero.cta1.href}
-                className="inline-flex items-center rounded-lg bg-brand-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-brand-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600"
+                className="inline-flex items-center rounded-lg bg-brand-600 px-6 py-3 text-sm font-semibold text-white shadow-md transition-all hover:bg-brand-700 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600"
               >
                 {hero.cta1.label}
               </Link>
               <Link
                 href={hero.cta2.href}
-                className="inline-flex items-center gap-1.5 rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-semibold text-gray-700 shadow-sm transition-colors hover:bg-gray-50"
+                className="inline-flex items-center gap-1.5 rounded-lg border border-gray-200 bg-white px-6 py-3 text-sm font-semibold text-gray-700 shadow-sm transition-all hover:border-gray-300 hover:bg-gray-50 hover:shadow-md"
               >
                 {hero.cta2.label}
                 <ArrowRight className="h-4 w-4" />
@@ -44,8 +45,7 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Immagine negozio – con margini, non croppata */}
-          <div className="mt-12 overflow-hidden rounded-2xl shadow-xl">
+          <div className="mt-16 overflow-hidden rounded-2xl shadow-2xl">
             <Image
               src={hero.image}
               alt="Sede Mifro a Pergine Valsugana – veduta esterna del negozio"

@@ -412,6 +412,7 @@ export const siteConfig = {
       { label: "Contatti", href: "/contatti" },
       { label: "Privacy Policy", href: "/privacy" },
     ],
+    piva: "P.IVA 01301350227",
     credits: "Mifro S.a.s. – Tutti i diritti riservati.",
   },
 } as const;

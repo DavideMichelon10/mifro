@@ -94,7 +94,8 @@ export default function Footer() {
         </div>
 
         <div className="mt-10 border-t border-gray-200 pt-6 text-center text-xs text-gray-400">
-          &copy; {year} {footer.credits}
+          <p>&copy; {year} {footer.credits}</p>
+          <p className="mt-1">{footer.piva}</p>
         </div>
       </div>
     </footer>

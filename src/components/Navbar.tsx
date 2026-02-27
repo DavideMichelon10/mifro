@@ -15,14 +15,14 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 border-b border-gray-100 bg-white/95 backdrop-blur-sm">
       <nav
-        className="mx-auto flex max-w-6xl items-center justify-between px-4 py-5 sm:px-6"
+        className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6 sm:py-5"
         aria-label="Navigazione principale"
       >
         <Link
           href="/"
           aria-label={`${siteConfig.shortName} – Torna alla home`}
         >
-          <Logo size={28} />
+          <Logo size={34} />
         </Link>
 
         <ul className="hidden items-center gap-1 md:flex">
@@ -31,7 +31,7 @@ export default function Navbar() {
               <Link
                 href={item.href}
                 className={cn(
-                  "rounded-md px-3 py-2 text-sm font-medium transition-colors",
+                  "rounded-md px-3.5 py-2 text-[15px] font-medium transition-colors",
                   pathname === item.href
                     ? "text-brand-600"
                     : "text-gray-600 hover:text-gray-900"
@@ -44,7 +44,7 @@ export default function Navbar() {
           <li className="ml-3">
             <Link
               href="/contatti"
-              className="inline-flex items-center rounded-lg bg-brand-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-brand-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600"
+              className="inline-flex items-center rounded-lg bg-brand-600 px-5 py-2.5 text-[15px] font-semibold text-white shadow-sm transition-colors hover:bg-brand-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600"
             >
               Contattaci
             </Link>
@@ -58,7 +58,7 @@ export default function Navbar() {
           aria-expanded={open}
           aria-label="Apri menu di navigazione"
         >
-          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
       </nav>
 
