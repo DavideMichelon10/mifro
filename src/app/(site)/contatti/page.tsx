@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { MapPin, Phone, Mail, Clock, Facebook } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, Facebook, MessageCircle } from "lucide-react";
 import { siteConfig } from "@/content/site";
 import Section, { SectionHeader } from "@/components/Section";
 import ContactForm from "@/components/ContactForm";
@@ -53,6 +53,17 @@ export default function ContattiPage() {
                   className="hover:text-brand-500"
                 >
                   {contact.email}
+                </a>
+              </div>
+              <div className="flex items-center gap-3">
+                <MessageCircle className="h-5 w-5 shrink-0 text-brand-500" />
+                <a
+                  href={`https://wa.me/${contact.whatsapp.replace(/\+/g, "")}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-brand-500"
+                >
+                  WhatsApp
                 </a>
               </div>
               <div className="flex items-center gap-3">

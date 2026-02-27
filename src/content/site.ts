@@ -25,6 +25,7 @@ export const siteConfig = {
     phone: "+39 0461 512777",
     fax: "+39 0461 539340",
     email: "mifro@mifro.it",
+    whatsapp: "+393298632984",
     facebook: "https://www.facebook.com/mifrosas",
     googleMapsQuery:
       "Mifro+S.a.s.+Via+Giuseppe+Verdi+13+Pergine+Valsugana+TN",
@@ -122,14 +123,15 @@ export const siteConfig = {
     },
   ],
 
-  /* ── Partner RCH ────────────────────────────────────── */
-  partner: {
-    name: "RCH",
-    url: "https://www.rch.it/",
-    logo: "/images/rch_logo.svg",
-    description:
-      "Rivenditore e consulente per soluzioni RCH per il punto cassa: registratori, POS, hardware e software per la gestione del punto vendita.",
-  },
+  /* ── I nostri marchi ────────────────────────────────── */
+  brands: [
+    { name: "RCH", description: "Soluzioni per il punto cassa", logo: "/images/brands/rch.svg" },
+    { name: "Epson", description: "Stampanti telematiche", logo: "/images/brands/epson.svg" },
+    { name: "Cashmatic", description: "Cassetti automatici", logo: "/images/brands/cashmatic.svg" },
+    { name: "Canon", description: "Stampanti multifunzioni", logo: "/images/brands/canon.svg" },
+    { name: "D-Link", description: "Soluzioni di rete", logo: "/images/brands/dlink.svg" },
+    { name: "Fujitsu", description: "Hardware IT", logo: "/images/brands/fujitsu.svg" },
+  ],
 
   /* ── Certificazioni ─────────────────────────────────── */
   certifications: {

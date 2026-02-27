@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { MapPin, Phone, Mail, Clock, Facebook } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, Facebook, MessageCircle } from "lucide-react";
 import { siteConfig } from "@/content/site";
 import Logo from "@/components/Logo";
 
@@ -68,16 +68,28 @@ export default function Footer() {
               <Clock className="mt-0.5 h-4 w-4 shrink-0 text-gray-400" />
               <span>{hoursShort}</span>
             </div>
-            <a
-              href={contact.facebook}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-4 inline-flex items-center gap-1.5 text-sm text-gray-500 transition-colors hover:text-brand-600"
-              aria-label="Mifro su Facebook"
-            >
-              <Facebook className="h-4 w-4" />
-              Facebook
-            </a>
+            <div className="mt-4 flex flex-col gap-2">
+              <a
+                href={`https://wa.me/${contact.whatsapp.replace(/\+/g, "")}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-sm text-gray-500 transition-colors hover:text-brand-600"
+                aria-label="Contattaci su WhatsApp"
+              >
+                <MessageCircle className="h-4 w-4" />
+                WhatsApp
+              </a>
+              <a
+                href={contact.facebook}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-sm text-gray-500 transition-colors hover:text-brand-600"
+                aria-label="Mifro su Facebook"
+              >
+                <Facebook className="h-4 w-4" />
+                Facebook
+              </a>
+            </div>
           </div>
         </div>
 

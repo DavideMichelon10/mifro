@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
 @theme inline {
+  --animate-marquee: marquee 25s linear infinite;
   --color-brand-50: #eef2f7;
   --color-brand-100: #d9e2ed;
   --color-brand-200: #b3c5db;
@@ -35,3 +36,9 @@ body {
 .animate-on-scroll.delay-2 { transition-delay: 0.2s; }
 .animate-on-scroll.delay-3 { transition-delay: 0.3s; }
 .animate-on-scroll.delay-4 { transition-delay: 0.4s; }
+
+/* ── Brand marquee ───────────────────────────────── */
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}

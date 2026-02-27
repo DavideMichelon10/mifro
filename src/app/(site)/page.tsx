@@ -6,10 +6,11 @@ import Section, { SectionHeader } from "@/components/Section";
 import Card from "@/components/Card";
 import { type IconName } from "@/components/Icons";
 import ScrollReveal from "@/components/ScrollReveal";
+import BrandMarquee from "@/components/BrandMarquee";
 import MapEmbed from "@/components/MapEmbed";
 
 export default function HomePage() {
-  const { hero, services, sectors, partner, certifications, ctaFinal, contact, hoursShort } =
+  const { hero, services, sectors, brands, certifications, ctaFinal, contact, hoursShort } =
     siteConfig;
 
   return (
@@ -100,31 +101,16 @@ export default function HomePage() {
         </div>
       </Section>
 
-      {/* ── Partner RCH ───────────────────────────────── */}
+      {/* ── I nostri principali marchi ────────────────── */}
       <Section>
         <ScrollReveal>
-          <div className="flex flex-col items-start gap-6 rounded-xl border border-gray-100 bg-white p-8 shadow-sm sm:flex-row sm:items-center">
-            <div className="flex h-16 w-32 shrink-0 items-center justify-center">
-              <Image src="/images/rch_logo.svg" alt="Logo RCH" width={128} height={64} className="h-full w-full object-contain" />
-            </div>
-            <div className="flex-1">
-              <h2 className="text-lg font-semibold text-gray-900">
-                Partner {partner.name}
-              </h2>
-              <p className="mt-1.5 text-sm leading-relaxed text-gray-500">
-                {partner.description}
-              </p>
-            </div>
-            <a
-              href={partner.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex shrink-0 items-center gap-1.5 rounded-lg border border-gray-200 bg-white px-4 py-2 text-sm font-semibold text-gray-700 shadow-sm transition-colors hover:bg-gray-50"
-            >
-              Scopri RCH
-              <ExternalLink className="h-3.5 w-3.5" />
-            </a>
-          </div>
+          <SectionHeader
+            title="I nostri principali marchi"
+            subtitle="Collaboriamo con i migliori produttori del settore per offrirti soluzioni affidabili e certificate."
+          />
+        </ScrollReveal>
+        <ScrollReveal delay={1}>
+          <BrandMarquee brands={brands} />
         </ScrollReveal>
       </Section>
 
