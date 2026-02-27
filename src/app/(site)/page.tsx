@@ -18,7 +18,7 @@ export default function HomePage() {
       {/* ── Hero ──────────────────────────────────────── */}
       <section className="bg-gradient-to-br from-gray-50 to-brand-50">
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-24">
-          <div className="max-w-2xl">
+          <div className="max-w-3xl">
             <h1 className="text-3xl font-extrabold leading-tight tracking-tight text-gray-900 sm:text-4xl md:text-5xl">
               {hero.title}
             </h1>

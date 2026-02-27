@@ -54,7 +54,7 @@ export const siteConfig = {
 
   /* ── Hero ────────────────────────────────────────────── */
   hero: {
-    title: "Soluzioni di cassa e IT per il tuo punto vendita in Trentino",
+    title: "Soluzioni di cassa e IT per il tuo business",
     subtitle:
       "Registratori di cassa telematici RT, software per ristorazione, assistenza tecnica e riparazioni. Da Pergine Valsugana, al fianco delle imprese dal 1990.",
     cta1: { label: "Contattaci", href: "/contatti" },
