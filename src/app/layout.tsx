@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { siteConfig } from "@/content/site";
@@ -45,6 +46,20 @@ export default function RootLayout({
 }) {
   return (
     <html lang="it" className={inter.variable}>
+      <head>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-PHX0Y4MJH3"
+          strategy="afterInteractive"
+        />
+        <Script id="gtag-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-PHX0Y4MJH3');
+          `}
+        </Script>
+      </head>
       <body className="bg-white font-sans text-gray-900 antialiased">
         <OrganizationJsonLd />
         {children}
