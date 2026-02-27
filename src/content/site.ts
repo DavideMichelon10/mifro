@@ -56,7 +56,7 @@ export const siteConfig = {
   hero: {
     title: "Soluzioni di cassa e IT per il tuo business",
     subtitle:
-      "Registratori di cassa telematici RT, software per ristorazione, assistenza tecnica e riparazioni. Da Pergine Valsugana, al fianco delle imprese dal 1990.",
+      "Registratori di cassa telematici RT, POS, hardware e software per il punto vendita e l'ufficio. Al fianco delle imprese dal 1990.",
     cta1: { label: "Contattaci", href: "/contatti" },
     cta2: { label: "Scopri le soluzioni", href: "/soluzioni" },
     image: "/images/hero.jpg", // sostituire con immagine reale
