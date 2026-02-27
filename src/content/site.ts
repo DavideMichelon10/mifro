@@ -36,19 +36,20 @@ export const siteConfig = {
   hours: [
     { days: "Lunedì", time: "08:00 – 12:00 / 14:30 – 18:30" },
     { days: "Martedì", time: "08:00 – 12:00 / 14:30 – 18:30" },
-    { days: "Mercoledì", time: "08:00 – 12:00 / 14:30 – 18:30" },
+    { days: "Mercoledì", time: "08:00 – 12:00" },
     { days: "Giovedì", time: "08:00 – 12:00 / 14:30 – 18:30" },
     { days: "Venerdì", time: "08:00 – 12:00 / 14:30 – 18:30" },
     { days: "Sabato", time: "Chiuso" },
     { days: "Domenica", time: "Chiuso" },
   ],
-  hoursShort: "Lun–Ven 08:00–12:00 / 14:30–18:30",
+  hoursShort: "Lun–Ven 08:00–12:00 / 14:30–18:30 (Mer solo mattina)",
 
   /* ── Navigazione ────────────────────────────────────── */
   nav: [
     { label: "Home", href: "/" },
     { label: "Soluzioni", href: "/soluzioni" },
     { label: "Chi siamo", href: "/chi-siamo" },
+    { label: "News", href: "/news" },
     { label: "Contatti", href: "/contatti" },
   ],
 
@@ -56,7 +57,8 @@ export const siteConfig = {
   hero: {
     title: "Soluzioni di cassa e IT per il tuo business",
     subtitle:
-      "Registratori di cassa telematici RT, POS, hardware e software per il punto vendita e l'ufficio. Al fianco delle imprese dal 1990.",
+      "Registratori di cassa telematici RT, POS, hardware e software per il punto vendita e l'ufficio.",
+    tagline: "Al fianco delle imprese dal 1990",
     cta1: { label: "Contattaci", href: "/contatti" },
     cta2: { label: "Scopri le soluzioni", href: "/soluzioni" },
     image: "/images/hero.jpg", // sostituire con immagine reale
@@ -151,7 +153,7 @@ export const siteConfig = {
   /* ── Soluzioni (pagina /soluzioni) ──────────────────── */
   solutions: {
     intro:
-      "Offriamo soluzioni complete per il punto vendita e l'ufficio: dalla consulenza alla fornitura, dall'installazione all'assistenza continua.",
+      "Offriamo soluzioni complete per il punto vendita e l'ufficio: dalla consulenza alla fornitura, dall'installazione all'assistenza sul posto.",
     blocks: [
       {
         id: "registratori-di-cassa",
@@ -324,6 +326,53 @@ export const siteConfig = {
     },
   },
 
+  /* ── News ───────────────────────────────────────────── */
+  news: [
+    {
+      slug: "guida-ade-collegamento-rt-pos",
+      title: "Guida operativa AdE per il collegamento logico RT - POS",
+      date: "2026-02-27",
+      description:
+        "L'Agenzia delle Entrate ha pubblicato la guida operativa per il collegamento logico tra Registratore Telematico e POS: cos'è, chi è obbligato e le scadenze da rispettare.",
+      content:
+        "A partire dal 2026 è previsto l'obbligo del collegamento tra gli strumenti mediante i quali il negoziante memorizza i corrispettivi (Registratore Telematico o procedura web \"Documento Commerciale on line\") e gli strumenti mediante i quali accetta il pagamento elettronico (POS fisici e virtuali).\n\nIl collegamento non è fisico (cavi o simili), ma di tipo logico: consiste in una comunicazione all'Agenzia delle Entrate attraverso un'apposita funzionalità sul portale web \"Fatture e Corrispettivi\".\n\nLa nuova funzionalità espone l'elenco dei POS di cui l'esercente risulta titolare, sulla base delle informazioni trasmesse dagli operatori finanziari. L'esercente deve quindi associare ciascun POS al proprio RT, indicando anche l'indirizzo dell'unità locale.\n\nLa prima comunicazione dei collegamenti dovrà essere effettuata a partire dai primi giorni di marzo 2026, relativamente ai POS attivi nel mese di gennaio 2026. Gli esercenti avranno 45 giorni di tempo dalla messa a disposizione della procedura.\n\nPer i POS attivati nei mesi successivi a gennaio 2026, il collegamento dovrà essere registrato tra il sesto e l'ultimo giorno del secondo mese successivo a quello di attivazione del POS.\n\nScarica la guida completa dell'Agenzia delle Entrate per tutti i dettagli, gli esempi pratici e le istruzioni operative.",
+      type: "pdf" as "pdf" | "link" | "news",
+      file: "/docs/guida-ade-collegamento-rt-pos.pdf",
+      faq: [
+        {
+          question: "In cosa consiste il collegamento RT - POS?",
+          answer:
+            "Non si tratta di un collegamento fisico tramite cavi, ma di un collegamento logico: una comunicazione una tantum all'Agenzia delle Entrate tramite il portale \"Fatture e Corrispettivi\", in cui si associa ciascun POS (fisico o virtuale) al proprio Registratore Telematico.",
+        },
+        {
+          question: "Chi è obbligato al collegamento?",
+          answer:
+            "Tutti gli esercenti che utilizzano un Registratore Telematico (RT) o la procedura web \"Documento Commerciale on line\" e accettano pagamenti elettronici tramite POS. Sono esclusi i distributori automatici (vending machine), le cessioni di carburante e le operazioni di ricarica veicoli elettrici.",
+        },
+        {
+          question: "Entro quando va effettuato il collegamento?",
+          answer:
+            "La prima comunicazione va effettuata a partire dai primi giorni di marzo 2026, relativamente ai POS attivi a gennaio 2026, entro 45 giorni dalla messa a disposizione della procedura. Per i POS attivati successivamente, il collegamento va registrato tra il 6° e l'ultimo giorno del secondo mese successivo all'attivazione.",
+        },
+        {
+          question: "Dove si effettua il collegamento?",
+          answer:
+            "Tramite la funzionalità \"Gestione collegamenti\" nel portale \"Fatture e Corrispettivi\" dell'Agenzia delle Entrate, oppure tramite la procedura web \"Documento Commerciale on line\" per chi la utilizza.",
+        },
+        {
+          question: "Cosa succede se ho più POS o più RT?",
+          answer:
+            "Il collegamento può essere multiplo: un singolo POS può essere collegato a più RT e, viceversa, più POS possono essere collegati a un singolo RT. Per ogni collegamento va indicato anche l'indirizzo dell'unità locale.",
+        },
+        {
+          question: "Mifro può aiutarmi con il collegamento RT - POS?",
+          answer:
+            "Certamente. Il nostro team tecnico può assisterti nella configurazione del collegamento logico tra RT e POS, verificando i dati necessari e guidandoti nell'utilizzo del portale \"Fatture e Corrispettivi\". Contattaci per maggiori informazioni.",
+        },
+      ],
+    },
+  ],
+
   /* ── SEO ────────────────────────────────────────────── */
   seo: {
     home: {
@@ -347,6 +396,11 @@ export const siteConfig = {
       description:
         "Contatta Mifro a Pergine Valsugana: informazioni o assistenza tecnica per registratori di cassa, software e hardware.",
     },
+    news: {
+      title: "News – Mifro S.a.s.",
+      description:
+        "Novità, guide operative e aggiornamenti dal mondo dei registratori di cassa, POS e soluzioni IT.",
+    },
   },
 
   /* ── Footer ─────────────────────────────────────────── */
@@ -356,6 +410,7 @@ export const siteConfig = {
     quickLinks: [
       { label: "Soluzioni", href: "/soluzioni" },
       { label: "Chi siamo", href: "/chi-siamo" },
+      { label: "News", href: "/news" },
       { label: "Contatti", href: "/contatti" },
       { label: "Privacy Policy", href: "/privacy" },
     ],

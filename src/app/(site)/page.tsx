@@ -24,6 +24,8 @@ export default function HomePage() {
             </h1>
             <p className="mt-5 text-base leading-relaxed text-gray-500 sm:text-lg">
               {hero.subtitle}
+              <br />
+              <span>{hero.tagline}</span>
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
