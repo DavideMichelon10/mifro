@@ -25,7 +25,7 @@ export const siteConfig = {
     phone: "+39 0461 512777",
     fax: "+39 0461 539340",
     email: "mifro@mifro.it",
-    whatsapp: "+393298632984",
+    whatsapp: "+393298632684",
     facebook: "https://www.facebook.com/mifrosas",
     googleMapsQuery:
       "Mifro+S.a.s.+Via+Giuseppe+Verdi+13+Pergine+Valsugana+TN",
