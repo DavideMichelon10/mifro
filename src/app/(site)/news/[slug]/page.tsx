@@ -23,11 +23,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!news) return {};
 
   return {
-    title: `${news.title} – Mifro S.a.s.`,
+    title: news.title,
     description: news.description,
     alternates: { canonical: `/news/${news.slug}` },
     openGraph: {
-      title: `${news.title} – Mifro S.a.s.`,
+      title: `${news.title} | Mifro`,
       description: news.description,
     },
   };

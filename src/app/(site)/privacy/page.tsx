@@ -3,7 +3,7 @@ import { siteConfig } from "@/content/site";
 import Section, { SectionHeader } from "@/components/Section";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy – Mifro S.a.s.",
+  title: "Privacy Policy",
   description:
     "Informativa sul trattamento dei dati personali di Mifro S.a.s. ai sensi del Regolamento UE 2016/679 (GDPR).",
   alternates: { canonical: "/privacy" },

@@ -1,13 +1,23 @@
 import { siteConfig } from "@/content/site";
 
 export function OrganizationJsonLd() {
+  const days: Record<string, string> = {
+    Lunedì: "Monday",
+    Martedì: "Tuesday",
+    Mercoledì: "Wednesday",
+    Giovedì: "Thursday",
+    Venerdì: "Friday",
+    Sabato: "Saturday",
+    Domenica: "Sunday",
+  };
+
   const data = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     name: siteConfig.name,
     url: siteConfig.url,
-    logo: `${siteConfig.url}/images/logo500x500.png`,
-    image: `${siteConfig.url}/images/logo500x500.png`,
+    logo: `${siteConfig.url}/images/logo-mifro.png`,
+    image: `${siteConfig.url}/images/logo-mifro.png`,
     telephone: siteConfig.contact.phone,
     email: siteConfig.contact.email,
     foundingDate: String(siteConfig.foundedYear),
@@ -21,24 +31,25 @@ export function OrganizationJsonLd() {
       addressRegion: siteConfig.contact.province,
       addressCountry: siteConfig.contact.country,
     },
-    areaServed: {
-      "@type": "AdministrativeArea",
-      name: "Trentino",
-    },
-    openingHoursSpecification: [
-      {
-        "@type": "OpeningHoursSpecification",
-        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-        opens: "08:00",
-        closes: "12:00",
-      },
-      {
-        "@type": "OpeningHoursSpecification",
-        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-        opens: "14:30",
-        closes: "18:30",
-      },
+    areaServed: [
+      { "@type": "City", name: "Pergine Valsugana" },
+      { "@type": "City", name: "Trento" },
+      { "@type": "AdministrativeArea", name: "Trentino" },
     ],
+    openingHoursSpecification: siteConfig.hours.flatMap((entry) => {
+      const dayOfWeek = days[entry.days];
+      if (!dayOfWeek || entry.time === "Chiuso") return [];
+
+      return entry.time.split(" / ").map((period) => {
+        const [opens, closes] = period.split("–").map((time) => time.trim());
+        return {
+          "@type": "OpeningHoursSpecification",
+          dayOfWeek,
+          opens,
+          closes,
+        };
+      });
+    }),
   };
 
   return (

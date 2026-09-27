@@ -25,7 +25,7 @@ export default function SoluzioniPage() {
       {/* ── Intro ─────────────────────────────────────── */}
       <Section>
         <SectionHeader
-          title="Le nostre soluzioni"
+          title="Soluzioni di cassa e POS per Trento e il Trentino"
           subtitle={intro}
         />
       </Section>

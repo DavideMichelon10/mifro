@@ -10,7 +10,7 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 export const metadata: Metadata = {
   title: {
     default: siteConfig.seo.home.title,
-    template: `%s – ${siteConfig.shortName}`,
+    template: `%s | ${siteConfig.shortName}`,
   },
   description: siteConfig.seo.home.description,
   metadataBase: new URL(siteConfig.url),

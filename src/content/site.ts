@@ -55,7 +55,7 @@ export const siteConfig = {
 
   /* ── Hero ────────────────────────────────────────────── */
   hero: {
-    title: "Soluzioni di cassa e IT per il tuo business",
+    title: "Registratori di cassa e sistemi POS a Pergine Valsugana e Trento",
     subtitle:
       "Registratori di cassa telematici RT, POS, hardware e software per il punto vendita e l'ufficio.",
     tagline: "Al fianco delle imprese dal 1990",
@@ -151,7 +151,7 @@ export const siteConfig = {
   /* ── Soluzioni (pagina /soluzioni) ──────────────────── */
   solutions: {
     intro:
-      "Offriamo soluzioni complete per il punto vendita e l'ufficio: dalla consulenza alla fornitura, dall'installazione all'assistenza sul posto.",
+      "Forniamo e installiamo registratori di cassa telematici, sistemi POS e software per il punto vendita. Siamo a Pergine Valsugana e seguiamo negozi, bar e ristoranti a Trento e in tutto il Trentino, dalla scelta della soluzione all'assistenza tecnica.",
     blocks: [
       {
         id: "registratori-di-cassa",
@@ -375,27 +375,27 @@ export const siteConfig = {
   seo: {
     home: {
       title:
-        "Mifro – Registratori di cassa RT, software e assistenza IT a Pergine Valsugana",
+        "Registratori di cassa a Pergine e Trento | Mifro",
       description:
-        "Mifro S.a.s. a Pergine Valsugana: registratori di cassa telematici RT, software per ristorazione, assistenza tecnica, riparazioni PC e stampanti. Dal 1990 in Trentino.",
+        "Registratori di cassa telematici RT, sistemi POS, installazione e assistenza per negozi, bar e ristoranti a Pergine Valsugana, Trento e in Trentino. Mifro, dal 1990.",
     },
     soluzioni: {
-      title: "Soluzioni per punto vendita e ufficio – Mifro",
+      title: "Registratori di cassa e sistemi POS a Trento",
       description:
-        "Registratori di cassa RT, soluzioni per ristorazione, POS, hardware ufficio e riparazioni: scopri i servizi Mifro per le imprese trentine.",
+        "Vendita, installazione e assistenza di registratori di cassa RT, sistemi POS e software per negozi e ristoranti a Pergine Valsugana, Trento e in Trentino.",
     },
     chiSiamo: {
-      title: "Chi siamo – Mifro S.a.s.",
+      title: "Chi siamo a Pergine Valsugana",
       description:
         "Dal 1990 Mifro affianca le imprese trentine con soluzioni IT per il punto vendita e l'ufficio. Scopri la nostra storia, i valori e l'approccio.",
     },
     contatti: {
-      title: "Contatti – Mifro S.a.s.",
+      title: "Contatti a Pergine Valsugana",
       description:
-        "Contatta Mifro a Pergine Valsugana: informazioni o assistenza tecnica per registratori di cassa, software e hardware.",
+        "Contatta Mifro a Pergine Valsugana per registratori di cassa, sistemi POS e assistenza tecnica a Trento e in Trentino.",
     },
     news: {
-      title: "News – Mifro S.a.s.",
+      title: "News e aggiornamenti",
       description:
         "Novità, guide operative e aggiornamenti dal mondo dei registratori di cassa, POS e soluzioni IT.",
     },
