@@ -65,6 +65,12 @@ export default function RootLayout({
         {children}
         <Script id="chatwoot-widget" strategy="afterInteractive">
           {`
+            window.chatwootSettings = {
+              position: "right",
+              locale: "it",
+              type: "expanded_bubble",
+              launcherTitle: "Ciao! Ti serve una mano?"
+            };
             (function(d,t) {
               var BASE_URL = "https://chatwoot-production-e71d.up.railway.app";
               var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
