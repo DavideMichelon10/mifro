@@ -63,6 +63,23 @@ export default function RootLayout({
       <body className="bg-white font-sans text-gray-900 antialiased">
         <OrganizationJsonLd />
         {children}
+        <Script id="chatwoot-widget" strategy="afterInteractive">
+          {`
+            (function(d,t) {
+              var BASE_URL = "https://chatwoot-production-e71d.up.railway.app";
+              var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
+              g.src = BASE_URL + "/packs/js/sdk.js";
+              g.async = true;
+              s.parentNode.insertBefore(g, s);
+              g.onload = function() {
+                window.chatwootSDK.run({
+                  websiteToken: "qxCuVdrJYADgMrPDixj9atGC",
+                  baseUrl: BASE_URL
+                });
+              };
+            })(document, "script");
+          `}
+        </Script>
       </body>
     </html>
   );
