@@ -42,3 +42,20 @@ body {
   0%   { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
+
+/* Keep anchor headings clear of the sticky navigation. */
+section[id] { scroll-margin-top: 6rem; }
+
+/* Mobile browsing stays immediate, without waiting for scroll reveals. */
+@media (max-width: 767px), (prefers-reduced-motion: reduce) {
+  .animate-on-scroll {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; }
+}

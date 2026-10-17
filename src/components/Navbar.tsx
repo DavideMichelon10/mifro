@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
@@ -11,15 +11,25 @@ import Logo from "@/components/Logo";
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
+  const toggle = useRef<HTMLButtonElement>(null);
+  useEffect(() => {
+    if (!open) return;
+    function onKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") { setOpen(false); toggle.current?.focus(); }
+    }
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [open]);
 
   return (
     <header className="sticky top-0 z-50 border-b border-gray-100 bg-white/95 backdrop-blur-sm">
       <nav
-        className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6 sm:py-5"
+        className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6 sm:py-5"
         aria-label="Navigazione principale"
       >
         <Link
           href="/"
+          onClick={() => setOpen(false)}
           aria-label={`${siteConfig.shortName} – Torna alla home`}
         >
           <Logo size={34} />
@@ -53,17 +63,19 @@ export default function Navbar() {
 
         <button
           type="button"
-          className="inline-flex items-center justify-center rounded-md p-2 text-gray-600 hover:text-gray-900 md:hidden"
+          ref={toggle}
+          aria-controls="mobile-navigation"
+          className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-md p-2 text-gray-600 hover:text-gray-900 md:hidden"
           onClick={() => setOpen(!open)}
           aria-expanded={open}
-          aria-label="Apri menu di navigazione"
+          aria-label={open ? "Chiudi menu di navigazione" : "Apri menu di navigazione"}
         >
           {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
       </nav>
 
       {open && (
-        <div className="border-t border-gray-100 bg-white md:hidden">
+        <div id="mobile-navigation" className="max-h-[calc(100dvh-72px)] overflow-y-auto border-t border-gray-100 bg-white md:hidden">
           <ul className="space-y-1 px-4 py-3">
             {siteConfig.nav.map((item) => (
               <li key={item.href}>
@@ -71,7 +83,7 @@ export default function Navbar() {
                   href={item.href}
                   onClick={() => setOpen(false)}
                   className={cn(
-                    "block rounded-md px-3 py-2 text-sm font-medium transition-colors",
+                    "block min-h-12 rounded-md px-3 py-3 text-base font-medium transition-colors",
                     pathname === item.href
                       ? "bg-brand-50 text-brand-600"
                       : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
@@ -85,7 +97,7 @@ export default function Navbar() {
               <Link
                 href="/contatti"
                 onClick={() => setOpen(false)}
-                className="block rounded-lg bg-brand-600 px-4 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-brand-700"
+                className="block min-h-12 rounded-lg bg-brand-600 px-4 py-3 text-center text-sm font-semibold text-white shadow-sm hover:bg-brand-700"
               >
                 Contattaci
               </Link>

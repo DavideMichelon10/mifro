@@ -9,13 +9,14 @@ interface CardProps {
   icon: IconName;
   image?: string;
   href?: string;
+  compactMobile?: boolean;
 }
 
-export default function Card({ title, description, icon, image, href }: CardProps) {
+export default function Card({ title, description, icon, image, href, compactMobile = false }: CardProps) {
   const content = (
-    <div className="group flex h-full flex-col overflow-hidden rounded-xl border border-gray-100 bg-white shadow-sm transition-shadow hover:shadow-md">
+    <div className={`group flex h-full ${compactMobile ? "flex-row sm:flex-col" : "flex-col"} overflow-hidden rounded-xl border border-gray-100 bg-white shadow-sm transition-shadow hover:shadow-md`}>
       {image && (
-        <div className="relative aspect-[4/3] w-full overflow-hidden bg-gray-100">
+        <div className={`relative shrink-0 ${compactMobile ? "w-24 sm:aspect-[4/3] sm:w-full" : "aspect-[4/3] w-full"} overflow-hidden bg-gray-100`}>
           <Image
             src={image}
             alt={title}
@@ -25,7 +26,7 @@ export default function Card({ title, description, icon, image, href }: CardProp
           />
         </div>
       )}
-      <div className="flex flex-1 flex-col p-6">
+      <div className={`flex min-w-0 flex-1 flex-col ${compactMobile ? "p-4 sm:p-6" : "p-6"}`}>
         {!image && (
           <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-brand-50 text-brand-600">
             <Icon name={icon} className="h-5 w-5" />
@@ -46,7 +47,7 @@ export default function Card({ title, description, icon, image, href }: CardProp
   );
 
   if (href) {
-    return <Link href={href}>{content}</Link>;
+    return <Link href={href} className="block h-full rounded-xl focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-600">{content}</Link>;
   }
   return content;
 }

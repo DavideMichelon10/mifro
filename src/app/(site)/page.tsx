@@ -17,27 +17,27 @@ export default function HomePage() {
     <>
       {/* ── Hero ──────────────────────────────────────── */}
       <section className="relative overflow-hidden bg-gradient-to-b from-gray-50 via-white to-brand-50/40">
-        <div className="mx-auto max-w-6xl px-4 pb-16 pt-20 sm:px-6 md:pb-24 md:pt-28">
-          <div className="mx-auto max-w-4xl text-center">
-            <p className="mb-4 text-sm font-semibold uppercase tracking-widest text-brand-500">
+        <div className="mx-auto max-w-6xl px-4 pb-10 pt-8 sm:px-6 sm:pt-16 md:pb-24 md:pt-28">
+          <div className="mx-auto max-w-4xl text-left sm:text-center">
+            <p className="mb-3 text-xs sm:mb-4 sm:text-sm font-semibold uppercase tracking-widest text-brand-500">
               {hero.tagline}
             </p>
-            <h1 className="text-3xl font-extrabold leading-[1.1] tracking-tight text-gray-900 sm:text-4xl md:text-5xl">
+            <h1 className="text-[1.875rem] font-extrabold leading-[1.1] tracking-tight text-gray-900 sm:text-4xl md:text-5xl">
               {hero.title}
             </h1>
-            <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-gray-500 sm:text-xl">
+            <p className="mx-auto mt-4 max-w-2xl text-base sm:mt-6 leading-relaxed text-gray-500 sm:text-xl">
               {hero.subtitle}
             </p>
-            <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
+            <div className="mt-6 grid grid-cols-1 gap-3 sm:mt-10 sm:flex sm:flex-wrap sm:items-center sm:justify-center sm:gap-4">
               <Link
                 href={hero.cta1.href}
-                className="inline-flex items-center rounded-lg bg-brand-600 px-6 py-3 text-sm font-semibold text-white shadow-md transition-all hover:bg-brand-700 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600"
+                className="inline-flex min-h-12 items-center justify-center rounded-lg bg-brand-600 px-6 py-3 text-sm font-semibold text-white shadow-md transition-all hover:bg-brand-700 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600"
               >
                 {hero.cta1.label}
               </Link>
               <Link
                 href={hero.cta2.href}
-                className="inline-flex items-center gap-1.5 rounded-lg border border-gray-200 bg-white px-6 py-3 text-sm font-semibold text-gray-700 shadow-sm transition-all hover:border-gray-300 hover:bg-gray-50 hover:shadow-md"
+                className="inline-flex min-h-12 items-center justify-center gap-1.5 rounded-lg border border-gray-200 bg-white px-6 py-3 text-sm font-semibold text-gray-700 shadow-sm transition-all hover:border-gray-300 hover:bg-gray-50 hover:shadow-md"
               >
                 {hero.cta2.label}
                 <ArrowRight className="h-4 w-4" />
@@ -45,13 +45,20 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="mt-16 overflow-hidden rounded-2xl shadow-2xl">
+          <nav aria-label="Accesso rapido alle sezioni" className="mt-6 grid grid-cols-3 gap-2 sm:hidden">
+            <a href="#servizi" className="flex min-h-12 items-center justify-center rounded-lg bg-brand-50 px-2 text-sm font-semibold text-brand-700">Servizi</a>
+            <a href="#settori" className="flex min-h-12 items-center justify-center rounded-lg bg-brand-50 px-2 text-sm font-semibold text-brand-700">Settori</a>
+            <a href="#dove-siamo" className="flex min-h-12 items-center justify-center rounded-lg bg-brand-50 px-2 text-sm font-semibold text-brand-700">Dove siamo</a>
+          </nav>
+
+          <div className="mt-8 overflow-hidden rounded-xl shadow-lg sm:mt-16 sm:rounded-2xl sm:shadow-2xl">
             <Image
               src={hero.image}
               alt="Sede Mifro a Pergine Valsugana – veduta esterna del negozio"
               width={1400}
               height={700}
-              className="h-auto w-full"
+              className="aspect-[16/9] w-full object-cover sm:aspect-auto sm:h-auto"
+              sizes="(max-width: 640px) 100vw, 1152px"
               priority
             />
           </div>
@@ -59,7 +66,7 @@ export default function HomePage() {
       </section>
 
       {/* ── Cosa facciamo ─────────────────────────────── */}
-      <Section>
+      <Section id="servizi" className="max-sm:py-10">
         <ScrollReveal>
           <SectionHeader
             title="Cosa facciamo"
@@ -74,6 +81,7 @@ export default function HomePage() {
                 description={s.description}
                 icon={s.icon as IconName}
                 image={s.image}
+                compactMobile
                 href={s.href}
               />
             </ScrollReveal>
@@ -82,7 +90,7 @@ export default function HomePage() {
       </Section>
 
       {/* ── Soluzioni per settori ─────────────────────── */}
-      <Section gray>
+      <Section gray id="settori" className="max-sm:py-10">
         <ScrollReveal>
           <SectionHeader
             title="Soluzioni per il tuo settore"
@@ -104,7 +112,7 @@ export default function HomePage() {
       </Section>
 
       {/* ── I nostri principali marchi ────────────────── */}
-      <Section>
+      <Section className="max-sm:py-10">
         <ScrollReveal>
           <SectionHeader
             title="I nostri principali marchi"
@@ -117,7 +125,7 @@ export default function HomePage() {
       </Section>
 
       {/* ── Qualità e certificazioni ──────────────────── */}
-      <Section gray>
+      <Section gray className="max-sm:py-10">
         <ScrollReveal>
           <div className="flex flex-col items-start gap-5 sm:flex-row sm:items-center">
             <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-brand-50 text-brand-600">
@@ -139,7 +147,7 @@ export default function HomePage() {
       </Section>
 
       {/* ── Dove siamo ────────────────────────────────── */}
-      <Section>
+      <Section id="dove-siamo" className="max-sm:py-10">
         <ScrollReveal>
           <SectionHeader title="Dove siamo" />
         </ScrollReveal>
@@ -164,7 +172,7 @@ export default function HomePage() {
                 href={`https://www.google.com/maps/search/?api=1&query=${contact.googleMapsQuery}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-sm font-medium text-brand-500 hover:text-brand-700"
+                className="inline-flex min-h-12 items-center gap-1.5 text-sm font-medium text-brand-500 hover:text-brand-700"
               >
                 Apri su Google Maps
                 <ExternalLink className="h-3.5 w-3.5" />
