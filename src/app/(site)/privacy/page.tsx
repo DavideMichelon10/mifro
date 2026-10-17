@@ -33,19 +33,24 @@ export default function PrivacyPage() {
 
         <h2 className="mt-8 text-base font-semibold text-gray-800">2. Dati raccolti e finalità</h2>
         <p>
-          Il sito non raccoglie dati personali in modo automatico. L&apos;unica modalità di raccolta avviene
-          tramite il <strong>modulo di contatto</strong>, che genera un&apos;email indirizzata direttamente
-          alla nostra casella di posta. I dati forniti (nome, indirizzo email, messaggio) sono utilizzati
-          esclusivamente per rispondere alla richiesta dell&apos;utente.
+          Il modulo di contatto raccoglie nome, indirizzo email, oggetto e messaggio.
+          I dati vengono elaborati dal sito ospitato su Vercel e inviati tramite Gmail
+          al gestore del sito, Davide Michelon, che inoltra la richiesta a Mifro per la risposta.
+          Non viene creato un archivio delle richieste nel database del sito.
+          Se acconsenti alle statistiche, Google Analytics rileva le visite e gli invii
+          riusciti del modulo; nome, email e contenuto del messaggio non vengono inviati ad Analytics.
         </p>
         <p>
-          I dati non vengono ceduti a terzi, né utilizzati per finalità di marketing o profilazione.
+          I dati del modulo sono utilizzati per gestire la richiesta, senza iscrizione automatica a comunicazioni promozionali.
         </p>
 
         <h2 className="mt-8 text-base font-semibold text-gray-800">3. Cookie</h2>
         <p>
-          Il sito utilizza esclusivamente <strong>cookie tecnici</strong> necessari al corretto
-          funzionamento delle pagine. Non vengono installati cookie di profilazione o di tracciamento.
+          Il sito utilizza un cookie tecnico di dieci minuti per confermare l’invio del modulo
+          e consentire l’accesso alla pagina di ringraziamento. La preferenza sulle statistiche
+          viene memorizzata nel browser. Google Analytics viene caricato solo dopo
+          l’accettazione: puoi rifiutare o modificare la scelta tramite “Preferenze cookie”.
+          Il rifiuto non impedisce l’invio di richieste.
         </p>
         <p>
           La pagina dei contatti include una mappa fornita da <strong>Google Maps</strong> (Google LLC).
@@ -59,6 +64,11 @@ export default function PrivacyPage() {
           >
             Privacy Policy
           </a>.
+        </p>
+
+        <p className="mt-3">
+          Il sito include anche una chat fornita da Chatwoot. Se utilizzi la chat,
+          i messaggi e i dati che fornisci vengono trattati tramite questo servizio.
         </p>
 
         <h2 className="mt-8 text-base font-semibold text-gray-800">4. Base giuridica del trattamento</h2>

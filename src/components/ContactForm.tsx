@@ -1,12 +1,18 @@
 "use client";
 
-import { useState, useCallback, type FormEvent } from "react";
+import { useState, useRef, type FormEvent } from "react";
 import { siteConfig } from "@/content/site";
-import Toast from "@/components/Toast";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { trackContactSubmission } from "@/lib/analytics";
 
 export default function ContactForm() {
   const { formFields } = siteConfig.contactPage;
-  const [toast, setToast] = useState(false);
+  const router = useRouter();
+  const [pending, setPending] = useState(false);
+  const [error, setError] = useState("");
+  const sending = useRef(false);
+  const [website, setWebsite] = useState("");
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -14,17 +20,27 @@ export default function ContactForm() {
     message: "",
   });
 
-  const handleClose = useCallback(() => setToast(false), []);
-
-  function handleSubmit(e: FormEvent) {
+  async function handleSubmit(e: FormEvent) {
     e.preventDefault();
-
-    const mailto = `mailto:${siteConfig.contact.email}?subject=${encodeURIComponent(form.subject)}&body=${encodeURIComponent(
-      `Nome: ${form.name}\nEmail: ${form.email}\n\n${form.message}`
-    )}`;
-
-    window.open(mailto, "_blank");
-    setToast(true);
+    if (sending.current) return;
+    sending.current = true;
+    setPending(true);
+    setError("");
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...form, website }),
+      });
+      const result = await response.json();
+      if (!response.ok || !result.ok) throw new Error(result.error || "Invio non riuscito. Riprova più tardi.");
+      trackContactSubmission();
+      router.push("/grazie");
+    } catch (error) {
+      setError(error instanceof Error ? error.message : "Invio non riuscito. Controlla la connessione e riprova.");
+      sending.current = false;
+      setPending(false);
+    }
   }
 
   const inputClass =
@@ -32,13 +48,19 @@ export default function ContactForm() {
 
   return (
     <>
-      <form onSubmit={handleSubmit} className="space-y-5">
+      <form onSubmit={handleSubmit} className="space-y-5" aria-busy={pending}>
+        <div className="hidden" aria-hidden="true">
+          <label htmlFor="cf-website">Sito web</label>
+          <input id="cf-website" name="website" tabIndex={-1} autoComplete="off" value={website} onChange={(e) => setWebsite(e.target.value)} />
+        </div>
         <div>
           <label htmlFor="cf-name" className="mb-1.5 block text-sm font-medium text-gray-700">
             {formFields.name}
           </label>
           <input
             id="cf-name"
+            name="name"
+            maxLength={120}
             type="text"
             required
             value={form.name}
@@ -54,6 +76,8 @@ export default function ContactForm() {
           </label>
           <input
             id="cf-email"
+            name="email"
+            maxLength={254}
             type="email"
             required
             value={form.email}
@@ -69,6 +93,8 @@ export default function ContactForm() {
           </label>
           <input
             id="cf-subject"
+            name="subject"
+            maxLength={200}
             type="text"
             required
             value={form.subject}
@@ -84,6 +110,8 @@ export default function ContactForm() {
           </label>
           <textarea
             id="cf-message"
+            name="message"
+            maxLength={5000}
             required
             rows={5}
             value={form.message}
@@ -93,19 +121,17 @@ export default function ContactForm() {
           />
         </div>
 
+        <p className="text-sm text-gray-600">I dati saranno utilizzati per gestire la tua richiesta. <Link href="/privacy" className="text-brand-600 underline">Leggi l’informativa privacy</Link>.</p>
+        {error && <p role="alert" className="text-sm text-red-700">{error}</p>}
         <button
+          disabled={pending}
           type="submit"
           className="inline-flex w-full items-center justify-center rounded-lg bg-brand-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-brand-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600 sm:w-auto"
         >
-          {formFields.submit}
+          {pending ? "Invio in corso…" : formFields.submit}
         </button>
       </form>
 
-      <Toast
-        message="Messaggio pronto per l'invio."
-        visible={toast}
-        onClose={handleClose}
-      />
     </>
   );
 }
