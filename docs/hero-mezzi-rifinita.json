@@ -1,0 +1,75 @@
+{
+  "source": "public/images/hero-mezzi-fondo-neutro.jpg",
+  "output": "public/images/hero-mezzi-rifinita.jpg",
+  "width": 1872,
+  "height": 1123,
+  "mode": "Built-in imagegen, with localized compositing to preserve the photographed vehicles, lettering and storefront outside the retouched areas.",
+  "regions": [
+    {
+      "name": "left-tree-removal",
+      "source": "tree",
+      "blur": 3,
+      "path": "M0 284 H64 L76 340 L98 344 L110 375 L115 445 L115 480 L93 494 L68 511 L41 530 L15 548 L0 555 Z"
+    },
+    {
+      "name": "right-van-bumper-and-tire-edge",
+      "source": "full",
+      "blur": 7,
+      "stroke": 54,
+      "path": "M980 782 Q967 804 965 833 L956 853 L960 873 L962 893 L958 909 Q960 948 985 967 L1010 981 Q1007 1021 1036 1051 Q1062 1080 1106 1080 Q1164 1079 1192 1038 L1235 1050"
+    },
+    {
+      "name": "hatchback-rear-bumper-and-tire-edge",
+      "source": "full",
+      "blur": 7,
+      "stroke": 56,
+      "path": "M813 697 Q820 754 799 792 L785 804 Q774 830 745 842 Q703 860 667 838 L638 817 L601 824"
+    },
+    {
+      "name": "hatchback-visible-tire-contact",
+      "source": "full",
+      "blur": 6,
+      "stroke": 36,
+      "path": "M326 826 Q329 866 353 892 Q384 918 420 901 Q459 883 476 843"
+    }
+  ],
+  "validation": {
+    "pixelsOutsideMasksIdenticalToSource": 2016157,
+    "protectedAreas": [
+      [
+        120,
+        280,
+        430,
+        145
+      ],
+      [
+        20,
+        580,
+        600,
+        160
+      ],
+      [
+        1070,
+        915,
+        55,
+        105
+      ],
+      [
+        1250,
+        780,
+        570,
+        230
+      ],
+      [
+        610,
+        45,
+        1010,
+        490
+      ]
+    ]
+  },
+  "jpeg": {
+    "quality": 94,
+    "chromaSubsampling": "4:4:4"
+  }
+}

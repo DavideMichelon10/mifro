@@ -64,14 +64,14 @@ export default function AnalyticsConsent() {
   if (!ready) return null;
   return (
     <>
-      <button type="button" onClick={() => setOpen(true)} className="fixed bottom-3 left-3 z-40 rounded border border-gray-200 bg-white px-3 py-2 text-xs text-gray-700 shadow">Preferenze cookie</button>
+      <button type="button" onClick={() => setOpen(true)} className="fixed bottom-3 left-3 z-40 min-h-11 rounded-lg border border-gray-200 bg-white px-3 py-2 text-xs text-gray-700 shadow-sm hover:bg-brand-50">Preferenze cookie</button>
       {open && (
-        <div role="dialog" aria-label="Preferenze cookie" className="fixed bottom-0 left-0 right-0 z-50 border-t border-gray-200 bg-white p-5 shadow-xl sm:bottom-4 sm:left-4 sm:right-auto sm:max-w-lg sm:rounded-xl sm:border">
+        <div role="dialog" aria-label="Preferenze cookie" className="fixed bottom-0 left-0 right-0 z-50 max-h-[85dvh] overflow-y-auto rounded-t-2xl border border-gray-200 bg-white p-5 shadow-lg sm:bottom-4 sm:left-4 sm:right-auto sm:max-w-lg sm:rounded-2xl sm:p-6">
           <p className="font-semibold text-gray-900">Statistiche del sito</p>
           <p className="mt-2 text-sm text-gray-600">Con il tuo consenso usiamo Google Analytics per capire come viene utilizzato il sito e misurare le richieste inviate. Puoi rifiutare e usare comunque il modulo. <Link href="/privacy" className="underline">Informativa privacy</Link></p>
           <div className="mt-4 flex flex-wrap gap-3">
-            <button type="button" onClick={() => choose(false)} className="rounded border border-brand-600 px-4 py-2 text-sm font-semibold text-brand-700">Rifiuta Analytics</button>
-            <button type="button" onClick={() => choose(true)} className="rounded border border-brand-600 px-4 py-2 text-sm font-semibold text-brand-700">Accetta Analytics</button>
+            <button type="button" onClick={() => choose(false)} className="button button-secondary">Rifiuta Analytics</button>
+            <button type="button" onClick={() => choose(true)} className="button button-secondary">Accetta Analytics</button>
           </div>
         </div>
       )}

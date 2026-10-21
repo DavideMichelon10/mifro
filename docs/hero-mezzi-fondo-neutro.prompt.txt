@@ -1,0 +1,24 @@
+Asset: public/images/hero-mezzi-fondo-neutro.jpg
+Source photograph: public/images/hero-mezzi-armonizzata.jpg (preserved).
+Mode: built-in image_gen.
+Generated reference: /home/davide/.codex/generated_images/01a15b08-0d90-7301-9c7f-b6d37b04c253/exec-c309033d-441f-42e3-adeb-54f1485cf52d.png
+Final method: masked compositing of the generated left wall and ground onto the previous photograph. The three vehicles, lettering, logos, storefront, partial green-shuttered window and remaining shrub use the previous photograph's pixels. The gray shop facade is also preserved. Mask boundaries and pixel-preservation checks are recorded in hero-mezzi-fondo-neutro.json.
+Dimensions: 1872 x 1123. JPEG quality 93, 4:4:4.
+
+Final prompt:
+
+Use case: precise-object-edit.
+Asset: a real shop homepage photograph, landscape 1872x1123.
+Input image 1 is the EDIT TARGET. Keep this precise photograph and camera framing. The task is ONLY to simplify the ground and make wall colors more neutral so it fits a light blue-and-white website.
+
+Edits:
+1. Replace the visible asphalt and paving in the foreground, under and between the cars, with a continuous clean light neutral gray outdoor surface. Remove ALL manhole covers, drain grates, white parking lines, cracks, heavy mottling, strips, and distracting stains from the ground. Use a subtle fine real-world mineral texture, not a flat white void. Keep correct perspective, realistic gradients of natural daylight, the actual curb/threshold at the shop, and soft realistic contact shadows directly under the existing tires and vehicles. The cars must remain grounded.
+2. Make the large pale pink neighboring wall in the upper left a muted, light neutral gray with subtle natural plaster texture. Retain its exact boundaries and drainpipe. Keep the partial green-shuttered window at the top exactly.
+3. Harmonize the existing gray shop facade gently toward neutral gray while retaining its real stucco texture, architectural form, ordinary light/shade, and current brightness. No renovation or new architecture.
+
+STRICT PRESERVATION:
+Keep ALL THREE white MIFRO company vehicles exactly: rear-left small white van, front-left white hatchback, front-right large white van. Exact unchanged positions, silhouettes, proportions, wheel placement and wheel details, bodywork, reflective glazing, blue/orange lettering and graphics. The rear-left third white MIFRO van must remain clearly visible.
+Keep the storefront, signs, all original text, shop display and products, logos, license plates, number 13 and window reflections exactly as in the source photograph. Do not regenerate any letters, keyboard decals or logos. Preserve every unmentioned pixel detail, as this is photographic editing, not a new rendering.
+Keep the remaining bush on the far left. The previously removed central planter, right-edge shrubs, black car and two barred windows must remain absent.
+No cropping, resizing of subjects, recentering, outpainting, removal of company vehicles, fake depth of field, added objects, stronger saturation, denoising or plastic-looking surfaces. No lightening or recoloring the three vehicles. Keep the SAME full 1872x1123 landscape composition and return the full photo.
+The result should look like restrained professional photographic cleanup: clean gray ground, quiet neutral walls, and the exact real shop and three original branded vehicles.

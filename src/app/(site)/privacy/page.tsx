@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { siteConfig } from "@/content/site";
-import Section, { SectionHeader } from "@/components/Section";
+import Section from "@/components/Section";
+import PageIntro from "@/components/PageIntro";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
@@ -15,13 +16,13 @@ export default function PrivacyPage() {
   const year = new Date().getFullYear();
 
   return (
-    <Section>
-      <SectionHeader
+    <>
+      <PageIntro
         title="Privacy Policy"
-        subtitle="Informativa sul trattamento dei dati personali ai sensi del Regolamento UE 2016/679 (GDPR)"
+        description="Informativa sul trattamento dei dati personali ai sensi del Regolamento UE 2016/679 (GDPR)"
       />
-
-      <div className="prose prose-gray mx-auto max-w-3xl text-sm leading-relaxed text-gray-600">
+    <Section>
+      <div className="mx-auto max-w-3xl text-base leading-relaxed text-gray-600 [&_h2]:mb-3 [&_h2]:text-lg [&_p+p]:mt-3">
 
         <h2 className="mt-8 text-base font-semibold text-gray-800">1. Titolare del trattamento</h2>
         <p>
@@ -104,10 +105,11 @@ export default function PrivacyPage() {
           La data dell&apos;ultima revisione è indicata in calce.
         </p>
 
-        <p className="mt-10 text-xs text-gray-400">
+        <p className="mt-10 text-sm text-gray-500">
           Ultimo aggiornamento: {year} — Mifro S.a.s.
         </p>
       </div>
     </Section>
+    </>
   );
 }

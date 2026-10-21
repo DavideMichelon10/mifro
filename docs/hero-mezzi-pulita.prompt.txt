@@ -1,0 +1,17 @@
+Asset: public/images/hero-mezzi-pulita.jpg
+Source: public/images/hero-mezzi.jpg (preserved).
+Method: built-in image_gen for the background edit; masked compositing with the source photograph using Sharp; JPEG quality 93, 4:4:4.
+Only the three requested background regions were composited. Before JPEG encoding, pixels outside the feathered mask were verified identical to the source.
+Final dimensions: 1872 x 1123.
+Final prompt:
+
+Use case: precise-object-edit.
+Asset: real MIFRO shop homepage photograph.
+Image 1 is the EDIT TARGET. Image 2 is a black-and-white EDIT REGION GUIDE aligned to Image 1: white areas may be retouched, black areas must remain unchanged. Do not render the guide in the output.
+Remove distracting background details while keeping the two MAIN foreground company vehicles and the storefront photographic and unchanged.
+Requested removals:
+1. In the left background, remove the small WHITE VAN parked behind the foreground hatchback, AND the partially hidden DARK CAR behind that white van. These are background vehicles only. Keep the large white MIFRO hatchback in the left foreground and large white MIFRO van in the right foreground exactly.
+2. Remove all windows from the PINK neighboring house on the left, including the two barred square windows and the partial green-shuttered window along the top edge. Continue the same pink stucco wall naturally with its real subtle texture and light/shadow variation. Keep the vertical drainpipe/building boundary.
+3. Remove all bushes: the shrub cut off by the left border, the central shrub and its entire ribbed planter between the two main vehicles, and the small shrubs peeking above the right foreground van. Reconstruct the existing pavement/asphalt or wall behind each with matching perspective, texture and plausible natural shadows.
+Critical invariants: SAME camera angle, framing and aspect ratio 1872:1123, SAME position, silhouette, size and shape of both foreground vehicles, SAME storefront, glazing, shop displays, logos and ALL lettering. Keep the vehicle rooflines perfectly registered to the input. Do not move the shop, vehicles or curb. Do not change the asphalt outside the removed planter area. Do not change paint colors, typography or any car decal. No cleanup inside the shop. No new objects, no new advertising, no new windows.
+Style: restrained local photographic retouching; preserve the natural grain, exposure, saturation, genuine reflections, subtle wear and ordinary daylight of Image 1. No waxy smoothing, HDR, beauty retouch, cinematic lighting, excessive sharpness or fake bokeh. Only fill the areas exposed by the requested removals. Return the complete edited photograph, same composition, ideally 1872x1123.

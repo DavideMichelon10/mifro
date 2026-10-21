@@ -1,0 +1,47 @@
+{
+  "source": "RCH; per WALLE MEC e WALLE MEC Ambulanti è stato rimosso il bollino grafico RT con image_gen su richiesta dell’utente. Originali conservati.",
+  "assets": [
+    {
+      "file": "public/images/products/walle-mec-rt-senza-bollino.webp",
+      "original": "public/images/products/walle-mec-rt.webp",
+      "edit": "Rimozione del bollino RT / Registratore telematico. Conservati prodotto e marchio RCH.",
+      "promptFile": "docs/ritocchi-immagini-2026-10-21.json",
+      "page": "https://www.rch.it/prodotti/registratori-di-cassa-telematici/walle-mec-rt/",
+      "url": "https://www.rch.it/wp-content/uploads/2025/05/IMM_1000x1000_anteprimaPagina_WalleMec-lbox-600x600-FFFFFF.webp",
+      "use": "WALLE MEC RT"
+    },
+    {
+      "file": "public/images/products/walle-mec-rt-ambulanti-senza-bollino.webp",
+      "original": "public/images/products/walle-mec-rt-ambulanti.webp",
+      "edit": "Rimozione del bollino RT / Registratore telematico. Conservati cassa, accessori e marchi RCH.",
+      "promptFile": "docs/ritocchi-immagini-2026-10-21.json",
+      "page": "https://www.rch.it/prodotti/registratori-di-cassa-telematici/walle-mec-rt-ambulanti/",
+      "url": "https://www.rch.it/wp-content/uploads/2025/05/imm_1000x1000_anteprimapagina_wallemec-ambulante-1-lbox-600x600-FFFFFF.webp",
+      "use": "WALLE MEC RT Ambulanti"
+    },
+    {
+      "file": "public/images/products/ape-j.webp",
+      "page": "https://www.rch.it/prodotti/registratori-di-cassa-telematici/ape-j/",
+      "url": "https://www.rch.it/wp-content/uploads/2024/10/ApeJ_CoverPNG01-lbox-600x600-FFFFFF.webp",
+      "use": "APE J: immagine precedente, conservata ma non più utilizzata nella pagina Ambulanti"
+    },
+    {
+      "file": "public/images/products/ape-j-rt-stampa.webp",
+      "page": "https://www.rch.it/prodotti/registratori-di-cassa-telematici/ape-j-rt/",
+      "url": "https://www.rch.it/wp-content/uploads/2025/12/ApeJ_RT_800x600_4.webp",
+      "use": "APE J RT: modello scelto dall’utente per la pagina Ambulanti il 21 ottobre 2026"
+    },
+    {
+      "file": "public/images/products/ats-3-device.webp",
+      "page": "https://www.rch.it/prodotti/registratori-di-cassa-telematici/ape-3/",
+      "url": "https://www.rch.it/wp-content/uploads/2024/03/RCH_APE3_800x600_4.webp",
+      "use": "Esempio di hardware per ATS 3: APE 3, non dotazione garantita"
+    },
+    {
+      "file": "public/images/ristorazione.png",
+      "page": null,
+      "url": null,
+      "use": "Asset RCH già presente nel progetto. Esempio di postazione per ATS 2, non modello né dotazione garantiti"
+    }
+  ]
+}

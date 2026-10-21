@@ -1,14 +1,62 @@
 @import "tailwindcss";
 
 @theme inline {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --animate-marquee: marquee 25s linear infinite;
-  --color-brand-50: #eef2f7;
-  --color-brand-100: #d9e2ed;
-  --color-brand-200: #b3c5db;
-  --color-brand-500: #1e3a5f;
+  --color-brand-50: #f0f7fc;
+  --color-brand-100: #deedf8;
+  --color-brand-200: #b9d8ee;
+  --color-brand-300: #89bfdf;
+  --color-brand-400: #4a9bcb;
+  --color-brand-500: #1c80bd;
   --color-brand-600: #0069b4;
-  --color-brand-700: #0f2035;
-  --color-brand-800: #0a1624;
+  --color-brand-700: #00558f;
+  --color-brand-800: #12466e;
+  --color-brand-900: #12334d;
+  --color-accent-500: #f2a000;
+  --color-gray-50: #f5f7fa;
+  --color-gray-100: #eaf0f5;
+  --color-gray-200: #d8e2eb;
+  --color-gray-300: #b6c5d3;
+  --color-gray-400: #738598;
+  --color-gray-500: #5d7083;
+  --color-gray-600: #4e6275;
+  --color-gray-700: #3b5165;
+  --color-gray-800: #263f54;
+  --color-gray-900: #12334d;
+}
+
+@layer base {
+  :where(a, button, input, textarea, summary):focus-visible {
+    outline: 2px solid var(--color-brand-600);
+    outline-offset: 4px;
+  }
+
+  button, summary { -webkit-tap-highlight-color: transparent; }
+  ::selection { background: var(--color-brand-100); color: var(--color-brand-900); }
+}
+
+@layer components {
+  .site-container { @apply mx-auto w-full max-w-6xl px-4 sm:px-6; }
+  .page-intro { @apply border-b border-brand-100 bg-brand-50; }
+  .page-title { @apply text-balance text-3xl font-bold leading-[1.12] tracking-tight text-brand-900 sm:text-4xl lg:text-5xl; }
+  .section-title { @apply text-2xl font-bold leading-tight tracking-tight text-brand-900 sm:text-3xl; }
+  .eyebrow { @apply flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.14em] text-brand-700; }
+  .eyebrow::before { content: ""; @apply h-0.5 w-6 shrink-0 rounded-full bg-accent-500; }
+  .lead { @apply text-base leading-relaxed text-gray-600 sm:text-lg; }
+
+  .surface-card { @apply rounded-2xl border border-gray-200 bg-white shadow-[0_2px_8px_0_rgb(18_51_77/0.03)]; }
+  .interactive-card { @apply transition-[border-color,box-shadow] duration-200 hover:border-brand-200 hover:shadow-[0_8px_24px_0_rgb(18_51_77/0.07)]; }
+  .form-panel { @apply rounded-2xl border border-gray-200 bg-gray-50 p-5 sm:p-8; }
+  .icon-tile { @apply flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-600; }
+  .text-link { @apply inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-brand-600 underline-offset-4 hover:text-brand-700 hover:underline; }
+
+  .button { @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-transparent px-5 py-3 text-center text-sm font-semibold leading-5 transition-colors disabled:cursor-wait disabled:opacity-60; }
+  .button-primary { @apply bg-brand-600 text-white; }
+  .button-primary:hover:not(:disabled) { @apply bg-brand-700; }
+  .button-secondary { @apply border-brand-200 bg-white text-brand-700 hover:bg-brand-50; }
+  .button-inverse { @apply bg-white text-brand-900 hover:bg-brand-100 focus-visible:outline-white; }
+  .form-input { @apply block min-h-12 w-full rounded-lg border border-gray-300 bg-white px-3.5 py-3 text-base text-gray-900 transition-colors placeholder:text-gray-500 focus:border-brand-600 focus:ring-1 focus:ring-brand-600 focus-visible:outline-none; }
 }
 
 html {

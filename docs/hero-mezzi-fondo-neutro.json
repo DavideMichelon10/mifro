@@ -1,0 +1,86 @@
+{
+  "source": "public/images/hero-mezzi-armonizzata.jpg",
+  "output": "public/images/hero-mezzi-fondo-neutro.jpg",
+  "width": 1872,
+  "height": 1123,
+  "method": "Built-in image_gen background cleanup, composited only within explicit wall and ground masks. All other pixels are taken directly from the previous photograph before JPEG encoding.",
+  "regions": [
+    {
+      "name": "neutral-left-wall",
+      "path": "M0 0 H583 L575 389 L551 379 L510 368 L464 359 L445 352 L418 328 L394 307 L364 289 L333 275 L298 264 L262 257 L221 254 L180 252 L120 249 L60 247 L0 247 Z",
+      "holes": [
+        "M451 0 H585 V40 L575 39 L573 41 L568 42 L486 34 L484 28 L472 27 L470 31 L466 30 L464 26 L452 24 Z"
+      ],
+      "blur": 1.2
+    },
+    {
+      "name": "uniform-ground",
+      "path": "M0 797 L80 795 L170 801 L240 807 L317 821 Q325 866 351 891 Q383 914 424 899 Q453 883 466 854 L474 837 L548 827 L615 811 Q638 839 676 849 Q728 862 767 839 L784 814 L802 799 L812 772 L819 737 L818 705 L816 684 L811 661 L808 642 L802 626 L797 610 L796 589 L790 570 L795 554 L1259 619 L1213 661 L1170 679 L1120 694 L1080 709 L1043 728 L1016 745 L991 769 L975 793 L965 815 L961 840 L953 858 L958 881 L962 895 L957 910 L964 941 L981 968 L1008 987 Q1005 1031 1041 1068 Q1075 1096 1119 1088 Q1177 1077 1194 1036 L1230 1048 L1350 1071 L1490 1101 L1620 1123 H0 Z",
+      "holes": [],
+      "blur": 5
+    }
+  ],
+  "validation": {
+    "pixelsOutsideMasksIdenticalToSource": 1549938,
+    "protectedAreas": [
+      [
+        10,
+        280,
+        300,
+        160
+      ],
+      [
+        20,
+        580,
+        600,
+        160
+      ],
+      [
+        345,
+        758,
+        80,
+        110
+      ],
+      [
+        655,
+        614,
+        100,
+        100
+      ],
+      [
+        1250,
+        780,
+        570,
+        230
+      ],
+      [
+        1050,
+        900,
+        90,
+        130
+      ],
+      [
+        610,
+        45,
+        1010,
+        490
+      ],
+      [
+        460,
+        0,
+        20,
+        20
+      ],
+      [
+        495,
+        0,
+        55,
+        25
+      ]
+    ]
+  },
+  "jpeg": {
+    "quality": 93,
+    "chromaSubsampling": "4:4:4"
+  }
+}

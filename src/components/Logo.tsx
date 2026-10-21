@@ -10,15 +10,16 @@ export default function Logo({ className, size = 32 }: LogoProps) {
   return (
     <div
       className={`flex items-center justify-center overflow-hidden ${className ?? ""}`}
-      style={{ width: size * 4.27, height: size }}
+      style={{ width: Math.round(size * 7443 / 1742) }}
     >
       <Image
         src="/images/logo-mifro.png"
         alt={`${siteConfig.shortName} logo`}
-        height={size}
-        width={size * 4.27}
+        height={1742}
+        width={7443}
+        sizes={`${Math.round(size * 7443 / 1742)}px`}
         priority
-        className="shrink-0"
+        className="h-auto w-full shrink-0"
       />
     </div>
   );

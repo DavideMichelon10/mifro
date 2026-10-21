@@ -1,0 +1,44 @@
+{
+  "output": "public/images/hero-mezzi.jpg",
+  "source": {
+    "revision": "9769a45^",
+    "path": "public/images/hero.jpg",
+    "dimensions": [
+      2000,
+      1199
+    ]
+  },
+  "preserved": [
+    "Original vehicle lettering and logos",
+    "Original storefront signs",
+    "Original vehicle shapes and shop display"
+  ],
+  "edits": {
+    "crop": {
+      "left": 0,
+      "top": 0,
+      "width": 1872,
+      "height": 1123
+    },
+    "modulate": {
+      "brightness": 1.025,
+      "saturation": 0.97
+    },
+    "facade": "Selective desaturation and luminance adjustment of the old yellow walls to match the current gray facade; original wall texture preserved.",
+    "phoneOverlay": {
+      "source": "public/images/hero-realistica.jpg",
+      "region": {
+        "left": 22,
+        "top": 778,
+        "width": 330,
+        "height": 143
+      },
+      "note": "Only the local road patch removing the overlaid phone icon and number comes from the previous AI retouch. The remainder is based on the original camera photograph."
+    },
+    "jpeg": {
+      "quality": 93,
+      "mozjpeg": true,
+      "chromaSubsampling": "4:4:4"
+    }
+  }
+}

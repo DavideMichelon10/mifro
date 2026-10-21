@@ -13,19 +13,19 @@ export default function Accordion({ items }: { items: AccordionItem[] }) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <div className="divide-y divide-gray-100 rounded-xl border border-gray-100">
+    <div className="surface-card divide-y divide-gray-200 overflow-hidden">
       {items.map((item, i) => (
         <div key={i}>
           <button
             type="button"
-            className="flex w-full items-center justify-between px-5 py-4 text-left text-sm font-medium text-gray-900 transition-colors hover:bg-gray-50 focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-brand-500 sm:text-base"
+            className="flex min-h-12 w-full items-center justify-between gap-4 px-5 py-5 text-left text-base font-semibold text-gray-900 transition-colors hover:bg-brand-50 focus-visible:outline-offset-[-4px]"
             onClick={() => setOpenIndex(openIndex === i ? null : i)}
             aria-expanded={openIndex === i}
           >
             {item.question}
             <ChevronDown
               className={cn(
-                "ml-2 h-4 w-4 shrink-0 text-gray-400 transition-transform",
+                "h-5 w-5 shrink-0 text-brand-600 transition-transform",
                 openIndex === i && "rotate-180"
               )}
             />
@@ -36,7 +36,7 @@ export default function Accordion({ items }: { items: AccordionItem[] }) {
               openIndex === i ? "max-h-96" : "max-h-0"
             )}
           >
-            <p className="px-5 pb-4 text-sm leading-relaxed text-gray-500">
+            <p className="px-5 pb-5 text-sm leading-relaxed text-gray-600">
               {item.answer}
             </p>
           </div>

@@ -1,0 +1,43 @@
+{
+  "source": "public/images/hero-mezzi.jpg",
+  "width": 1872,
+  "height": 1123,
+  "regions": [
+    {
+      "name": "left",
+      "path": "M0 0 H608 V42 H585 V455 L540 450 L480 443 L400 440 L340 444 L280 449 L220 461 L160 477 L110 498 L55 531 L0 565 Z",
+      "hole": "M585 0 H602 L593 453 H578 Z",
+      "blur": 1.5,
+      "offset": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "center",
+      "path": "M788 628 L870 607 L975 595 L1045 616 L1105 650 L1166 680 L1124 693 L1094 705 L1059 719 L1033 735 L1011 751 L994 775 L978 798 L969 826 L962 852 L915 858 L850 849 L798 838 L798 808 L806 763 L808 712 L798 678 Z",
+      "blur": 6,
+      "offset": [
+        0,
+        -1,
+        -4
+      ]
+    },
+    {
+      "name": "right",
+      "path": "M1688 416 H1872 V479 L1688 484 Z",
+      "blur": 7,
+      "offset": [
+        -19,
+        -21,
+        -25
+      ]
+    }
+  ],
+  "jpeg": {
+    "quality": 93,
+    "mozjpeg": true,
+    "chromaSubsampling": "4:4:4"
+  }
+}

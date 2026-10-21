@@ -1,3 +1,5 @@
+import { sectors, sectorHref } from "./sectors";
+
 /* ──────────────────────────────────────────────────────────────
    MIFRO – Contenuti centralizzati del sito
    Modifica questo file per aggiornare TUTTI i testi, i link,
@@ -46,10 +48,9 @@ export const siteConfig = {
 
   /* ── Navigazione ────────────────────────────────────── */
   nav: [
-    { label: "Home", href: "/" },
-    { label: "Soluzioni", href: "/soluzioni" },
+    { label: "Per la tua attività", href: "/#settori" },
+    { label: "Prodotti e assistenza", href: "/prodotti-assistenza" },
     { label: "Chi siamo", href: "/chi-siamo" },
-    { label: "News", href: "/news" },
     { label: "Contatti", href: "/contatti" },
   ],
 
@@ -60,70 +61,17 @@ export const siteConfig = {
       "Registratori di cassa telematici RT, POS, hardware e software per il punto vendita e l'ufficio.",
     tagline: "Al fianco delle imprese dal 1990",
     cta1: { label: "Contattaci", href: "/contatti" },
-    cta2: { label: "Scopri le soluzioni", href: "/soluzioni" },
-    image: "/images/hero.jpg", // sostituire con immagine reale
+    cta2: { label: "Soluzioni per la tua attività", href: "/#settori" },
+    image: "/images/hero.jpg",
   },
 
-  /* ── Cosa facciamo (Home) ───────────────────────────── */
-  services: [
-    {
-      title: "Registratori di cassa RT",
-      description:
-        "Installazione, configurazione e assistenza per sistemi di cassa omologati.",
-      icon: "Monitor" as const,
-      image: "/images/registratore_cassa.jpg",
-      href: "/soluzioni#registratori-di-cassa",
-    },
-    {
-      title: "Software ristorazione",
-      description:
-        "Gestione comande, sala e cucina, report e controllo del punto vendita.",
-      icon: "UtensilsCrossed" as const,
-      image: "/images/ristorazione.png",
-      href: "/soluzioni#ristorazione",
-    },
-    {
-      title: "Assistenza tecnica",
-      description:
-        "Interventi puntuali on-site e da remoto, con contratti su misura.",
-      icon: "Wrench" as const,
-      image: "/images/assistenza.jpg",
-      href: "/soluzioni#riparazioni",
-    },
-    {
-      title: "Riparazioni PC & stampanti",
-      description:
-        "Diagnosi e riparazione di PC, stampanti e multifunzioni.",
-      icon: "Cpu" as const,
-      image: "/images/stampanti.jpg",
-      href: "/soluzioni#riparazioni",
-    },
-  ],
-
-  /* ── Soluzioni per settori (Home) ───────────────────── */
-  sectors: [
-    {
-      title: "Ristorazione",
-      description:
-        "Sistemi di cassa, gestione comande e software per bar, ristoranti e pizzerie.",
-      icon: "ChefHat" as const,
-      href: "/soluzioni#ristorazione",
-    },
-    {
-      title: "Retail e negozi",
-      description:
-        "Registratori telematici RT, bilance elettroniche e soluzioni di pagamento.",
-      icon: "Store" as const,
-      href: "/soluzioni#registratori-di-cassa",
-    },
-    {
-      title: "Ufficio",
-      description:
-        "PC, stampanti multifunzione, scanner documentali, reti e infrastruttura IT.",
-      icon: "Building2" as const,
-      href: "/soluzioni#hardware-ufficio",
-    },
-  ],
+  /* ── Settori della home ─────────────────────────────── */
+  sectors: sectors.map((sector) => ({
+    title: sector.label,
+    description: sector.summary,
+    icon: sector.icon,
+    href: sectorHref(sector.slug),
+  })),
 
   /* ── I nostri marchi ────────────────────────────────── */
   brands: [
@@ -144,122 +92,67 @@ export const siteConfig = {
   ctaFinal: {
     title: "Parliamo del tuo punto cassa",
     description:
-      "Raccontaci la tua attività: ti proponiamo la soluzione giusta.",
+      "Raccontaci di cosa hai bisogno. Ti ricontattiamo per parlarne insieme.",
     cta: { label: "Contattaci", href: "/contatti" },
   },
 
-  /* ── Soluzioni (pagina /soluzioni) ──────────────────── */
-  solutions: {
-    intro:
-      "Forniamo e installiamo registratori di cassa telematici, sistemi POS e software per il punto vendita. Siamo a Pergine Valsugana e seguiamo negozi, bar e ristoranti a Trento e in tutto il Trentino, dalla scelta della soluzione all'assistenza tecnica.",
+  /* ── Prodotti e assistenza ──────────────────────────── */
+  productsAndSupport: {
+    intro: "Pagamenti, strumenti per l’ufficio e assistenza tecnica, con un unico riferimento sul territorio.",
     blocks: [
       {
-        id: "registratori-di-cassa",
-        title: "Registratori di cassa telematici RT",
-        description:
-          "Forniamo e installiamo registratori di cassa telematici e misuratori fiscali omologati RT. Ti accompagniamo nella scelta del modello più adatto, nella configurazione e nell'avvio, con assistenza tecnica continuativa e verificazioni periodiche certificate ISO 9001.",
-        icon: "Monitor" as const,
-        image: "/images/registratore_cassa.jpg",
-        features: [
-          "Misuratori fiscali omologati RT",
-          "Consulenza per la scelta del modello",
-          "Installazione e configurazione",
-          "Assistenza e verificazioni periodiche",
-        ],
-      },
-      {
-        id: "ristorazione",
-        title: "Soluzioni per la ristorazione",
-        description:
-          "Sistemi e software pensati per bar, ristoranti e pizzerie. Dalla gestione delle comande al collegamento sala-cucina, dalla reportistica al controllo del punto vendita: soluzioni modulari che si adattano alla tua attività.",
-        icon: "UtensilsCrossed" as const,
-        image: "/images/ristorazione.png",
-        features: [
-          "Gestione comande digitali",
-          "Collegamento sala e cucina",
-          "Reportistica e analisi vendite",
-          "Soluzioni modulari e scalabili",
-        ],
-      },
-      {
         id: "pagamenti",
-        title: "Soluzioni di pagamento",
-        description:
-          "Integriamo soluzioni di pagamento elettronico nel tuo punto cassa: POS, terminali contactless e sistemi integrati per una gestione fluida e sicura delle transazioni.",
+        title: "POS e pagamenti",
+        description: "Terminali e soluzioni di pagamento da abbinare al punto cassa.",
+        details: "Ti aiutiamo a scegliere il terminale per accettare pagamenti con carte e smartphone, in base a come lavori al banco o in mobilità. Se hai già una cassa, partiamo dalla configurazione che utilizzi per valutare le soluzioni di pagamento da abbinare.",
         icon: "CreditCard" as const,
         image: "/images/pagamento.jpg",
-        features: [
-          "POS e terminali di pagamento",
-          "Pagamenti contactless",
-          "Integrazione con sistemi di cassa",
-          "Assistenza e configurazione",
-        ],
+        imageAlt: "Pagamento contactless con smartphone su un sistema RCH",
+        imageFit: "contain" as const,
       },
       {
         id: "hardware-ufficio",
-        title: "Hardware e forniture per ufficio",
-        description:
-          "PC, notebook, tablet, stampanti multifunzione A4 e A3, scanner documentali e materiali di consumo dei principali marchi. Consulenza prevendita per individuare l'hardware giusto per il tuo ambiente di lavoro, con assistenza post-vendita dedicata.",
+        title: "Tecnologia per l’ufficio",
+        description: "PC, stampanti, multifunzioni e materiali di consumo, con supporto nella scelta.",
+        details: "Un PC per il lavoro di ogni giorno, una stampante o una multifunzione: ti aiutiamo a scegliere in base a quello che devi fare e a quanto stampi. Forniamo anche materiali di consumo, così puoi rivolgerti a noi sia per l’attrezzatura sia per le necessità quotidiane dell’ufficio.",
         icon: "Printer" as const,
         image: "/images/stampanti.jpg",
-        features: [
-          "PC, notebook e tablet",
-          "Stampanti e multifunzioni A4/A3",
-          "Scanner documentali",
-          "Materiali di consumo",
-        ],
+        imageAlt: "Postazione da ufficio con computer e stampante",
+        imageFit: "cover" as const,
       },
       {
         id: "riparazioni",
-        title: "Riparazioni PC e stampanti",
-        description:
-          "Il nostro laboratorio tecnico esegue diagnosi, manutenzione e riparazioni su PC, stampanti e multifunzioni. Interveniamo in sede o presso il tuo ufficio, con tempestività e competenza.",
+        title: "Assistenza e riparazioni",
+        description: "Supporto su casse e software, diagnosi e riparazioni di PC e stampanti.",
+        details: "La cassa dà problemi, il PC è lento o la stampante non funziona? Ci occupiamo di assistenza su casse e software, diagnosi e riparazioni di PC e stampanti. Scrivici quale dispositivo utilizzi e cosa succede: ti ricontattiamo per capire come aiutarti.",
         icon: "Wrench" as const,
-        image: "/images/assistenza.jpg",
-        features: [
-          "Diagnosi hardware e software",
-          "Riparazioni PC e notebook",
-          "Manutenzione stampanti e multifunzioni",
-          "Interventi on-site e on-center",
-        ],
+        image: "/images/assistenza-riparazioni-uomo.jpg",
+        imageAlt: "Mani di un tecnico durante la sostituzione di un SSD in un computer portatile",
+        imageFit: "cover" as const,
       },
     ],
-    faq: [
-      {
-        question: "Fate assistenza da remoto?",
-        answer:
-          "Sì, offriamo assistenza tecnica da remoto per interventi rapidi su software, configurazioni e problematiche risolvibili senza presenza fisica. Per problemi hardware o interventi più complessi, operiamo on-site.",
-      },
-      {
-        question: "Operate in tutto il Trentino?",
-        answer:
-          "Sì, la nostra sede è a Pergine Valsugana ma operiamo in tutto il Trentino con interventi on-site e assistenza da remoto.",
-      },
-      {
-        question: "Quanto tempo serve per installare un registratore telematico RT?",
-        answer:
-          "L'installazione e la configurazione di un registratore telematico RT richiedono generalmente una mezza giornata, inclusa la formazione base per l'utilizzo quotidiano.",
-      },
-      {
-        question: "Gestite manutenzione e verificazioni periodiche?",
-        answer:
-          "Sì, siamo laboratorio abilitato e certificato ISO 9001 per le verificazioni periodiche dei misuratori fiscali multimarca. Pianifichiamo gli interventi per garantire la conformità normativa.",
-      },
-      {
-        question: "Offrite supporto per ristoranti e pizzerie?",
-        answer:
-          "Certamente. Forniamo soluzioni complete per la ristorazione: sistemi di cassa, gestione comande digitali, collegamento sala-cucina e reportistica. Ogni soluzione viene personalizzata in base alle esigenze del locale.",
-      },
-      {
-        question: "Quali marchi trattate per stampanti e consumabili?",
-        answer:
-          "Trattiamo i principali marchi di stampanti, multifunzioni e materiali di consumo. Contattateci per verificare la disponibilità del prodotto o del consumabile di cui avete bisogno.",
-      },
-    ],
+    sectorsIntro: {
+      title: "Hai un’attività?",
+      description: "Cerchi una cassa o un gestionale? Scegli il tuo settore e scopri le soluzioni per il tuo lavoro di ogni giorno.",
+    },
   },
 
   /* ── Chi siamo ──────────────────────────────────────── */
   about: {
+    highlights: [
+      { value: "Dal 1990", text: "A Pergine Valsugana" },
+      { value: "Oltre 1.000 clienti", text: "Negozi, locali e imprese" },
+      { value: "Assistenza diretta", text: "Sul posto e da remoto" },
+    ],
+    localPresence: {
+      title: "I tuoi tecnici, sul territorio.",
+      image: "/images/vetrina-mifro.jpg",
+      imageAlt: "La vetrina e l’ingresso della sede Mifro a Pergine Valsugana",
+      intro:
+        "Mifro è a Pergine Valsugana dal 1990. Affianchiamo negozi, bar, ristoranti e imprese del Trentino con registratori di cassa, sistemi POS e soluzioni informatiche per il punto vendita e l’ufficio.",
+      support:
+        "Ti seguiamo dalla scelta dei prodotti all’installazione e alla configurazione, con un rapporto diretto con i nostri tecnici. Quando serve assistenza, interveniamo sul posto o da remoto, anche su PC, stampanti e software.",
+    },
     intro:
       "Dal 1990 affianchiamo le imprese trentine nella scelta, installazione e gestione delle tecnologie per il punto vendita e l'ufficio.",
     story:
@@ -271,19 +164,21 @@ export const siteConfig = {
         name: "Claudio",
         role: "Titolare",
         bio: "Fondatore di Mifro, guida l'azienda con oltre trent'anni di esperienza nel settore delle tecnologie per il punto vendita.",
-        image: "/images/team/claudio.svg",
       },
       {
         name: "Fabio",
         role: "Tecnico – Sistemi di cassa",
         bio: "Specializzato su registratori di cassa telematici RT e sistemi punto vendita. Gestisce installazioni, configurazioni e assistenza tecnica on-site e da remoto.",
-        image: "/images/team/fabio.svg",
       },
       {
         name: "Alessandro",
         role: "Tecnico – Software gestionale",
         bio: "Esperto di software gestionali per la ristorazione e il retail. Conosce a fondo anche i sistemi di cassa e segue i clienti a 360° sull'intera soluzione.",
-        image: "/images/team/alessandro.svg",
+      },
+      {
+        name: "Fabrizio",
+        role: "Tecnico – Gestionali e web",
+        bio: "Esperto nella creazione di software gestionali e siti WordPress. Segue anche l’installazione e la gestione dei prodotti RCH.",
       },
     ],
     values: [
@@ -314,7 +209,9 @@ export const siteConfig = {
   contactPage: {
     title: "Contattaci",
     description:
-      "Hai bisogno di informazioni o assistenza? Compila il modulo e ti risponderemo al più presto.",
+      "Hai bisogno di informazioni o assistenza? Lasciaci un messaggio e ti ricontatteremo.",
+    formTitle: "Scrivici, ti ricontattiamo noi.",
+    replyNote: "Ti ricontatteremo all’indirizzo email indicato.",
     formFields: {
       name: "Nome e cognome",
       email: "Email",
@@ -379,10 +276,9 @@ export const siteConfig = {
       description:
         "Registratori di cassa telematici RT, sistemi POS, installazione e assistenza per negozi, bar e ristoranti a Pergine Valsugana, Trento e in Trentino. Mifro, dal 1990.",
     },
-    soluzioni: {
-      title: "Registratori di cassa e sistemi POS a Trento",
-      description:
-        "Vendita, installazione e assistenza di registratori di cassa RT, sistemi POS e software per negozi e ristoranti a Pergine Valsugana, Trento e in Trentino.",
+    prodottiAssistenza: {
+      title: "Prodotti e assistenza tecnica a Trento",
+      description: "POS e pagamenti, PC e stampanti per l’ufficio, assistenza su casse e software e riparazioni. Contatta i tecnici Mifro a Pergine Valsugana.",
     },
     chiSiamo: {
       title: "Chi siamo a Pergine Valsugana",
@@ -394,11 +290,6 @@ export const siteConfig = {
       description:
         "Contatta Mifro a Pergine Valsugana per registratori di cassa, sistemi POS e assistenza tecnica a Trento e in Trentino.",
     },
-    news: {
-      title: "News e aggiornamenti",
-      description:
-        "Novità, guide operative e aggiornamenti dal mondo dei registratori di cassa, POS e soluzioni IT.",
-    },
   },
 
   /* ── Footer ─────────────────────────────────────────── */
@@ -406,11 +297,11 @@ export const siteConfig = {
     description:
       "Soluzioni di cassa, software e assistenza IT per le imprese trentine. Dal 1990 a Pergine Valsugana.",
     quickLinks: [
-      { label: "Soluzioni", href: "/soluzioni" },
+      { label: "Per la tua attività", href: "/#settori" },
+      { label: "Prodotti e assistenza", href: "/prodotti-assistenza" },
       { label: "Chi siamo", href: "/chi-siamo" },
-      { label: "News", href: "/news" },
+      { label: "Guida RT–POS", href: "/news/guida-ade-collegamento-rt-pos" },
       { label: "Contatti", href: "/contatti" },
-      { label: "Privacy Policy", href: "/privacy" },
     ],
     piva: "P.IVA 01301350227",
     credits: "Mifro S.a.s. – Tutti i diritti riservati.",

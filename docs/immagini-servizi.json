@@ -1,0 +1,23 @@
+{
+  "assets": [
+    {
+      "file": "public/images/assistenza-riparazioni.jpg",
+      "author": "Samsung Memory",
+      "page": "https://unsplash.com/photos/a-person-working-on-a-laptop-with-a-screwdriver-lnGs7VbS8Lg",
+      "url": "https://images.unsplash.com/photo-1721333089462-943fc002a25f?auto=format&fit=max&fm=jpg&q=85&w=1400",
+      "license": "Unsplash License",
+      "licenseUrl": "https://unsplash.com/license",
+      "publishedAt": "2024-07-18",
+      "use": "Originale conservato, sostituito nelle pagine dalla variante con mani maschili",
+      "note": "Fotografia di manutenzione hardware con mani e componenti, senza volti. Sostituisce assistenza.jpg. Nessuna modifica generativa."
+    },
+    {
+      "file": "public/images/assistenza-riparazioni-uomo.jpg",
+      "source": "public/images/assistenza-riparazioni.jpg",
+      "tool": "image_gen (built-in)",
+      "edit": "Sostituzione delle mani con quelle di un tecnico uomo, conservando scena e operazione di manutenzione.",
+      "use": "Assistenza e riparazioni: pagina Prodotti e assistenza e scheda in home",
+      "promptFile": "docs/ritocchi-immagini-2026-10-21.json"
+    }
+  ]
+}

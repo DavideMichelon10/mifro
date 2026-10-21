@@ -12,7 +12,7 @@ export default function BrandMarquee({ brands }: { brands: readonly Brand[] }) {
       {brands.map((brand) => (
         <div
           key={brand.name}
-          className="group flex flex-col items-center gap-3 rounded-2xl border border-gray-100 bg-white px-4 py-8 shadow-sm transition-all hover:border-brand-200 hover:shadow-md"
+          className="surface-card group flex flex-col items-center gap-3 px-4 py-8"
         >
           <div className="flex h-16 w-full items-center justify-center">
             <Image
@@ -23,7 +23,7 @@ export default function BrandMarquee({ brands }: { brands: readonly Brand[] }) {
               className="h-full w-auto object-contain grayscale transition-all group-hover:grayscale-0"
             />
           </div>
-          <span className="text-sm font-medium text-gray-400 group-hover:text-brand-500">
+          <span className="text-sm font-medium text-gray-600">
             {brand.description}
           </span>
         </div>

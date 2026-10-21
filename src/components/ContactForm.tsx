@@ -6,8 +6,20 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { trackContactSubmission } from "@/lib/analytics";
 
-export default function ContactForm() {
-  const { formFields } = siteConfig.contactPage;
+interface ContactFormProps {
+  defaultSubject?: string;
+  messagePlaceholder?: string;
+  submitLabel?: string;
+  showSubject?: boolean;
+}
+
+export default function ContactForm({
+  defaultSubject = "",
+  messagePlaceholder = "Descrivi le tue esigenze…",
+  submitLabel,
+  showSubject = true,
+}: ContactFormProps) {
+  const { formFields, replyNote } = siteConfig.contactPage;
   const router = useRouter();
   const [pending, setPending] = useState(false);
   const [error, setError] = useState("");
@@ -16,7 +28,7 @@ export default function ContactForm() {
   const [form, setForm] = useState({
     name: "",
     email: "",
-    subject: "",
+    subject: defaultSubject,
     message: "",
   });
 
@@ -43,8 +55,7 @@ export default function ContactForm() {
     }
   }
 
-  const inputClass =
-    "block w-full rounded-lg border border-gray-200 bg-white px-3.5 py-2.5 text-sm text-gray-900 placeholder:text-gray-400 focus:border-brand-500 focus:ring-1 focus:ring-brand-500 focus-visible:outline-none";
+  const inputClass = "form-input";
 
   return (
     <>
@@ -87,6 +98,7 @@ export default function ContactForm() {
           />
         </div>
 
+        {showSubject ? (
         <div>
           <label htmlFor="cf-subject" className="mb-1.5 block text-sm font-medium text-gray-700">
             {formFields.subject}
@@ -103,6 +115,7 @@ export default function ContactForm() {
             placeholder="Oggetto"
           />
         </div>
+        ) : <input id="cf-subject" type="hidden" name="subject" value={form.subject} />}
 
         <div>
           <label htmlFor="cf-message" className="mb-1.5 block text-sm font-medium text-gray-700">
@@ -117,19 +130,22 @@ export default function ContactForm() {
             value={form.message}
             onChange={(e) => setForm({ ...form, message: e.target.value })}
             className={inputClass}
-            placeholder="Descrivi le tue esigenze…"
+            placeholder={messagePlaceholder}
           />
         </div>
 
         <p className="text-sm text-gray-600">I dati saranno utilizzati per gestire la tua richiesta. <Link href="/privacy" className="text-brand-600 underline">Leggi l’informativa privacy</Link>.</p>
         {error && <p role="alert" className="text-sm text-red-700">{error}</p>}
-        <button
-          disabled={pending}
-          type="submit"
-          className="inline-flex w-full items-center justify-center rounded-lg bg-brand-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-brand-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600 sm:w-auto"
-        >
-          {pending ? "Invio in corso…" : formFields.submit}
-        </button>
+        <div className="space-y-3">
+          <button
+            disabled={pending}
+            type="submit"
+            className="button button-primary w-full sm:w-auto"
+          >
+            {pending ? "Invio in corso…" : (submitLabel ?? formFields.submit)}
+          </button>
+          <p className="text-sm leading-relaxed text-gray-600">{replyNote}</p>
+        </div>
       </form>
 
     </>

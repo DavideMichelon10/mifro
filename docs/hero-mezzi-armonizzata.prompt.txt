@@ -1,0 +1,28 @@
+Asset: public/images/hero-mezzi-armonizzata.jpg
+Source photograph: public/images/hero-mezzi.jpg (preserved).
+Mode: built-in image_gen.
+Generated reference: /home/davide/.codex/generated_images/01a15b08-0d90-7301-9c7f-b6d37b04c253/exec-ed23f4fb-d092-4e25-b66e-fcbc5ed87f0f.png
+Final method: only the five localized removal regions from the generated reference were composited onto the source photograph. Vehicle geometry, lettering, logos, storefront and green-shuttered window use source pixels with a deterministic pointwise tonal correction. No generative replacement of these details.
+Color correction: saturation 0.94, smooth midtone/shadow lift with protected highlights, slight neutral white balance adjustment. Region boundaries and validation are recorded in hero-mezzi-armonizzata.json.
+Dimensions: 1872 x 1123. JPEG quality 93, 4:4:4.
+
+Final prompt:
+
+Use case: precise-object-edit.
+Asset: homepage photograph of the real MIFRO shop, landscape 1872 x 1123.
+Input image 1 is the EDIT TARGET, the authentic source photograph. Apply restrained photographic color correction and exactly four localized background edits. Preserve the composition precisely.
+
+Color correction: gently lift dark shadows, make the white vehicle paint and gray pavement more neutral by reducing the yellow/green cast, and reduce overall saturation slightly (approximately 8%). Keep natural daylight, real texture, subtle shadows and true photographic detail. The surrounding website is light white/ice-blue with blue branding; the photograph should feel lighter and more neutral without becoming blue, washed out, HDR or artificial. Keep the neighboring wall a soft natural muted pink. Keep the shop facade gray. Do not change the branding colors.
+
+Localized edits:
+1. Remove the central green shrub AND its ribbed planter between the two large FOREGROUND vehicles (approximately x800–1050, y610–825 in the 1872x1123 input). Continue the existing pavement/asphalt naturally, matching perspective, texture and shadows.
+2. Remove only the thin shrubs at the extreme RIGHT edge behind the roof of the large foreground white van (approximately x1720–1872, y440–485). Continue the existing gray wall above the unchanged van roof.
+3. Remove the partially hidden DARK/BLACK car in the LEFT background behind the smaller rear white MIFRO van (approximately x420–585, y270–390). Restore the naturally illuminated pink wall behind it. Do not alter the white van in front of it.
+4. Remove exactly the TWO square barred windows on the neighboring pink wall, one toward the upper left and the other near the middle-left (approximately x105–220,y120–225 and x475–570,y150–235). Replace them with matching pink stucco, keeping natural texture and lighting. KEEP the partially visible green-shuttered window at the top edge.
+
+CRITICAL INVARIANTS:
+There are THREE WHITE MIFRO COMPANY VEHICLES. Keep ALL THREE in their exact positions, shapes and sizes: the small white branded van in the REAR LEFT, the large white hatchback in the FRONT LEFT, and the large white van in the FRONT RIGHT. The smaller white rear-left MIFRO van MUST NOT be removed, hidden, redrawn, or merged with the wall.
+Preserve ALL vehicle and storefront lettering, MIFRO logos, keyboard decals, license plates, wheel shapes, reflections, shop displays and window contents. Preserve the original literal letter shapes rather than retyping or recreating them.
+Keep the left-edge shrub in front of the rear white van, the shop doors, lights, drainpipe, wall boundaries, curb, grates, road markings and all unmentioned details.
+Keep EXACTLY the same framing, camera angle, relative dimensions and landscape aspect ratio as the input; no crop, outpainting, zoom, repositioning, added objects or replacement architecture.
+This is photographic retouching, not reconstruction or a new scene. Only the listed removed items and mild global tonal correction may change. Return the complete photograph.

@@ -17,12 +17,12 @@ export default function Section({
     <section
       id={id}
       className={cn(
-        "px-4 py-16 sm:px-6 md:py-20",
+        "py-12 sm:py-16",
         gray && "bg-gray-50",
         className
       )}
     >
-      <div className="mx-auto max-w-6xl">{children}</div>
+      <div className="site-container">{children}</div>
     </section>
   );
 }
@@ -38,11 +38,11 @@ export function SectionHeader({
 }) {
   return (
     <div className={cn("mb-10 max-w-2xl", className)}>
-      <h2 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
+      <h2 className="section-title">
         {title}
       </h2>
       {subtitle && (
-        <p className="mt-3 text-base leading-relaxed text-gray-500">
+        <p className="mt-4 text-base leading-relaxed text-gray-600">
           {subtitle}
         </p>
       )}

@@ -1,4 +1,7 @@
 import {
+  Coffee,
+  Scissors,
+  Tent,
   Monitor,
   UtensilsCrossed,
   Wrench,
@@ -24,6 +27,9 @@ import {
 } from "lucide-react";
 
 export const iconMap = {
+  Coffee,
+  Scissors,
+  Tent,
   Monitor,
   UtensilsCrossed,
   Wrench,

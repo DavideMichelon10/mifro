@@ -1,0 +1,16 @@
+Asset: public/images/hero-realistica.jpg
+Method: built-in image_gen, followed by JPEG encoding with Sharp (quality 93, 4:4:4).
+Source photograph: git show 9769a45^:public/images/hero.jpg
+Facade reference: git show f21679b:public/images/chi_siamo.jpg
+Previous homepage asset is preserved at public/images/hero.jpg.
+Final selected prompt:
+
+Use case: precise-object-edit.
+Asset: documentary photograph for a real shop's homepage.
+Image 1 is the EDIT TARGET: the original, real camera photograph of the MIFRO shop with a yellow facade, three white branded vehicles (two foreground, one rear left), a planter, and an overlaid telephone number in the lower left. Its unpolished natural photographic quality is exactly what we want to KEEP.
+Image 2 is a factual REFERENCE ONLY showing the shop's current dark gray stucco facade and light gray top fascia.
+Make ONLY TWO very localized edits to Image 1:
+1. Change just the yellow painted facade of the MIFRO shop to the natural medium/dark gray stucco color in Image 2, including the central pier and right shop wall. Change the yellow horizontal shop fascia to the light gray/white of Image 2. Keep all its original texture, geometry, perspective, shadows, recesses and illumination. Preserve the neighboring pink wall exactly.
+2. Remove the added floating blue telephone icon and overlaid white text "0461-512777" in the lower-left corner. Restore the small area of car/asphalt naturally behind them.
+ABSOLUTE PRESERVATION REQUIREMENTS: Everything else must remain exactly like the real original Image 1. Keep its original composition, all three vehicles and their exact positions, original window reflections, planter, neighboring pink facade, pavement, parked car in the background, storefront display, fluorescent lights, all natural uneven illumination and camera softness. Keep ALL photographic decals and lettering on the original vehicles and storefront untouched, with their exact shapes and original image detail. Do not redraw any letters. Do not replace the shop display. Do not straighten or reframe the photograph. Do not remove small natural imperfections. Do not stylize. Do not smooth, denoise, regenerate, idealize, oversharpen, or change color grading of the cars, street, signs, glass or any unedited areas.
+The goal is minimally edited real photography, not a photorealistic re-creation. Preserve the real pixels and authentic imperfection of the original everywhere except those two edits. Same landscape aspect ratio as Image 1 (2000:1199), ideally same pixel dimensions.

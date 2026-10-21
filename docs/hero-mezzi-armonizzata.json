@@ -1,0 +1,159 @@
+{
+  "source": "public/images/hero-mezzi.jpg",
+  "output": "public/images/hero-mezzi-armonizzata.jpg",
+  "width": 1872,
+  "height": 1123,
+  "method": "Built-in image_gen for object removal; masked compositing onto the source photograph; deterministic global color correction with no spatial resampling of source details.",
+  "colorCorrection": {
+    "saturation": 0.94,
+    "midtoneLift": 14,
+    "whiteBalance": [
+      -0.8,
+      -0.6,
+      1.4
+    ]
+  },
+  "regions": [
+    {
+      "name": "left-window",
+      "path": "M84 100 H237 V248 H84 Z",
+      "blur": 9,
+      "samples": [
+        [
+          85,
+          85,
+          150,
+          15
+        ],
+        [
+          75,
+          120,
+          15,
+          100
+        ]
+      ],
+      "offset": [
+        3.8736000000000104,
+        7.574666666666644,
+        4.329066666666677
+      ]
+    },
+    {
+      "name": "right-window",
+      "path": "M458 132 H578 V255 H458 Z",
+      "blur": 7,
+      "samples": [
+        [
+          460,
+          110,
+          105,
+          15
+        ]
+      ],
+      "offset": [
+        5.420952380952372,
+        8.427936507936522,
+        6.533333333333331
+      ]
+    },
+    {
+      "name": "black-car",
+      "path": "M411 255 H578 V391 L555 381 L530 374 L503 367 L476 361 L457 357 L447 354 L440 349 L432 344 L423 336 L410 324 Z",
+      "blur": 0.5,
+      "samples": [
+        [
+          450,
+          245,
+          110,
+          12
+        ]
+      ],
+      "offset": [
+        8.6310606060606,
+        7.037878787878782,
+        2.5719696969696884
+      ]
+    },
+    {
+      "name": "central-planter",
+      "path": "M788 628 L870 607 L975 595 L1045 616 L1105 650 L1166 680 L1124 693 L1094 705 L1059 719 L1033 735 L1011 751 L994 775 L978 798 L969 826 L962 852 L915 858 L850 849 L798 838 L798 808 L806 763 L808 712 L798 678 Z",
+      "blur": 4,
+      "samples": [
+        [
+          830,
+          864,
+          100,
+          12
+        ],
+        [
+          1020,
+          602,
+          65,
+          12
+        ]
+      ],
+      "offset": [
+        -8.976262626262624,
+        -11.278282828282826,
+        -13.945454545454538
+      ]
+    },
+    {
+      "name": "right-shrubs",
+      "path": "M1688 417 H1872 V474 Q1780 466 1688 474 Z",
+      "blur": 1,
+      "samples": [
+        [
+          1700,
+          405,
+          172,
+          20
+        ]
+      ],
+      "offset": [
+        -16.044476744186042,
+        -22.903779069767424,
+        -29.716279069767438
+      ]
+    }
+  ],
+  "validation": {
+    "pixelsOutsideMasksIdenticalToColorCorrectedSource": 1952575,
+    "protectedAreas": [
+      [
+        0,
+        290,
+        320,
+        160
+      ],
+      [
+        30,
+        570,
+        650,
+        240
+      ],
+      [
+        1230,
+        780,
+        640,
+        310
+      ],
+      [
+        610,
+        45,
+        1010,
+        520
+      ],
+      [
+        440,
+        0,
+        130,
+        45
+      ]
+    ]
+  },
+  "jpeg": {
+    "quality": 93,
+    "chromaSubsampling": "4:4:4"
+  }
+}
