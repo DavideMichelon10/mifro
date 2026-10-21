@@ -22,8 +22,8 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex h-12 w-16 shrink-0 flex-col items-center justify-center gap-1 rounded-lg text-xs leading-4 text-brand-700 transition-colors hover:bg-brand-100"
-                  aria-label="Contattaci su WhatsApp"
-                  title="WhatsApp"
+                  aria-label="Contattaci su WhatsApp Business"
+                  title="WhatsApp Business · 0461 512777"
                 >
                   <MessageCircle aria-hidden="true" className="h-4 w-4" />
                   <span>WhatsApp</span>

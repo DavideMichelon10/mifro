@@ -45,16 +45,10 @@ export default function HomePage() {
             </div>
           </div>
 
-          <nav aria-label="Accesso rapido alle sezioni" className="mt-6 grid grid-cols-3 gap-2 sm:hidden">
-            <a href="#settori" className="flex min-h-12 items-center justify-center rounded-lg bg-brand-50 px-2 text-sm font-semibold text-brand-700">Settori</a>
-            <a href="#servizi" className="flex min-h-12 items-center justify-center rounded-lg bg-brand-50 px-2 text-sm font-semibold text-brand-700">Servizi</a>
-            <a href="#dove-siamo" className="flex min-h-12 items-center justify-center rounded-lg bg-brand-50 px-2 text-sm font-semibold text-brand-700">Dove siamo</a>
-          </nav>
-
           <div className="surface-card mt-8 overflow-hidden sm:mt-10">
             <Image
               src={hero.image}
-              alt="Sede Mifro a Pergine Valsugana con i mezzi aziendali davanti al negozio"
+              alt="Sede Mifro con i mezzi aziendali davanti al negozio"
               width={1536}
               height={927}
               quality={85}

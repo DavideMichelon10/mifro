@@ -32,8 +32,6 @@ export function OrganizationJsonLd() {
       addressCountry: siteConfig.contact.country,
     },
     areaServed: [
-      { "@type": "City", name: "Pergine Valsugana" },
-      { "@type": "City", name: "Trento" },
       { "@type": "AdministrativeArea", name: "Trentino" },
     ],
     openingHoursSpecification: siteConfig.hours.flatMap((entry) => {

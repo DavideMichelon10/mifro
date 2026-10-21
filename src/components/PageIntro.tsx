@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 export default function PageIntro({
   title,
   description,
-  eyebrow = "Mifro · Pergine Valsugana",
+  eyebrow = "Mifro · Trentino",
   children,
 }: {
   title: string;
