@@ -6,10 +6,14 @@ import Section, { SectionHeader } from "@/components/Section";
 import Accordion from "@/components/Accordion";
 import ScrollReveal from "@/components/ScrollReveal";
 import PageIntro from "@/components/PageIntro";
+import ContactCta from "@/components/ContactCta";
+import Link from "next/link";
+import { createPageMetadata } from "@/lib/metadata";
+import type { Article } from "@/content/articles";
 
 type Props = { params: Promise<{ slug: string }> };
 
-function getNews(slug: string) {
+function getNews(slug: string): Article | undefined {
   return siteConfig.news.find((n) => n.slug === slug);
 }
 
@@ -22,15 +26,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const news = getNews(slug);
   if (!news) return {};
 
-  return {
+  return createPageMetadata({
     title: news.title,
     description: news.description,
-    alternates: { canonical: `/news/${news.slug}` },
-    openGraph: {
-      title: `${news.title} | Mifro`,
-      description: news.description,
-    },
-  };
+    path: `/news/${news.slug}`,
+    article: { published: news.date, revised: news.revisedAt ?? news.date },
+  });
 }
 
 function formatDate(dateStr: string) {
@@ -38,6 +39,7 @@ function formatDate(dateStr: string) {
     day: "numeric",
     month: "long",
     year: "numeric",
+    timeZone: "Europe/Rome",
   });
 }
 
@@ -48,36 +50,34 @@ export default async function NewsDetailPage({ params }: Props) {
 
   return (
     <>
-      <PageIntro title={news.title} eyebrow={`Guida operativa · ${formatDate(news.date)}`} />
+      <PageIntro title={news.title} eyebrow={`Guida operativa · Pubblicata il ${formatDate(news.date)}`} />
       <Section>
         <div className="mx-auto max-w-3xl">
+          {news.revisedAt && <p className="mb-6 text-sm text-gray-500">Revisione delle fonti: <time dateTime={news.revisedAt}>{formatDate(news.revisedAt)}</time></p>}
           <div className="whitespace-pre-line text-base leading-relaxed text-gray-600">
             {news.content}
           </div>
 
-          {news.type === "pdf" && "file" in news && (
+          {news.type !== "news" && (
             <a
               href={news.file}
               target="_blank"
               rel="noopener noreferrer"
               className="button button-primary mt-8"
             >
-              <Download className="h-4 w-4" />
-              Scarica PDF
+              {news.type === "pdf" ? <Download aria-hidden="true" className="h-4 w-4" /> : <ExternalLink aria-hidden="true" className="h-4 w-4" />}
+              {news.fileLabel}
             </a>
           )}
-
-          {news.type === "link" && "file" in news && (
-            <a
-              href={news.file}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="button button-primary mt-8"
-            >
-              <ExternalLink className="h-4 w-4" />
-              Vai al link
-            </a>
-          )}
+          {!!news.sources?.length && <aside aria-label="Fonti ufficiali" className="mt-8 border-t border-gray-200 pt-6">
+            <h2 className="text-lg font-semibold">Fonti ufficiali</h2>
+            <ul className="mt-3 space-y-2">
+              {news.sources.map((source) => <li key={source.url}><a href={source.url} target="_blank" rel="noopener noreferrer" className="text-link">{source.title}<ExternalLink aria-hidden="true" className="h-4 w-4 shrink-0" /></a></li>)}
+            </ul>
+          </aside>}
+          {!!news.relatedLinks?.length && <nav aria-label="Approfondimenti" className="mt-4 flex flex-col items-start gap-3">
+            {news.relatedLinks.map((link) => <Link key={link.href} href={link.href} className="text-link">{link.label}</Link>)}
+          </nav>}
         </div>
       </Section>
 
@@ -101,6 +101,7 @@ export default async function NewsDetailPage({ params }: Props) {
           </div>
         </Section>
       )}
+      <ContactCta {...news.cta} />
     </>
   );
 }

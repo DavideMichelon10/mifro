@@ -1,4 +1,5 @@
 import { createHmac, randomUUID, timingSafeEqual } from "node:crypto";
+import { DEFAULT_CONTACT_SUBJECT, parseContactContext } from "@/lib/contact-context";
 
 export const RECEIPT_COOKIE = "mifro_contact_receipt";
 export const RECEIPT_SECONDS = 600;
@@ -25,18 +26,22 @@ export function readReceipt(token: string | undefined, secret: string, now = Dat
 export function validateContact(value: unknown) {
   if (!value || typeof value !== "object") return null;
   const data = value as Record<string, unknown>;
-  const limits = { name: 120, email: 254, subject: 200, message: 5000 };
+  const context = parseContactContext(data.context);
+  if (!context) return null;
+  const limits = { name: 120, email: 254, message: 5000 };
   for (const [key, max] of Object.entries(limits)) {
     if (typeof data[key] !== "string" || !data[key].trim() || data[key].length > max) return null;
   }
   if (typeof data.website !== "string" || data.website !== "") return null;
+  if (data.subject !== undefined && (typeof data.subject !== "string" || data.subject.length > 200)) return null;
+  if (context.sector !== "generico" && (typeof data.subject !== "string" || !data.subject.trim())) return null;
   if (/[\r\n\x00]/.test(String(data.name) + String(data.email) + String(data.subject))) return null;
   const name = (data.name as string).trim();
   const email = (data.email as string).trim();
-  const subject = (data.subject as string).trim();
+  const subject = (data.subject as string | undefined)?.trim() || DEFAULT_CONTACT_SUBJECT;
   const message = (data.message as string).trim();
   if (/[\r\n\x00]/.test(name + email + subject) || !/^[^\s@<>]+@[^\s@<>]+\.[^\s@<>]+$/.test(email)) return null;
-  return { name, email, subject, message };
+  return { name, email, subject, message, context };
 }
 
 // Best-effort per-instance limit. Distributed enforcement belongs in Vercel Firewall.

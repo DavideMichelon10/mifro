@@ -6,11 +6,11 @@ import Section from "@/components/Section";
 import PageIntro from "@/components/PageIntro";
 import { siteConfig } from "@/content/site";
 import { readReceipt, RECEIPT_COOKIE } from "@/lib/contact";
+import { createPageMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = {
-  title: "Grazie per la tua richiesta",
+  ...createPageMetadata({ title: "Grazie per la tua richiesta", description: "Il tuo messaggio è stato inviato. Mifro ti ricontatterà all’indirizzo email indicato.", path: "/grazie" }),
   robots: { index: false, follow: false },
-  alternates: { canonical: "/grazie" },
 };
 
 export default async function GraziePage() {

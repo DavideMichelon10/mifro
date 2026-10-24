@@ -1,5 +1,6 @@
-import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/metadata";
 import Image from "next/image";
+import Link from "next/link";
 import { siteConfig } from "@/content/site";
 import { Icon } from "@/components/Icons";
 import Card from "@/components/Card";
@@ -7,11 +8,7 @@ import Section, { SectionHeader } from "@/components/Section";
 import PageIntro from "@/components/PageIntro";
 import ContactCta from "@/components/ContactCta";
 
-export const metadata: Metadata = {
-  ...siteConfig.seo.prodottiAssistenza,
-  alternates: { canonical: "/prodotti-assistenza" },
-  openGraph: siteConfig.seo.prodottiAssistenza,
-};
+export const metadata = createPageMetadata({ ...siteConfig.seo.prodottiAssistenza, path: "/prodotti-assistenza" });
 
 export default function ProdottiAssistenzaPage() {
   const { intro, blocks, sectorsIntro } = siteConfig.productsAndSupport;
@@ -36,6 +33,15 @@ export default function ProdottiAssistenzaPage() {
                 <span className="icon-tile"><Icon name={block.icon} aria-hidden="true" className="h-6 w-6" /></span>
                 <h2 id={`${block.id}-title`} className="section-title mt-5">{block.title}</h2>
                 <p className="mt-4 max-w-md leading-relaxed text-gray-600">{block.details}</p>
+                {block.id === "riparazioni" && (
+                  <div className="mt-5 space-y-3 text-sm leading-relaxed text-gray-600">
+                    <p>{siteConfig.support.territory} {siteConfig.support.methods}</p>
+                    <p>{siteConfig.support.requestNote}</p>
+                    <p><strong className="font-medium text-gray-900">Orari della sede:</strong> {siteConfig.hoursShort}. {siteConfig.support.hoursNote}</p>
+                    <Link href="/contatti" className="text-link">Contatta l’assistenza Mifro</Link>
+                  </div>
+                )}
+                {block.id === "pagamenti" && <Link href="/news/guida-ade-collegamento-rt-pos" className="text-link mt-4">Leggi la guida al collegamento RT–POS</Link>}
               </div>
             </section>
           ))}
@@ -56,7 +62,7 @@ export default function ProdottiAssistenzaPage() {
           ))}
         </div>
       </Section>
-      <ContactCta title="Di cosa hai bisogno?" description="Per un acquisto o un problema tecnico, lasciaci un messaggio. Ti ricontattiamo per capire come aiutarti." label="Contattaci" showPhone />
+      <ContactCta title="Di cosa hai bisogno?" description={siteConfig.support.requestNote} label="Contattaci" showPhone />
     </>
   );
 }

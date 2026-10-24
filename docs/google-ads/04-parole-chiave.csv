@@ -1,0 +1,41 @@
+﻿Campaign,Ad group,Keyword,Match type,Status
+MIFRO | Search | Ristoranti | Trentino,Ristoranti e pizzerie,gestionale ristorante,Exact,Paused
+MIFRO | Search | Ristoranti | Trentino,Ristoranti e pizzerie,software ristorazione,Exact,Paused
+MIFRO | Search | Ristoranti | Trentino,Ristoranti e pizzerie,gestionale ristorante trento,Exact,Paused
+MIFRO | Search | Ristoranti | Trentino,Ristoranti e pizzerie,cassa ristorante,Exact,Paused
+MIFRO | Search | Ristoranti | Trentino,Ristoranti e pizzerie,registratore di cassa ristorante,Exact,Paused
+MIFRO | Search | Ristoranti | Trentino,Ristoranti e pizzerie,gestionale ristorante,Phrase,Paused
+MIFRO | Search | Ristoranti | Trentino,Ristoranti e pizzerie,software comande ristorante,Phrase,Paused
+MIFRO | Search | Ristoranti | Trentino,Ristoranti e pizzerie,cassa per ristorante,Phrase,Paused
+MIFRO | Search | Ristoranti | Trentino,Ristoranti e pizzerie,cassa ristorante trento,Phrase,Paused
+MIFRO | Search | Ristoranti | Trentino,Ristoranti e pizzerie,cassa rch ristorante,Phrase,Paused
+MIFRO | Search | Bar | Trentino,Bar e caffetterie,cassa bar,Exact,Paused
+MIFRO | Search | Bar | Trentino,Bar e caffetterie,registratore di cassa bar,Exact,Paused
+MIFRO | Search | Bar | Trentino,Bar e caffetterie,cassa bar trento,Exact,Paused
+MIFRO | Search | Bar | Trentino,Bar e caffetterie,gestionale bar,Exact,Paused
+MIFRO | Search | Bar | Trentino,Bar e caffetterie,software gestione bar,Exact,Paused
+MIFRO | Search | Bar | Trentino,Bar e caffetterie,gestionale bar trento,Exact,Paused
+MIFRO | Search | Bar | Trentino,Bar e caffetterie,cassa per bar,Phrase,Paused
+MIFRO | Search | Bar | Trentino,Bar e caffetterie,registratore di cassa per bar,Phrase,Paused
+MIFRO | Search | Bar | Trentino,Bar e caffetterie,gestionale per bar,Phrase,Paused
+MIFRO | Search | Bar | Trentino,Bar e caffetterie,software comande bar,Phrase,Paused
+MIFRO | Search | Parrucchieri | Trentino,Parrucchieri e saloni,cassa parrucchiere,Exact,Paused
+MIFRO | Search | Parrucchieri | Trentino,Parrucchieri e saloni,registratore cassa parrucchieri,Exact,Paused
+MIFRO | Search | Parrucchieri | Trentino,Parrucchieri e saloni,cassa salone,Exact,Paused
+MIFRO | Search | Parrucchieri | Trentino,Parrucchieri e saloni,gestionale parrucchieri,Exact,Paused
+MIFRO | Search | Parrucchieri | Trentino,Parrucchieri e saloni,software salone parrucchieri,Exact,Paused
+MIFRO | Search | Parrucchieri | Trentino,Parrucchieri e saloni,gestionale parrucchieri trento,Exact,Paused
+MIFRO | Search | Parrucchieri | Trentino,Parrucchieri e saloni,cassa per parrucchieri,Phrase,Paused
+MIFRO | Search | Parrucchieri | Trentino,Parrucchieri e saloni,registratore di cassa parrucchiere,Phrase,Paused
+MIFRO | Search | Parrucchieri | Trentino,Parrucchieri e saloni,gestionale per parrucchieri,Phrase,Paused
+MIFRO | Search | Parrucchieri | Trentino,Parrucchieri e saloni,gestionale salone con cassa,Phrase,Paused
+MIFRO | Search | Ambulanti | Trentino,Ambulanti e mercati,registratore di cassa ambulanti,Exact,Paused
+MIFRO | Search | Ambulanti | Trentino,Ambulanti e mercati,cassa ambulanti,Exact,Paused
+MIFRO | Search | Ambulanti | Trentino,Ambulanti e mercati,cassa ambulanti trento,Exact,Paused
+MIFRO | Search | Ambulanti | Trentino,Ambulanti e mercati,registratore di cassa portatile,Exact,Paused
+MIFRO | Search | Ambulanti | Trentino,Ambulanti e mercati,registratore cassa batteria,Exact,Paused
+MIFRO | Search | Ambulanti | Trentino,Ambulanti e mercati,ape j rt,Exact,Paused
+MIFRO | Search | Ambulanti | Trentino,Ambulanti e mercati,cassa per ambulanti,Phrase,Paused
+MIFRO | Search | Ambulanti | Trentino,Ambulanti e mercati,registratore di cassa per mercati,Phrase,Paused
+MIFRO | Search | Ambulanti | Trentino,Ambulanti e mercati,cassa telematica portatile,Phrase,Paused
+MIFRO | Search | Ambulanti | Trentino,Ambulanti e mercati,registratore di cassa con batteria,Phrase,Paused

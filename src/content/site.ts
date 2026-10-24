@@ -1,4 +1,5 @@
 import { sectors, sectorHref } from "./sectors";
+import { articles } from "./articles";
 
 /* ──────────────────────────────────────────────────────────────
    MIFRO – Contenuti centralizzati del sito
@@ -58,7 +59,7 @@ export const siteConfig = {
   hero: {
     title: "Registratori di cassa e sistemi POS in Trentino",
     subtitle:
-      "Registratori di cassa telematici RT, POS, hardware e software per il punto vendita e l'ufficio.",
+      "Ti aiutiamo a scegliere la cassa, la installiamo e ti seguiamo nell’assistenza, con tecnici in Trentino.",
     tagline: "Al fianco delle imprese dal 1990",
     cta1: { label: "Contattaci", href: "/contatti" },
     cta2: { label: "Soluzioni per la tua attività", href: "/#settori" },
@@ -96,6 +97,14 @@ export const siteConfig = {
     cta: { label: "Contattaci", href: "/contatti" },
   },
 
+  support: {
+    territory: "Assistenza in Trentino, con sede a Pergine Valsugana.",
+    methods: "Interventi sul posto e da remoto, in base al problema e alla configurazione.",
+    requestNote: "Indicaci il modello, cosa succede e il comune in cui lavori. I nostri tecnici ti ricontattano per capire quale intervento serve.",
+    hoursNote: "Gli orari indicati sono quelli di contatto della sede. Modalità e copertura dell’assistenza dipendono dagli accordi di servizio.",
+  },
+  privacyRevisedAt: "2026-10-24",
+
   /* ── Prodotti e assistenza ──────────────────────────── */
   productsAndSupport: {
     intro: "Pagamenti, strumenti per l’ufficio e assistenza tecnica, con un unico riferimento sul territorio.",
@@ -124,7 +133,7 @@ export const siteConfig = {
         id: "riparazioni",
         title: "Assistenza e riparazioni",
         description: "Supporto su casse e software, diagnosi e riparazioni di PC e stampanti.",
-        details: "La cassa dà problemi, il PC è lento o la stampante non funziona? Ci occupiamo di assistenza su casse e software, diagnosi e riparazioni di PC e stampanti. Scrivici quale dispositivo utilizzi e cosa succede: ti ricontattiamo per capire come aiutarti.",
+        details: "La cassa dà problemi o il gestionale si blocca? Ci occupiamo di assistenza su registratori di cassa e gestionali, oltre a diagnosi e riparazioni di PC e stampanti.",
         icon: "Wrench" as const,
         image: "/images/assistenza-riparazioni-uomo.jpg",
         imageAlt: "Mani di un tecnico durante la sostituzione di un SSD in un computer portatile",
@@ -188,9 +197,9 @@ export const siteConfig = {
           "Oltre 30 anni al servizio delle imprese trentine, con competenza e continuità.",
       },
       {
-        title: "Assistenza rapida",
+        title: "Assistenza diretta",
         description:
-          "Interventi tempestivi on-site e da remoto, per ridurre al minimo i tempi di fermo.",
+          "Tecnici in Trentino per valutare il problema e concordare l’intervento sul posto o da remoto.",
       },
       {
         title: "Soluzioni su misura",
@@ -211,7 +220,7 @@ export const siteConfig = {
     description:
       "Hai bisogno di informazioni o assistenza? Lasciaci un messaggio e ti ricontatteremo.",
     formTitle: "Scrivici, ti ricontattiamo noi.",
-    replyNote: "Ti ricontatteremo all’indirizzo email indicato.",
+    replyNote: "Il gestore del sito inoltra la richiesta a Mifro, che ti ricontatterà all’indirizzo email indicato.",
     formFields: {
       name: "Nome e cognome",
       email: "Email",
@@ -222,51 +231,7 @@ export const siteConfig = {
   },
 
   /* ── News ───────────────────────────────────────────── */
-  news: [
-    {
-      slug: "guida-ade-collegamento-rt-pos",
-      title: "Guida operativa AdE per il collegamento logico RT - POS",
-      date: "2026-02-27",
-      description:
-        "L'Agenzia delle Entrate ha pubblicato la guida operativa per il collegamento logico tra Registratore Telematico e POS: cos'è, chi è obbligato e le scadenze da rispettare.",
-      content:
-        "A partire dal 2026 è previsto l'obbligo del collegamento tra gli strumenti mediante i quali il negoziante memorizza i corrispettivi (Registratore Telematico o procedura web \"Documento Commerciale on line\") e gli strumenti mediante i quali accetta il pagamento elettronico (POS fisici e virtuali).\n\nIl collegamento non è fisico (cavi o simili), ma di tipo logico: consiste in una comunicazione all'Agenzia delle Entrate attraverso un'apposita funzionalità sul portale web \"Fatture e Corrispettivi\".\n\nLa nuova funzionalità espone l'elenco dei POS di cui l'esercente risulta titolare, sulla base delle informazioni trasmesse dagli operatori finanziari. L'esercente deve quindi associare ciascun POS al proprio RT, indicando anche l'indirizzo dell'unità locale.\n\nLa prima comunicazione dei collegamenti dovrà essere effettuata a partire dai primi giorni di marzo 2026, relativamente ai POS attivi nel mese di gennaio 2026. Gli esercenti avranno 45 giorni di tempo dalla messa a disposizione della procedura.\n\nPer i POS attivati nei mesi successivi a gennaio 2026, il collegamento dovrà essere registrato tra il sesto e l'ultimo giorno del secondo mese successivo a quello di attivazione del POS.\n\nScarica la guida completa dell'Agenzia delle Entrate per tutti i dettagli, gli esempi pratici e le istruzioni operative.",
-      type: "pdf" as "pdf" | "link" | "news",
-      file: "/docs/guida-ade-collegamento-rt-pos.pdf",
-      faq: [
-        {
-          question: "In cosa consiste il collegamento RT - POS?",
-          answer:
-            "Non si tratta di un collegamento fisico tramite cavi, ma di un collegamento logico: una comunicazione una tantum all'Agenzia delle Entrate tramite il portale \"Fatture e Corrispettivi\", in cui si associa ciascun POS (fisico o virtuale) al proprio Registratore Telematico.",
-        },
-        {
-          question: "Chi è obbligato al collegamento?",
-          answer:
-            "Tutti gli esercenti che utilizzano un Registratore Telematico (RT) o la procedura web \"Documento Commerciale on line\" e accettano pagamenti elettronici tramite POS. Sono esclusi i distributori automatici (vending machine), le cessioni di carburante e le operazioni di ricarica veicoli elettrici.",
-        },
-        {
-          question: "Entro quando va effettuato il collegamento?",
-          answer:
-            "La prima comunicazione va effettuata a partire dai primi giorni di marzo 2026, relativamente ai POS attivi a gennaio 2026, entro 45 giorni dalla messa a disposizione della procedura. Per i POS attivati successivamente, il collegamento va registrato tra il 6° e l'ultimo giorno del secondo mese successivo all'attivazione.",
-        },
-        {
-          question: "Dove si effettua il collegamento?",
-          answer:
-            "Tramite la funzionalità \"Gestione collegamenti\" nel portale \"Fatture e Corrispettivi\" dell'Agenzia delle Entrate, oppure tramite la procedura web \"Documento Commerciale on line\" per chi la utilizza.",
-        },
-        {
-          question: "Cosa succede se ho più POS o più RT?",
-          answer:
-            "Il collegamento può essere multiplo: un singolo POS può essere collegato a più RT e, viceversa, più POS possono essere collegati a un singolo RT. Per ogni collegamento va indicato anche l'indirizzo dell'unità locale.",
-        },
-        {
-          question: "Mifro può aiutarmi con il collegamento RT - POS?",
-          answer:
-            "Certamente. Il nostro team tecnico può assisterti nella configurazione del collegamento logico tra RT e POS, verificando i dati necessari e guidandoti nell'utilizzo del portale \"Fatture e Corrispettivi\". Contattaci per maggiori informazioni.",
-        },
-      ],
-    },
-  ],
+  news: articles,
 
   /* ── SEO ────────────────────────────────────────────── */
   seo: {

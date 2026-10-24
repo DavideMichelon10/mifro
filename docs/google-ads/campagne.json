@@ -1,0 +1,269 @@
+{
+  "updated_at": "2026-10-24",
+  "account_id": "276-321-8107",
+  "account_name": "Mifro",
+  "status": "local_preparation",
+  "budget": null,
+  "publication_authorized": false,
+  "source": "src/content/sectors.ts; piano marketing; richiesta utente di includere tutti i settori senza budget",
+  "settings": {
+    "type": "Search",
+    "language": "it",
+    "location": "Provincia autonoma di Trento, Italia",
+    "location_option": "Presence",
+    "search_partners": false,
+    "display_network": false,
+    "schedule": "Every day 07:00-22:00 Europe/Rome",
+    "devices": "all",
+    "bidding_strategy": "Maximize clicks",
+    "proposed_max_cpc_eur": 3,
+    "bidding_note": "Limite provvisorio del piano; non è un budget e non autorizza l'attivazione.",
+    "primary_conversion": "generate_lead",
+    "conversion_count": "One",
+    "conversion_note": "Un solo evento primario GA4 mifro.it. Sector resta una dimensione di analisi; non sommare conversioni derivate per il medesimo invio.",
+    "remarketing": false
+  },
+  "negative_keywords_phrase": [
+    "gratis",
+    "gratuito",
+    "crack",
+    "torrent",
+    "open source",
+    "offerte lavoro",
+    "lavora con noi",
+    "stipendio",
+    "corso programmazione",
+    "manuale pdf",
+    "assistenza urgente",
+    "riparazione pc",
+    "stampante ufficio",
+    "pos bancario",
+    "commissioni pos",
+    "mifro"
+  ],
+  "campaigns": [
+    {
+      "name": "MIFRO | Search | Ristoranti | Trentino",
+      "sector": "ristoranti",
+      "final_url": "https://www.mifro.it/soluzioni/ristoranti",
+      "negative_keywords_phrase": [
+        "parrucchiere",
+        "parrucchieri",
+        "ambulanti"
+      ],
+      "ad_groups": [
+        {
+          "name": "Ristoranti e pizzerie",
+          "path_1": "ristoranti",
+          "path_2": "soluzioni",
+          "keywords_exact": [
+            "gestionale ristorante",
+            "software ristorazione",
+            "gestionale ristorante trento",
+            "cassa ristorante",
+            "registratore di cassa ristorante"
+          ],
+          "keywords_phrase": [
+            "gestionale ristorante",
+            "software comande ristorante",
+            "cassa per ristorante",
+            "cassa ristorante trento",
+            "cassa rch ristorante"
+          ],
+          "headlines": [
+            "Gestionale Ristorante",
+            "Tavoli, Comande e Cassa",
+            "Mifro in Trentino",
+            "Software Ristorazione",
+            "Scopri le Soluzioni RCH",
+            "Software Comande Ristorante",
+            "Parla con i Tecnici Mifro",
+            "Cassa per Ristorante",
+            "Dal Tavolo al Conto",
+            "Casse RCH per Ristoranti",
+            "Tecnici sul Territorio",
+            "Cassa Ristorante in Trentino",
+            "La Configurazione per Te",
+            "Richiedi Informazioni",
+            "Scelta e Installazione"
+          ],
+          "descriptions": [
+            "Gestisci tavoli e comande con le soluzioni RCH. Raccontaci come lavora il tuo locale.",
+            "Ti seguiamo nella scelta e nella configurazione, con assistenza sul posto e da remoto.",
+            "Cerchi una cassa per il ristorante? Scopri sistemi RCH e gestionali per il tuo locale.",
+            "Raccontaci quale sistema utilizzi e cosa vuoi migliorare. Ti ricontattiamo via email."
+          ]
+        }
+      ]
+    },
+    {
+      "name": "MIFRO | Search | Bar | Trentino",
+      "sector": "bar",
+      "final_url": "https://www.mifro.it/soluzioni/bar",
+      "negative_keywords_phrase": [
+        "parrucchiere",
+        "parrucchieri",
+        "ambulanti"
+      ],
+      "ad_groups": [
+        {
+          "name": "Bar e caffetterie",
+          "path_1": "bar",
+          "path_2": "soluzioni",
+          "keywords_exact": [
+            "cassa bar",
+            "registratore di cassa bar",
+            "cassa bar trento",
+            "gestionale bar",
+            "software gestione bar",
+            "gestionale bar trento"
+          ],
+          "keywords_phrase": [
+            "cassa per bar",
+            "registratore di cassa per bar",
+            "gestionale per bar",
+            "software comande bar"
+          ],
+          "headlines": [
+            "Cassa per Bar",
+            "Registratori di Cassa RCH",
+            "Mifro in Trentino",
+            "La Cassa per il Tuo Banco",
+            "Scopri WALLE MEC RT",
+            "Scelta e Installazione",
+            "Tecnici sul Territorio",
+            "Gestionale per Bar",
+            "Banco, Tavoli e Comande",
+            "Soluzioni RCH per Bar",
+            "Scopri ATS 2 e ATS 3",
+            "Conti e Ordini Organizzati",
+            "Configurazione per il Bar",
+            "Richiedi Informazioni",
+            "Parla con i Tecnici Mifro"
+          ],
+          "descriptions": [
+            "Cerchi una cassa per il bar? Scopri le soluzioni RCH con Mifro in Trentino.",
+            "WALLE MEC RT: tastiera e stampante integrate, articoli pronti e vendite per reparto.",
+            "Lavori al banco o anche ai tavoli? Valutiamo insieme il gestionale per il tuo bar.",
+            "Scopri ATS 2 e ATS 3: ordini, conti e funzioni cloud secondo la configurazione scelta."
+          ]
+        }
+      ]
+    },
+    {
+      "name": "MIFRO | Search | Parrucchieri | Trentino",
+      "sector": "parrucchieri-saloni",
+      "final_url": "https://www.mifro.it/soluzioni/parrucchieri-saloni",
+      "negative_keywords_phrase": [
+        "ristorante",
+        "ristoranti",
+        "ambulanti",
+        "taglio capelli",
+        "colore capelli"
+      ],
+      "ad_groups": [
+        {
+          "name": "Parrucchieri e saloni",
+          "path_1": "parrucchieri",
+          "path_2": "soluzioni",
+          "keywords_exact": [
+            "cassa parrucchiere",
+            "registratore cassa parrucchieri",
+            "cassa salone",
+            "gestionale parrucchieri",
+            "software salone parrucchieri",
+            "gestionale parrucchieri trento"
+          ],
+          "keywords_phrase": [
+            "cassa per parrucchieri",
+            "registratore di cassa parrucchiere",
+            "gestionale per parrucchieri",
+            "gestionale salone con cassa"
+          ],
+          "headlines": [
+            "Cassa per Parrucchieri",
+            "La Cassa per il Tuo Salone",
+            "Registratori di Cassa RCH",
+            "Mifro in Trentino",
+            "Scopri WALLE MEC RT",
+            "Servizi e Prodotti in Cassa",
+            "Scelta e Installazione",
+            "Gestionale per Parrucchieri",
+            "Agenda e Cassa per Saloni",
+            "Scopri ATS 3 per il Salone",
+            "Appuntamenti e Vendite",
+            "Agenda per Operatore",
+            "Prodotti e Incassi in Ordine",
+            "Moduli su Configurazione",
+            "Richiedi Informazioni"
+          ],
+          "descriptions": [
+            "Casse RCH per parrucchieri e saloni. Mifro ti segue nella scelta e nella configurazione.",
+            "Cerchi solo la cassa? Puoi mantenere la tua agenda e scegliere una soluzione essenziale.",
+            "Cerchi cassa e gestione degli appuntamenti? Valutiamo le esigenze del tuo salone.",
+            "ATS 3 per saloni: agenda, prodotti e incassi. Moduli e canoni definiti nel preventivo."
+          ]
+        }
+      ]
+    },
+    {
+      "name": "MIFRO | Search | Ambulanti | Trentino",
+      "sector": "ambulanti",
+      "final_url": "https://www.mifro.it/soluzioni/ambulanti",
+      "negative_keywords_phrase": [
+        "parrucchiere",
+        "parrucchieri",
+        "ristorante",
+        "ristoranti",
+        "cassa bluetooth",
+        "cassa audio",
+        "altoparlante"
+      ],
+      "ad_groups": [
+        {
+          "name": "Ambulanti e mercati",
+          "path_1": "ambulanti",
+          "path_2": "soluzioni",
+          "keywords_exact": [
+            "registratore di cassa ambulanti",
+            "cassa ambulanti",
+            "cassa ambulanti trento",
+            "registratore di cassa portatile",
+            "registratore cassa batteria",
+            "ape j rt"
+          ],
+          "keywords_phrase": [
+            "cassa per ambulanti",
+            "registratore di cassa per mercati",
+            "cassa telematica portatile",
+            "registratore di cassa con batteria"
+          ],
+          "headlines": [
+            "Casse per Ambulanti",
+            "La Cassa per il Tuo Banco",
+            "Mercati e Fiere in Trentino",
+            "Mifro in Trentino",
+            "Casse Telematiche RCH",
+            "Tastiera Fisica o Touch",
+            "Scelta e Configurazione",
+            "Registratore Cassa Portatile",
+            "Casse RCH con Batteria",
+            "Scopri APE J RT",
+            "Casse per Mercati e Fiere",
+            "Scontrini in Mobilità",
+            "Collegamenti per il Banco",
+            "Dotazione per il Tuo Lavoro",
+            "Richiedi Informazioni"
+          ],
+          "descriptions": [
+            "Lavori tra mercati e fiere? Confronta le casse RCH per ambulanti con Mifro in Trentino.",
+            "WALLE MEC RT Ambulanti o APE J RT: valutiamo cassa, accessori e collegamenti per il banco.",
+            "Cerchi una cassa da usare in mobilità? Valutiamo batteria, collegamenti e accessori.",
+            "APE J RT è un registratore telematico touch con stampante, Wi-Fi e connessione mobile."
+          ]
+        }
+      ]
+    }
+  ],
+  "structure_note": "Una bozza per settore, con un gruppo e un annuncio responsive: riunisce casse e gestionali sulla medesima pagina dedicata. Nessun budget autorizzato."
+}

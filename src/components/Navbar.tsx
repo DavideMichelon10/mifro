@@ -7,6 +7,7 @@ import { ChevronDown, Menu, X } from "lucide-react";
 import { siteConfig } from "@/content/site";
 import { sectors, sectorHref } from "@/content/sectors";
 import { cn } from "@/lib/utils";
+import { contactContextForPath } from "@/lib/contact-context";
 import Logo from "@/components/Logo";
 
 function SolutionLinks({ pathname, onNavigate }: { pathname: string; onNavigate: () => void }) {
@@ -38,6 +39,7 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [solutionsOpen, setSolutionsOpen] = useState<"desktop" | "mobile" | null>(null);
   const pathname = usePathname();
+  const contactHref = contactContextForPath(pathname).sector === "generico" ? "/contatti" : "#richiedi-proposta";
   const header = useRef<HTMLElement>(null);
   const toggle = useRef<HTMLButtonElement>(null);
   const desktopDropdown = useRef<HTMLLIElement>(null);
@@ -139,7 +141,7 @@ export default function Navbar() {
               </li>
             )
           ))}
-          <li className="ml-3"><Link href="/contatti" onClick={closeNavigation} aria-current={pathname === "/contatti" ? "page" : undefined} className="button button-primary">Contattaci</Link></li>
+          <li className="ml-3"><Link href={contactHref} onClick={closeNavigation} aria-current={pathname === "/contatti" ? "page" : undefined} className="button button-primary">Contattaci</Link></li>
         </ul>
 
         <button type="button" ref={toggle} aria-controls="mobile-navigation" className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-lg p-2 text-brand-700 hover:bg-brand-50 lg:hidden" onClick={() => { setOpen(!open); setSolutionsOpen(null); }} aria-expanded={open} aria-label={open ? "Chiudi menu di navigazione" : "Apri menu di navigazione"}>
@@ -177,7 +179,7 @@ export default function Navbar() {
               )}
             </li>
           ))}
-          <li className="pt-2"><Link href="/contatti" onClick={closeNavigation} aria-current={pathname === "/contatti" ? "page" : undefined} className="button button-primary w-full">Contattaci</Link></li>
+          <li className="pt-2"><Link href={contactHref} onClick={closeNavigation} aria-current={pathname === "/contatti" ? "page" : undefined} className="button button-primary w-full">Contattaci</Link></li>
         </ul>
       </div>
     </header>

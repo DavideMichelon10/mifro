@@ -1,12 +1,14 @@
 "use client";
 
-import { useState, useRef, type FormEvent } from "react";
+import { useState, useRef, useEffect, type FormEvent } from "react";
 import { siteConfig } from "@/content/site";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { trackContactSubmission } from "@/lib/analytics";
+import { defaultContactContext, type ContactContext } from "@/lib/contact-context";
 
 interface ContactFormProps {
+  context?: ContactContext;
   defaultSubject?: string;
   messagePlaceholder?: string;
   submitLabel?: string;
@@ -14,6 +16,7 @@ interface ContactFormProps {
 }
 
 export default function ContactForm({
+  context = defaultContactContext,
   defaultSubject = "",
   messagePlaceholder = "Descrivi le tue esigenze…",
   submitLabel,
@@ -24,6 +27,8 @@ export default function ContactForm({
   const [pending, setPending] = useState(false);
   const [error, setError] = useState("");
   const sending = useRef(false);
+  const errorRef = useRef<HTMLParagraphElement>(null);
+  useEffect(() => { if (error) errorRef.current?.focus(); }, [error]);
   const [website, setWebsite] = useState("");
   const [form, setForm] = useState({
     name: "",
@@ -42,11 +47,11 @@ export default function ContactForm({
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...form, website }),
+        body: JSON.stringify({ ...form, website, context }),
       });
       const result = await response.json();
       if (!response.ok || !result.ok) throw new Error(result.error || "Invio non riuscito. Riprova più tardi.");
-      trackContactSubmission();
+      trackContactSubmission(context);
       router.push("/grazie");
     } catch (error) {
       setError(error instanceof Error ? error.message : "Invio non riuscito. Controlla la connessione e riprova.");
@@ -71,6 +76,7 @@ export default function ContactForm({
           <input
             id="cf-name"
             name="name"
+            autoComplete="name"
             maxLength={120}
             type="text"
             required
@@ -88,6 +94,7 @@ export default function ContactForm({
           <input
             id="cf-email"
             name="email"
+            autoComplete="email"
             maxLength={254}
             type="email"
             required
@@ -101,14 +108,13 @@ export default function ContactForm({
         {showSubject ? (
         <div>
           <label htmlFor="cf-subject" className="mb-1.5 block text-sm font-medium text-gray-700">
-            {formFields.subject}
+            {formFields.subject} <span className="font-normal text-gray-500">(facoltativo)</span>
           </label>
           <input
             id="cf-subject"
             name="subject"
             maxLength={200}
             type="text"
-            required
             value={form.subject}
             onChange={(e) => setForm({ ...form, subject: e.target.value })}
             className={inputClass}
@@ -135,7 +141,7 @@ export default function ContactForm({
         </div>
 
         <p className="text-sm text-gray-600">I dati saranno utilizzati per gestire la tua richiesta. <Link href="/privacy" className="text-brand-600 underline">Leggi l’informativa privacy</Link>.</p>
-        {error && <p role="alert" className="text-sm text-red-700">{error}</p>}
+        {error && <p ref={errorRef} role="alert" tabIndex={-1} className="text-sm text-red-700">{error}</p>}
         <div className="space-y-3">
           <button
             disabled={pending}

@@ -2,18 +2,16 @@ import type { Metadata } from "next";
 import { siteConfig } from "@/content/site";
 import Section from "@/components/Section";
 import PageIntro from "@/components/PageIntro";
+import { createPageMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy",
-  description:
-    "Informativa sul trattamento dei dati personali di Mifro S.a.s. ai sensi del Regolamento UE 2016/679 (GDPR).",
-  alternates: { canonical: "/privacy" },
+  ...createPageMetadata({ title: "Privacy Policy", description: "Informativa sul trattamento dei dati personali di Mifro S.a.s. ai sensi del Regolamento UE 2016/679 (GDPR).", path: "/privacy" }),
   robots: { index: false },
 };
 
 export default function PrivacyPage() {
   const { contact } = siteConfig;
-  const year = new Date().getFullYear();
+  const revisedAt = new Date(siteConfig.privacyRevisedAt).toLocaleDateString("it-IT", { day: "numeric", month: "long", year: "numeric", timeZone: "Europe/Rome" });
 
   return (
     <>
@@ -34,12 +32,15 @@ export default function PrivacyPage() {
 
         <h2 className="mt-8 text-base font-semibold text-gray-800">2. Dati raccolti e finalità</h2>
         <p>
-          Il modulo di contatto raccoglie nome, indirizzo email, oggetto e messaggio.
+          Il modulo di contatto raccoglie nome, indirizzo email e messaggio, con oggetto
+          facoltativo nella pagina Contatti o automatico nelle pagine settore.
+          La richiesta include il settore e la posizione del modulo sul sito.
           I dati vengono elaborati dal sito ospitato su Vercel e inviati tramite Gmail
           al gestore del sito, Davide Michelon, che inoltra la richiesta a Mifro per la risposta.
           Non viene creato un archivio delle richieste nel database del sito.
           Se acconsenti alle statistiche, Google Analytics rileva le visite e gli invii
-          riusciti del modulo; nome, email e contenuto del messaggio non vengono inviati ad Analytics.
+          riusciti del modulo e i clic su telefono e WhatsApp, distinti per settore e tipo di pagina. I clic non indicano che sia avvenuta una conversazione; nome, email, oggetto e
+          contenuto del messaggio non vengono inviati nei parametri Analytics del modulo.
         </p>
         <p>
           I dati del modulo sono utilizzati per gestire la richiesta, senza iscrizione automatica a comunicazioni promozionali.
@@ -54,7 +55,7 @@ export default function PrivacyPage() {
           Il rifiuto non impedisce l’invio di richieste.
         </p>
         <p>
-          La pagina dei contatti include una mappa fornita da <strong>Google Maps</strong> (Google LLC).
+          La home include una mappa fornita da <strong>Google Maps</strong> (Google LLC).
           La mappa viene caricata solo su esplicita azione dell&apos;utente (click sul riquadro). Al momento
           del caricamento, Google Maps può installare propri cookie secondo la sua{" "}
           <a
@@ -106,7 +107,7 @@ export default function PrivacyPage() {
         </p>
 
         <p className="mt-10 text-sm text-gray-500">
-          Ultimo aggiornamento: {year} — Mifro S.a.s.
+          Ultimo aggiornamento dei contenuti: <time dateTime={siteConfig.privacyRevisedAt}>{revisedAt}</time> — Mifro S.a.s.
         </p>
       </div>
     </Section>

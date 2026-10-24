@@ -94,6 +94,12 @@ body {
 /* Keep anchor headings clear of the sticky navigation. */
 section[id] { scroll-margin-top: 6rem; }
 
+/* Let the cookie choice remain reachable even when the chat widget is open. */
+body:has([data-cookie-preferences]) .woot-widget-bubble,
+body:has([data-cookie-preferences]) .woot-widget-holder {
+  visibility: hidden !important;
+}
+
 /* Mobile browsing stays immediate, without waiting for scroll reveals. */
 @media (max-width: 767px), (prefers-reduced-motion: reduce) {
   .animate-on-scroll {

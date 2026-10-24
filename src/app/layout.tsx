@@ -1,37 +1,19 @@
 import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/metadata";
 import Script from "next/script";
 import AnalyticsConsent from "@/components/AnalyticsConsent";
-import { Inter } from "next/font/google";
+import ContactClickTracking from "@/components/ContactClickTracking";
+import localFont from "next/font/local";
 import "./globals.css";
 import { siteConfig } from "@/content/site";
 import { OrganizationJsonLd } from "@/components/JsonLd";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const inter = localFont({ src: "./fonts/inter-latin-variable.woff2", weight: "100 900", style: "normal", display: "swap", variable: "--font-inter" });
 
 export const metadata: Metadata = {
-  title: {
-    default: siteConfig.seo.home.title,
-    template: `%s | ${siteConfig.shortName}`,
-  },
-  description: siteConfig.seo.home.description,
+  ...createPageMetadata({ ...siteConfig.seo.home, path: "/" }),
+  title: { default: siteConfig.seo.home.title, template: `%s | ${siteConfig.shortName}` },
   metadataBase: new URL(siteConfig.url),
-  alternates: {
-    canonical: "/",
-  },
-  openGraph: {
-    type: "website",
-    locale: "it_IT",
-    siteName: siteConfig.name,
-    title: siteConfig.seo.home.title,
-    description: siteConfig.seo.home.description,
-    // og:image – aggiungere immagine 1200×630 e decommentare:
-    // images: [{ url: "/images/og-image.jpg", width: 1200, height: 630 }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: siteConfig.seo.home.title,
-    description: siteConfig.seo.home.description,
-  },
   icons: {
     icon: [
       { url: "/favicon16x16.png", sizes: "16x16", type: "image/png" },
@@ -51,12 +33,13 @@ export default function RootLayout({
         <OrganizationJsonLd />
         {children}
         <AnalyticsConsent />
+        <ContactClickTracking />
         <Script id="chatwoot-widget" strategy="afterInteractive">
           {`
             window.chatwootSettings = {
               position: "right",
               locale: "it",
-              type: "expanded_bubble",
+              type: "standard",
               launcherTitle: "Ciao! Ti serve una mano?"
             };
             (function(d,t) {

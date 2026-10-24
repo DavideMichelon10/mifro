@@ -1,6 +1,6 @@
 # Pagine per settore — revisione tecnica
 
-Note sulle fonti, sulle configurazioni commerciali da verificare con i tecnici Mifro e sulle modifiche alle pagine. La versione aggiornata è preparata per il push richiesto dall’utente; non sono state attivate campagne Ads.
+Note sulle fonti, sulle configurazioni commerciali e sulle modifiche alle pagine. Le liste di conferme aziendali sotto sono materiale storico: il 24 ottobre 2026 l’utente ha escluso il caso cliente e chiesto di ignorare le altre informazioni non disponibili nell’intervento corrente. Non sono state attivate campagne Ads. Per lo stato tecnico attuale fare riferimento a [collaudo-marketing.md](collaudo-marketing.md).
 
 ## Percorsi e contenuti
 
@@ -310,3 +310,21 @@ Ambulanti è stato rimosso il bollino grafico «RT / Registratore telematico».
 Le varianti sono salvate in file dedicati, conservando gli originali. Fonti,
 percorsi e prompt sono in `docs/ritocchi-immagini-2026-10-21.json`,
 `docs/immagini-prodotti.json` e `docs/immagini-servizi.json`.
+
+## Implementazione del piano marketing — 24 ottobre 2026
+
+- Titoli delle soluzioni per settore e FAQ su installazione/formazione; per ristoranti,
+  anche scelta della configurazione e voci del preventivo. Nessuna nuova promessa
+  su prezzi, moduli inclusi, tempi di intervento o gerarchie ATS 2/ATS 3.
+- Contesto controllato `sector`/`form_location` nell’email e nell’evento `generate_lead`.
+  I settori mantengono tre campi e oggetto automatico; l’oggetto libero della pagina
+  Contatti è facoltativo. Payload precedenti senza contesto classificati come generici.
+- Collegamento all’assistenza esistente in `#riparazioni`, con territorio, modalità,
+  dati utili per la diagnosi e distinzione tra orari della sede e accordi di assistenza.
+  Il flusso attualmente documentato è gestore → Mifro per la presa in carico.
+- Metadati social completi, anteprima ristoranti e font Inter locale. Foto della home,
+  modelli e immagini dei prodotti restano quelli scelti in precedenza.
+- Il caso cliente è escluso su richiesta; la predisposizione inutilizzata è rimossa.
+  Le ulteriori conferme aziendali sono fuori dall’intervento corrente.
+
+Per i test ripetibili e il dettaglio delle configurazioni vedere README e piano marketing.

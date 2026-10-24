@@ -5,8 +5,10 @@ Realizzato con Next.js (App Router), TypeScript e Tailwind CSS.
 
 ## Quick start
 
+Node.js 22 (almeno 22.17), indicato anche in `.nvmrc`.
+
 ```bash
-npm install
+npm ci
 npm run dev      # http://localhost:3000
 npm run build    # Build di produzione
 npm start        # Serve la build di produzione
@@ -27,7 +29,8 @@ src/
 ├── components/                 # Componenti riutilizzabili
 ├── content/
 │   ├── site.ts                 # Contenuti generali del sito
-│   └── sectors.ts              # Contenuti delle pagine per settore
+│   ├── sectors.ts              # Contenuti delle pagine per settore
+│   └── articles.ts             # Articoli tipizzati, fonti, download e CTA
 └── lib/
     └── utils.ts                # Utility (cn)
 ```
@@ -42,14 +45,15 @@ src/content/site.ts
 
 Modifica le proprietà dell'oggetto `siteConfig` e il sito si aggiornerà automaticamente.
 
-### TODO (da completare)
+### Flusso e perimetro dell’intervento
 
-Cerca `TODO` nel file `site.ts` per trovare i dati placeholder:
-
-- **Telefono**: `contact.phone` – inserire il numero reale
-- **Email**: `contact.email` – confermare l'indirizzo
-- **Facebook**: `contact.facebook` – confermare il link
-- **Privacy Policy**: `footer.quickLinks` – aggiungere la pagina
+Il flusso confermato è **Davide → inoltro a Mifro**. La configurazione Vercel di
+produzione contiene le quattro variabili richieste; la consegna SMTP resta distinta
+dalla verifica tecnica della presenza delle variabili.
+L’utente ha escluso i casi cliente e chiesto di ignorare per questo intervento le
+informazioni aziendali non disponibili. Non sono introdotte nuove certificazioni,
+condizioni commerciali o promesse di tempi garantiti. La bozza della nuova guida
+resta interna e non costituisce un’attività da completare in questo rilascio.
 
 ### Google Maps
 
@@ -114,7 +118,7 @@ In Vercel → progetto → Settings → Environment Variables impostare per Prod
 
 Eseguire un nuovo deploy. Per prove locali copiare `.env.example` in `.env.local`
 e compilare le variabili. Per Preview usare credenziali/indirizzo di test, se necessario.
-Se le credenziali mancano il form mostra un errore di indisponibilità, senza falsa conferma.
+`CONTACT_TO` è obbligatorio e deve contenere un solo indirizzo: non esiste un destinatario di ripiego. Se la configurazione manca o non è valida il form mostra un errore di indisponibilità, senza falsa conferma.
 Cambiare il segreto invalida i cookie di conferma già emessi.
 
 ### Google Analytics
@@ -124,18 +128,27 @@ dopo l'accettazione tramite il banner; “Preferenze cookie” permette di cambi
 scelta. Il rifiuto disabilita la raccolta e cancella i cookie GA visibili al sito.
 Il form funziona indipendentemente dal consenso.
 
-L'evento `generate_lead`, con il solo parametro applicativo `form_id: contact`,
-viene emesso dal client una volta dopo la risposta di successo dell'endpoint,
-prima della navigazione interna a `/grazie`. Il refresh di `/grazie` non emette
-conversioni. Non sono inviati ad Analytics nome, email, oggetto o messaggio.
-In GA4 → Amministrazione → Eventi/Eventi chiave, contrassegnare `generate_lead`
-come evento chiave (o crearlo con questo nome). Usare questo evento per le
-conversioni, non `page_view` di `/grazie` né l'evento automatico `form_submit`.
+L’evento `generate_lead` viene emesso una volta dopo il successo dell’endpoint,
+con `form_id: contact`, `sector` e `form_location` da elenchi controllati. I payload
+precedenti senza contesto vengono classificati come generici. L’oggetto è facoltativo
+nel modulo generico e obbligatorio/precompilato nei settori; il server assegna un
+oggetto generico quando necessario. Il codice non emette `generate_lead` al refresh
+di `/grazie`. La regola Google che creava una seconda conversione dalla visita alla pagina
+è stata eliminata nella proprietà Mifro e il test con tag reale ora passa.
+Configurazione e separazione dall’account Ads DavideDev sono documentate in
+[Misurazione e gestione richieste](docs/misurazione-conversioni.md).
 
-Verificare in Tempo reale/DebugView un invio con consenso accettato; con consenso
-rifiutato deve arrivare comunque l'email, senza caricamento di GA. Le email sono
-il riferimento operativo: consenso negato, ad blocker o problemi di rete possono
-rendere il conteggio Analytics inferiore al numero di richieste.
+L’evento `contact_click` registra separatamente i clic su telefono e WhatsApp,
+con `channel`, `sector` e `page_type`, anche dopo navigazioni interne. Non dimostra
+una telefonata effettuata né una conversazione. Entrambi gli eventi rispettano il
+consenso Analytics e non includono nome, email, messaggio, numero chiamato o URL
+arbitrari nei propri parametri.
+
+Configurazione GA4/Ads, rilevamento dei clic, registro commerciale e collaudo sono
+descritti in [Misurazione e gestione richieste](docs/misurazione-conversioni.md).
+Il sito utilizza sempre il numero aziendale Mifro. Le chiamate ricevute e la
+provenienza dichiarata dal cliente si annotano nel registro commerciale.
+Il consenso Analytics non abilita automaticamente finalità pubblicitarie.
 
 ### Protezioni e limiti
 
@@ -190,7 +203,9 @@ La top bar contiene un unico pulsante «Per la tua attività» che apre i quattr
 «Prodotti e assistenza», «Chi siamo» e «Contattaci». Il logo torna alla home;
 la voce «Guida RT–POS» nel footer porta direttamente a `/news/guida-ade-collegamento-rt-pos`.
 L’indice `/news` reindirizza alla guida ed è escluso dalla sitemap. Sotto i 1024 px si usa il menu mobile. Entrambi i
-menu gestiscono tastiera, focus e chiusura dopo la navigazione. Le pagine di settore
+menu gestiscono tastiera, focus e chiusura dopo la navigazione. Nelle pagine settore
+«Contattaci» porta al modulo locale `#richiedi-proposta`, preservandone il settore.
+Nelle altre pagine il pulsante porta a `/contatti`. Le pagine di settore
 si aprono direttamente con l’introduzione, senza breadcrumb.
 
 Fonti e dettagli delle soluzioni sono raccolti nella
@@ -198,3 +213,71 @@ Fonti e dettagli delle soluzioni sono raccolti nella
 L’archivio `download.zip` e i manuali estratti in `download/` sono materiale di
 consultazione locale, escluso dal repository. Le immagini utilizzate dal sito e
 la documentazione delle fonti sono versionate in `public/images/` e `docs/`.
+
+## SEO e contenuti
+
+`createPageMetadata` mantiene coerenti canonical e anteprime social; le immagini
+1200×630 `/images/og/generale` e `/images/og/ristoranti` sono generate in build con
+foto e marchio esistenti. `/soluzioni` reindirizza permanentemente a `/#settori`.
+La sitemap omette date artificiali sulle pagine statiche e usa la revisione reale
+degli articoli, oppure la pubblicazione se non c’è una revisione.
+
+Gli articoli sono in `src/content/articles.ts`, esposti anche come `siteConfig.news`.
+Il tipo `Article` distingue PDF/link con file ed etichetta obbligatori dagli articoli
+senza download. Ogni voce può definire fonti, collegamenti di approfondimento, FAQ,
+data di revisione e CTA. Il template non contiene testi specifici della guida RT–POS.
+L’unica guida pubblicata resta quella RT–POS; `/news` mantiene il redirect attuale.
+La [bozza della guida alla scelta](docs/bozza-guida-scelta-cassa.md) resta interna.
+Il caso cliente e la relativa predisposizione sono stati rimossi su richiesta.
+
+## Verifiche e CI
+
+```bash
+npm run lint
+npm test
+npm run build
+npm run typecheck
+npm run test:browser
+npm audit
+```
+
+Il workflow `.github/workflows/ci.yml` esegue installazione pulita, audit delle
+dipendenze di produzione, lint, test, build, TypeScript e browser su push e pull
+request. Non effettua deploy e non utilizza credenziali SMTP. Gli artefatti dei test
+falliti sono conservati per sette giorni.
+
+Per i test browser installare Chromium una volta con
+`npx playwright install chromium`, oppure utilizzare Chrome già installato con
+`MIFRO_TEST_BROWSER=chrome npm run test:browser`. Preparare prima la build.
+Il server di prova usa la porta 3101, modificabile con `MIFRO_TEST_PORT=3217`,
+credenziali SMTP vuote e un segreto esclusivamente di test.
+In alternativa `MIFRO_TEST_BASE_URL=http://127.0.0.1:3101` usa un server locale già
+avviato, che deve avere `CONTACT_FORM_SECRET=browser-test-only-secret-at-least-32-characters`
+e nessuna credenziale reale. Non puntare la suite al sito pubblicato.
+
+La suite simula invii e servizi esterni. Verifica consenso, errori, doppio invio,
+refresh, percorso Contattaci desktop/mobile per tutti i settori, metadati, redirect,
+sitemap, articoli, FAQ da tastiera, mappa su richiesta e layout a 320/390/768/1440 px.
+Screenshot e trace sono in `test-results/`, esclusi da Git.
+Esiti, conteggi e limiti del collaudo sono mantenuti in un solo documento:
+[Collaudo marketing](docs/collaudo-marketing.md).
+
+`npm run test:analytics` è un controllo separato con il tag Google pubblico reale.
+Scarica il loader ma intercetta tutta la raccolta del browser; SMTP è simulato.
+Verifica navigazione Next.js, settore del lead e assenza di conversioni generate
+su `/grazie`, anche dopo refresh. È distinto dalla CI e segnala eventuali future regressioni nella configurazione
+remota. La regola duplicata individuata nel collaudo iniziale è stata rimossa.
+Non sostituisce la verifica della ricezione in DebugView.
+
+## Dipendenze e font
+
+Next resta nella versione 15.5.28. Nodemailer, Sharp e le dipendenze vulnerabili
+sono aggiornati in `package-lock.json`. L’override mirato `next → postcss` usa
+PostCSS 8.5.31 compatibile con la major 8, sostituendo la versione 8.4.31 fissata
+nel manifest di Next. Quando una versione Next compatibile include già la
+correzione, rivalutare la necessità dell’override. Il lockfile è verificato con
+installazione pulita, build e test.
+
+Il font Inter latino variabile è distribuito con licenza OFL in `src/app/fonts/`
+e caricato da `next/font/local`: la build non scarica font da Google. Il cambiamento
+risolve il timeout di download riprodotto; non è una misura di velocità del sito.

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/metadata";
 import Image from "next/image";
 import { CheckCircle2 } from "lucide-react";
 import { siteConfig } from "@/content/site";
@@ -6,15 +6,7 @@ import Section, { SectionHeader } from "@/components/Section";
 import PageIntro from "@/components/PageIntro";
 import ContactCta from "@/components/ContactCta";
 
-export const metadata: Metadata = {
-  title: siteConfig.seo.chiSiamo.title,
-  description: siteConfig.seo.chiSiamo.description,
-  alternates: { canonical: "/chi-siamo" },
-  openGraph: {
-    title: siteConfig.seo.chiSiamo.title,
-    description: siteConfig.seo.chiSiamo.description,
-  },
-};
+export const metadata = createPageMetadata({ ...siteConfig.seo.chiSiamo, path: "/chi-siamo" });
 
 export default function ChiSiamoPage() {
   const { about } = siteConfig;

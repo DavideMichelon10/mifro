@@ -16,8 +16,11 @@ export async function POST(request: NextRequest) {
   const user = process.env.SMTP_USER;
   const password = process.env.SMTP_PASSWORD?.replace(/\s/g, "");
   const secret = process.env.CONTACT_FORM_SECRET;
-  const recipient = process.env.CONTACT_TO || "davidemichelon10@gmail.com";
-  if (!user || !password || !secret || secret.length < 32) return error("Il modulo non è al momento disponibile. Contattaci via email o telefono.", 503);
+  const recipient = process.env.CONTACT_TO?.trim();
+  if (!user || !password || !secret || secret.length < 32 || !recipient || !/^[^\s@<>;,]+@[^\s@<>;,]+\.[^\s@<>;,]+$/.test(recipient)) {
+    console.error("Contact form: incomplete or invalid server configuration");
+    return error("Il modulo non è al momento disponibile. Contattaci via email o telefono.", 503);
+  }
 
   const receipt = readReceipt(request.cookies.get(RECEIPT_COOKIE)?.value, secret);
   if (receipt && Date.now() - receipt.issued < 60000) return error("Hai appena inviato una richiesta. Attendi un minuto prima di inviarne un’altra.", 429);
@@ -54,7 +57,7 @@ export async function POST(request: NextRequest) {
       to: recipient,
       replyTo: { name: form.name, address: form.email },
       subject: `Nuova richiesta dal sito Mifro: ${form.subject}`,
-      text: `Nuova richiesta dal modulo Contattaci\n\nNome: ${form.name}\nEmail: ${form.email}\nOggetto: ${form.subject}\n\n${form.message}\n\nPuoi inoltrare questa richiesta a Mifro.`,
+      text: `Nuova richiesta dal modulo Contattaci\nSettore: ${form.context.sector}\nPosizione modulo: ${form.context.form_location}\n\nNome: ${form.name}\nEmail: ${form.email}\nOggetto: ${form.subject}\n\n${form.message}\n\nPresa in carico: il gestore del sito inoltra questa richiesta a Mifro, che risponde al visitatore. Usa Reply-To per rispondere all’indirizzo indicato.`,
       disableFileAccess: true, disableUrlAccess: true,
     });
     if (!result.accepted.length) throw new Error("Recipient not accepted");

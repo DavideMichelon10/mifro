@@ -9,6 +9,7 @@ import Section from "@/components/Section";
 import ContactForm from "@/components/ContactForm";
 import SolutionCard from "@/components/SolutionCard";
 import ScrollReveal from "@/components/ScrollReveal";
+import { createPageMetadata } from "@/lib/metadata";
 
 export const dynamicParams = false;
 
@@ -22,17 +23,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { settore } = await params;
   const sector = getSector(settore);
   if (!sector) notFound();
-  return {
+  return createPageMetadata({
     title: sector.title,
     description: sector.description,
-    alternates: { canonical: sectorHref(sector.slug) },
-    openGraph: {
-      title: sector.title,
-      description: sector.description,
-      url: sectorHref(sector.slug),
-    },
-    twitter: { title: sector.title, description: sector.description },
-  };
+    path: sectorHref(sector.slug),
+    image: sector.slug === "ristoranti" ? "ristoranti" : "generale",
+  });
 }
 
 export default async function SectorPage({ params }: PageProps) {
@@ -72,7 +68,7 @@ export default async function SectorPage({ params }: PageProps) {
 
       <Section gray id="soluzioni-rch">
         <ScrollReveal className="mb-8 flex flex-wrap items-start justify-between gap-6">
-          <div className="max-w-2xl"><h2 className="section-title">Scegli il tuo punto cassa</h2><p className="mt-4 leading-relaxed text-gray-600">{sector.solutionsIntro}</p></div>
+          <div className="max-w-2xl"><h2 className="section-title">{sector.solutionsHeading}</h2><p className="mt-4 leading-relaxed text-gray-600">{sector.solutionsIntro}</p></div>
           <Image src="/images/brands/rch.svg" alt="RCH" width={655} height={567} className="h-10 w-auto object-contain" />
         </ScrollReveal>
         <div className={`grid gap-5 ${sector.solutions.length === 3 ? "md:grid-cols-3" : sector.solutions.length === 2 ? "md:grid-cols-2" : "max-w-3xl"}`}>
@@ -109,7 +105,10 @@ export default async function SectorPage({ params }: PageProps) {
             <h2 className="section-title">{localPresence.title}</h2>
             <p className="mt-4 leading-relaxed text-gray-600">{localPresence.intro}</p>
             <p className="mt-3 leading-relaxed text-gray-600">{localPresence.support}</p>
-            <Link href="/chi-siamo" className="text-link mt-5">Conosci Mifro<ArrowRight aria-hidden="true" className="h-4 w-4" /></Link>
+            <div className="mt-5 flex flex-wrap gap-x-6">
+              <Link href="/chi-siamo" className="text-link">Conosci Mifro<ArrowRight aria-hidden="true" className="h-4 w-4" /></Link>
+              <Link href="/prodotti-assistenza#riparazioni" className="text-link">Assistenza su casse e gestionali<ArrowRight aria-hidden="true" className="h-4 w-4" /></Link>
+            </div>
           </ScrollReveal>
         </div>
       </Section>
@@ -132,7 +131,7 @@ export default async function SectorPage({ params }: PageProps) {
           </ScrollReveal>
           <div id="richiedi-proposta" tabIndex={-1} aria-labelledby="contact-form-title" className="form-panel scroll-mt-24 lg:col-start-2 lg:row-span-2 lg:row-start-1">
             <h3 id="contact-form-title" className="mb-6 text-xl font-semibold">{siteConfig.contactPage.formTitle}</h3>
-            <ContactForm key={sector.slug} defaultSubject={sector.subject} messagePlaceholder={sector.messagePlaceholder} showSubject={false} />
+            <ContactForm key={sector.slug} context={{ sector: sector.slug, form_location: "sector_page" }} defaultSubject={sector.subject} messagePlaceholder={sector.messagePlaceholder} showSubject={false} />
           </div>
           <div className="border-t border-gray-200 pt-6 lg:col-start-1 lg:row-start-2">
             <p className="text-sm text-gray-600">Preferisci parlarne al telefono?</p>

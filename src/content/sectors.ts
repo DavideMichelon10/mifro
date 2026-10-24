@@ -1,3 +1,4 @@
+import type { SectorSlug } from "@/lib/contact-context";
 import type { IconName } from "@/components/Icons";
 
 type ProductImage = {
@@ -49,7 +50,7 @@ export type Solution = {
 
 // Preelaborato commerciale: verifiche e fonti in docs/revisione-pagine-settori.md.
 export type Sector = {
-  slug: string;
+  slug: SectorSlug;
   label: string;
   icon: IconName;
   summary: string;
@@ -60,6 +61,7 @@ export type Sector = {
   cta: string;
   subject: string;
   messagePlaceholder: string;
+  solutionsHeading: string;
   solutionsIntro: string;
   solutions: Solution[];
   question: string;
@@ -80,6 +82,7 @@ export const sectors: Sector[] = [
     cta: "Richiedi informazioni",
     subject: "Soluzioni di cassa per il mio bar",
     messagePlaceholder: "Dove si trova il bar? Lavori al banco o anche ai tavoli?",
+    solutionsHeading: "Cassa essenziale o gestionale per il bar",
     solutionsIntro: "Cassa essenziale o gestionale: partiamo dal servizio che offri.",
     solutions: [
       { name: "WALLE MEC RT", label: "Cassa con tastiera", title: "Compatta sul tuo banco", features: ["Articoli con prezzi già pronti", "Stampante integrata nella cassa", "Vendite ordinate per reparto"] },
@@ -89,6 +92,7 @@ export const sectors: Sector[] = [
     question: "Solo banco o anche servizio ai tavoli?",
     questionText: "Indicaci dove lavori e quale cassa utilizzi. Ti aiutiamo a scegliere.",
     faq: [
+      { question: "Come funzionano installazione e formazione?", answer: "Mifro segue installazione e configurazione. Concordiamo prima dell’avvio le attività e l’affiancamento necessari: contenuti, modalità ed eventuali costi sono da definire nella proposta." },
       { question: "Per un piccolo bar serve un gestionale?", answer: "Per il solo banco può bastare una cassa essenziale. Per tavoli, comande e report valutiamo un gestionale." },
       { question: "Posso mantenere alcune periferiche che utilizzo già?", answer: "Indica i dispositivi che usi: ne verifichiamo la compatibilità prima della proposta." },
       { question: "Le funzioni sono tutte incluse?", answer: "Dipendono dalla configurazione. Nel preventivo trovi hardware, moduli, accessori e assistenza, con gli eventuali canoni separati." },
@@ -106,6 +110,7 @@ export const sectors: Sector[] = [
     cta: "Richiedi informazioni",
     subject: "Soluzioni di cassa per il mio ristorante",
     messagePlaceholder: "Dove si trova il locale? Come gestisci oggi le comande?",
+    solutionsHeading: "Casse e gestionali per il tuo ristorante",
     solutionsIntro: "Due gestionali RCH, da abbinare a cassa e periferiche compatibili.",
     solutions: [
       { name: "ATS 2", label: "Software A-Touch System", title: "Dalla comanda al conto", features: ["Ordini organizzati per tavolo", "Sala e cassa collegate", "Gestione degli ordini d’asporto"] },
@@ -114,8 +119,11 @@ export const sectors: Sector[] = [
     question: "Parliamo del tuo ristorante.",
     questionText: "Raccontaci come gestisci gli ordini e cosa vuoi migliorare.",
     faq: [
+      { question: "Come funzionano installazione e formazione?", answer: "Mifro segue installazione e configurazione. Concordiamo prima dell’avvio le attività e l’affiancamento necessari: contenuti, modalità ed eventuali costi sono da definire nella proposta." },
+      { question: "Come scelgo tra ATS 2 e ATS 3?", answer: "Partiamo da come lavori: servizio ai tavoli, asporto, postazioni e controllo da remoto. Confrontiamo le configurazioni disponibili e l’hardware necessario; la proposta specifica funzioni e moduli, senza dare per scontato che siano tutti inclusi." },
       { question: "Cosa serve per le comande in cucina?", answer: "Stampanti o schermi dedicati, con hardware e moduli compatibili. Li definiamo nel preventivo insieme a palmari e postazioni." },
       { question: "Cosa offre ATS 3 in cloud?", answer: "Puoi consultare vendite e report da remoto e gestire più punti cassa. Moduli e canoni dipendono dalla configurazione scelta." },
+      { question: "Quali costi devo considerare oltre alla cassa?", answer: "Chiedi una proposta che distingua hardware, licenze, moduli, eventuali canoni e assistenza. Per sala, cucina e asporto valutiamo le funzioni necessarie alla tua attività." },
       { question: "Devo sostituire tutto il sistema che uso oggi?", answer: "Non necessariamente. Indicaci modelli e software: verifichiamo cosa puoi riutilizzare." },
     ],
   },
@@ -131,6 +139,7 @@ export const sectors: Sector[] = [
     cta: "Richiedi informazioni",
     subject: "Soluzioni di cassa per il mio salone",
     messagePlaceholder: "Dove si trova il salone? Cerchi una cassa o anche un’agenda?",
+    solutionsHeading: "Casse e gestionali per il tuo salone",
     solutionsIntro: "Una cassa per gli incassi o un gestionale per il salone.",
     solutions: [
       { name: "WALLE MEC RT", label: "Cassa con tastiera", title: "Semplice per gli incassi", features: ["Servizi e prodotti con prezzi pronti", "Scontrini dalla stampante integrata", "Poco spazio sul banco reception"] },
@@ -139,6 +148,7 @@ export const sectors: Sector[] = [
     question: "Cosa serve al tuo salone?",
     questionText: "Dicci se cerchi solo la cassa o anche la gestione degli appuntamenti.",
     faq: [
+      { question: "Come funzionano installazione e formazione?", answer: "Mifro segue installazione e configurazione. Concordiamo prima dell’avvio le attività e l’affiancamento necessari: contenuti, modalità ed eventuali costi sono da definire nella proposta." },
       { question: "Posso acquistare solo la cassa?", answer: "Sì. Puoi scegliere la sola cassa e continuare a usare la tua agenda." },
       { question: "L’agenda è inclusa in tutte le soluzioni?", answer: "No: prenotazioni e operatori richiedono moduli specifici. Li indichiamo nel preventivo, con gli eventuali canoni." },
       { question: "Il sistema si collega al gestionale che uso già?", answer: "Indicaci il nome del software. Verifichiamo la compatibilità prima di proporti un collegamento." },
@@ -156,6 +166,7 @@ export const sectors: Sector[] = [
     cta: "Richiedi informazioni",
     subject: "Soluzioni di cassa per la mia attività ambulante",
     messagePlaceholder: "In quali zone lavori? Hai corrente sul banco?",
+    solutionsHeading: "Casse portatili per mercati e fiere",
     solutionsIntro: "Tastiera fisica o touch: due casse telematiche per lavorare in mobilità.",
     solutions: [
       { name: "WALLE MEC RT Ambulanti", label: "Cassa portatile con tastiera", title: "La praticità dei tasti, al mercato", features: ["Batteria per lavorare senza presa", "Tastiera e stampante integrate", "Coperchio antipioggia e borsa"] },
@@ -164,6 +175,7 @@ export const sectors: Sector[] = [
     question: "Dove lavori e come alimenti il banco?",
     questionText: "Indicaci i mercati che frequenti e se hai corrente sul banco.",
     faq: [
+      { question: "Come funzionano installazione e formazione?", answer: "Mifro segue installazione e configurazione. Concordiamo prima dell’avvio le attività e l’affiancamento necessari: contenuti, modalità ed eventuali costi sono da definire nella proposta." },
       { question: "Quanto dura la batteria?", answer: "Dipende dall’uso e dai collegamenti. Valutiamo autonomia, ricarica e dotazione in base alla tua giornata al mercato." },
       { question: "APE J RT invia i corrispettivi?", answer: "Sì: è un registratore telematico con stampante integrata. Dopo l’attivazione, trasmette i corrispettivi tramite Wi-Fi o rete mobile." },
       { question: "Come collego la cassa al mercato?", answer: "APE J RT usa Wi-Fi o SIM dati. Per WALLE MEC RT Ambulanti definiamo il collegamento e gli accessori adatti al tuo banco." },

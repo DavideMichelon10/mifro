@@ -1,19 +1,11 @@
-import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/metadata";
 import { siteConfig } from "@/content/site";
 import Section from "@/components/Section";
 import ContactForm from "@/components/ContactForm";
 import PageIntro from "@/components/PageIntro";
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
 
-export const metadata: Metadata = {
-  title: siteConfig.seo.contatti.title,
-  description: siteConfig.seo.contatti.description,
-  alternates: { canonical: "/contatti" },
-  openGraph: {
-    title: siteConfig.seo.contatti.title,
-    description: siteConfig.seo.contatti.description,
-  },
-};
+export const metadata = createPageMetadata({ ...siteConfig.seo.contatti, path: "/contatti" });
 
 export default function ContattiPage() {
   const { contactPage, contact, hoursShort } = siteConfig;
@@ -30,6 +22,8 @@ export default function ContattiPage() {
               <a href={`mailto:${contact.email}`} className="text-link flex break-all"><Mail aria-hidden="true" className="h-5 w-5 shrink-0" />{contact.email}</a>
               <p className="flex items-start gap-3"><MapPin aria-hidden="true" className="mt-0.5 h-5 w-5 shrink-0 text-brand-600" />{contact.fullAddress}</p>
               <p className="flex items-start gap-3"><Clock aria-hidden="true" className="mt-0.5 h-5 w-5 shrink-0 text-brand-600" />{hoursShort}</p>
+              <p>{siteConfig.support.requestNote}</p>
+              <p>{siteConfig.support.hoursNote}</p>
             </div>
           </div>
           <div className="form-panel">
