@@ -57,7 +57,7 @@ export async function POST(request: NextRequest) {
       to: recipient,
       replyTo: { name: form.name, address: form.email },
       subject: `Nuova richiesta dal sito Mifro: ${form.subject}`,
-      text: `Nuova richiesta dal modulo Contattaci\nSettore: ${form.context.sector}\nPosizione modulo: ${form.context.form_location}\n\nNome: ${form.name}\nEmail: ${form.email}\nOggetto: ${form.subject}\n\n${form.message}\n\nPresa in carico: il gestore del sito inoltra questa richiesta a Mifro, che risponde al visitatore. Usa Reply-To per rispondere all’indirizzo indicato.`,
+      text: `Nuova richiesta dal modulo Contattaci\nSettore: ${form.context.sector}\nPosizione modulo: ${form.context.form_location}\n\nNome: ${form.name}\nEmail: ${form.email}${form.phone ? `\nTelefono: ${form.phone}` : ""}\nOggetto: ${form.subject}\n\n${form.message}\n\nPresa in carico: il gestore del sito inoltra questa richiesta a Mifro.${form.context.form_location === "sector_page" ? " Claudio richiama il visitatore entro un massimo di 2 giorni lavorativi." : " Mifro risponde al visitatore."} Usa Reply-To per rispondere all’indirizzo email indicato.`,
       disableFileAccess: true, disableUrlAccess: true,
     });
     if (!result.accepted.length) throw new Error("Recipient not accepted");

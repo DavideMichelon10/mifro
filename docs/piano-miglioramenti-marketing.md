@@ -1,25 +1,36 @@
 # Piano di modifiche al sito Mifro
 
 **Revisione:** 24 ottobre 2026. Base: commit `f561f02` più modifiche locali.
-**Stato:** implementazione locale e correzioni della revisione tecnica; nessun deploy,
-invio email reale o attivazione Ads. Esiti e conteggi dei test sono raccolti solo in
+**Stato:** implementazione locale e correzioni della revisione tecnica; nessun deploy
+o invio email reale eseguito dall’agente. L’utente ha poi segnalato la campagna Ads
+live; verificata a 5 €/giorno e completata con tre nuovi gruppi inizialmente in pausa.
+L’utente ha poi confermato di aver abilitato tutti e quattro i gruppi, verificati in Chrome.
+Esiti e conteggi dei test sono raccolti solo in
 [collaudo-marketing.md](collaudo-marketing.md).
 
 ## Perimetro confermato
 
 - Contatti: Davide riceve e inoltra a Mifro; destinatario obbligatorio.
-- Eventuali campagne Mifro devono usare un account Ads separato da DavideDev.
+- Account Ads separato Mifro creato: **276-321-8107**. Struttura confermata:
+  una campagna Search con quattro gruppi (Ristoranti, Bar, Parrucchieri, Ambulanti),
+  budget comune. Dopo la preparazione senza budget, l’utente ha segnalato la
+  pubblicazione: nell’account risultano 5 €/giorno, non modificati dall’agente.
+  Tutti i gruppi, annunci, keyword ed esclusioni sono inseriti; Parrucchieri era
+  già abilitato, Ristoranti, Bar e Ambulanti sono stati completati in pausa.
+  L’utente ha successivamente abilitato personalmente tutti i gruppi, ora Enabled.
+  Il centro clienti resta incompleto per un limite Google.
 - Il caso cliente è escluso per scelta dell’utente, compresa la predisposizione inutilizzata.
 - Ulteriori informazioni aziendali e nuova guida sono fuori dall’intervento corrente,
   su indicazione dell’utente. La bozza editoriale resta interna.
 - Il piano originario sotto è conservato come riferimento storico; queste decisioni
-  prevalgono sulle sue richieste di casi cliente e nuove conferme aziendali.
+  prevalgono sulle sue richieste di casi cliente, nuove conferme aziendali e sulla
+  precedente campagna limitata ai ristoranti con budget ipotizzato di 1.000 €/mese.
 
 ## Stato dei dodici interventi
 
 | Punto | Stato nel repository | Residuo operativo |
 | --- | --- | --- |
-| 01 · Contesto lead | Settore/posizione validati; Contattaci desktop/mobile usa il modulo locale del settore | Dimensioni GA4 registrate; importazione Ads rinviata a un account separato |
+| 01 · Contesto lead | Settore/posizione validati; Contattaci desktop/mobile usa il modulo locale del settore | Dimensioni GA4 registrate; account Ads Mifro collegato, `generate_lead` primario verificato con conteggio Una |
 | 02 · Recapito | `CONTACT_TO` obbligatorio; conferma dopo accettazione SMTP | Variabili Production presenti; consegna reale non collaudata |
 | 03 · Consenso e misura | Consenso/revoca, lead e clic distinti; test con tag reale disponibile | Regola duplicata rimossa via Chrome; test con tag reale superato |
 | 04 · SEO tecnico | Redirect permanente e sitemap senza date artificiali | Storico Search Console non consultato |

@@ -23,6 +23,7 @@ export default function ContactForm({
   showSubject = true,
 }: ContactFormProps) {
   const { formFields, replyNote } = siteConfig.contactPage;
+  const isSectorForm = context.form_location === "sector_page";
   const router = useRouter();
   const [pending, setPending] = useState(false);
   const [error, setError] = useState("");
@@ -33,6 +34,7 @@ export default function ContactForm({
   const [form, setForm] = useState({
     name: "",
     email: "",
+    phone: "",
     subject: defaultSubject,
     message: "",
   });
@@ -105,6 +107,27 @@ export default function ContactForm({
           />
         </div>
 
+        {isSectorForm && (
+          <div>
+            <label htmlFor="cf-phone" className="mb-1.5 block text-sm font-medium text-gray-700">{formFields.phone}</label>
+            <input
+              id="cf-phone"
+              name="phone"
+              type="tel"
+              inputMode="tel"
+              autoComplete="tel"
+              maxLength={40}
+              required
+              value={form.phone}
+              onChange={(e) => setForm({ ...form, phone: e.target.value })}
+              aria-describedby="cf-phone-help"
+              className={inputClass}
+              placeholder="Es. +39 333 123 4567"
+            />
+            <p id="cf-phone-help" className="mt-2 text-sm text-gray-600">Il numero a cui Claudio può richiamarti.</p>
+          </div>
+        )}
+
         {showSubject ? (
         <div>
           <label htmlFor="cf-subject" className="mb-1.5 block text-sm font-medium text-gray-700">
@@ -150,7 +173,7 @@ export default function ContactForm({
           >
             {pending ? "Invio in corso…" : (submitLabel ?? formFields.submit)}
           </button>
-          <p className="text-sm leading-relaxed text-gray-600">{replyNote}</p>
+          {!isSectorForm && <p className="text-sm leading-relaxed text-gray-600">{replyNote}</p>}
         </div>
       </form>
 

@@ -2,11 +2,12 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowRight, ChevronDown, Phone, MapPin } from "lucide-react";
+import { ArrowRight, ChevronDown } from "lucide-react";
 import { siteConfig } from "@/content/site";
 import { getSector, sectors, sectorHref } from "@/content/sectors";
 import Section from "@/components/Section";
 import ContactForm from "@/components/ContactForm";
+import ContactJourney from "@/components/ContactJourney";
 import SolutionCard from "@/components/SolutionCard";
 import ScrollReveal from "@/components/ScrollReveal";
 import { createPageMetadata } from "@/lib/metadata";
@@ -35,8 +36,8 @@ export default async function SectorPage({ params }: PageProps) {
   const { settore } = await params;
   const sector = getSector(settore);
   if (!sector) notFound();
-  const phoneHref = `tel:${siteConfig.contact.phone.replace(/\s/g, "")}`;
   const { highlights, localPresence } = siteConfig.about;
+  const { contactJourney } = siteConfig;
 
   return (
     <>
@@ -47,7 +48,7 @@ export default async function SectorPage({ params }: PageProps) {
           <p className="lead mt-4 max-w-3xl text-pretty">{sector.intro}</p>
           <div className="mt-6 flex flex-col items-stretch gap-2 sm:flex-row sm:items-center sm:gap-5">
             <a href="#richiedi-proposta" className="button button-primary">{sector.cta}<ArrowRight aria-hidden="true" className="h-4 w-4 shrink-0" /></a>
-            <a href={phoneHref} className="text-link justify-center sm:justify-start"><Phone aria-hidden="true" className="h-4 w-4 shrink-0" />Chiama Mifro</a>
+            <a href="#come-funziona" className="text-link justify-center sm:justify-start">Come funziona<ChevronDown aria-hidden="true" className="h-4 w-4 shrink-0" /></a>
           </div>
         </div>
       </section>
@@ -105,13 +106,12 @@ export default async function SectorPage({ params }: PageProps) {
             <h2 className="section-title">{localPresence.title}</h2>
             <p className="mt-4 leading-relaxed text-gray-600">{localPresence.intro}</p>
             <p className="mt-3 leading-relaxed text-gray-600">{localPresence.support}</p>
-            <div className="mt-5 flex flex-wrap gap-x-6">
-              <Link href="/chi-siamo" className="text-link">Conosci Mifro<ArrowRight aria-hidden="true" className="h-4 w-4" /></Link>
-              <Link href="/prodotti-assistenza#riparazioni" className="text-link">Assistenza su casse e gestionali<ArrowRight aria-hidden="true" className="h-4 w-4" /></Link>
-            </div>
+            <Link href="/chi-siamo" className="text-link mt-5">Conosci Mifro<ArrowRight aria-hidden="true" className="h-4 w-4" /></Link>
           </ScrollReveal>
         </div>
       </Section>
+
+      <ContactJourney />
 
       <Section gray>
         <div className="grid gap-8 lg:grid-cols-[1fr_1.25fr] lg:gap-16">
@@ -123,21 +123,15 @@ export default async function SectorPage({ params }: PageProps) {
       </Section>
 
       <Section>
-        <div className="grid items-start gap-6 lg:grid-cols-[1fr_1.1fr] lg:grid-rows-[auto_1fr] lg:gap-x-16 lg:gap-y-8">
-          <ScrollReveal className="lg:col-start-1 lg:row-start-1">
+        <div className="grid items-start gap-6 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
+          <ScrollReveal>
             <p className="eyebrow">Contatta Mifro</p>
             <h2 className="section-title mt-4">{sector.question}</h2>
             <p className="mt-5 leading-relaxed text-gray-600">{sector.questionText}</p>
           </ScrollReveal>
-          <div id="richiedi-proposta" tabIndex={-1} aria-labelledby="contact-form-title" className="form-panel scroll-mt-24 lg:col-start-2 lg:row-span-2 lg:row-start-1">
+          <div id="richiedi-proposta" tabIndex={-1} aria-labelledby="contact-form-title" className="form-panel scroll-mt-24">
             <h3 id="contact-form-title" className="mb-6 text-xl font-semibold">{siteConfig.contactPage.formTitle}</h3>
-            <ContactForm key={sector.slug} context={{ sector: sector.slug, form_location: "sector_page" }} defaultSubject={sector.subject} messagePlaceholder={sector.messagePlaceholder} showSubject={false} />
-          </div>
-          <div className="border-t border-gray-200 pt-6 lg:col-start-1 lg:row-start-2">
-            <p className="text-sm text-gray-600">Preferisci parlarne al telefono?</p>
-            <a href={phoneHref} className="mt-2 inline-flex min-h-12 items-center gap-3 text-xl font-bold text-brand-600 hover:underline"><Phone aria-hidden="true" className="h-5 w-5" />{siteConfig.contact.phone}</a>
-            <p className="mt-3 text-sm leading-relaxed text-gray-600">{siteConfig.hoursShort}</p>
-            <p className="mt-5 flex items-start gap-2 text-sm leading-relaxed text-gray-600"><MapPin aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0" />{siteConfig.contact.fullAddress}</p>
+            <ContactForm key={sector.slug} context={{ sector: sector.slug, form_location: "sector_page" }} defaultSubject={sector.subject} messagePlaceholder={sector.messagePlaceholder} submitLabel={contactJourney.cta} showSubject={false} />
           </div>
         </div>
       </Section>

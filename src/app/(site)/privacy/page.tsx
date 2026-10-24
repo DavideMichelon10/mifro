@@ -34,12 +34,13 @@ export default function PrivacyPage() {
         <p>
           Il modulo di contatto raccoglie nome, indirizzo email e messaggio, con oggetto
           facoltativo nella pagina Contatti o automatico nelle pagine settore.
+          Nelle quattro pagine settore è richiesto anche il numero di telefono per il ricontatto da parte di Claudio.
           La richiesta include il settore e la posizione del modulo sul sito.
           I dati vengono elaborati dal sito ospitato su Vercel e inviati tramite Gmail
           al gestore del sito, Davide Michelon, che inoltra la richiesta a Mifro per la risposta.
           Non viene creato un archivio delle richieste nel database del sito.
           Se acconsenti alle statistiche, Google Analytics rileva le visite e gli invii
-          riusciti del modulo e i clic su telefono e WhatsApp, distinti per settore e tipo di pagina. I clic non indicano che sia avvenuta una conversazione; nome, email, oggetto e
+          riusciti del modulo e i clic su telefono e WhatsApp, distinti per settore e tipo di pagina. I clic non indicano che sia avvenuta una conversazione; nome, email, numero di telefono, oggetto e
           contenuto del messaggio non vengono inviati nei parametri Analytics del modulo.
         </p>
         <p>

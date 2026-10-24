@@ -13,7 +13,7 @@ data = json.loads((ROOT / "campagne.json").read_text())
 
 def write_csv(name, fields, rows):
     with (ROOT / name).open("w", encoding="utf-8-sig", newline="") as output:
-        writer = csv.DictWriter(output, fieldnames=fields)
+        writer = csv.DictWriter(output, fieldnames=fields, lineterminator="\n")
         writer.writeheader()
         writer.writerows(rows)
 
@@ -21,8 +21,6 @@ def write_csv(name, fields, rows):
 campaigns, groups, ads, keywords, negatives = [], [], [], [], []
 for campaign in data["campaigns"]:
     name = campaign["name"]
-    expected_url = "https://www.mifro.it/soluzioni/" + campaign["sector"]
-    assert campaign["final_url"] == expected_url, name
     campaigns.append({
         "Campaign": name,
         "Campaign type": "Search",
@@ -33,6 +31,8 @@ for campaign in data["campaigns"]:
         "Comment": "BOZZA SENZA BUDGET. Target e conversioni: vedere campagne.json. Non pubblicare.",
     })
     for group in campaign["ad_groups"]:
+        expected_url = "https://www.mifro.it/soluzioni/" + group["sector"]
+        assert group["final_url"] == expected_url, (name, group["name"])
         assert 3 <= len(group["headlines"]) <= 15, name
         assert 2 <= len(group["descriptions"]) <= 4, name
         for value in group["headlines"]:
@@ -45,7 +45,7 @@ for campaign in data["campaigns"]:
         ad = {
             "Campaign": name, "Ad group": group["name"],
             "Ad type": "Responsive search ad", "Status": "Paused",
-            "Final URL": campaign["final_url"],
+            "Final URL": group["final_url"],
             "Path 1": group["path_1"], "Path 2": group["path_2"],
         }
         ad.update({f"Headline {i}": value for i, value in enumerate(group["headlines"], 1)})
@@ -56,8 +56,12 @@ for campaign in data["campaigns"]:
                 assert len(keyword) <= 80, keyword
                 keywords.append({"Campaign": name, "Ad group": group["name"],
                                  "Keyword": keyword, "Match type": match, "Status": "Paused"})
+        for keyword in dict.fromkeys(group["negative_keywords_phrase"]):
+            negatives.append({"Campaign": name, "Ad group": group["name"],
+                              "Keyword": f'"{keyword}"', "Type": "Negative"})
     for keyword in dict.fromkeys(data["negative_keywords_phrase"] + campaign["negative_keywords_phrase"]):
-        negatives.append({"Campaign": name, "Keyword": keyword, "Match type": "Negative phrase"})
+        negatives.append({"Campaign": name, "Ad group": "",
+                          "Keyword": f'"{keyword}"', "Type": "Campaign negative"})
 
 assert data["budget"] is None
 assert not data["publication_authorized"]
@@ -69,4 +73,4 @@ write_csv("03-annunci.csv", ["Campaign", "Ad group", "Ad type", "Status", "Final
 write_csv("04-parole-chiave.csv", list(keywords[0]), keywords)
 write_csv("05-esclusioni.csv", list(negatives[0]), negatives)
 print(f"Validati {len(campaigns)} campagne, {len(groups)} gruppi, {len(ads)} annunci, "
-      f"{len(keywords)} keyword e {len(negatives)} esclusioni di campagna. Budget assente.")
+      f"{len(keywords)} keyword e {len(negatives)} esclusioni fra campagna e gruppi. Budget assente.")

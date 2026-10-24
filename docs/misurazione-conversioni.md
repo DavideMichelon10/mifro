@@ -1,6 +1,6 @@
 # Misurazione e gestione delle richieste Mifro
 
-Revisione: 24 ottobre 2026. Modifiche locali e configurazione GA4 Mifro; nessun commit, deploy o attivazione di campagne.
+Revisione: 24 ottobre 2026. Modifiche locali e configurazione GA4 Mifro; nessun commit o deploy eseguito dall’agente. Campagna e quattro gruppi Ads abilitati dall’utente.
 
 ## Cosa misura il sito
 
@@ -30,16 +30,64 @@ il recapito in posta in entrata; controllare anche Spam e inoltro al referente.
 1. Nella proprietà `mifro.it` (526284251), stream `G-PHX0Y4MJH3`, sono state
    registrate le dimensioni evento `sector`, `form_location`, `channel`, `page_type`.
    `generate_lead` è marcato come evento chiave, senza valore monetario predefinito.
-2. Le eventuali campagne Mifro devono usare un account Ads distinto da DavideDev.
-   L’importazione nell’account separato non è ancora eseguita. Usare una sola azione
-   primaria basata sull’invio riuscito; se si sceglie un evento derivato per il
-   settore ristoranti, non sommarlo come conversione primaria a `generate_lead`.
+2. È stato creato l’account Ads separato **Mifro (276-321-8107)**, collegato alla
+   proprietà GA4 Mifro con importazione dei segmenti di pubblico disattivata.
+   È verificata l’unica azione primaria **Form (7869328228)**, sorgente GA4,
+   evento `generate_lead`, proprietà `mifro.it`. Il conteggio Ads è stato corretto
+   in «Una» e il valore in «Non usare un valore», verificando entrambi dopo reload.
+   Vale per tutti e quattro i settori; non sommare eventi derivati per settore
+   come ulteriori conversioni primarie. Stato: in attesa di conversioni; non è
+   stata collaudata l’attribuzione di un clic pubblicitario reale.
 3. Tenere `contact_click` nei report secondari. Non usarlo per ottimizzare come
    se fosse una telefonata o inserirlo in un obiettivo personalizzato di offerta.
 4. Per richieste lead usare conteggio «Una», quando applicabile. Questo non elimina
    i duplicati tra azioni diverse (modulo e telefonata) o visite diverse.
 5. Verificare in Tempo reale/DebugView successo, errore e refresh. Non usare visita
    a `/grazie` o `form_submit` automatico come altra conversione dello stesso invio.
+
+## Verifica del sito pubblicato e limiti di attribuzione — 24 ottobre 2026
+
+Controllati in un browser isolato i quattro URL finali degli annunci: rispondono
+tutti 200. Per ciascun settore, accettando Analytics e usando «Contattaci» nel
+menu, il modulo conserva il settore nel payload e accoda un solo `generate_lead`
+dopo la risposta positiva. Prima del consenso non viene caricato il tag Google.
+Ripetuto il percorso Parrucchieri con consenso rifiutato: il modulo invia comunque
+la richiesta, ma non carica il tag né accoda il lead.
+
+Nel controllo tutte le richieste `/api/contact` sono intercettate con risposta
+simulata; il loader Google, la pagina successiva `/grazie` e le richieste esterne
+sono sostituiti o bloccati. È una verifica del codice effettivamente pubblicato,
+non della consegna email, della ricezione GA4 o dell'attribuzione Ads. Il controllo
+del loader Google reale e dei duplicati al refresh resta quello locale descritto sotto.
+
+In Chrome, nell'account Mifro, **Auto-tagging = Yes**. La campagna risulta ancora
+orientata ai clic; la presenza di una conversione primaria non implica da sola
+una strategia di offerta che massimizzi i contatti.
+
+**Limite da risolvere prima di considerare completa l'attribuzione Ads:** anche
+dopo «Accetta Analytics», il sito pubblicato imposta `analytics_storage: granted`
+ma mantiene `ad_storage`, `ad_user_data` e `ad_personalization` su `denied`.
+Google documenta che `ad_user_data: denied` limita l'esportazione verso Ads delle
+conversioni associate agli identificativi dei clic. L'evento Analytics può quindi
+essere emesso senza che il percorso pubblicitario sia attribuito completamente.
+Serve una scelta esplicita del visitatore per la misurazione pubblicitaria,
+con segnali coerenti con quella scelta e successiva verifica dell'attribuzione.
+Accettare le sole statistiche non autorizza a concedere automaticamente i consensi Ads.
+[Riferimento ufficiale sui consensi Google](https://support.google.com/tagmanager/answer/13802165?hl=en).
+
+Le keyword correnti sono esatte e a frase, organizzate per intento del settore.
+La ricerca generica «registratori di cassa» non garantisce l'attivazione degli
+annunci e non identifica il gruppo Parrucchieri dalla professione della persona.
+Una ricerca pertinente come «cassa per parrucchieri» può attivare quel gruppo e
+portare a `/soluzioni/parrucchieri-saloni`, compatibilmente con targeting e asta.
+La copertura delle ricerche generiche richiede una decisione distinta su keyword,
+annuncio e destinazione adatta a più attività.
+
+I totali email, eventi GA4 e conversioni Ads non sono necessariamente uguali:
+consenso, blocchi del browser, provenienza organica, attribuzione, conteggio
+«Una» in Ads e tempi di elaborazione possono produrre differenze legittime.
+Un contatto tramite modulo è una richiesta, non una vendita né un contatto
+commerciale già qualificato.
 
 ## Visualizzazioni dopo navigazione interna
 
@@ -91,8 +139,22 @@ precisazione dell’utente. Il ripristino è stato verificato nell’interfaccia
 
 Nessuna campagna, budget o azione della proprietà `davidedev.me` è stata modificata
 o cancellata. La nuova procedura di conversione è stata abbandonata prima della
-creazione di un’azione. Non è stato creato un nuovo account Ads. Non usare
-l’account DavideDev per le future campagne Mifro: predisporre un account separato.
+creazione di un’azione in DavideDev. Su successiva richiesta esplicita è stato
+creato l’account separato **Mifro (276-321-8107)** con lo stesso accesso Google.
+L’utente ha completato personalmente fatturazione e verifica dell’identità.
+Il centro clienti **862-480-5066** resta in configurazione: Google segnala il
+raggiungimento del limite di creazione degli account amministratore; non è stato
+completato alcun collegamento MCC.
+
+La struttura confermata dall’utente è **una campagna Search con quattro gruppi**:
+Ristoranti, Bar, Parrucchieri e Ambulanti, con budget comune. Dopo la preparazione
+senza budget, l’utente ha segnalato la pubblicazione della campagna: verificata
+`24392958197`, Enabled, con 5 €/giorno già impostati. L’agente non ha modificato
+budget o attivazione della campagna e ha completato Ristoranti, Bar e Ambulanti
+in pausa. Parrucchieri era già abilitato. L’utente ha poi confermato di aver abilitato
+tutti i gruppi: Enabled verificato per tutti e quattro. Verificati nell’account quattro gruppi,
+quattro annunci, 40 keyword e 34 esclusioni a frase. Contenuti e stato in
+[google-ads/campagne.json](google-ads/campagne.json).
 La correzione della sorgente GA4 Mifro rimane applicata: l’evento derivato dalla
 visita a `/grazie` non viene più generato.
 

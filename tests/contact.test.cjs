@@ -124,7 +124,7 @@ test('analytics sends only a lead event with consent and never contact data', ()
 test('context accepts only known sector/location pairs and supports legacy payloads', () => {
   assert.equal(contact.validateContact(valid).context.sector, 'generico');
   for (const sector of contexts.contactSectors.filter((s) => s !== 'generico')) {
-    const form = contact.validateContact({ ...valid, context: { sector, form_location: 'sector_page', email: 'must-not-propagate@example.com' } });
+    const form = contact.validateContact({ ...valid, phone: '+39 333 123 4567', context: { sector, form_location: 'sector_page', email: 'must-not-propagate@example.com' } });
     assert.equal(form.context.sector, sector);
     assert.equal(JSON.stringify(Object.keys(form.context)), JSON.stringify(['sector', 'form_location']));
   }
@@ -136,9 +136,23 @@ test('context accepts only known sector/location pairs and supports legacy paylo
 test('only generic contact allows a missing or blank subject', () => {
   for (const subject of [undefined, '', '   ']) {
     assert.equal(contact.validateContact({ ...valid, subject }).subject, contexts.DEFAULT_CONTACT_SUBJECT);
-    assert.equal(contact.validateContact({ ...valid, subject, context: { sector: 'bar', form_location: 'sector_page' } }), null);
+    assert.equal(contact.validateContact({ ...valid, phone: '+39 333 123 4567', subject, context: { sector: 'bar', form_location: 'sector_page' } }), null);
   }
   for (const subject of [null, 12, {}, '\r\nBcc: spam@example.com']) assert.equal(contact.validateContact({ ...valid, subject }), null);
+});
+
+test('all sector forms require a usable phone number; generic and legacy requests remain valid', () => {
+  for (const sector of contexts.contactSectors.filter((value) => value !== 'generico')) {
+    const payload = { ...valid, context: { sector, form_location: 'sector_page' } };
+    for (const phone of [undefined, '', '   ', null, 3331234567, {}, '123', 'x'.repeat(41), '+'.repeat(8), '1234567890123456', '+39 333 123 4567\r\nBcc: injected@example.com', '\n3331234567', 'chiama Mario']) {
+      assert.equal(contact.validateContact({ ...payload, phone }), null);
+    }
+    for (const phone of ['+39 333 123 4567', '0461 512777', '+44 (0)20 1234-5678', '0039 3331234567']) {
+      assert.equal(contact.validateContact({ ...payload, phone: ` ${phone} ` }).phone, phone);
+    }
+  }
+  assert.ok(contact.validateContact(valid));
+  assert.ok(contact.validateContact({ ...valid, phone: '', context: contexts.defaultContactContext }));
 });
 
 test('missing recipient fails closed; accepted mail carries validated context and generic subject', async () => {
@@ -160,11 +174,17 @@ test('missing recipient fails closed; accepted mail carries validated context an
     assert.equal(mail, undefined);
   }
   process.env.CONTACT_TO = 'recipient@example.com';
-  let response = await route.POST(request({ ...valid, context: { sector: 'ristoranti', form_location: 'sector_page' }, to: 'attacker@example.com' }));
+  const sectorContext = { sector: 'ristoranti', form_location: 'sector_page' };
+  let response = await route.POST(request({ ...valid, context: sectorContext }));
+  assert.equal(response.status, 400);
+  assert.equal(mail, undefined);
+  response = await route.POST(request({ ...valid, phone: '+39 333 123 4567', context: sectorContext, to: 'attacker@example.com' }));
   assert.equal(response.status, 200);
   assert.equal(mail.to, 'recipient@example.com');
   assert.match(mail.text, /Settore: ristoranti/);
   assert.match(mail.text, /Posizione modulo: sector_page/);
+  assert.match(mail.text, /Telefono: \+39 333 123 4567/);
+  assert.match(mail.text, /Claudio richiama il visitatore entro un massimo di 2 giorni lavorativi/);
   response = await route.POST(request({ ...valid, subject: undefined }));
   assert.equal(response.status, 200);
   assert.match(mail.subject, /Richiesta di informazioni dal sito/);
@@ -190,7 +210,7 @@ test('lead and contact clicks remain distinct, allowlisted and consent-gated', (
     window: { gtag: (...args) => calls.push(args) },
   });
   const analytics = testModule.exports;
-  const context = { sector: 'ristoranti', form_location: 'sector_page', email: 'private@example.com', message: 'private' };
+  const context = { sector: 'ristoranti', form_location: 'sector_page', email: 'private@example.com', phone: '+39 333 123 4567', message: 'private' };
   for (choice of [null, 'rejected']) {
     analytics.trackContactSubmission(context);
     analytics.trackContactClick('phone', '/soluzioni/ristoranti');
@@ -214,6 +234,7 @@ test('lead and contact clicks remain distinct, allowlisted and consent-gated', (
   assert.equal(calls[4][2].page_type, 'support_page');
   assert.equal(calls[5][2].page_type, 'other');
   assert.ok(!JSON.stringify(calls).includes('private'));
+  assert.ok(!JSON.stringify(calls).includes('333 123 4567'));
   analytics.trackContactSubmission({ sector: 'not-allowed', form_location: 'sector_page' });
   analytics.trackContactClick('private@example.com', '/');
   storageThrows = true;

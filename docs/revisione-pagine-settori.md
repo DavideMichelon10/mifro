@@ -13,8 +13,17 @@ Note sulle fonti, sulle configurazioni commerciali e sulle modifiche alle pagine
 
 Contenuti: `src/content/sectors.ts`. Layout condiviso: `src/app/(site)/soluzioni/[settore]/page.tsx`.
 Le schede non sono una classifica di prezzo e non mostrano tre alternative equivalenti in tutti i settori.
-ATS 2 e ATS 3 sono presentati come software da abbinare a hardware compatibile, non come modelli di registratore.
+ATS 2 e ATS 3 sono software gestionali. Come precisato dall’utente, ATS 3 può essere installato anche su dispositivi già presenti e compatibili: l’acquisto di nuovo hardware non è un requisito. Questo punto è esplicito nelle introduzioni e nella prima FAQ di bar, ristoranti e saloni; le schede ATS 3 riportano l’etichetta «Software». La foto su APE 3 è un esempio di utilizzo.
 Le funzioni sono accompagnate dall’indicazione che dipendono dai moduli e dalla configurazione scelta.
+
+Su richiesta successiva dell’utente, tutti e quattro i settori includono prima delle
+FAQ un percorso numerato: invio del modulo, ricontatto di Claudio (titolare con oltre
+30 anni di esperienza) entro un massimo di due giorni lavorativi, eventuale prova
+in negozio, preventivo, installazione e formazione con un tecnico specializzato,
+assistenza per i dubbi futuri. Il telefono è obbligatorio nei quattro moduli e arriva
+nell’email interna, senza entrare nei parametri Analytics. Queste indicazioni
+superano le precedenti note sulla rimozione dei percorsi e sui moduli a tre campi.
+Il termine di due giorni riguarda il primo ricontatto, non gli interventi tecnici.
 
 ## Verifiche dei tecnici prima della pubblicazione
 

@@ -25,6 +25,8 @@ async function events(page: Page, name: string) {
 async function fillContact(page: Page) {
   await page.getByLabel("Nome e cognome").fill("Persona Test");
   await page.getByLabel("Email", { exact: true }).fill("test@example.com");
+  const phone = page.getByLabel("Numero di telefono", { exact: true });
+  if (await phone.count()) await phone.fill("+39 333 123 4567");
   await page.getByLabel("Messaggio", { exact: true }).fill("Richiesta di prova, nessun invio reale.");
 }
 
@@ -74,7 +76,7 @@ for (const sector of [...sectors, "generico"]) {
         await expect(page.locator("#richiedi-proposta")).toBeInViewport();
       }
       await fillContact(page);
-      expect(await page.locator("input[required], textarea[required]").count()).toBe(3);
+      expect(await page.locator("input[required], textarea[required]").count()).toBe(sector === "generico" ? 3 : 4);
       // Two submit events in the same tick exercise the ref guard, independently of button disabling.
       await page.locator("form").evaluate((form: HTMLFormElement) => { form.requestSubmit(); form.requestSubmit(); });
       await expect(page).toHaveURL(/grazie$/);
@@ -82,6 +84,7 @@ for (const sector of [...sectors, "generico"]) {
       expect(bodies).toHaveLength(1);
       const expectedContext = { sector, form_location: sector === "generico" ? "contact_page" : "sector_page" };
       expect(bodies[0].context).toEqual(expectedContext);
+      if (sector !== "generico") expect(bodies[0].phone).toBe("+39 333 123 4567");
       const leads = await events(page, "generate_lead");
       expect(leads).toHaveLength(consent === "accepted" ? 1 : 0);
       if (consent === "accepted") expect(leads[0][2]).toEqual({ form_id: "contact", ...expectedContext, transport_type: "beacon" });
@@ -102,13 +105,14 @@ test("errore: dati preservati, focus sull’errore, nessuna conversione e possib
   });
   await page.goto("/soluzioni/ristoranti");
   await fillContact(page);
-  await page.getByRole("button", { name: "Invia messaggio" }).click();
+  await page.getByRole("button", { name: "Richiedi un ricontatto" }).click();
   await expect(page.locator("form").getByRole("alert")).toBeFocused();
   await expect(page.getByLabel("Email", { exact: true })).toHaveValue("test@example.com");
+  await expect(page.getByLabel("Numero di telefono", { exact: true })).toHaveValue("+39 333 123 4567");
   expect(await events(page, "generate_lead")).toHaveLength(0);
-  await page.getByRole("button", { name: "Invia messaggio" }).click();
+  await page.getByRole("button", { name: "Richiedi un ricontatto" }).click();
   await expect.poll(() => attempts).toBe(2);
-  await expect(page.getByRole("button", { name: "Invia messaggio" })).toBeEnabled();
+  await expect(page.getByRole("button", { name: "Richiedi un ricontatto" })).toBeEnabled();
 });
 
 test("navigazione tra settori: modulo azzerato e oggetto aggiornato", async ({ page }) => {
@@ -119,6 +123,7 @@ test("navigazione tra settori: modulo azzerato e oggetto aggiornato", async ({ p
   await page.getByRole("link", { name: "Ristoranti e pizzerie", exact: true }).first().click();
   await expect(page).toHaveURL(/soluzioni\/ristoranti$/);
   await expect(page.getByLabel("Nome e cognome")).toHaveValue("");
+  await expect(page.getByLabel("Numero di telefono", { exact: true })).toHaveValue("");
   await expect(page.locator('input[name="subject"]')).toHaveValue("Soluzioni di cassa per il mio ristorante");
 });
 
@@ -206,6 +211,36 @@ test("telefono e WhatsApp: soli clic secondari con consenso e contesto dopo navi
 });
 
 for (const sector of sectors) {
+  test(`percorso ${sector}: prima delle FAQ, porta al modulo e richiede il telefono`, async ({ page }) => {
+    await page.addInitScript((key) => localStorage.setItem(key, "rejected"), choiceKey);
+    let submissions = 0;
+    await page.route("**/api/contact", async (route) => {
+      submissions++;
+      return route.fulfill({ status: 502, json: { error: "Invio simulato." } });
+    });
+    await page.goto(`/soluzioni/${sector}`);
+    await page.getByRole("link", { name: "Come funziona", exact: true }).click();
+    const journey = page.getByRole("region", { name: "Dalla prima richiesta, sempre al tuo fianco." });
+    await expect(journey).toBeInViewport();
+    await expect(journey.getByRole("listitem")).toHaveCount(6);
+    expect(await page.evaluate(() => {
+      const journey = document.getElementById("come-funziona")!;
+      const faq = Array.from(document.querySelectorAll("h2")).find((heading) => heading.textContent === "Domande frequenti")!;
+      return Boolean(journey.compareDocumentPosition(faq) & Node.DOCUMENT_POSITION_FOLLOWING);
+    })).toBe(true);
+    await journey.getByRole("link", { name: "Richiedi un ricontatto" }).click();
+    await expect(page.locator("#richiedi-proposta")).toBeInViewport();
+    await fillContact(page);
+    const phone = page.getByLabel("Numero di telefono", { exact: true });
+    await phone.fill("");
+    await page.getByRole("button", { name: "Richiedi un ricontatto" }).click();
+    expect(await phone.evaluate((input: HTMLInputElement) => input.validity.valueMissing)).toBe(true);
+    expect(submissions).toBe(0);
+    await phone.fill("+39 333 123 4567");
+    await page.getByRole("button", { name: "Richiedi un ricontatto" }).click();
+    await expect.poll(() => submissions).toBe(1);
+  });
+
   test(`menu mobile: Contattaci conserva il settore ${sector} fino all’invio`, async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.addInitScript((key) => localStorage.setItem(key, "accepted"), choiceKey);
@@ -221,10 +256,11 @@ for (const sector of sectors) {
     await expect(page.locator("#mobile-navigation")).toBeHidden();
     await expect(page.locator("#richiedi-proposta")).toBeInViewport();
     await fillContact(page);
-    await page.getByRole("button", { name: "Invia messaggio" }).click();
+    await page.getByRole("button", { name: "Richiedi un ricontatto" }).click();
     await expect(page).toHaveURL(/grazie$/);
     expect(bodies).toHaveLength(1);
     expect(bodies[0].context).toEqual({ sector, form_location: "sector_page" });
+    expect(bodies[0].phone).toBe("+39 333 123 4567");
     const leads = await events(page, "generate_lead");
     expect(leads).toHaveLength(1);
     expect(leads[0][2]).toMatchObject({ sector, form_location: "sector_page" });

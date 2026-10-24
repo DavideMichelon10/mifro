@@ -58,8 +58,9 @@ test("tag Google reale: un lead per invio, nessuna conversione su visita o refre
   await page.locator("header").getByRole("link", { name: "Contattaci", exact: true }).click();
   await page.getByLabel("Nome e cognome").fill("Verifica locale");
   await page.getByLabel("Email", { exact: true }).fill("review@example.com");
+  await page.getByLabel("Numero di telefono", { exact: true }).fill("+39 333 123 4567");
   await page.getByLabel("Messaggio", { exact: true }).fill("Collaudo intercettato: nessuna email o richiesta di raccolta reale.");
-  await page.getByRole("button", { name: "Invia messaggio" }).click();
+  await page.getByRole("button", { name: "Richiedi un ricontatto" }).click();
   await expect(page).toHaveURL(/grazie$/);
   await expect.poll(() => captured.filter((event) => event.event === "generate_lead").length, { timeout: 15000 }).toBe(1);
   await expect.poll(() => captured.filter((event) => event.event === "page_view" && event.path === "/grazie").length, { timeout: 15000 }).toBe(1);

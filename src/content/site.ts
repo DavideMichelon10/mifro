@@ -105,6 +105,40 @@ export const siteConfig = {
   },
   privacyRevisedAt: "2026-10-24",
 
+  /* ── Percorso delle richieste dai settori ───────────── */
+  contactJourney: {
+    title: "Dalla prima richiesta, sempre al tuo fianco.",
+    description: "Lascia i tuoi recapiti nel modulo e raccontaci la tua attività. Ti accompagniamo nella scelta e nell’utilizzo della soluzione.",
+    cta: "Richiedi un ricontatto",
+    steps: [
+      {
+        title: "Lasciaci i tuoi recapiti",
+        description: "Compila il modulo e raccontaci come lavori oggi e cosa vorresti migliorare nella tua attività.",
+      },
+      {
+        title: "Ti richiama Claudio",
+        description: "Ti contatta Claudio, il titolare di Mifro, che fa questo lavoro da oltre 30 anni. Ascolta le tue esigenze per capire come lavori e quale soluzione può aiutarti.",
+        badge: "Claudio ti richiama entro un massimo di 2 giorni lavorativi.",
+      },
+      {
+        title: "Tocca con mano in negozio",
+        description: "Se vuoi, vieni a trovarci a Pergine Valsugana: puoi vedere e provare le soluzioni prima di scegliere.",
+      },
+      {
+        title: "Ricevi il tuo preventivo",
+        description: "Ti proponiamo una configurazione adatta alla tua attività, con un preventivo che chiarisce prodotti, software e servizi.",
+      },
+      {
+        title: "Installazione e formazione",
+        description: "Quando decidi di procedere, un tecnico specializzato si occupa dell’installazione e ti insegna a usare la soluzione nel tuo lavoro di ogni giorno.",
+      },
+      {
+        title: "Ci siamo anche dopo",
+        description: "Per ogni dubbio futuro puoi contare sulla nostra assistenza. Il rapporto con Mifro continua anche dopo l’avvio.",
+      },
+    ],
+  },
+
   /* ── Prodotti e assistenza ──────────────────────────── */
   productsAndSupport: {
     intro: "Pagamenti, strumenti per l’ufficio e assistenza tecnica, con un unico riferimento sul territorio.",
@@ -224,6 +258,7 @@ export const siteConfig = {
     formFields: {
       name: "Nome e cognome",
       email: "Email",
+      phone: "Numero di telefono",
       subject: "Oggetto",
       message: "Messaggio",
       submit: "Invia messaggio",

@@ -33,6 +33,10 @@ export function validateContact(value: unknown) {
     if (typeof data[key] !== "string" || !data[key].trim() || data[key].length > max) return null;
   }
   if (typeof data.website !== "string" || data.website !== "") return null;
+  if (data.phone !== undefined && (typeof data.phone !== "string" || data.phone.length > 40 || /[\r\n\x00]/.test(data.phone))) return null;
+  const phone = (data.phone as string | undefined)?.trim() || "";
+  if (context.form_location === "sector_page" && !phone) return null;
+  if (phone && (!/^\+?[0-9 ()./-]+$/.test(phone) || !/^\d{7,15}$/.test(phone.replace(/\D/g, "")))) return null;
   if (data.subject !== undefined && (typeof data.subject !== "string" || data.subject.length > 200)) return null;
   if (context.sector !== "generico" && (typeof data.subject !== "string" || !data.subject.trim())) return null;
   if (/[\r\n\x00]/.test(String(data.name) + String(data.email) + String(data.subject))) return null;
@@ -41,7 +45,7 @@ export function validateContact(value: unknown) {
   const subject = (data.subject as string | undefined)?.trim() || DEFAULT_CONTACT_SUBJECT;
   const message = (data.message as string).trim();
   if (/[\r\n\x00]/.test(name + email + subject) || !/^[^\s@<>]+@[^\s@<>]+\.[^\s@<>]+$/.test(email)) return null;
-  return { name, email, subject, message, context };
+  return { name, email, phone, subject, message, context };
 }
 
 // Best-effort per-instance limit. Distributed enforcement belongs in Vercel Firewall.

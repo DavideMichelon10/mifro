@@ -186,7 +186,7 @@ e `/soluzioni/ambulanti` sono generate staticamente da `src/content/sectors.ts`
 con il layout condiviso `src/app/(site)/soluzioni/[settore]/page.tsx`.
 Sono raggiungibili dalle schede della home e dal menu «Per la tua attività» e incluse
 nella sitemap. Ogni pagina ha metadati propri, FAQ specifiche, foto delle casse e
-il modulo a tre campi con oggetto di settore automatico. Le schede prodotto usano
+il modulo con nome, email, telefono e messaggio obbligatori e oggetto di settore automatico. Il numero viene validato dal server e incluso nell’email interna, mai nei parametri Analytics. La pagina Contatti conserva nome, email e messaggio obbligatori, con oggetto facoltativo. Le schede prodotto usano
 `src/components/SolutionCard.tsx`.
 
 Non c’è una pagina indice: `/soluzioni` reindirizza a `/#settori` ed è esclusa dalla
@@ -207,6 +207,13 @@ menu gestiscono tastiera, focus e chiusura dopo la navigazione. Nelle pagine set
 «Contattaci» porta al modulo locale `#richiedi-proposta`, preservandone il settore.
 Nelle altre pagine il pulsante porta a `/contatti`. Le pagine di settore
 si aprono direttamente con l’introduzione, senza breadcrumb.
+
+Prima delle FAQ dei quattro settori, `ContactJourney` mostra il percorso in sei
+passaggi: modulo, ricontatto di Claudio entro un massimo di due giorni lavorativi,
+eventuale prova in negozio, preventivo, installazione e formazione con un tecnico
+specializzato, assistenza successiva. Testi e impegno di ricontatto, confermati
+dall’utente, sono centralizzati in `siteConfig.contactJourney`. Le CTA delle pagine
+privilegiano il modulo; telefono e WhatsApp aziendali restano disponibili nel footer.
 
 Fonti e dettagli delle soluzioni sono raccolti nella
 [scheda di revisione tecnica](docs/revisione-pagine-settori.md).

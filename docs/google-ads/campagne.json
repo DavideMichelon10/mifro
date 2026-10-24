@@ -2,7 +2,7 @@
   "updated_at": "2026-10-24",
   "account_id": "276-321-8107",
   "account_name": "Mifro",
-  "status": "local_preparation",
+  "status": "prepared_in_google_ads",
   "budget": null,
   "publication_authorized": false,
   "source": "src/content/sectors.ts; piano marketing; richiesta utente di includere tutti i settori senza budget",
@@ -43,14 +43,8 @@
   ],
   "campaigns": [
     {
-      "name": "MIFRO | Search | Ristoranti | Trentino",
-      "sector": "ristoranti",
-      "final_url": "https://www.mifro.it/soluzioni/ristoranti",
-      "negative_keywords_phrase": [
-        "parrucchiere",
-        "parrucchieri",
-        "ambulanti"
-      ],
+      "name": "MIFRO | Search | Casse e Gestionali | Trentino",
+      "negative_keywords_phrase": [],
       "ad_groups": [
         {
           "name": "Ristoranti e pizzerie",
@@ -92,20 +86,15 @@
             "Ti seguiamo nella scelta e nella configurazione, con assistenza sul posto e da remoto.",
             "Cerchi una cassa per il ristorante? Scopri sistemi RCH e gestionali per il tuo locale.",
             "Raccontaci quale sistema utilizzi e cosa vuoi migliorare. Ti ricontattiamo via email."
+          ],
+          "sector": "ristoranti",
+          "final_url": "https://www.mifro.it/soluzioni/ristoranti",
+          "negative_keywords_phrase": [
+            "parrucchiere",
+            "parrucchieri",
+            "ambulanti"
           ]
-        }
-      ]
-    },
-    {
-      "name": "MIFRO | Search | Bar | Trentino",
-      "sector": "bar",
-      "final_url": "https://www.mifro.it/soluzioni/bar",
-      "negative_keywords_phrase": [
-        "parrucchiere",
-        "parrucchieri",
-        "ambulanti"
-      ],
-      "ad_groups": [
+        },
         {
           "name": "Bar e caffetterie",
           "path_1": "bar",
@@ -146,22 +135,15 @@
             "WALLE MEC RT: tastiera e stampante integrate, articoli pronti e vendite per reparto.",
             "Lavori al banco o anche ai tavoli? Valutiamo insieme il gestionale per il tuo bar.",
             "Scopri ATS 2 e ATS 3: ordini, conti e funzioni cloud secondo la configurazione scelta."
+          ],
+          "sector": "bar",
+          "final_url": "https://www.mifro.it/soluzioni/bar",
+          "negative_keywords_phrase": [
+            "parrucchiere",
+            "parrucchieri",
+            "ambulanti"
           ]
-        }
-      ]
-    },
-    {
-      "name": "MIFRO | Search | Parrucchieri | Trentino",
-      "sector": "parrucchieri-saloni",
-      "final_url": "https://www.mifro.it/soluzioni/parrucchieri-saloni",
-      "negative_keywords_phrase": [
-        "ristorante",
-        "ristoranti",
-        "ambulanti",
-        "taglio capelli",
-        "colore capelli"
-      ],
-      "ad_groups": [
+        },
         {
           "name": "Parrucchieri e saloni",
           "path_1": "parrucchieri",
@@ -202,24 +184,17 @@
             "Cerchi solo la cassa? Puoi mantenere la tua agenda e scegliere una soluzione essenziale.",
             "Cerchi cassa e gestione degli appuntamenti? Valutiamo le esigenze del tuo salone.",
             "ATS 3 per saloni: agenda, prodotti e incassi. Moduli e canoni definiti nel preventivo."
+          ],
+          "sector": "parrucchieri-saloni",
+          "final_url": "https://www.mifro.it/soluzioni/parrucchieri-saloni",
+          "negative_keywords_phrase": [
+            "ristorante",
+            "ristoranti",
+            "ambulanti",
+            "taglio capelli",
+            "colore capelli"
           ]
-        }
-      ]
-    },
-    {
-      "name": "MIFRO | Search | Ambulanti | Trentino",
-      "sector": "ambulanti",
-      "final_url": "https://www.mifro.it/soluzioni/ambulanti",
-      "negative_keywords_phrase": [
-        "parrucchiere",
-        "parrucchieri",
-        "ristorante",
-        "ristoranti",
-        "cassa bluetooth",
-        "cassa audio",
-        "altoparlante"
-      ],
-      "ad_groups": [
+        },
         {
           "name": "Ambulanti e mercati",
           "path_1": "ambulanti",
@@ -260,10 +235,54 @@
             "WALLE MEC RT Ambulanti o APE J RT: valutiamo cassa, accessori e collegamenti per il banco.",
             "Cerchi una cassa da usare in mobilità? Valutiamo batteria, collegamenti e accessori.",
             "APE J RT è un registratore telematico touch con stampante, Wi-Fi e connessione mobile."
+          ],
+          "sector": "ambulanti",
+          "final_url": "https://www.mifro.it/soluzioni/ambulanti",
+          "negative_keywords_phrase": [
+            "parrucchiere",
+            "parrucchieri",
+            "ristorante",
+            "ristoranti",
+            "cassa bluetooth",
+            "cassa audio",
+            "altoparlante"
           ]
         }
       ]
     }
   ],
-  "structure_note": "Una bozza per settore, con un gruppo e un annuncio responsive: riunisce casse e gestionali sulla medesima pagina dedicata. Nessun budget autorizzato."
+  "structure_note": "Una sola campagna Search con quattro gruppi per settore e budget comune. Dopo la preparazione senza budget, l’utente ha segnalato la pubblicazione: verificati 5 EUR/giorno già impostati. L’agente ha completato i tre gruppi mancanti in pausa, senza modificare budget o attivazione della campagna. Ogni gruppo mantiene parole chiave, annuncio e pagina dedicati; le esclusioni fra settori sono di gruppo.",
+  "export_note": "Budget null e publication_authorized false sono vincoli del pacchetto di esportazione locale: non rappresentano lo stato live. Non importare come nuova campagna; consultare google_ads_state per la campagna esistente.",
+  "google_ads_state": {
+    "draft_id": "281499369602634",
+    "draft_name": "MIFRO | Search | Casse e Gestionali | Trentino",
+    "campaign_id": "24392958197",
+    "campaign_status": "Enabled",
+    "observed_daily_budget_eur": 5,
+    "budget_changed_by_agent": false,
+    "saved_sectors": [
+      "ristoranti",
+      "bar",
+      "parrucchieri-saloni",
+      "ambulanti"
+    ],
+    "pending_sectors": [],
+    "ad_groups": [
+      {"sector": "ristoranti", "id": "202158665515", "status": "Enabled"},
+      {"sector": "bar", "id": "203099225484", "status": "Enabled"},
+      {"sector": "parrucchieri-saloni", "id": "201123223643", "status": "Enabled"},
+      {"sector": "ambulanti", "id": "205299956870", "status": "Enabled"}
+    ],
+    "activation_confirmed_by_user": true,
+    "activation_note": "L’utente ha confermato di aver abilitato personalmente tutti i gruppi. Stato Enabled verificato in Chrome per tutti e quattro; budget comune 5 EUR/giorno.",
+    "saved_ads_count": 4,
+    "saved_keywords_count": 40,
+    "negative_keywords_applied": true,
+    "saved_negative_keywords_count": 34,
+    "published": true,
+    "conversion_action_id": "7869328228",
+    "conversion_action_name": "Form",
+    "conversion_verified": true,
+    "note": "Dopo la pubblicazione segnalata dall’utente, il percorso Campagne > Gruppi di annunci ha consentito di completare la struttura. Ad group 1 rinominato Parrucchieri e saloni. Creati Ristoranti, Bar e Ambulanti senza annunci, messi in pausa e poi completati con gli annunci dedicati. Successivamente l’utente ha confermato di aver abilitato tutti i gruppi, come osservato in Chrome. Salvate 16 esclusioni comuni e 18 di gruppo, tutte a frase. È presente un asset messaggi condiviso di campagna con testo per parrucchieri; testo e recapito restano da verificare per l’uso nei quattro settori. Nessuna modifica a DavideDev."
+  }
 }
