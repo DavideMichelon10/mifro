@@ -2,6 +2,7 @@ import { contactContextForPath, defaultContactContext, parseContactContext, type
 
 export const GA_ID = "G-PHX0Y4MJH3";
 export const CONSENT_KEY = "mifro-analytics-consent";
+export const ADS_CONSENT_KEY = "mifro-ads-measurement-consent";
 
 declare global {
   interface Window {

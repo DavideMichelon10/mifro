@@ -1,6 +1,8 @@
 # Misurazione e gestione delle richieste Mifro
 
-Revisione: 24 ottobre 2026. Modifiche locali e configurazione GA4 Mifro; nessun commit o deploy eseguito dall’agente. Campagna e quattro gruppi Ads abilitati dall’utente.
+Revisione: 24 ottobre 2026. Consenso per la misurazione Ads pubblicato su `www.mifro.it`
+nel deployment `dpl_FUuy6BqV3oT67rZR6B5QBtf8ozRp`. Modifiche disponibili nel workspace,
+senza commit dell’agente. Campagna e quattro gruppi Ads abilitati dall’utente.
 
 ## Cosa misura il sito
 
@@ -60,11 +62,21 @@ sono sostituiti o bloccati. È una verifica del codice effettivamente pubblicato
 non della consegna email, della ricezione GA4 o dell'attribuzione Ads. Il controllo
 del loader Google reale e dei duplicati al refresh resta quello locale descritto sotto.
 
-In Chrome, nell'account Mifro, **Auto-tagging = Yes**. La campagna risulta ancora
-orientata ai clic; la presenza di una conversione primaria non implica da sola
-una strategia di offerta che massimizzi i contatti.
+In Chrome, nell'account Mifro, **Auto-tagging = Yes**. Nel primo controllo la campagna
+era orientata ai clic. Il 25 ottobre l’utente ha mostrato le impostazioni aggiornate:
+**Maximize conversions**, obiettivo predefinito Submit lead forms e 5 €/giorno comuni.
+La strategia è stata modificata dall’utente, non dall’agente.
 
-**Limite da risolvere prima di considerare completa l'attribuzione Ads:** anche
+Il 25 ottobre, dopo l’avviso «Conversion tracking setup is incomplete», controllato
+il dettaglio Goals → Conversions → Summary: obiettivo predefinito usato da 1 campagna
+su 1, una sola azione primaria Form, sorgente GA4, zero conversioni e stato
+**Awaiting conversions**. Il tooltip indica creazione recente e fino a 48 ore per
+registrare conversioni. Non è stato osservato uno stato «Unverified» né un pulsante
+di troubleshooting sulla riga dell’azione. La ricezione dell’evento diagnostico
+in GA4 non prova la registrazione di `generate_lead` in Ads. L’attribuzione resta
+da verificare: non dichiarare eliminato l’avviso né creare un’azione duplicata.
+
+**Limite rilevato prima dell'intervento sul consenso:** anche
 dopo «Accetta Analytics», il sito pubblicato imposta `analytics_storage: granted`
 ma mantiene `ad_storage`, `ad_user_data` e `ad_personalization` su `denied`.
 Google documenta che `ad_user_data: denied` limita l'esportazione verso Ads delle
@@ -74,6 +86,37 @@ Serve una scelta esplicita del visitatore per la misurazione pubblicitaria,
 con segnali coerenti con quella scelta e successiva verifica dell'attribuzione.
 Accettare le sole statistiche non autorizza a concedere automaticamente i consensi Ads.
 [Riferimento ufficiale sui consensi Google](https://support.google.com/tagmanager/answer/13802165?hl=en).
+
+### Correzione del consenso — 24 ottobre 2026
+
+Implementate tre scelte: «Rifiuta», «Solo statistiche», «Accetta statistiche e
+misurazione Ads». Il default locale nega tutti i segnali e non carica Google.
+La scelta viene applicata con `consent update` prima del caricamento del tag:
+
+| Scelta | analytics_storage | ad_storage | ad_user_data | ad_personalization |
+| --- | --- | --- | --- | --- |
+| Rifiuto | denied | denied | denied | denied |
+| Solo statistiche | granted | denied | denied | denied |
+| Statistiche e misurazione Ads | granted | granted | granted | denied |
+
+Il consenso storico Analytics non concede la nuova finalità. Chi lo aveva accettato
+può scegliere nel nuovo banner; il precedente rifiuto viene rispettato. La revoca
+Ads cancella i cookie `_gcl_*`/`_gac_*` accessibili al sito; la revoca completa elimina
+anche `_ga`/`_ga_*`, disabilita la raccolta e ricarica la pagina. Le schede aperte
+recepiscono il cambio di preferenze. Un aggiornamento delle preferenze non genera
+una seconda configurazione del tag o una conversione.
+
+Superati i controlli con il loader Google reale per entrambi i livelli: un solo
+`generate_lead`, parametri settore corretti, nessuna conversione al refresh,
+segnali di storage `G101` (statistiche) e `G111` (anche Ads), segnale Consent Mode v2
+presente e personalizzazione disattivata (`npa=1`). Tutta la raccolta e SMTP sono
+intercettati in questi test. Il passaggio al modulo conserva `gclid` nella URL anche
+prima della scelta. Il rilascio e il controllo esterno sono registrati in
+[collaudo-marketing.md](collaudo-marketing.md).
+La ricezione reale di `measurement_check` è stata verificata nel report Realtime
+di Mifro con `check_id=consent_v2_20261024`; l'evento diagnostico non è una conversione.
+Questo non sostituisce l'osservazione della prima richiesta realmente attribuita
+a un clic Ads.
 
 Le keyword correnti sono esatte e a frase, organizzate per intento del settore.
 La ricerca generica «registratori di cassa» non garantisce l'attivazione degli

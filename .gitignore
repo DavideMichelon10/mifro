@@ -49,3 +49,4 @@ NOTE.md
 # Browser test artifacts
 /playwright-report/
 /test-results/
+/test-results-analytics/

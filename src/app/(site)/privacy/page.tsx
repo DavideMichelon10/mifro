@@ -46,14 +46,32 @@ export default function PrivacyPage() {
         <p>
           I dati del modulo sono utilizzati per gestire la richiesta, senza iscrizione automatica a comunicazioni promozionali.
         </p>
+        <p>
+          Se scegli anche la misurazione pubblicitaria, Google Analytics e Google Ads
+          utilizzano cookie, identificativi dei clic sugli annunci e dati di navigazione
+          per attribuire agli annunci le richieste ricevute e migliorarne il rendimento.
+          Puoi accettare le sole statistiche senza questa finalità aggiuntiva.
+          Non attiviamo la personalizzazione degli annunci o il remarketing e non
+          trasmettiamo a Google i dati di contatto del modulo per le conversioni avanzate.
+          Per il trattamento da parte di Google consulta anche la sua{" "}
+          <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">informativa privacy</a>.
+        </p>
 
         <h2 className="mt-8 text-base font-semibold text-gray-800">3. Cookie</h2>
         <p>
           Il sito utilizza un cookie tecnico di dieci minuti per confermare l’invio del modulo
-          e consentire l’accesso alla pagina di ringraziamento. La preferenza sulle statistiche
-          viene memorizzata nel browser. Google Analytics viene caricato solo dopo
-          l’accettazione: puoi rifiutare o modificare la scelta tramite “Preferenze cookie”.
-          Il rifiuto non impedisce l’invio di richieste.
+          e consentire l’accesso alla pagina di ringraziamento. Le preferenze per statistiche
+          e misurazione pubblicitaria vengono memorizzate separatamente nel browser.
+          Il tag Google viene caricato solo dopo l’accettazione delle statistiche;
+          i segnali per la misurazione pubblicitaria vengono abilitati solo se scegli anche questa finalità.
+          Puoi rifiutare entrambe, accettare solo le statistiche oppure entrambe le finalità.
+          Puoi modificare o revocare la scelta tramite “Preferenze cookie”: vengono
+          rimossi i relativi cookie Google accessibili al sito. Il rifiuto non impedisce l’invio di richieste.
+        </p>
+        <p>
+          I cookie Analytics hanno nomi come <code>_ga</code> e <code>_ga_*</code>;
+          quelli di misurazione pubblicitaria possono avere nomi come <code>_gcl_*</code>.
+          Il precedente consenso alle sole statistiche non viene esteso automaticamente alla pubblicità.
         </p>
         <p>
           La home include una mappa fornita da <strong>Google Maps</strong> (Google LLC).
@@ -80,6 +98,10 @@ export default function PrivacyPage() {
           <strong> consenso dell&apos;interessato</strong> (art. 6, par. 1, lett. a del GDPR) e
           sull&apos;<strong>interesse legittimo</strong> del Titolare a rispondere alle richieste ricevute
           (art. 6, par. 1, lett. f del GDPR).
+        </p>
+        <p>
+          Le statistiche e la misurazione pubblicitaria si basano sulle scelte di consenso
+          espresse nel banner. Puoi revocarle in qualsiasi momento tramite “Preferenze cookie”.
         </p>
 
         <h2 className="mt-8 text-base font-semibold text-gray-800">5. Conservazione dei dati</h2>

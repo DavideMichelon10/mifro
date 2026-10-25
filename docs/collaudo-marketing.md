@@ -1,9 +1,78 @@
 # Collaudo delle modifiche marketing
 
+## Diagnostica Ads — 25 ottobre 2026
+
+L’utente ha attivato Maximize conversions, confermato dallo screenshot delle
+impostazioni, mantenendo 5 €/giorno e Submit lead forms. Ha poi segnalato
+«Eligible (Limited)» e «Conversion tracking setup is incomplete».
+
+Controllo diretto in Chrome, account Mifro 276-321-8107, Goals → Conversions →
+Summary: obiettivo predefinito Submit lead form usato da 1 campagna su 1;
+un’unica azione **Form**, primaria, origine Website (Google Analytics GA4),
+zero conversioni, stato **Awaiting conversions**. Il tooltip specifica che
+l’azione è stata creata di recente e possono servire fino a 48 ore per registrare
+conversioni. Il riepilogo dell’obiettivo mostra ancora Needs attention.
+
+L’avviso generale non è stato dichiarato risolto. Nessuna nuova azione creata,
+nessuna modifica al budget o alle offerte, nessun clic pubblicitario o falso lead
+generato. Il precedente evento diagnostico conferma la ricezione GA4, non una
+conversione attribuita in Ads. Trascorso il periodo indicato da Google, ricontrollare
+lo stato; se persiste un errore o mancano conversioni attese, serve il collaudo
+assistito dell’evento effettivo e del collegamento Ads.
+
+## Aggiornamento: consenso Ads pubblicato — 24 ottobre 2026, ore 23:16
+
+Pubblicato su [www.mifro.it](https://www.mifro.it) il consenso esplicito per la
+misurazione pubblicitaria e l'informativa aggiornata. Deployment Vercel
+`dpl_FUuy6BqV3oT67rZR6B5QBtf8ozRp`, stato Ready, alias di produzione verificato.
+Base del codice `9e94807`; modifiche del presente intervento nel workspace, senza commit.
+Budget, stato degli annunci e strategia di offerta non modificati da questo intervento.
+
+Verifiche sulla copia isolata `/tmp/mifro-measurement-jbiik310`, senza `.env`:
+
+- Lint, typecheck, build (22 pagine) e 10 test Node superati; audit delle dipendenze
+  di produzione senza vulnerabilità.
+- 30 scenari browser esistenti verificati più 6 nuovi scenari di consenso: scelta,
+  ripristino, revoca Ads/completa, preferenze storiche, sincronizzazione tra schede,
+  schermo da 320 px e conservazione di `gclid` nel passaggio al modulo.
+- Due scenari con loader Google reale superati: consenso alle sole statistiche e
+  consenso anche ad Ads. Un solo lead, nessun duplicato su `/grazie`, segnali
+  `gcs=G101`/`G111`, `gcd` presente, `npa=1`. Raccolta e SMTP intercettati.
+- Separata la cartella degli artefatti del collaudo Google per evitare interferenze
+  con i test browser eseguiti in parallelo. Corretto il test di navigazione per
+  attendere l'aggiornamento asincrono della URL; il comportamento applicativo era corretto.
+
+Controllo post-rilascio sui quattro URL finali, tutti 200: un lead con contesto
+corretto dopo successo simulato per settore; ripetuti anche «Solo statistiche» e
+«Rifiuta». Nessun tag prima della scelta; nessun lead con rifiuto. Queste prove
+intercettano tutti i POST del modulo e la raccolta: nessuna email o conversione
+fittizia è stata inviata.
+
+Controllo separato della raccolta reale: evento diagnostico `measurement_check`,
+`check_id=consent_v2_20261024`, diretto a `G-PHX0Y4MJH3`, con risposta Google 204,
+`gcs=G111`, `gcd=13r3r3r2q7l1`, `npa=1`. Non è un `generate_lead` e non è stato
+marcato come evento chiave o importato come conversione. L'esito nei report è
+distinto dalla sola risposta dell'endpoint ed è riportato sotto.
+
+Alle 23:22 verificato in Chrome **GA4 → Reports → Realtime overview**:
+`measurement_check` presente, conteggio 1; aprendo il parametro `check_id` compare
+`consent_v2_20261024`. Il riquadro Key events non contiene eventi del collaudo.
+È quindi confermata la ricezione nel report della proprietà Mifro, oltre alla
+risposta 204. DebugView non ha mostrato il dispositivo nel controllo effettuato;
+la prova di ricezione è quella in Realtime, non una verifica DebugView.
+
+Ricontrollata in Chrome l'azione Ads Mifro **Form (7869328228)**: primaria,
+GA4 `generate_lead`, proprietà `mifro.it`, conteggio Una, nessun valore monetario,
+attribuzione basata sui dati per i canali Google a pagamento. L'attribuzione di
+un contatto effettivo resta da osservare sul primo clic pubblicitario che produca
+una richiesta: non sono stati generati clic sugli annunci o falsi lead per provarla.
+
+## Resoconto precedente alla pubblicazione
+
 24 ottobre 2026. Repository `/home/davide/personal/sito_mifro`, base `f561f02`.
 Modifiche locali non committate e non pubblicate. Flusso confermato: Davide → Mifro.
 
-## Esito finale
+## Esito del primo collaudo
 
 | Controllo | Esito |
 | --- | --- |

@@ -123,10 +123,16 @@ Cambiare il segreto invalida i cookie di conferma già emessi.
 
 ### Google Analytics
 
-La proprietà esistente è `G-PHX0Y4MJH3`. Google Analytics viene caricato soltanto
-dopo l'accettazione tramite il banner; “Preferenze cookie” permette di cambiare
-scelta. Il rifiuto disabilita la raccolta e cancella i cookie GA visibili al sito.
-Il form funziona indipendentemente dal consenso.
+La proprietà esistente è `G-PHX0Y4MJH3`. Il banner offre rifiuto, sole statistiche
+oppure statistiche e misurazione Ads. Il tag Google viene caricato soltanto dopo
+l'accettazione delle statistiche; `ad_storage` e `ad_user_data` diventano `granted`
+solo scegliendo esplicitamente anche la misurazione Ads. `ad_personalization` resta
+sempre `denied`: nessun remarketing o invio dei dati del modulo per conversioni avanzate.
+Le due preferenze sono salvate separatamente e il vecchio consenso Analytics non
+viene esteso ad Ads. “Preferenze cookie” permette di cambiare scelta. La revoca
+rimuove i cookie pertinenti accessibili al sito ed è sincronizzata tra schede.
+Il form funziona indipendentemente dal consenso. Il collaudo con il loader Google
+verifica entrambi i livelli di consenso e intercetta tutte le richieste di raccolta.
 
 L’evento `generate_lead` viene emesso una volta dopo il successo dell’endpoint,
 con `form_id: contact`, `sector` e `form_location` da elenchi controllati. I payload

@@ -1,20 +1,26 @@
 import { test, expect } from "@playwright/test";
-import { GA_ID, CONSENT_KEY } from "../../src/lib/analytics";
+import { GA_ID, CONSENT_KEY, ADS_CONSENT_KEY } from "../../src/lib/analytics";
 import { createReceipt, RECEIPT_COOKIE } from "../../src/lib/contact";
 
 type CapturedEvent = { event: string | null; path: string; sector: string | null; location: string | null };
 
-test("tag Google reale: un lead per invio, nessuna conversione su visita o refresh di grazie", async ({ page, context, baseURL }, testInfo) => {
+let script: string;
+test.beforeAll(async () => {
+  // One public loader for both consent scenarios; no visitor data is sent.
+  const loader = await fetch(`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`, { signal: AbortSignal.timeout(20000) });
+  expect(loader.ok, "Download del tag pubblico Google").toBe(true);
+  script = await loader.text();
+});
+
+for (const ads of [false, true]) {
+test(`tag Google reale, Ads ${ads}: un lead per invio, nessuna conversione su visita o refresh di grazie`, async ({ page, context, baseURL }, testInfo) => {
   const origin = new URL(baseURL!).origin;
   if (!["127.0.0.1", "localhost", "[::1]"].includes(new URL(origin).hostname)) {
     throw new Error("Il collaudo Analytics deve utilizzare esclusivamente un server locale di test.");
   }
-  // Download just the public loader. No visitor information is sent to Google.
-  const loader = await fetch(`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`, { signal: AbortSignal.timeout(20000) });
-  expect(loader.ok, "Download del tag pubblico Google").toBe(true);
-  const script = await loader.text();
   const captured: CapturedEvent[] = [];
   const submissions: unknown[] = [];
+  const leadConsentSignals: { gcs: string | null; gcd: string | null; npa: string | null }[] = [];
   let tagLoads = 0;
   await context.route("**/*", async (route) => {
     const request = route.request();
@@ -36,6 +42,7 @@ test("tag Google reale: un lead per invio, nessuna conversione su visita o refre
       for (const row of request.postData()?.split(/\r?\n/).filter(Boolean) ?? [""]) {
         const params = new URLSearchParams(url.searchParams);
         for (const [key, value] of new URLSearchParams(row)) params.set(key, value);
+        if (params.get("en") === "generate_lead") leadConsentSignals.push({ gcs: params.get("gcs"), gcd: params.get("gcd"), npa: params.get("npa") });
         captured.push({
           event: params.get("en"),
           path: new URL(params.get("dl") || origin).pathname,
@@ -53,7 +60,7 @@ test("tag Google reale: un lead per invio, nessuna conversione su visita o refre
   await page.goto("/soluzioni/ristoranti");
   expect(tagLoads).toBe(0);
   expect(captured).toHaveLength(0);
-  await page.getByRole("button", { name: "Accetta Analytics" }).click();
+  await page.getByRole("button", { name: ads ? "Accetta statistiche e misurazione Ads" : "Solo statistiche", exact: true }).click();
   await expect.poll(() => captured.filter((event) => event.event === "page_view" && event.path === "/soluzioni/ristoranti").length, { timeout: 15000 }).toBe(1);
   await page.locator("header").getByRole("link", { name: "Contattaci", exact: true }).click();
   await page.getByLabel("Nome e cognome").fill("Verifica locale");
@@ -69,6 +76,11 @@ test("tag Google reale: un lead per invio, nessuna conversione su visita o refre
   // Wait for the loader's deferred collection batch before checking for duplicates.
   await page.waitForTimeout(6000);
   await testInfo.attach("analytics-events", { body: JSON.stringify(captured, null, 2), contentType: "application/json" });
+  await testInfo.attach("lead-consent-signals", { body: JSON.stringify(leadConsentSignals, null, 2), contentType: "application/json" });
+  expect(leadConsentSignals).toHaveLength(1);
+  expect(leadConsentSignals[0].gcs).toBe(ads ? "G111" : "G101");
+  expect(leadConsentSignals[0].gcd).toBeTruthy();
+  expect(leadConsentSignals[0].npa).toBe("1");
   expect(submissions).toHaveLength(1);
   expect(captured.filter((event) => event.event === "generate_lead")).toEqual([
     { event: "generate_lead", path: "/soluzioni/ristoranti", sector: "ristoranti", location: "sector_page" },
@@ -77,4 +89,6 @@ test("tag Google reale: un lead per invio, nessuna conversione su visita o refre
     "Rimuovere nell’account Google la conversione derivata dalla visita a /grazie: duplica l’invio e ricompare al refresh.",
   ).toEqual([]);
   expect(await page.evaluate((key) => localStorage.getItem(key), CONSENT_KEY)).toBe("accepted");
+  expect(await page.evaluate((key) => localStorage.getItem(key), ADS_CONSENT_KEY)).toBe(ads ? "accepted" : "rejected");
 });
+}

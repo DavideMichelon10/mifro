@@ -259,6 +259,8 @@
     "campaign_id": "24392958197",
     "campaign_status": "Enabled",
     "observed_daily_budget_eur": 5,
+    "observed_bidding_strategy": "Maximize conversions",
+    "bidding_strategy_source": "Screenshot delle impostazioni fornito dall’utente il 25 ottobre 2026; modifica non effettuata dall’agente.",
     "budget_changed_by_agent": false,
     "saved_sectors": [
       "ristoranti",
@@ -282,7 +284,11 @@
     "published": true,
     "conversion_action_id": "7869328228",
     "conversion_action_name": "Form",
-    "conversion_verified": true,
+    "conversion_configuration_verified": true,
+    "conversion_attribution_verified": false,
+    "conversion_tracking_status": "Awaiting conversions",
+    "conversion_status_checked_at": "2026-10-25",
+    "conversion_status_note": "Verificato in Chrome: obiettivo predefinito Submit lead form usato da 1 campagna su 1, una sola azione primaria Form, origine GA4, zero conversioni. Il tooltip Awaiting conversions indica creazione recente e fino a 48 ore per registrare conversioni. La diagnostica generale mostra ancora setup incompleto; nessuna conversione duplicata creata per rimuovere l’avviso.",
     "note": "Dopo la pubblicazione segnalata dall’utente, il percorso Campagne > Gruppi di annunci ha consentito di completare la struttura. Ad group 1 rinominato Parrucchieri e saloni. Creati Ristoranti, Bar e Ambulanti senza annunci, messi in pausa e poi completati con gli annunci dedicati. Successivamente l’utente ha confermato di aver abilitato tutti i gruppi, come osservato in Chrome. Salvate 16 esclusioni comuni e 18 di gruppo, tutte a frase. È presente un asset messaggi condiviso di campagna con testo per parrucchieri; testo e recapito restano da verificare per l’uso nei quattro settori. Nessuna modifica a DavideDev."
   }
 }

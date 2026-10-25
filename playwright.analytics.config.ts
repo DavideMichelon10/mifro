@@ -5,6 +5,7 @@ import base from "./playwright.config";
 // Kept separate from the deterministic CI suite; collection is always intercepted.
 export default defineConfig(base, {
   testDir: "./tests/analytics-live",
+  outputDir: "./test-results-analytics",
   timeout: 60000,
   use: { serviceWorkers: "block" },
 });

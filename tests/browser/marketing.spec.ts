@@ -4,10 +4,12 @@ import { articles } from "../../src/content/articles";
 
 const secret = "browser-test-only-secret-at-least-32-characters";
 const choiceKey = "mifro-analytics-consent";
+const adsChoiceKey = "mifro-ads-measurement-consent";
 const sectors = ["bar", "ristoranti", "parrucchieri-saloni", "ambulanti"];
 
 // No SMTP or third-party data collection: requests are simulated in the browser.
 test.beforeEach(async ({ page, baseURL }) => {
+  await page.addInitScript((key) => { if (!localStorage.getItem(key)) localStorage.setItem(key, "rejected"); }, adsChoiceKey);
   await page.route("**/*", async (route) => {
     const url = new URL(route.request().url());
     if (url.origin === new URL(baseURL!).origin) return route.continue();
@@ -36,27 +38,28 @@ test("consenso: prima visita, rifiuto, accettazione, navigazione, revoca e nuova
   await page.goto("/contatti");
   await expect(page.getByRole("dialog", { name: "Preferenze cookie" })).toBeVisible();
   expect(loads).toBe(0);
-  await page.getByRole("button", { name: "Rifiuta Analytics" }).click();
+  await page.getByRole("button", { name: "Rifiuta" }).click();
   await page.reload();
   await expect(page.getByRole("dialog")).toHaveCount(0);
   expect(loads).toBe(0);
   await page.getByRole("button", { name: "Preferenze cookie", exact: true }).click();
-  await page.getByRole("button", { name: "Accetta Analytics" }).click();
+  await page.getByRole("button", { name: "Solo statistiche" }).click();
   await expect.poll(() => loads).toBe(1);
-  const consent = await page.evaluate(() => Array.from(window.dataLayer![0] as ArrayLike<unknown>));
-  expect(consent).toEqual(["consent", "default", { analytics_storage: "granted", ad_storage: "denied", ad_user_data: "denied", ad_personalization: "denied" }]);
+  const consent = await page.evaluate(() => (window.dataLayer || []).map((entry) => Array.from(entry as ArrayLike<unknown>)).filter((entry) => entry[0] === "consent"));
+  expect(consent[0]).toEqual(["consent", "default", { analytics_storage: "denied", ad_storage: "denied", ad_user_data: "denied", ad_personalization: "denied" }]);
+  expect(consent.at(-1)).toEqual(["consent", "update", { analytics_storage: "granted", ad_storage: "denied", ad_user_data: "denied", ad_personalization: "denied" }]);
   await page.locator("footer").getByRole("link", { name: "Chi siamo", exact: true }).click();
   await expect(page).toHaveURL(/chi-siamo$/);
   expect(loads).toBe(1);
   await page.evaluate(() => { document.cookie = "_ga=test;path=/"; document.cookie = "_ga_TEST=test;path=/"; });
   await page.getByRole("button", { name: "Preferenze cookie", exact: true }).click();
-  await page.getByRole("button", { name: "Rifiuta Analytics" }).click();
+  await page.getByRole("button", { name: "Rifiuta" }).click();
   await expect.poll(() => page.evaluate(() => localStorage.getItem("mifro-analytics-consent"))).toBe("rejected");
-  await expect.poll(() => page.evaluate(() => typeof window.gtag)).toBe("undefined");
+  await expect(page.locator("#mifro-google-measurement")).toHaveCount(0);
   expect((await context.cookies()).some((cookie) => cookie.name.startsWith("_ga"))).toBe(false);
   expect(loads).toBe(1);
   await page.getByRole("button", { name: "Preferenze cookie", exact: true }).click();
-  await page.getByRole("button", { name: "Accetta Analytics" }).click();
+  await page.getByRole("button", { name: "Solo statistiche" }).click();
   await expect.poll(() => loads).toBe(2);
 });
 
@@ -183,7 +186,7 @@ for (const width of [320, 390, 768, 1440]) {
 
 test("telefono e WhatsApp: soli clic secondari con consenso e contesto dopo navigazione", async ({ page }) => {
   await page.goto("/soluzioni/ristoranti");
-  await page.getByRole("button", { name: "Rifiuta Analytics" }).click();
+  await page.getByRole("button", { name: "Rifiuta" }).click();
   async function clickContact(selector: string) {
     await page.evaluate((selector) => {
       const link = document.querySelector<HTMLAnchorElement>(selector)!;
@@ -194,7 +197,7 @@ test("telefono e WhatsApp: soli clic secondari con consenso e contesto dopo navi
   await clickContact('a[href^="tel:"]');
   expect(await events(page, "contact_click")).toHaveLength(0);
   await page.getByRole("button", { name: "Preferenze cookie", exact: true }).click();
-  await page.getByRole("button", { name: "Accetta Analytics" }).click();
+  await page.getByRole("button", { name: "Solo statistiche" }).click();
   await clickContact('a[href^="tel:"]');
   await clickContact('a[href^="https://wa.me"]');
   const clicks = await events(page, "contact_click");
@@ -308,7 +311,7 @@ test("preferenze cookie accessibili anche con elementi della chat sovrapposti", 
   });
   await expect(page.locator(".woot-widget-bubble")).toBeHidden();
   await expect(page.locator(".woot-widget-holder")).toBeHidden();
-  await page.getByRole("button", { name: "Rifiuta Analytics" }).click();
+  await page.getByRole("button", { name: "Rifiuta" }).click();
   await expect(page.locator(".woot-widget-bubble")).toBeVisible();
   await expect(page.locator(".woot-widget-holder")).toBeVisible();
 });
