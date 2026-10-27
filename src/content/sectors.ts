@@ -1,7 +1,7 @@
 import type { SectorSlug } from "@/lib/contact-context";
 import type { IconName } from "@/components/Icons";
 
-type ProductImage = {
+export type ProductImage = {
   src: string;
   alt: string;
   width: number;
@@ -15,18 +15,19 @@ export const productImages = {
     width: 600,
     height: 600,
   },
-  "ATS 2": {
-    src: "/images/ristorazione.png",
-    alt: "Esempio di postazione RCH con schermo touch e stampante fiscale",
+  "Sistemi POS touch screen": {
+    src: "/images/products/pos-touch-screen-1.webp",
+    alt: "Sistema POS touch screen RCH con schermo verticale",
     width: 800,
     height: 600,
   },
-  "ATS 3": {
-    src: "/images/products/ats-3-device.webp",
-    alt: "Software gestionale ATS 3 mostrato su un registratore RCH APE 3 come esempio di utilizzo",
+  "Registratori di cassa telematici": {
+    src: "/images/products/registratore-telematico-1.webp",
+    alt: "Registratore di cassa telematico RCH APE 3, vista laterale",
     width: 800,
     height: 600,
   },
+  "Software gestionale": null,
   "WALLE MEC RT Ambulanti": {
     src: "/images/products/walle-mec-rt-ambulanti-senza-bollino.webp",
     alt: "RCH WALLE MEC RT per ambulanti con borsa da trasporto e batteria",
@@ -39,12 +40,11 @@ export const productImages = {
     width: 800,
     height: 600,
   },
-} satisfies Record<string, ProductImage>;
+} satisfies Record<string, ProductImage | null>;
 
 export type Solution = {
   name: keyof typeof productImages;
-  label: string;
-  title: string;
+  gallery?: ProductImage[];
   features: string[];
 };
 
@@ -83,20 +83,36 @@ export const sectors: Sector[] = [
     subject: "Soluzioni di cassa per il mio locale",
     messagePlaceholder: "Dove si trova il locale? Come gestisci oggi le comande?",
     solutionsHeading: "Casse e gestionali per il tuo locale",
-    solutionsIntro: "Due software gestionali RCH per il tuo locale. ATS 3 può essere installato anche sui dispositivi compatibili già presenti, senza acquistare nuovo hardware.",
+    solutionsIntro: "Sistemi POS touch screen, registratori telematici e software gestionale: scegliamo insieme gli strumenti adatti al tuo locale.",
     solutions: [
-      { name: "ATS 2", label: "Software A-Touch System", title: "Dalla comanda al conto", features: ["Ordini organizzati per tavolo", "Sala e cassa collegate", "Gestione degli ordini d’asporto"] },
-      { name: "ATS 3", label: "Software · RISTO-PRO", title: "Sala, cucina e asporto coordinati", features: ["Tavoli e prenotazioni insieme", "Asporto organizzato per orario", "Comande su schermo in cucina"] },
+      {
+        name: "Sistemi POS touch screen",
+        gallery: [
+          { src: "/images/products/pos-touch-screen-1.webp", alt: "Sistema POS touch screen RCH, schermo verticale", width: 800, height: 600 },
+          { src: "/images/products/pos-touch-screen-2.webp", alt: "Sistema POS touch screen RCH, schermo orizzontale", width: 800, height: 600 },
+          { src: "/images/products/pos-touch-screen-3.webp", alt: "Sistema POS touch screen RCH, vista posteriore", width: 800, height: 600 },
+        ],
+        features: ["Prodotti e prezzi a portata di touch", "Postazione per il banco e il servizio ai tavoli", "Collegamento a stampanti e periferiche compatibili"] },
+      {
+        name: "Registratori di cassa telematici",
+        gallery: [
+          { src: "/images/products/registratore-telematico-1.webp", alt: "Registratore telematico RCH APE 3, vista laterale", width: 800, height: 600 },
+          { src: "/images/products/registratore-telematico-2.webp", alt: "Registratore telematico RCH APE 3, schermo operatore", width: 800, height: 600 },
+          { src: "/images/products/registratore-telematico-3.webp", alt: "Registratore telematico RCH APE 3, display cliente e stampante", width: 800, height: 600 },
+        ],
+        features: ["Emissione degli scontrini e invio dei corrispettivi", "Stampante integrata nel punto cassa", "Soluzioni compatte per il tuo banco"],
+      },
+      { name: "Software gestionale", features: ["Tavoli, prenotazioni e comande organizzati", "Gestione degli ordini d’asporto", "Incassi e report consultabili da remoto"] },
     ],
     question: "Parliamo del tuo locale",
     questionText: "Raccontaci come gestisci gli ordini e cosa vuoi migliorare.",
     faq: [
-      { question: "Posso installare ATS 3 sui dispositivi che ho già?", answer: "Sì. ATS 3 è un software: può essere installato anche sui dispositivi compatibili che utilizzi già, senza acquistare nuovo hardware. Indicaci i modelli presenti nella tua attività: Mifro verifica la compatibilità e segue l’installazione." },
+      { question: "Posso installare il software gestionale sui dispositivi che ho già?", answer: "Sì. Il gestionale può essere installato anche sui dispositivi compatibili che utilizzi già, senza acquistare nuovo hardware. Indicaci i modelli presenti nella tua attività: Mifro verifica la compatibilità e segue l’installazione." },
       { question: "Come funzionano installazione e formazione?", answer: "Mifro segue installazione e configurazione. Concordiamo prima dell’avvio le attività e l’affiancamento necessari: contenuti, modalità ed eventuali costi sono da definire nella proposta." },
-      { question: "Come scelgo tra ATS 2 e ATS 3?", answer: "Partiamo da come lavori: servizio ai tavoli, asporto, postazioni e controllo da remoto. Confrontiamo funzioni e moduli, verificando anche i dispositivi che possiedi già. ATS 3 è un software installabile su hardware esistente compatibile; la proposta specifica la configurazione adatta al tuo locale." },
+      { question: "Come scelgo tra cassa, sistema POS e software gestionale?", answer: "Partiamo da come lavori: servizio ai tavoli, asporto, postazioni e controllo da remoto. Confrontiamo funzioni e moduli, verificando anche i dispositivi che possiedi già. Il software gestionale è installabile su hardware esistente compatibile; la proposta specifica la configurazione adatta al tuo locale." },
       { question: "Cosa serve per le comande in cucina?", answer: "Stampanti o schermi compatibili con la configurazione scelta, anche già presenti nel locale. Verifichiamo quelli che utilizzi e definiamo i moduli e le eventuali integrazioni necessarie." },
-      { question: "Cosa offre ATS 3 in cloud?", answer: "Puoi consultare vendite e report da remoto e gestire più punti cassa. Moduli e canoni dipendono dalla configurazione scelta." },
-      { question: "Quali costi devo considerare per il gestionale?", answer: "La proposta distingue licenze, moduli, eventuali canoni, installazione e assistenza. Per ATS 3 partiamo dai dispositivi che possiedi già; nuovo hardware e accessori si valutano solo se necessari." },
+      { question: "Cosa offre il software gestionale in cloud?", answer: "Puoi consultare vendite e report da remoto e gestire più punti cassa. Moduli e canoni dipendono dalla configurazione scelta." },
+      { question: "Quali costi devo considerare per il gestionale?", answer: "La proposta distingue licenze, moduli, eventuali canoni, installazione e assistenza. Per il software gestionale partiamo dai dispositivi che possiedi già; nuovo hardware e accessori si valutano solo se necessari." },
     ],
   },
   {
@@ -112,15 +128,15 @@ export const sectors: Sector[] = [
     subject: "Soluzioni di cassa per il mio salone",
     messagePlaceholder: "Dove si trova il salone? Cerchi una cassa o anche un’agenda?",
     solutionsHeading: "Casse e gestionali per il tuo salone",
-    solutionsIntro: "Una cassa per gli incassi o un gestionale per il salone. ATS 3 è un software installabile anche sui dispositivi compatibili che possiedi già.",
+    solutionsIntro: "Una cassa per gli incassi o un gestionale per il salone. Il software gestionale è installabile anche sui dispositivi compatibili che possiedi già.",
     solutions: [
-      { name: "WALLE MEC RT", label: "Cassa con tastiera", title: "Semplice per gli incassi", features: ["Servizi e prodotti con prezzi pronti", "Scontrini dalla stampante integrata", "Poco spazio sul banco reception"] },
-      { name: "ATS 3", label: "Software · Beauty e servizi", title: "Appuntamenti e vendite insieme", features: ["Agenda organizzata per operatore", "Scorte dei prodotti sotto controllo", "Incassi consultabili da remoto"] },
+      { name: "WALLE MEC RT", features: ["Servizi e prodotti con prezzi pronti", "Scontrini dalla stampante integrata", "Poco spazio sul banco reception"] },
+      { name: "Software gestionale", features: ["Agenda organizzata per operatore", "Scorte dei prodotti sotto controllo", "Incassi consultabili da remoto"] },
     ],
     question: "Cosa serve al tuo salone?",
     questionText: "Dicci se cerchi solo la cassa o anche la gestione degli appuntamenti.",
     faq: [
-      { question: "Posso installare ATS 3 sui dispositivi che ho già?", answer: "Sì. ATS 3 è un software: può essere installato anche sui dispositivi compatibili che utilizzi già, senza acquistare nuovo hardware. Indicaci i modelli presenti nella tua attività: Mifro verifica la compatibilità e segue l’installazione." },
+      { question: "Posso installare il software gestionale sui dispositivi che ho già?", answer: "Sì. Il gestionale può essere installato anche sui dispositivi compatibili che utilizzi già, senza acquistare nuovo hardware. Indicaci i modelli presenti nella tua attività: Mifro verifica la compatibilità e segue l’installazione." },
       { question: "Come funzionano installazione e formazione?", answer: "Mifro segue installazione e configurazione. Concordiamo prima dell’avvio le attività e l’affiancamento necessari: contenuti, modalità ed eventuali costi sono da definire nella proposta." },
       { question: "Posso acquistare solo la cassa?", answer: "Sì. Puoi scegliere la sola cassa e continuare a usare la tua agenda." },
       { question: "L’agenda è inclusa in tutte le soluzioni?", answer: "No: prenotazioni e operatori richiedono moduli specifici. Li indichiamo nel preventivo, con gli eventuali canoni." },
@@ -142,8 +158,8 @@ export const sectors: Sector[] = [
     solutionsHeading: "Casse portatili per mercati e fiere",
     solutionsIntro: "Tastiera fisica o touch: due casse telematiche per lavorare in mobilità.",
     solutions: [
-      { name: "WALLE MEC RT Ambulanti", label: "Cassa portatile con tastiera", title: "La praticità dei tasti, al mercato", features: ["Batteria per lavorare senza presa", "Tastiera e stampante integrate", "Coperchio antipioggia e borsa"] },
-      { name: "APE J RT", label: "Registratore telematico touch", title: "Cassa e pagamenti in una mano", features: ["Batteria e connessione mobile", "Scontrini e invio corrispettivi", "Contactless con RCH Pay SoftPOS"] },
+      { name: "WALLE MEC RT Ambulanti", features: ["Batteria per lavorare senza presa", "Tastiera e stampante integrate", "Coperchio antipioggia e borsa"] },
+      { name: "APE J RT", features: ["Batteria e connessione mobile", "Scontrini e invio corrispettivi", "Contactless con RCH Pay SoftPOS"] },
     ],
     question: "Dove lavori e come alimenti il banco?",
     questionText: "Indicaci i mercati che frequenti e se hai corrente sul banco.",
@@ -168,18 +184,18 @@ export const sectors: Sector[] = [
     subject: "Soluzioni di cassa per la mia attività",
     messagePlaceholder: "Raccontaci di cosa ti occupi, dove lavori e cosa vorresti migliorare nella gestione della tua attività.",
     solutionsHeading: "Una cassa semplice o un gestionale completo",
-    solutionsIntro: "Scegliamo insieme la configurazione in base a come lavori. ATS 3 è un software installabile anche sui dispositivi compatibili che possiedi già.",
+    solutionsIntro: "Scegliamo insieme la configurazione in base a come lavori. Il software gestionale è installabile anche sui dispositivi compatibili che possiedi già.",
     solutions: [
-      { name: "WALLE MEC RT", label: "Cassa con tastiera", title: "Gli incassi, con semplicità", features: ["Articoli con prezzi già pronti", "Vendite ordinate per reparto", "Stampante integrata nella cassa"] },
-      { name: "ATS 3", label: "Software · RET@IL", title: "Vendite e magazzino insieme", features: ["Articoli organizzati per variante", "Giacenze e inventari sotto controllo", "Listini aggiornabili da remoto"] },
+      { name: "WALLE MEC RT", features: ["Articoli con prezzi già pronti", "Vendite ordinate per reparto", "Stampante integrata nella cassa"] },
+      { name: "Software gestionale", features: ["Articoli organizzati per variante", "Giacenze e inventari sotto controllo", "Listini aggiornabili da remoto"] },
     ],
     question: "Raccontaci la tua attività",
     questionText: "Indicaci come lavori e quali strumenti utilizzi. Ti aiutiamo a individuare la soluzione più adatta.",
     faq: [
       { question: "La soluzione si adatta alla mia attività?", answer: "Partiamo dal tuo lavoro quotidiano: cosa vendi, come gestisci gli incassi e quali strumenti utilizzi. Valutiamo insieme la configurazione e le eventuali integrazioni necessarie." },
       { question: "Posso scegliere solo una cassa?", answer: "Sì. Se ti serve una soluzione essenziale per gli incassi, possiamo proporti una cassa senza aggiungere un gestionale." },
-      { question: "Posso gestire articoli e magazzino?", answer: "ATS 3 RET@IL prevede funzioni per articoli, varianti, giacenze e inventari. Definiamo nella proposta i moduli e la configurazione adatti alle tue esigenze." },
-      { question: "Posso utilizzare i dispositivi che ho già?", answer: "ATS 3 può essere installato su hardware compatibile. Indicaci i modelli e i software che utilizzi: verifichiamo la compatibilità prima della proposta." },
+      { question: "Posso gestire articoli e magazzino?", answer: "Il software gestionale prevede funzioni per articoli, varianti, giacenze e inventari. Definiamo nella proposta i moduli e la configurazione adatti alle tue esigenze." },
+      { question: "Posso utilizzare i dispositivi che ho già?", answer: "Il software gestionale può essere installato su hardware compatibile. Indicaci i modelli e i software che utilizzi: verifichiamo la compatibilità prima della proposta." },
       { question: "Come funzionano installazione e assistenza?", answer: "Mifro segue installazione e configurazione. Nella proposta definiamo affiancamento, assistenza, licenze, eventuali canoni e accessori necessari." },
     ],
   },

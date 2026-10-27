@@ -339,3 +339,37 @@ test("preferenze cookie accessibili anche con elementi della chat sovrapposti", 
   await expect(page.locator(".woot-widget-bubble")).toBeVisible();
   await expect(page.locator(".woot-widget-holder")).toBeVisible();
 });
+
+test("Food: tre soluzioni e gallerie scorrevoli su desktop e mobile", async ({ page }) => {
+  await page.addInitScript((key) => localStorage.setItem(key, "rejected"), choiceKey);
+  for (const width of [1440, 390]) {
+    await page.setViewportSize({ width, height: 960 });
+    await page.goto("/soluzioni/ristoranti");
+    const solutions = page.locator("#soluzioni-rch");
+    await expect(solutions.getByRole("heading", { level: 3 })).toHaveText([
+      "Sistemi POS touch screen", "Registratori di cassa telematici", "Software gestionale",
+    ]);
+    await expect(solutions.locator("article p")).toHaveCount(0);
+    await expect(page.locator("main")).not.toContainText(/ATS\s*[23]|A-Touch System|RISTO-PRO/);
+    for (const name of ["Sistemi POS touch screen", "Registratori di cassa telematici"]) {
+      const gallery = solutions.getByRole("region", { name: `Foto: ${name}` });
+      await gallery.scrollIntoViewIfNeeded();
+      await expect(gallery.getByText("1 / 3", { exact: true })).toBeVisible();
+      await gallery.getByRole("button", { name: "Foto successiva" }).click();
+      await expect(gallery.getByText("2 / 3", { exact: true })).toBeVisible();
+      await gallery.getByRole("button", { name: "Foto precedente" }).click();
+      await expect(gallery.getByText("1 / 3", { exact: true })).toBeVisible();
+      await gallery.getByRole("button", { name: "Foto precedente" }).click();
+      await expect(gallery.getByText("3 / 3", { exact: true })).toBeVisible();
+      const viewport = gallery.getByLabel("Scorri le foto del prodotto");
+      await viewport.focus();
+      await page.keyboard.press("ArrowRight");
+      await expect(gallery.getByText("1 / 3", { exact: true })).toBeVisible();
+      await viewport.evaluate((element) => element.scrollTo({ left: element.clientWidth * 2 }));
+      await expect(gallery.getByText("3 / 3", { exact: true })).toBeVisible();
+      await expect.poll(() => gallery.locator("img").evaluateAll((images) => images.every((image) => (image as HTMLImageElement).naturalWidth > 0))).toBe(true);
+    }
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+    await solutions.screenshot({ path: `/tmp/mifro-food-${width}.png` });
+  }
+});

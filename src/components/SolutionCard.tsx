@@ -1,6 +1,7 @@
 import Image from "next/image";
-import { Check } from "lucide-react";
+import { Check, MonitorCog } from "lucide-react";
 import { productImages, type Solution } from "@/content/sectors";
+import ProductGallery from "@/components/ProductGallery";
 
 export default function SolutionCard({
   solution,
@@ -15,20 +16,19 @@ export default function SolutionCard({
   const Heading = headingLevel;
 
   return (
-    <article className="surface-card flex flex-col p-6 sm:p-8 md:row-span-5 md:grid md:grid-rows-subgrid md:gap-0 md:p-5 lg:p-6 xl:p-8">
-      <figure className="mb-5 h-44 sm:h-48">
-        <Image
-          src={image.src}
-          alt={image.alt}
-          width={image.width}
-          height={image.height}
-          sizes={imageSizes}
-          className="h-44 w-full object-contain sm:h-48"
-        />
-      </figure>
-      <p className="text-xs font-semibold uppercase tracking-[0.14em] text-brand-700">{solution.label}</p>
-      <Heading className="mt-3 text-2xl font-bold tracking-tight text-brand-900">{solution.name}</Heading>
-      <p className="mt-5 font-semibold text-brand-700">{solution.title}</p>
+    <article className="surface-card flex min-w-0 flex-col p-6 sm:p-8 md:row-span-3 md:grid md:grid-rows-subgrid md:gap-0 md:p-5 lg:p-6 xl:p-8">
+      <div className="mb-5 min-w-0">
+        {solution.gallery ? (
+          <ProductGallery images={solution.gallery} name={solution.name} sizes={imageSizes} />
+        ) : image ? (
+          <Image {...image} alt={image.alt} sizes={imageSizes} className="h-44 w-full object-contain sm:h-48" />
+        ) : (
+          <div className="flex h-44 items-center justify-center rounded-lg bg-brand-50 sm:h-48" aria-hidden="true">
+            <MonitorCog className="h-24 w-24 text-brand-600" strokeWidth={1.25} />
+          </div>
+        )}
+      </div>
+      <Heading className="text-2xl font-bold tracking-tight text-brand-900">{solution.name}</Heading>
       <ul className="mt-5 space-y-3 border-t border-gray-200 pt-5">
         {solution.features.map((feature) => (
           <li key={feature} className="flex items-start gap-2 text-sm text-gray-700">

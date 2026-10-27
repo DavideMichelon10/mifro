@@ -77,7 +77,7 @@ export default async function SectorPage({ params }: PageProps) {
             <ScrollReveal
               key={solution.name}
               delay={Math.min(index + 1, 3) as 1 | 2 | 3}
-              className="md:row-span-5 md:grid md:grid-rows-subgrid md:gap-0"
+              className="md:row-span-3 md:grid md:grid-rows-subgrid md:gap-0"
             >
               <SolutionCard
                 solution={solution}
