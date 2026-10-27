@@ -67,12 +67,29 @@ export const siteConfig = {
   },
 
   /* ── Settori della home ─────────────────────────────── */
-  sectors: sectors.map((sector) => ({
-    title: sector.label,
-    description: sector.summary,
-    icon: sector.icon,
-    href: sectorHref(sector.slug),
-  })),
+  sectors: [
+    {
+      title: "Food",
+      description: "Bar, pizzerie e ristoranti",
+      icon: "ChefHat",
+      links: sectors.filter((sector) => sector.slug === "bar" || sector.slug === "ristoranti").map((sector) => ({
+        label: sector.label,
+        href: sectorHref(sector.slug),
+      })),
+    },
+    ...sectors.filter((sector) => sector.slug !== "bar" && sector.slug !== "ristoranti").map((sector) => ({
+      title: sector.label,
+      description: sector.summary,
+      icon: sector.icon,
+      href: sectorHref(sector.slug),
+    })),
+  ] as {
+    title: string;
+    description: string;
+    icon: import("@/components/Icons").IconName;
+    href?: string;
+    links?: { label: string; href: string }[];
+  }[],
 
   /* ── I nostri marchi ────────────────────────────────── */
   brands: [

@@ -5,7 +5,7 @@ import { articles } from "../../src/content/articles";
 const secret = "browser-test-only-secret-at-least-32-characters";
 const choiceKey = "mifro-analytics-consent";
 const adsChoiceKey = "mifro-ads-measurement-consent";
-const sectors = ["bar", "ristoranti", "parrucchieri-saloni", "ambulanti"];
+const sectors = ["bar", "ristoranti", "parrucchieri-saloni", "ambulanti", "negozi-altre-attivita"];
 
 // No SMTP or third-party data collection: requests are simulated in the browser.
 test.beforeEach(async ({ page, baseURL }) => {
@@ -116,6 +116,30 @@ test("errore: dati preservati, focus sull’errore, nessuna conversione e possib
   await page.getByRole("button", { name: "Richiedi un ricontatto" }).click();
   await expect.poll(() => attempts).toBe(2);
   await expect(page.getByRole("button", { name: "Richiedi un ricontatto" })).toBeEnabled();
+});
+
+test("categorie: Food raggruppato e nuova attività raggiungibile da home e menu", async ({ page }) => {
+  for (const width of [1440, 390]) {
+    await page.setViewportSize({ width, height: 960 });
+    await page.goto("/");
+    const categories = page.locator("#settori");
+    await expect(categories.getByRole("heading", { level: 3 })).toHaveText([
+      "Food", "Beauty e benessere", "Ambulanti e mercati", "Negozi e altre attività",
+    ]);
+    await expect(categories.getByRole("link", { name: "Bar e caffetterie" })).toHaveAttribute("href", "/soluzioni/bar");
+    await expect(categories.getByRole("link", { name: "Ristoranti e pizzerie" })).toHaveAttribute("href", "/soluzioni/ristoranti");
+    await categories.getByRole("link", { name: /Negozi e altre attività/ }).click();
+    await expect(page).toHaveURL(/soluzioni\/negozi-altre-attivita$/);
+    await expect(page.locator('input[name="subject"]')).toHaveValue("Soluzioni di cassa per la mia attività");
+    await page.goto("/");
+    if (width < 1024) await page.getByRole("button", { name: "Apri menu di navigazione" }).click();
+    await page.getByRole("button", { name: "Per la tua attività", exact: true }).click();
+    const menu = page.locator(width < 1024 ? "#mobile-solutions" : "#desktop-solutions");
+    await expect(menu.getByText("Food", { exact: true })).toBeVisible();
+    await expect(menu.getByRole("link", { name: "Beauty e benessere" })).toBeVisible();
+    await menu.getByRole("link", { name: "Negozi e altre attività", exact: true }).click();
+    await expect(page).toHaveURL(/soluzioni\/negozi-altre-attivita$/);
+  }
 });
 
 test("navigazione tra settori: modulo azzerato e oggetto aggiornato", async ({ page }) => {

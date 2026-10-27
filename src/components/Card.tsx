@@ -13,10 +13,11 @@ interface CardProps {
   imageSizes?: string;
   linkLabel?: string;
   href?: string;
+  links?: { label: string; href: string }[];
   compactMobile?: boolean;
 }
 
-export default function Card({ title, description, icon, image, imageAlt, imageFit = "cover", imageSizes = "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw", linkLabel = "Scopri di più", href, compactMobile = false }: CardProps) {
+export default function Card({ title, description, icon, image, imageAlt, imageFit = "cover", imageSizes = "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw", linkLabel = "Scopri di più", href, links, compactMobile = false }: CardProps) {
   const content = (
     <div className={`surface-card ${href ? "interactive-card" : ""} group flex h-full ${compactMobile ? "flex-row sm:flex-col" : "flex-col"} overflow-hidden`}>
       {image && (
@@ -40,6 +41,17 @@ export default function Card({ title, description, icon, image, imageAlt, imageF
         <p className="mt-2 flex-1 text-sm leading-relaxed text-gray-500">
           {description}
         </p>
+        {links && (
+          <ul className="mt-4 space-y-3">
+            {links.map((link) => (
+              <li key={link.href}>
+                <Link href={link.href} className="text-link">
+                  {link.label}<ArrowRight aria-hidden="true" className="h-3.5 w-3.5" />
+                </Link>
+              </li>
+            ))}
+          </ul>
+        )}
         {href && (
           <span className="text-link mt-4 group-hover:text-brand-700">
             {linkLabel}

@@ -52,11 +52,12 @@ export default function ProdottiAssistenzaPage() {
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {siteConfig.sectors.map((sector) => (
             <Card
-              key={sector.href}
+              key={sector.title}
               title={sector.title}
               description={sector.description}
               icon={sector.icon}
               href={sector.href}
+              links={sector.links}
               linkLabel="Vedi le soluzioni"
             />
           ))}

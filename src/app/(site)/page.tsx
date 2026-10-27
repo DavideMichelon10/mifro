@@ -70,18 +70,19 @@ export default function HomePage() {
         </ScrollReveal>
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {sectors.map((sector, index) => (
-            <ScrollReveal key={sector.href} delay={(index + 1) as 1 | 2 | 3 | 4}>
+            <ScrollReveal key={sector.title} delay={(index + 1) as 1 | 2 | 3 | 4}>
               <Card
                 title={sector.title}
                 description={sector.description}
                 icon={sector.icon}
                 href={sector.href}
+                links={sector.links}
                 linkLabel="Vedi le soluzioni"
               />
             </ScrollReveal>
           ))}
         </div>
-        <p className="mt-6 text-sm leading-relaxed text-gray-600">Hai un negozio o un’altra attività? <Link href="/contatti" className="font-semibold text-brand-600 underline underline-offset-4 hover:text-brand-700">Parlane con i nostri tecnici</Link>.</p>
+        <p className="mt-6 text-sm leading-relaxed text-gray-600">Non sai quale soluzione scegliere? <Link href="/contatti" className="font-semibold text-brand-600 underline underline-offset-4 hover:text-brand-700">Parlane con i nostri tecnici</Link>.</p>
       </Section>
 
       {/* ── Prodotti e assistenza ─────────────────────── */}
