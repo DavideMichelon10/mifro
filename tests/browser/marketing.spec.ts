@@ -347,7 +347,7 @@ test("Food: due prodotti, software dedicato e gallerie su desktop e mobile", asy
     await page.goto("/soluzioni/ristoranti");
     const solutions = page.locator("#soluzioni-rch");
     await expect(solutions.getByRole("heading", { level: 3 })).toHaveText([
-      "Sistemi POS touch screen", "Registratori di cassa telematici",
+      "PC POS Touch Screen", "Registratore telematico APE3 con POS integrato",
     ]);
     await expect(solutions.locator("article")).toHaveCount(2);
     await expect(solutions.locator("article p")).toHaveCount(0);
@@ -356,7 +356,7 @@ test("Food: due prodotti, software dedicato e gallerie su desktop e mobile", asy
     await expect(software.getByRole("listitem")).toHaveCount(3);
     await expect(software.getByRole("link", { name: "Parliamo del tuo gestionale" })).toHaveAttribute("href", "#richiedi-proposta");
     await expect(page.locator("main")).not.toContainText(/ATS\s*[23]|A-Touch System|RISTO-PRO/);
-    for (const name of ["Sistemi POS touch screen", "Registratori di cassa telematici"]) {
+    for (const name of ["PC POS Touch Screen", "Registratore telematico APE3 con POS integrato"]) {
       const gallery = solutions.getByRole("region", { name: `Foto: ${name}` });
       await gallery.scrollIntoViewIfNeeded();
       await expect(gallery.getByText("1 / 3", { exact: true })).toBeVisible();

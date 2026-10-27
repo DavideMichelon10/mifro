@@ -15,13 +15,13 @@ export const productImages = {
     width: 600,
     height: 600,
   },
-  "Sistemi POS touch screen": {
+  "PC POS Touch Screen": {
     src: "/images/products/pos-touch-screen-1.webp",
     alt: "Sistema POS touch screen RCH, vista frontale con schermo operatore",
     width: 800,
     height: 600,
   },
-  "Registratori di cassa telematici": {
+  "Registratore telematico APE3 con POS integrato": {
     src: "/images/products/registratore-telematico-1.webp",
     alt: "Registratore di cassa telematico RCH APE 3, vista laterale",
     width: 800,
@@ -84,24 +84,24 @@ export const sectors: Sector[] = [
     subject: "Soluzioni di cassa per il mio locale",
     messagePlaceholder: "Dove si trova il locale? Come gestisci oggi le comande?",
     solutionsHeading: "Soluzioni per la tua attività",
-    solutionsIntro: "Sistemi POS touch screen e registratori telematici: scegliamo insieme gli strumenti adatti al tuo locale.",
+    solutionsIntro: "PC POS Touch Screen e registratore telematico APE3 con POS integrato: scegliamo insieme gli strumenti adatti al tuo locale.",
     solutions: [
       {
-        name: "Sistemi POS touch screen",
+        name: "PC POS Touch Screen",
         gallery: [
           { src: "/images/products/pos-touch-screen-1.webp", alt: "Sistema POS touch screen RCH, vista frontale con schermo operatore", width: 800, height: 600 },
           { src: "/images/products/pos-touch-screen-2.webp", alt: "Sistema POS touch screen RCH, vista posteriore con display cliente", width: 800, height: 600 },
           { src: "/images/products/pos-touch-screen-3.webp", alt: "Sistema POS touch screen RCH, vista laterale con display cliente", width: 800, height: 600 },
         ],
-        features: ["Maggiore potenza e prestazioni", "Monitor regolabile", "Sistema scalabile con la tua attività", "Possibilità di aggiungere stampanti fiscali", "Gestione dei tavoli"] },
+        features: ["Ideale per attività con maggiore affluenza", "Maggiore potenza e prestazioni", "Monitor regolabile", "Sistema scalabile con la tua attività", "Possibilità di aggiungere stampanti e palmari", "Gestione dei tavoli"] },
       {
-        name: "Registratori di cassa telematici",
+        name: "Registratore telematico APE3 con POS integrato",
         gallery: [
           { src: "/images/products/registratore-telematico-1.webp", alt: "Registratore telematico RCH APE 3, vista laterale", width: 800, height: 600 },
           { src: "/images/products/registratore-telematico-2.webp", alt: "Registratore telematico RCH APE 3, schermo operatore", width: 800, height: 600 },
           { src: "/images/products/registratore-telematico-3.webp", alt: "Registratore telematico RCH APE 3, display cliente e stampante", width: 800, height: 600 },
         ],
-        features: ["Ideali per le piccole realtà", "Struttura compatta per il tuo banco", "POS integrato in un unico sistema", "Semplicità nella gestione quotidiana", "Installazione semplice"],
+        features: ["Ideale per piccole attività con poca affluenza", "Struttura compatta per il tuo banco", "POS integrato in un unico sistema", "Possibilità di aggiungere stampanti e palmari", "Semplicità nella gestione quotidiana", "Installazione semplice"],
       },
     ],
     software: {
