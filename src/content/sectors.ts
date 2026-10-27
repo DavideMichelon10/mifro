@@ -27,6 +27,24 @@ export const productImages = {
     width: 800,
     height: 600,
   },
+  "WALLE 8T": {
+    src: "/images/products/walle-8t.webp",
+    alt: "Registratore telematico RCH WALLE 8T con schermo touch e stampante integrata",
+    width: 600,
+    height: 600,
+  },
+  "PRINT! 3.0 RT Full Payments con tastiera": {
+    src: "/images/products/print-3-full-payments.webp",
+    alt: "Stampante fiscale RCH PRINT! 3.0 RT Full Payments con terminale POS D35",
+    width: 600,
+    height: 600,
+  },
+  "POS per gestionale": {
+    src: "/images/products/pos-touch-screen-1.webp",
+    alt: "Postazione RCH POS touch screen per il gestionale del salone",
+    width: 800,
+    height: 600,
+  },
   "Software gestionale": null,
   "POS per pagamenti": null,
   "Cassetti automatici Cashmatic": {
@@ -170,12 +188,46 @@ export const sectors: Sector[] = [
     cta: "Richiedi informazioni",
     subject: "Soluzioni di cassa per il mio salone",
     messagePlaceholder: "Dove si trova il salone? Cerchi una cassa o anche un’agenda?",
-    solutionsHeading: "Casse e gestionali per il tuo salone",
-    solutionsIntro: "Una cassa per gli incassi o un gestionale per il salone. Il software gestionale è installabile anche sui dispositivi compatibili che possiedi già.",
+    solutionsHeading: "Soluzioni per la tua attività",
+    solutionsIntro: "WALLE 8T, PRINT! 3.0 RT Full Payments, APE3 e POS per gestionale: scegliamo insieme la soluzione adatta al tuo salone.",
     solutions: [
-      { name: "WALLE MEC RT", features: ["Servizi e prodotti con prezzi pronti", "Scontrini dalla stampante integrata", "Poco spazio sul banco reception"] },
-      { name: "Software gestionale", features: ["Agenda organizzata per operatore", "Scorte dei prodotti sotto controllo", "Incassi consultabili da remoto"] },
+      {
+        name: "WALLE 8T",
+        features: ["Formato compatto per il banco reception", "Schermo touch da 8 pollici", "Stampante integrata per gli scontrini", "Servizi e prodotti organizzati per reparto", "Installazione a cura di un tecnico specializzato", "Assistenza dopo l’installazione, per ogni dubbio o necessità"],
+      },
+      {
+        name: "PRINT! 3.0 RT Full Payments con tastiera",
+        features: ["Configurazione con tastiera per le operazioni di cassa", "Collegamento al PC e al gestionale compatibile", "Stampante fiscale abbinata al POS D35", "Pagamenti con carta e contactless", "Installazione a cura di un tecnico specializzato", "Assistenza dopo l’installazione, per ogni dubbio o necessità"],
+      },
+      {
+        name: "Registratore telematico APE3 con POS integrato",
+        gallery: [
+          { src: "/images/products/registratore-telematico-1.webp", alt: "Registratore telematico RCH APE 3, vista laterale", width: 800, height: 600 },
+          { src: "/images/products/registratore-telematico-2.webp", alt: "Registratore telematico RCH APE 3, schermo operatore", width: 800, height: 600 },
+          { src: "/images/products/registratore-telematico-3.webp", alt: "Registratore telematico RCH APE 3, display cliente e stampante", width: 800, height: 600 },
+        ],
+        features: ["Soluzione compatta per piccoli saloni", "Registratore telematico e POS in un unico sistema", "Gestione semplice degli incassi", "Possibilità di aggiungere periferiche compatibili", "Installazione a cura di un tecnico specializzato", "Assistenza dopo l’installazione, per ogni dubbio o necessità"],
+      },
+      {
+        name: "POS per gestionale",
+        gallery: [
+          { src: "/images/products/pos-touch-screen-1.webp", alt: "Sistema POS touch screen RCH, vista frontale con schermo operatore", width: 800, height: 600 },
+          { src: "/images/products/pos-touch-screen-2.webp", alt: "Sistema POS touch screen RCH, vista posteriore con display cliente", width: 800, height: 600 },
+          { src: "/images/products/pos-touch-screen-3.webp", alt: "Sistema POS touch screen RCH, vista laterale con display cliente", width: 800, height: 600 },
+        ],
+        features: ["Postazione touch screen per il gestionale del salone", "Monitor regolabile", "Gestione di servizi e prodotti con il software dedicato", "Collegamento a stampante fiscale e periferiche compatibili", "Installazione a cura di un tecnico specializzato", "Assistenza dopo l’installazione, per ogni dubbio o necessità"],
+      },
     ],
+    software: {
+      title: "Software gestionale in cloud",
+      description: "Organizza appuntamenti, servizi e prodotti del tuo salone. Mifro ti aiuta a scegliere e configurare le funzioni adatte alla tua attività, anche sui dispositivi compatibili che utilizzi già.",
+      gallery: [
+        { src: "/images/products/beauty-gestionale-listini.webp", alt: "Software gestionale RCH Beauty: configurazione dei listini in cloud", width: 1920, height: 1080 },
+        { src: "/images/products/beauty-gestionale-vendite.webp", alt: "Software gestionale RCH Beauty: gestione di servizi e vendite", width: 1920, height: 1080 },
+        { src: "/images/products/beauty-gestionale-dispositivi.webp", alt: "Software gestionale RCH Beauty accessibile da diversi dispositivi", width: 1920, height: 1080 },
+      ],
+      features: ["Agenda degli appuntamenti organizzata per operatore", "Listini, prodotti e scorte gestiti in cloud", "Accesso tramite app per consultare dati, incassi e report anche da remoto"],
+    },
     question: "Cosa serve al tuo salone?",
     questionText: "Dicci se cerchi solo la cassa o anche la gestione degli appuntamenti.",
     faq: [

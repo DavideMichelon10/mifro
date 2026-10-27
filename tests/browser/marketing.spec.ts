@@ -392,3 +392,30 @@ test("Food: quattro prodotti, software dedicato e gallerie su desktop e mobile",
     await solutions.screenshot({ path: `/tmp/mifro-food-${width}.png` });
   }
 });
+
+test("Beauty: quattro soluzioni e immagini ufficiali del gestionale", async ({ page }) => {
+  await page.addInitScript((key) => localStorage.setItem(key, "rejected"), choiceKey);
+  for (const width of [1440, 390]) {
+    await page.setViewportSize({ width, height: 960 });
+    await page.goto("/soluzioni/parrucchieri-saloni");
+    const solutions = page.locator("#soluzioni-rch");
+    await expect(solutions.getByRole("heading", { level: 3 })).toHaveText([
+      "WALLE 8T", "PRINT! 3.0 RT Full Payments con tastiera", "Registratore telematico APE3 con POS integrato", "POS per gestionale",
+    ]);
+    for (const card of await solutions.locator("article").all()) {
+      await card.scrollIntoViewIfNeeded();
+      await expect.poll(() => card.locator("img").evaluateAll((images) => images.length > 0 && images.every((image) => (image as HTMLImageElement).naturalWidth > 0))).toBe(true);
+    }
+    const software = page.locator("#soluzioni-rch + #software-gestionale");
+    await software.scrollIntoViewIfNeeded();
+    await expect(software.getByRole("heading", { level: 2 })).toHaveText("Software gestionale in cloud");
+    const gallery = software.getByRole("region", { name: "Foto: Software gestionale in cloud" });
+    await expect(gallery.getByRole("img")).toHaveCount(3);
+    await gallery.getByRole("button", { name: "Foto successiva" }).click();
+    await expect(gallery.getByText("2 / 3", { exact: true })).toBeVisible();
+    await expect.poll(() => gallery.locator("img").evaluateAll((images) => images.every((image) => (image as HTMLImageElement).naturalWidth > 0))).toBe(true);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+    await software.screenshot({ path: `/tmp/mifro-beauty-software-${width}.png` });
+    await solutions.screenshot({ path: `/tmp/mifro-beauty-products-${width}.png` });
+  }
+});
