@@ -247,7 +247,7 @@ for (const sector of sectors) {
     });
     await page.goto(`/soluzioni/${sector}`);
     await page.getByRole("link", { name: "Come funziona", exact: true }).click();
-    const journey = page.getByRole("region", { name: "Dalla prima richiesta, sempre al tuo fianco." });
+    const journey = page.getByRole("region", { name: "Dalla prima richiesta, sempre al tuo fianco" });
     await expect(journey).toBeInViewport();
     await expect(journey.getByRole("listitem")).toHaveCount(6);
     expect(await page.evaluate(() => {
@@ -417,5 +417,26 @@ test("Beauty: quattro soluzioni e immagini ufficiali del gestionale", async ({ p
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
     await software.screenshot({ path: `/tmp/mifro-beauty-software-${width}.png` });
     await solutions.screenshot({ path: `/tmp/mifro-beauty-products-${width}.png` });
+  }
+});
+
+test("Ambulanti: casse esistenti, POS e Smart Order con foto", async ({ page }) => {
+  await page.addInitScript((key) => localStorage.setItem(key, "rejected"), choiceKey);
+  for (const width of [1440, 390]) {
+    await page.setViewportSize({ width, height: 960 });
+    await page.goto("/soluzioni/ambulanti");
+    const solutions = page.locator("#soluzioni-rch");
+    await expect(solutions.getByRole("heading", { level: 3 })).toHaveText(["WALLE MEC RT Ambulanti", "APE J RT", "POS per pagamenti"]);
+    const software = page.locator("#soluzioni-rch + #software-gestionale");
+    await software.scrollIntoViewIfNeeded();
+    await expect(software.getByRole("heading", { level: 2 })).toHaveText("RCH Smart Order 3.0");
+    await expect(software.getByRole("link", { name: "Richiedi informazioni su Smart Order" })).toHaveAttribute("href", "#richiedi-proposta");
+    const gallery = software.getByRole("region", { name: "Foto: RCH Smart Order 3.0" });
+    await expect(gallery.getByRole("img")).toHaveCount(5);
+    await gallery.getByRole("button", { name: "Foto successiva" }).click();
+    await expect(gallery.getByText("2 / 5", { exact: true })).toBeVisible();
+    await expect.poll(() => gallery.locator("img").evaluateAll((images) => images.every((image) => (image as HTMLImageElement).naturalWidth > 0))).toBe(true);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+    await software.screenshot({ path: `/tmp/mifro-smart-order-${width}.png` });
   }
 });

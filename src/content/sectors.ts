@@ -89,7 +89,7 @@ export type Sector = {
   solutionsHeading: string;
   solutionsIntro: string;
   solutions: Solution[];
-  software?: { title: string; description: string; features: string[]; gallery: ProductImage[] };
+  software?: { title: string; description: string; features: string[]; gallery: ProductImage[]; cta?: string };
   question: string;
   questionText: string;
   faq: { question: string; answer: string }[];
@@ -250,12 +250,36 @@ export const sectors: Sector[] = [
     cta: "Richiedi informazioni",
     subject: "Soluzioni di cassa per la mia attività ambulante",
     messagePlaceholder: "In quali zone lavori? Hai corrente sul banco?",
-    solutionsHeading: "Casse portatili per mercati e fiere",
-    solutionsIntro: "Tastiera fisica o touch: due casse telematiche per lavorare in mobilità.",
+    solutionsHeading: "Casse e POS per mercati e fiere",
+    solutionsIntro: "Tastiera fisica o touch: due casse telematiche per lavorare in mobilità, con POS per i pagamenti elettronici.",
     solutions: [
       { name: "WALLE MEC RT Ambulanti", features: ["Batteria per lavorare senza presa", "Tastiera e stampante integrate", "Coperchio antipioggia e borsa"] },
       { name: "APE J RT", features: ["Batteria e connessione mobile", "Scontrini e invio corrispettivi", "Contactless con RCH Pay SoftPOS"] },
+      {
+        name: "POS per pagamenti",
+        features: [
+          "Integrazione completa con i sistemi RCH",
+          "Sicurezza nelle transazioni",
+          "Affidabilità nei pagamenti di ogni giorno",
+          "Mifro autorizzata a intervenire sia sulla cassa sia sul POS",
+          "Installazione a cura di un tecnico specializzato",
+          "Assistenza dopo l’installazione, per ogni dubbio o necessità",
+        ],
+      },
     ],
+    software: {
+      title: "RCH Smart Order 3.0",
+      description: "Menù digitale e ordini da smartphone per chi propone cibo e bevande tra mercati, fiere ed eventi. Smart Order si integra con il gestionale di cassa RCH: Mifro verifica la compatibilità dei dispositivi e ti segue nella configurazione.",
+      cta: "Richiedi informazioni su Smart Order",
+      features: ["Menù consultabile tramite QR code, senza scaricare app", "Ordini da smartphone e ritiro da asporto", "Prodotti e varianti personalizzabili", "Preferenze alimentari e allergeni nel menù digitale", "Possibilità di abilitare i pagamenti online"],
+      gallery: [
+        { src: "/images/products/smart-order-menu.webp", alt: "RCH Smart Order: consultazione del menù digitale da smartphone", width: 940, height: 940 },
+        { src: "/images/products/smart-order-asporto.webp", alt: "RCH Smart Order: gestione degli ordini da asporto e consegna", width: 940, height: 940 },
+        { src: "/images/products/smart-order-preferenze.webp", alt: "RCH Smart Order: preferenze alimentari nel menù digitale", width: 940, height: 940 },
+        { src: "/images/products/smart-order-prodotti.webp", alt: "RCH Smart Order: personalizzazione dei prodotti e delle varianti", width: 940, height: 940 },
+        { src: "/images/products/smart-order-pagamenti.webp", alt: "RCH Smart Order: pagamento online degli ordini", width: 940, height: 940 },
+      ],
+    },
     question: "Dove lavori e come alimenti il banco?",
     questionText: "Indicaci i mercati che frequenti e se hai corrente sul banco.",
     faq: [

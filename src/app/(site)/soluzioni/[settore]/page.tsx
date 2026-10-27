@@ -109,7 +109,7 @@ export default async function SectorPage({ params }: PageProps) {
                   </li>
                 ))}
               </ul>
-              <a href="#richiedi-proposta" className="text-link mt-5">Parliamo del tuo gestionale<ArrowRight aria-hidden="true" className="h-4 w-4 shrink-0" /></a>
+              <a href="#richiedi-proposta" className="text-link mt-5">{sector.software.cta ?? "Parliamo del tuo gestionale"}<ArrowRight aria-hidden="true" className="h-4 w-4 shrink-0" /></a>
             </ScrollReveal>
             <ScrollReveal delay={1} className="min-w-0">
               <ProductGallery images={sector.software.gallery} name={sector.software.title} sizes="(max-width: 1023px) calc(100vw - 32px), 520px" large />

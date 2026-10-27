@@ -36,7 +36,7 @@ export default function ProductGallery({ images, name, sizes, large = false }: {
       >
         {images.map((image, index) => (
           <div key={image.src} role="group" aria-roledescription="diapositiva" aria-label={`${index + 1} di ${images.length}`} className="w-full shrink-0 snap-center">
-            <Image {...image} alt={image.alt} sizes={sizes} className={large ? "aspect-video w-full object-contain" : "h-44 w-full object-contain sm:h-48"} />
+            <Image {...image} alt={image.alt} sizes={sizes} className={large ? "w-full object-contain" : "h-44 w-full object-contain sm:h-48"} style={large ? { aspectRatio: `${images[0].width} / ${images[0].height}` } : undefined} />
           </div>
         ))}
       </div>
