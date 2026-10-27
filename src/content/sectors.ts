@@ -17,7 +17,7 @@ export const productImages = {
   },
   "Sistemi POS touch screen": {
     src: "/images/products/pos-touch-screen-1.webp",
-    alt: "Sistema POS touch screen RCH con schermo verticale",
+    alt: "Sistema POS touch screen RCH, vista frontale con schermo operatore",
     width: 800,
     height: 600,
   },
@@ -89,11 +89,11 @@ export const sectors: Sector[] = [
       {
         name: "Sistemi POS touch screen",
         gallery: [
-          { src: "/images/products/pos-touch-screen-1.webp", alt: "Sistema POS touch screen RCH, schermo verticale", width: 800, height: 600 },
-          { src: "/images/products/pos-touch-screen-2.webp", alt: "Sistema POS touch screen RCH, schermo orizzontale", width: 800, height: 600 },
-          { src: "/images/products/pos-touch-screen-3.webp", alt: "Sistema POS touch screen RCH, vista posteriore", width: 800, height: 600 },
+          { src: "/images/products/pos-touch-screen-1.webp", alt: "Sistema POS touch screen RCH, vista frontale con schermo operatore", width: 800, height: 600 },
+          { src: "/images/products/pos-touch-screen-2.webp", alt: "Sistema POS touch screen RCH, vista posteriore con display cliente", width: 800, height: 600 },
+          { src: "/images/products/pos-touch-screen-3.webp", alt: "Sistema POS touch screen RCH, vista laterale con display cliente", width: 800, height: 600 },
         ],
-        features: ["Prodotti e prezzi a portata di touch", "Postazione per il banco e il servizio ai tavoli", "Collegamento a stampanti e periferiche compatibili"] },
+        features: ["Maggiore potenza e prestazioni", "Monitor regolabile", "Sistema scalabile con la tua attività", "Possibilità di aggiungere stampanti fiscali", "Gestione dei tavoli"] },
       {
         name: "Registratori di cassa telematici",
         gallery: [
@@ -101,7 +101,7 @@ export const sectors: Sector[] = [
           { src: "/images/products/registratore-telematico-2.webp", alt: "Registratore telematico RCH APE 3, schermo operatore", width: 800, height: 600 },
           { src: "/images/products/registratore-telematico-3.webp", alt: "Registratore telematico RCH APE 3, display cliente e stampante", width: 800, height: 600 },
         ],
-        features: ["Emissione degli scontrini e invio dei corrispettivi", "Stampante integrata nel punto cassa", "Soluzioni compatte per il tuo banco"],
+        features: ["Ideali per le piccole realtà", "Struttura compatta per il tuo banco", "POS integrato in un unico sistema", "Semplicità nella gestione quotidiana", "Installazione semplice"],
       },
     ],
     software: {
