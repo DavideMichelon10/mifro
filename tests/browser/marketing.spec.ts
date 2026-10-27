@@ -340,17 +340,20 @@ test("preferenze cookie accessibili anche con elementi della chat sovrapposti", 
   await expect(page.locator(".woot-widget-holder")).toBeVisible();
 });
 
-test("Food: tre prodotti, software dedicato e gallerie su desktop e mobile", async ({ page }) => {
+test("Food: quattro prodotti, software dedicato e gallerie su desktop e mobile", async ({ page }) => {
   await page.addInitScript((key) => localStorage.setItem(key, "rejected"), choiceKey);
   for (const width of [1440, 390]) {
     await page.setViewportSize({ width, height: 960 });
     await page.goto("/soluzioni/ristoranti");
     const solutions = page.locator("#soluzioni-rch");
     await expect(solutions.getByRole("heading", { level: 3 })).toHaveText([
-      "PC POS Touch Screen", "Registratore telematico APE3 con POS integrato", "POS per pagamenti",
+      "PC POS Touch Screen", "Registratore telematico APE3 con POS integrato", "POS per pagamenti", "Cassetti automatici Cashmatic",
     ]);
-    await expect(solutions.locator("article")).toHaveCount(3);
+    await expect(solutions.locator("article")).toHaveCount(4);
     await expect(solutions.locator("article p")).toHaveCount(0);
+    const cashmaticImage = solutions.getByRole("img", { name: "Cassetto automatico Cashmatic SelfPay 860 per banconote e monete" });
+    await cashmaticImage.scrollIntoViewIfNeeded();
+    await expect.poll(() => cashmaticImage.evaluate((image) => (image as HTMLImageElement).naturalWidth)).toBeGreaterThan(0);
     const software = page.locator("#soluzioni-rch + #software-gestionale");
     await expect(software.getByRole("heading", { level: 2, name: "Software gestionale", exact: true })).toBeVisible();
     await expect(software.getByRole("listitem")).toHaveCount(3);

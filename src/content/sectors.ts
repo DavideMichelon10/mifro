@@ -29,6 +29,12 @@ export const productImages = {
   },
   "Software gestionale": null,
   "POS per pagamenti": null,
+  "Cassetti automatici Cashmatic": {
+    src: "/images/products/cashmatic-selfpay-860.webp",
+    alt: "Cassetto automatico Cashmatic SelfPay 860 per banconote e monete",
+    width: 800,
+    height: 800,
+  },
   "WALLE MEC RT Ambulanti": {
     src: "/images/products/walle-mec-rt-ambulanti-senza-bollino.webp",
     alt: "RCH WALLE MEC RT per ambulanti con borsa da trasporto e batteria",
@@ -85,7 +91,7 @@ export const sectors: Sector[] = [
     subject: "Soluzioni di cassa per il mio locale",
     messagePlaceholder: "Dove si trova il locale? Come gestisci oggi le comande?",
     solutionsHeading: "Soluzioni per la tua attività",
-    solutionsIntro: "PC POS Touch Screen, registratore telematico APE3 e POS per pagamenti: scegliamo insieme gli strumenti adatti al tuo locale.",
+    solutionsIntro: "PC POS Touch Screen, registratore telematico APE3, POS per pagamenti e cassetti automatici Cashmatic: scegliamo insieme gli strumenti adatti al tuo locale.",
     solutions: [
       {
         name: "PC POS Touch Screen",
@@ -111,6 +117,19 @@ export const sectors: Sector[] = [
           "Sicurezza nelle transazioni",
           "Affidabilità nei pagamenti di ogni giorno",
           "Mifro autorizzata a intervenire sia sulla cassa sia sul POS",
+          "Installazione a cura di un tecnico specializzato",
+          "Assistenza dopo l’installazione, per ogni dubbio o necessità",
+        ],
+      },
+      {
+        name: "Cassetti automatici Cashmatic",
+        features: [
+          "SelfPay 860: incasso automatico di banconote e monete",
+          "Fino a 8 pagamenti al minuto",
+          "Erogazione automatica e precisa del resto",
+          "Rilevamento del denaro falso",
+          "Meno contatto con il contante per gli operatori",
+          "Controllo delle operazioni anche da remoto",
           "Installazione a cura di un tecnico specializzato",
           "Assistenza dopo l’installazione, per ogni dubbio o necessità",
         ],

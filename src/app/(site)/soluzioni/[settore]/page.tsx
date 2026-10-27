@@ -71,9 +71,14 @@ export default async function SectorPage({ params }: PageProps) {
       <Section gray id="soluzioni-rch">
         <ScrollReveal className="mb-8 flex flex-wrap items-start justify-between gap-6">
           <div className="max-w-2xl"><h2 className="section-title">{sector.solutionsHeading}</h2><p className="mt-4 leading-relaxed text-gray-600">{sector.solutionsIntro}</p></div>
-          <Image src="/images/brands/rch.svg" alt="RCH" width={655} height={567} className="h-10 w-auto object-contain" />
+          <div className="flex items-center gap-6">
+            <Image src="/images/brands/rch.svg" alt="RCH" width={655} height={567} className="h-10 w-auto object-contain" />
+            {sector.solutions.some((solution) => solution.name === "Cassetti automatici Cashmatic") && (
+              <Image src="/images/brands/cashmatic.svg" alt="Cashmatic" width={180} height={60} className="h-8 w-auto max-w-36 object-contain" />
+            )}
+          </div>
         </ScrollReveal>
-        <div className={`grid gap-5 ${sector.solutions.length === 3 ? "md:grid-cols-3" : sector.solutions.length === 2 ? "md:grid-cols-2" : "max-w-3xl"}`}>
+        <div className={`grid gap-5 ${sector.solutions.length === 3 ? "md:grid-cols-3" : sector.solutions.length >= 2 ? "md:grid-cols-2" : "max-w-3xl"}`}>
           {sector.solutions.map((solution, index) => (
             <ScrollReveal
               key={solution.name}
