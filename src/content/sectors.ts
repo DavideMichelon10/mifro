@@ -8,6 +8,12 @@ export type ProductImage = {
   height: number;
 };
 
+const paymentPosGallery: ProductImage[] = [
+  { src: "/images/products/pos-rch-dx8000.webp", alt: "POS Android RCH Pay DX8000 su sfondo bianco", width: 600, height: 600 },
+  { src: "/images/products/pos-rch-d35.webp", alt: "POS Display RCH Pay D35 su sfondo bianco", width: 600, height: 600 },
+  { src: "/images/products/pos-rch-lane3000.webp", alt: "PIN Pad RCH Pay Lane 3000 su sfondo bianco", width: 600, height: 600 },
+];
+
 export const productImages = {
   "WALLE MEC RT": {
     src: "/images/products/walle-mec-rt-senza-bollino.webp",
@@ -28,25 +34,19 @@ export const productImages = {
     height: 600,
   },
   "WALLE 8T": {
-    src: "/images/products/walle-8t.webp",
+    src: "/images/products/walle-8t-senza-bollino.webp",
     alt: "Registratore telematico RCH WALLE 8T con schermo touch e stampante integrata",
     width: 600,
     height: 600,
   },
   "PRINT! 3.0 RT Full Payments con tastiera": {
-    src: "/images/products/print-3-full-payments.webp",
+    src: "/images/products/print-3-full-payments-senza-bollino.webp",
     alt: "Stampante fiscale RCH PRINT! 3.0 RT Full Payments con terminale POS D35",
     width: 600,
     height: 600,
   },
-  "POS per gestionale": {
-    src: "/images/products/pos-touch-screen-1.webp",
-    alt: "Postazione RCH POS touch screen per il gestionale del salone",
-    width: 800,
-    height: 600,
-  },
   "Software gestionale": null,
-  "POS per pagamenti": null,
+  "POS per pagamenti": paymentPosGallery[0],
   "Cassetti automatici Cashmatic": {
     src: "/images/products/cashmatic-selfpay-860.webp",
     alt: "Cassetto automatico Cashmatic SelfPay 860 per banconote e monete",
@@ -54,8 +54,8 @@ export const productImages = {
     height: 800,
   },
   "WALLE MEC RT Ambulanti": {
-    src: "/images/products/walle-mec-rt-ambulanti-senza-bollino.webp",
-    alt: "RCH WALLE MEC RT per ambulanti con borsa da trasporto e batteria",
+    src: "/images/products/walle-mec-ambulanti-solo-cassa.webp",
+    alt: "Registratore di cassa RCH WALLE MEC RT per ambulanti su sfondo bianco",
     width: 600,
     height: 600,
   },
@@ -130,6 +130,7 @@ export const sectors: Sector[] = [
       },
       {
         name: "POS per pagamenti",
+        gallery: paymentPosGallery,
         features: [
           "Integrazione completa con i sistemi RCH",
           "Sicurezza nelle transazioni",
@@ -189,7 +190,7 @@ export const sectors: Sector[] = [
     subject: "Soluzioni di cassa per il mio salone",
     messagePlaceholder: "Dove si trova il salone? Cerchi una cassa o anche un’agenda?",
     solutionsHeading: "Soluzioni per la tua attività",
-    solutionsIntro: "WALLE 8T, PRINT! 3.0 RT Full Payments, APE3 e POS per gestionale: scegliamo insieme la soluzione adatta al tuo salone.",
+    solutionsIntro: "Ti aiutiamo a scegliere la cassa più adatta al tuo salone, per gestire incassi e pagamenti con semplicità.",
     solutions: [
       {
         name: "WALLE 8T",
@@ -209,24 +210,27 @@ export const sectors: Sector[] = [
         features: ["Soluzione compatta per piccoli saloni", "Registratore telematico e POS in un unico sistema", "Gestione semplice degli incassi", "Possibilità di aggiungere periferiche compatibili", "Installazione a cura di un tecnico specializzato", "Assistenza dopo l’installazione, per ogni dubbio o necessità"],
       },
       {
-        name: "POS per gestionale",
-        gallery: [
-          { src: "/images/products/pos-touch-screen-1.webp", alt: "Sistema POS touch screen RCH, vista frontale con schermo operatore", width: 800, height: 600 },
-          { src: "/images/products/pos-touch-screen-2.webp", alt: "Sistema POS touch screen RCH, vista posteriore con display cliente", width: 800, height: 600 },
-          { src: "/images/products/pos-touch-screen-3.webp", alt: "Sistema POS touch screen RCH, vista laterale con display cliente", width: 800, height: 600 },
+        name: "POS per pagamenti",
+        gallery: paymentPosGallery,
+        features: [
+          "Integrazione completa con i sistemi RCH",
+          "Sicurezza nelle transazioni",
+          "Affidabilità nei pagamenti di ogni giorno",
+          "Mifro autorizzata a intervenire sia sulla cassa sia sul POS",
+          "Installazione a cura di un tecnico specializzato",
+          "Assistenza dopo l’installazione, per ogni dubbio o necessità",
         ],
-        features: ["Postazione touch screen per il gestionale del salone", "Monitor regolabile", "Gestione di servizi e prodotti con il software dedicato", "Collegamento a stampante fiscale e periferiche compatibili", "Installazione a cura di un tecnico specializzato", "Assistenza dopo l’installazione, per ogni dubbio o necessità"],
       },
     ],
     software: {
       title: "Software gestionale in cloud",
-      description: "Organizza appuntamenti, servizi e prodotti del tuo salone. Mifro ti aiuta a scegliere e configurare le funzioni adatte alla tua attività, anche sui dispositivi compatibili che utilizzi già.",
+      description: "Più tempo per i clienti, meno per organizzare il lavoro. Gestisci appuntamenti, prodotti e incassi del salone da un unico posto.",
       gallery: [
         { src: "/images/products/beauty-gestionale-listini.webp", alt: "Software gestionale RCH Beauty: configurazione dei listini in cloud", width: 1920, height: 1080 },
         { src: "/images/products/beauty-gestionale-vendite.webp", alt: "Software gestionale RCH Beauty: gestione di servizi e vendite", width: 1920, height: 1080 },
         { src: "/images/products/beauty-gestionale-dispositivi.webp", alt: "Software gestionale RCH Beauty accessibile da diversi dispositivi", width: 1920, height: 1080 },
       ],
-      features: ["Agenda degli appuntamenti organizzata per operatore", "Listini, prodotti e scorte gestiti in cloud", "Accesso tramite app per consultare dati, incassi e report anche da remoto"],
+      features: ["Agenda per tutto il team, con disponibilità per ogni operatore", "Creazione di una pagina web: i clienti scelgono operatore e orario e l’agenda si aggiorna da sola", "Listini, prodotti e scorte sempre sotto controllo", "Incassi e report consultabili anche da app"],
     },
     question: "Cosa serve al tuo salone?",
     questionText: "Dicci se cerchi solo la cassa o anche la gestione degli appuntamenti.",
@@ -234,6 +238,7 @@ export const sectors: Sector[] = [
       { question: "Posso installare il software gestionale sui dispositivi che ho già?", answer: "Sì. Il gestionale può essere installato anche sui dispositivi compatibili che utilizzi già, senza acquistare nuovo hardware. Indicaci i modelli presenti nella tua attività: Mifro verifica la compatibilità e segue l’installazione." },
       { question: "Come funzionano installazione e formazione?", answer: "Mifro segue installazione e configurazione. Concordiamo prima dell’avvio le attività e l’affiancamento necessari: contenuti, modalità ed eventuali costi sono da definire nella proposta." },
       { question: "Posso acquistare solo la cassa?", answer: "Sì. Puoi scegliere la sola cassa e continuare a usare la tua agenda." },
+      { question: "I clienti possono prenotare online e scegliere l’operatore?", answer: "Sì. Possiamo creare una pagina web dedicata al tuo salone, collegata al gestionale e raggiungibile dal tuo sito. Il cliente sceglie l’operatore e un orario disponibile: la prenotazione viene inserita automaticamente nell’agenda del salone. Puoi configurare più operatori e gestire le disponibilità di ciascuno." },
       { question: "L’agenda è inclusa in tutte le soluzioni?", answer: "No: prenotazioni e operatori richiedono moduli specifici. Li indichiamo nel preventivo, con gli eventuali canoni." },
       { question: "Il sistema si collega al gestionale che uso già?", answer: "Indicaci il nome del software. Verifichiamo la compatibilità prima di proporti un collegamento." },
     ],
@@ -257,6 +262,7 @@ export const sectors: Sector[] = [
       { name: "APE J RT", features: ["Batteria e connessione mobile", "Scontrini e invio corrispettivi", "Contactless con RCH Pay SoftPOS"] },
       {
         name: "POS per pagamenti",
+        gallery: paymentPosGallery,
         features: [
           "Integrazione completa con i sistemi RCH",
           "Sicurezza nelle transazioni",
