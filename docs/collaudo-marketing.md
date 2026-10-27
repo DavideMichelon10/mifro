@@ -1,5 +1,70 @@
 # Collaudo delle modifiche marketing
 
+## Ricontrollo con Tag Assistant — 26 ottobre 2026, ore 19:55
+
+Account Ads Mifro `276-321-8107`, campagna `24392958197`, periodo **24–26 ottobre**:
+**2 impressioni, 0 clic, 0,00 € di costo, 0 conversioni**. Entrambe le impressioni
+sono del 26 ottobre. È quindi confermato l’avvio dell’erogazione, ma non risultano
+ancora visite provenienti dai clic della campagna. Budget 5 €/giorno, strategia
+Maximize conversions, stato Eligible (Limited), avviso sul monitoraggio incompleto
+e strategia in apprendimento. Il dettaglio di Form rimane Awaiting conversions;
+la sua scheda Diagnostics non presenta ulteriori indicazioni operative.
+
+Eseguita una sessione Tag Assistant su
+`https://www.mifro.it/soluzioni/parrucchieri-saloni`: collegamento riuscito,
+un tag rilevato (`G-PHX0Y4MJH3`, nome Mifro), hit `page_view` inviato alla
+destinazione corretta e Console (0). Al momento di `config`, Tag Assistant
+mostra default denied e aggiornamento/current state granted per `ad_storage`,
+`analytics_storage`, `ad_user_data`; `ad_personalization` resta denied.
+La sessione utilizzava il consenso già presente nel browser. Terminata tramite
+Finish nel badge del sito. Nessun modulo inviato e nessun `generate_lead` di prova:
+è un controllo del tag e del consenso, **non** una verifica dell’invio completo
+del modulo o dell’attribuzione della conversione in Ads.
+
+L’avviso non è risolto. Il basso volume è compatibile con gli avvisi diagnostici
+documentati da Google, ma non è una prova esclusiva della loro causa. Il trascorrere
+di 48 ore non sostituisce la verifica di una conversione effettiva. Nessuna modifica
+a budget, offerte, conversioni o account DavideDev. Evidenze della sessione in
+`/tmp/mifro-ads-24-26-oct-2026.png` e
+`/tmp/mifro-tag-assistant-consent-20261026.png` (file temporanei).
+
+## Ricontrollo — 25 ottobre 2026, ore 19:20
+
+Verifica in Chrome dopo la nuova segnalazione dell’utente:
+
+- Ads Mifro `276-321-8107`: **Form (7869328228)** resta **Awaiting conversions**.
+  Il dettaglio riporta creazione il 24 ottobre, evento GA4 `generate_lead`, proprietà
+  `mifro.it`, azione primaria Submit lead forms e conteggio Una.
+- GA4: `generate_lead` è un evento chiave e lo stream Mifro ha ricevuto dati.
+  Nel report Eventi, periodo **27 settembre–24 ottobre**, risultano **2 eventi,
+  1 utente**: una sessione `(direct) / (none)` e una `google / organic`.
+  Il dettaglio temporale mostra un evento il 24 ottobre. Non sono necessariamente
+  due clienti distinti; la sorgente di sessione non dimostra l’intero percorso
+  di attribuzione. Nessun evento è stato generato durante questo ricontrollo.
+- Il report filtrato su `generate_lead` per il **25 ottobre** mostra «No data
+  available» al momento del controllo; i dati del giorno possono essere incompleti.
+- Collegamento GA4 → Ads Mifro presente, completato il 24 ottobre;
+  Admin → Account settings di Ads conferma **Auto-tagging = Yes**.
+- Il riepilogo Ads, esteso al 24–25 ottobre, mostra risultati «Upcoming».
+  La tabella non espone le metriche standard anche dopo ricaricamento: non è
+  stata verificata una quantità numerica di impressioni, clic o spesa.
+
+Non emerge una configurazione mancante dai controlli effettuati. Rimane
+**non verificata l’attribuzione di una richiesta alla campagna** e l’avviso
+generale è ancora presente. La ricezione GA4 è ora confermata anche per
+`generate_lead`, oltre al precedente evento diagnostico; non prova da sola
+una conversione pubblicitaria. Nessuna modifica a campagne, offerte, budget,
+azioni di conversione o account DavideDev.
+
+Google indica [24–48 ore per aggiornare la diagnostica dopo correzioni al tag,
+con possibili falsi positivi a basso volume](https://support.google.com/google-ads/answer/9148089?hl=it).
+Il consenso corretto è stato pubblicato il 24 ottobre alle 23:16: al controllo
+sono trascorse circa 20 ore. Questo non garantisce la scomparsa automatica
+dell’avviso. [Ads importa gli eventi chiave attribuibili alle proprie campagne](https://support.google.com/analytics/answer/13684192?hl=it),
+non ogni invio presente in GA4. Ricontrollare il 26 ottobre; se persiste oltre
+la finestra di aggiornamento, verificare la diagnostica del tag con Tag Assistant
+e un percorso di invio controllato, senza creare conversioni duplicate.
+
 ## Diagnostica Ads — 25 ottobre 2026
 
 L’utente ha attivato Maximize conversions, confermato dallo screenshot delle

@@ -76,6 +76,20 @@ di troubleshooting sulla riga dell’azione. La ricezione dell’evento diagnost
 in GA4 non prova la registrazione di `generate_lead` in Ads. L’attribuzione resta
 da verificare: non dichiarare eliminato l’avviso né creare un’azione duplicata.
 
+Ricontrollo del 25 ottobre alle 19:20: collegamento al corretto account Mifro e
+tagging automatico ancora attivi. Il report GA4 fino al 24 ottobre contiene
+2 `generate_lead` di 1 utente, con sorgenti di sessione diretto e Google organico;
+non costituiscono prova di attribuzione alla campagna. Il report del 25 ottobre
+non mostra ancora dati per questo evento. Ads resta Awaiting conversions.
+Dettagli, limiti e fonti nel [ricontrollo del collaudo](collaudo-marketing.md).
+
+Il 26 ottobre alle 19:55, il report Ads 24–26 ottobre mostra 2 impressioni,
+0 clic, costo 0,00 € e 0 conversioni. Tag Assistant conferma sul sito il tag
+`G-PHX0Y4MJH3`, l’invio di `page_view` e i consensi per la misurazione Ads
+correttamente concessi nella sessione con preferenze già accettate. Il modulo
+non è stato inviato durante questa verifica: l’avviso resta presente e
+l’attribuzione della conversione rimane da osservare.
+
 **Limite rilevato prima dell'intervento sul consenso:** anche
 dopo «Accetta Analytics», il sito pubblicato imposta `analytics_storage: granted`
 ma mantiene `ad_storage`, `ad_user_data` e `ad_personalization` su `denied`.

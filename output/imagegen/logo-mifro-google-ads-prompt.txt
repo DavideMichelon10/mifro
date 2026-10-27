@@ -1,0 +1,6 @@
+Tool: built-in imagegen
+
+Use case: compositing. Asset type: an existing company logo adapted for a Google Ads business logo upload. Input image: edit target /home/davide/personal/sito_mifro/public/images/logo-mifro.png. Primary request: adapt this EXACT existing MIFRO logo to a square 1200 x 1200 pixel PNG on a solid pure white background. This is a faithful formatting edit, not a logo redesign. Keep the complete original horizontal lockup: orange three-tier triangular symbol on the left, and blue MIFRO lettering to the right. Preserve the original custom letterforms (especially the distinctive F and R), original colors, spacing and proportions exactly. Uniformly scale the entire unchanged logo to about 960 pixels wide and center it horizontally and vertically in the 1200px square. All logo content must fit comfortably inside a central circular crop of the square. The rest of the square is plain white. Text verbatim: MIFRO. Do not stretch, crop, rotate, redraw creatively, rearrange, add letters, add slogans, add a border, shadows, gradients, mockup effects or any other marks. Deliver only the clean square upload-ready image.
+
+Export: resized generated image to 1066 x 1066, added 67 px white margins on each side, saved as 1200 x 1200 PNG.
+Output: public/images/logo-mifro-google-ads-1200.png

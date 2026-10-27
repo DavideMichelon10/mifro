@@ -1,0 +1,7 @@
+Final asset: public/images/icon-mifro-google-ads-1200.png
+Source: public/images/logo-mifro.png
+Reference: public/favicon32x32.png
+Built-in imagegen was used for previews. The final export uses the exact original orange symbol to preserve brand geometry and colors.
+Original crop: {"left":0,"top":1,"width":1734,"height":1587}
+Export: proportionally resized to fit 820 x 820, centered on a transparent 1200 x 1200 PNG.
+Validation: alpha present; no blue lettering; visible content fits circular crop; file under 5120 KB.
