@@ -91,7 +91,7 @@ export const siteConfig = {
 
   /* ── CTA finale ─────────────────────────────────────── */
   ctaFinal: {
-    title: "Parliamo del tuo punto cassa",
+    title: "Parliamo della tua attività",
     description:
       "Raccontaci di cosa hai bisogno. Ti ricontattiamo per parlarne insieme.",
     cta: { label: "Contattaci", href: "/contatti" },
@@ -176,7 +176,7 @@ export const siteConfig = {
     ],
     sectorsIntro: {
       title: "Hai un’attività?",
-      description: "Cerchi una cassa o un gestionale? Scegli il tuo settore e scopri le soluzioni per il tuo lavoro di ogni giorno.",
+      description: "Organizza il lavoro e gestisci incassi e pagamenti con il supporto di tecnici esperti. Scegli il tuo settore e scopri le soluzioni per la tua attività.",
     },
   },
 
@@ -188,13 +188,13 @@ export const siteConfig = {
       { value: "Assistenza diretta", text: "Sul posto e da remoto" },
     ],
     localPresence: {
-      title: "I tuoi tecnici, sul territorio",
+      title: "Strumenti fiscali, esperienza su cui contare",
       image: "/images/vetrina-mifro.jpg",
       imageAlt: "La vetrina e l’ingresso della sede Mifro",
       intro:
-        "Dal 1990 affianchiamo negozi, bar, ristoranti e imprese in Trentino con registratori di cassa, sistemi POS e soluzioni informatiche per il punto vendita e l’ufficio.",
+        "Scontrini, pagamenti e adempimenti richiedono competenza. Dal 1990 ti aiutiamo a scegliere e utilizzare gli strumenti giusti, con tecnici specializzati al tuo fianco anche dopo l’installazione.",
       support:
-        "Ti seguiamo dalla scelta dei prodotti all’installazione e alla configurazione, con un rapporto diretto con i nostri tecnici. Quando serve assistenza, interveniamo sul posto o da remoto, anche su PC, stampanti e software.",
+        "Per strumenti fiscali, gestionali e POS hai un riferimento diretto a Pergine Valsugana. Ti aiutiamo a risolvere i dubbi e interveniamo sul posto o da remoto.",
     },
     intro:
       "Dal 1990 affianchiamo le imprese trentine nella scelta, installazione e gestione delle tecnologie per il punto vendita e l'ufficio.",

@@ -91,7 +91,6 @@ export default async function SectorPage({ params }: PageProps) {
         </Section>
       )}
 
-
       <Section gray id="soluzioni-rch">
         <ScrollReveal className="mb-8 flex flex-wrap items-start justify-between gap-6">
           <div className="max-w-2xl"><h2 className="section-title">{sector.solutionsHeading}</h2><p className="mt-4 leading-relaxed text-gray-600">{sector.solutionsIntro}</p></div>
@@ -115,6 +114,10 @@ export default async function SectorPage({ params }: PageProps) {
               />
             </ScrollReveal>
           ))}
+        </div>
+        <div className="mt-6 rounded-xl border border-brand-100 bg-white p-5 sm:p-6">
+          <h3 className="font-semibold text-brand-900">Installazione e assistenza, con i tecnici Mifro</h3>
+          <p className="mt-2 text-sm leading-relaxed text-gray-600">Configuriamo la soluzione, ti insegniamo a usarla e restiamo al tuo fianco per dubbi e necessità, anche dopo l’avvio.</p>
         </div>
         <a href="#richiedi-proposta" className="text-link mt-5">{sector.cta}<ArrowRight aria-hidden="true" className="h-4 w-4 shrink-0" /></a>
       </Section>
