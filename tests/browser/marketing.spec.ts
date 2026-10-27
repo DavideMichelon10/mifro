@@ -355,6 +355,17 @@ test("Food: due prodotti, software dedicato e gallerie su desktop e mobile", asy
     await expect(software.getByRole("heading", { level: 2, name: "Software gestionale", exact: true })).toBeVisible();
     await expect(software.getByRole("listitem")).toHaveCount(3);
     await expect(software.getByRole("link", { name: "Parliamo del tuo gestionale" })).toHaveAttribute("href", "#richiedi-proposta");
+    const softwareGallery = software.getByRole("region", { name: "Foto: Software gestionale" });
+    await softwareGallery.scrollIntoViewIfNeeded();
+    await expect(softwareGallery.getByRole("img")).toHaveCount(5);
+    await expect(softwareGallery.getByText("1 / 5", { exact: true })).toBeVisible();
+    await softwareGallery.getByRole("button", { name: "Foto successiva" }).click();
+    await expect(softwareGallery.getByText("2 / 5", { exact: true })).toBeVisible();
+    await softwareGallery.getByRole("button", { name: "Foto precedente" }).click();
+    await softwareGallery.getByRole("button", { name: "Foto precedente" }).click();
+    await expect(softwareGallery.getByText("5 / 5", { exact: true })).toBeVisible();
+    await expect.poll(() => softwareGallery.locator("img").evaluateAll((images) => images.every((image) => (image as HTMLImageElement).naturalWidth > 0))).toBe(true);
+    await software.screenshot({ path: `/tmp/mifro-software-${width}.png` });
     await expect(page.locator("main")).not.toContainText(/ATS\s*[23]|A-Touch System|RISTO-PRO/);
     for (const name of ["PC POS Touch Screen", "Registratore telematico APE3 con POS integrato"]) {
       const gallery = solutions.getByRole("region", { name: `Foto: ${name}` });

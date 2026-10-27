@@ -9,6 +9,7 @@ import Section from "@/components/Section";
 import ContactForm from "@/components/ContactForm";
 import ContactJourney from "@/components/ContactJourney";
 import SolutionCard from "@/components/SolutionCard";
+import ProductGallery from "@/components/ProductGallery";
 import ScrollReveal from "@/components/ScrollReveal";
 import { createPageMetadata } from "@/lib/metadata";
 
@@ -96,16 +97,17 @@ export default async function SectorPage({ params }: PageProps) {
               <div className="icon-tile mb-5"><MonitorCog aria-hidden="true" className="h-6 w-6" /></div>
               <h2 className="section-title">{sector.software.title}</h2>
               <p className="mt-4 max-w-xl leading-relaxed text-gray-600">{sector.software.description}</p>
-              <a href="#richiedi-proposta" className="text-link mt-5">Parliamo del tuo gestionale<ArrowRight aria-hidden="true" className="h-4 w-4 shrink-0" /></a>
-            </ScrollReveal>
-            <ScrollReveal delay={1}>
-              <ul className="space-y-5 rounded-2xl bg-brand-50 p-6 sm:p-8">
+              <ul className="mt-6 space-y-4">
                 {sector.software.features.map((feature) => (
                   <li key={feature} className="flex items-start gap-3 font-medium text-brand-900">
                     <Check aria-hidden="true" className="mt-0.5 h-5 w-5 shrink-0 text-brand-600" />{feature}
                   </li>
                 ))}
               </ul>
+              <a href="#richiedi-proposta" className="text-link mt-5">Parliamo del tuo gestionale<ArrowRight aria-hidden="true" className="h-4 w-4 shrink-0" /></a>
+            </ScrollReveal>
+            <ScrollReveal delay={1} className="min-w-0">
+              <ProductGallery images={sector.software.gallery} name={sector.software.title} sizes="(max-width: 1023px) calc(100vw - 32px), 520px" large />
             </ScrollReveal>
           </div>
         </Section>

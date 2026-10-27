@@ -64,7 +64,7 @@ export type Sector = {
   solutionsHeading: string;
   solutionsIntro: string;
   solutions: Solution[];
-  software?: { title: string; description: string; features: string[] };
+  software?: { title: string; description: string; features: string[]; gallery: ProductImage[] };
   question: string;
   questionText: string;
   faq: { question: string; answer: string }[];
@@ -105,6 +105,13 @@ export const sectors: Sector[] = [
       },
     ],
     software: {
+      gallery: [
+        { src: "/images/products/gestionale-tavoli.webp", alt: "Software gestionale RCH: mappa e gestione dei tavoli", width: 1920, height: 1080 },
+        { src: "/images/products/gestionale-vendite.webp", alt: "Software gestionale RCH: interfaccia per le operazioni di vendita", width: 1920, height: 1080 },
+        { src: "/images/products/gestionale-listini.webp", alt: "Software gestionale RCH: configurazione dei listini in cloud", width: 1920, height: 1080 },
+        { src: "/images/products/gestionale-magazzino.webp", alt: "Software gestionale RCH: gestione del magazzino e delle giacenze", width: 1920, height: 1080 },
+        { src: "/images/products/gestionale-dispositivi.webp", alt: "Software gestionale RCH utilizzabile su diversi dispositivi", width: 1920, height: 1080 },
+      ],
       title: "Software gestionale",
       description: "Organizza il lavoro del tuo locale, dalla comanda al conto. Ti aiutiamo a scegliere le funzioni adatte alla tua attività, verificando anche la compatibilità con i dispositivi che utilizzi già.",
       features: ["Tavoli, prenotazioni e comande organizzati", "Gestione degli ordini d’asporto", "Incassi e report consultabili da remoto"],
