@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Check, MonitorCog } from "lucide-react";
+import { Check, CreditCard, MonitorCog } from "lucide-react";
 import { productImages, type Solution } from "@/content/sectors";
 import ProductGallery from "@/components/ProductGallery";
 
@@ -14,6 +14,7 @@ export default function SolutionCard({
 }) {
   const image = productImages[solution.name];
   const Heading = headingLevel;
+  const Illustration = solution.name === "POS per pagamenti" ? CreditCard : MonitorCog;
 
   return (
     <article className="surface-card flex min-w-0 flex-col p-6 sm:p-8 md:row-span-3 md:grid md:grid-rows-subgrid md:gap-0 md:p-5 lg:p-6 xl:p-8">
@@ -24,7 +25,7 @@ export default function SolutionCard({
           <Image {...image} alt={image.alt} sizes={imageSizes} className="h-44 w-full object-contain sm:h-48" />
         ) : (
           <div className="flex h-44 items-center justify-center rounded-lg bg-brand-50 sm:h-48" aria-hidden="true">
-            <MonitorCog className="h-24 w-24 text-brand-600" strokeWidth={1.25} />
+            <Illustration className="h-24 w-24 text-brand-600" strokeWidth={1.25} />
           </div>
         )}
       </div>
