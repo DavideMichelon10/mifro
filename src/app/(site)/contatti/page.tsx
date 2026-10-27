@@ -16,7 +16,7 @@ export default function ContattiPage() {
       <Section>
         <div className="grid items-start gap-8 lg:grid-cols-[1fr_1.2fr] lg:gap-16">
           <div>
-            <h2 className="section-title">Parliamone insieme.</h2>
+            <h2 className="section-title">Parliamone insieme</h2>
             <div className="mt-6 space-y-5 text-sm leading-relaxed text-gray-600">
               <a href={`tel:${contact.phone.replace(/\s/g, "")}`} className="text-link text-lg"><Phone aria-hidden="true" className="h-5 w-5 shrink-0" />{contact.phone}</a>
               <a href={`mailto:${contact.email}`} className="text-link flex break-all"><Mail aria-hidden="true" className="h-5 w-5 shrink-0" />{contact.email}</a>

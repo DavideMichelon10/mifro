@@ -107,7 +107,7 @@ export const siteConfig = {
 
   /* ── Percorso delle richieste dai settori ───────────── */
   contactJourney: {
-    title: "Dalla prima richiesta, sempre al tuo fianco.",
+    title: "Dalla prima richiesta, sempre al tuo fianco",
     description: "Lascia i tuoi recapiti nel modulo e raccontaci la tua attività. Ti accompagniamo nella scelta e nell’utilizzo della soluzione.",
     cta: "Richiedi un ricontatto",
     steps: [
@@ -188,7 +188,7 @@ export const siteConfig = {
       { value: "Assistenza diretta", text: "Sul posto e da remoto" },
     ],
     localPresence: {
-      title: "I tuoi tecnici, sul territorio.",
+      title: "I tuoi tecnici, sul territorio",
       image: "/images/vetrina-mifro.jpg",
       imageAlt: "La vetrina e l’ingresso della sede Mifro",
       intro:
