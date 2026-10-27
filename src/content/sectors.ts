@@ -93,7 +93,7 @@ export const sectors: Sector[] = [
           { src: "/images/products/pos-touch-screen-2.webp", alt: "Sistema POS touch screen RCH, vista posteriore con display cliente", width: 800, height: 600 },
           { src: "/images/products/pos-touch-screen-3.webp", alt: "Sistema POS touch screen RCH, vista laterale con display cliente", width: 800, height: 600 },
         ],
-        features: ["Ideale per attività con maggiore affluenza", "Maggiore potenza e prestazioni", "Monitor regolabile", "Sistema scalabile con la tua attività", "Possibilità di aggiungere stampanti e palmari", "Gestione dei tavoli"] },
+        features: ["Ideale per attività con maggiore affluenza", "Maggiore potenza e prestazioni", "Monitor regolabile", "Sistema scalabile con la tua attività", "Possibilità di aggiungere stampanti e palmari", "Gestione dei tavoli", "Installazione a cura di un tecnico specializzato", "Assistenza dopo l’installazione, per ogni dubbio o necessità"] },
       {
         name: "Registratore telematico APE3 con POS integrato",
         gallery: [
@@ -101,7 +101,7 @@ export const sectors: Sector[] = [
           { src: "/images/products/registratore-telematico-2.webp", alt: "Registratore telematico RCH APE 3, schermo operatore", width: 800, height: 600 },
           { src: "/images/products/registratore-telematico-3.webp", alt: "Registratore telematico RCH APE 3, display cliente e stampante", width: 800, height: 600 },
         ],
-        features: ["Ideale per piccole attività con poca affluenza", "Struttura compatta per il tuo banco", "POS integrato in un unico sistema", "Possibilità di aggiungere stampanti e palmari", "Semplicità nella gestione quotidiana", "Installazione semplice"],
+        features: ["Ideale per piccole attività con poca affluenza", "Struttura compatta per il tuo banco", "POS integrato in un unico sistema", "Possibilità di aggiungere stampanti e palmari", "Semplicità nella gestione quotidiana", "Installazione a cura di un tecnico specializzato", "Assistenza dopo l’installazione, per ogni dubbio o necessità"],
       },
     ],
     software: {
