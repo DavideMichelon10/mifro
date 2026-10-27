@@ -68,7 +68,7 @@ export default function HomePage() {
             subtitle="Scegli il tuo settore e scopri le casse e i gestionali adatti al tuo lavoro."
           />
         </ScrollReveal>
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {sectors.map((sector, index) => (
             <ScrollReveal key={sector.title} delay={(index + 1) as 1 | 2 | 3 | 4}>
               <Card

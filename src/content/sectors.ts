@@ -290,34 +290,7 @@ export const sectors: Sector[] = [
       { question: "Posso accettare pagamenti elettronici?", answer: "Con APE J RT puoi attivare RCH Pay SoftPOS per il contactless. Per WALLE MEC RT Ambulanti abbiniamo un POS. Servizi e costi sono indicati nel preventivo." },
     ],
   },
-  {
-    slug: "negozi-altre-attivita",
-    label: "Negozi e altre attività",
-    icon: "Store",
-    summary: "Soluzioni di cassa e gestionali per la tua attività.",
-    title: "Casse e gestionali per negozi e attività in Trentino",
-    description: "Soluzioni di cassa e gestionali per negozi e altre attività. Mifro ti affianca nella scelta, nell’installazione e nell’assistenza in Trentino.",
-    headline: "Ogni attività ha il suo modo di lavorare. Troviamo la tua soluzione",
-    intro: "Dalla cassa essenziale alla gestione di articoli e magazzino, partiamo dalle esigenze della tua attività. Ti seguiamo nella scelta, nell’installazione e nell’assistenza in Trentino.",
-    cta: "Richiedi informazioni",
-    subject: "Soluzioni di cassa per la mia attività",
-    messagePlaceholder: "Raccontaci di cosa ti occupi, dove lavori e cosa vorresti migliorare nella gestione della tua attività.",
-    solutionsHeading: "Una cassa semplice o un gestionale completo",
-    solutionsIntro: "Scegliamo insieme la configurazione in base a come lavori. Il software gestionale è installabile anche sui dispositivi compatibili che possiedi già.",
-    solutions: [
-      { name: "WALLE MEC RT", features: ["Articoli con prezzi già pronti", "Vendite ordinate per reparto", "Stampante integrata nella cassa"] },
-      { name: "Software gestionale", features: ["Articoli organizzati per variante", "Giacenze e inventari sotto controllo", "Listini aggiornabili da remoto"] },
-    ],
-    question: "Raccontaci la tua attività",
-    questionText: "Indicaci come lavori e quali strumenti utilizzi. Ti aiutiamo a individuare la soluzione più adatta.",
-    faq: [
-      { question: "La soluzione si adatta alla mia attività?", answer: "Partiamo dal tuo lavoro quotidiano: cosa vendi, come gestisci gli incassi e quali strumenti utilizzi. Valutiamo insieme la configurazione e le eventuali integrazioni necessarie." },
-      { question: "Posso scegliere solo una cassa?", answer: "Sì. Se ti serve una soluzione essenziale per gli incassi, possiamo proporti una cassa senza aggiungere un gestionale." },
-      { question: "Posso gestire articoli e magazzino?", answer: "Il software gestionale prevede funzioni per articoli, varianti, giacenze e inventari. Definiamo nella proposta i moduli e la configurazione adatti alle tue esigenze." },
-      { question: "Posso utilizzare i dispositivi che ho già?", answer: "Il software gestionale può essere installato su hardware compatibile. Indicaci i modelli e i software che utilizzi: verifichiamo la compatibilità prima della proposta." },
-      { question: "Come funzionano installazione e assistenza?", answer: "Mifro segue installazione e configurazione. Nella proposta definiamo affiancamento, assistenza, licenze, eventuali canoni e accessori necessari." },
-    ],
-  },
+
 ];
 
 export function getSector(slug: string) {

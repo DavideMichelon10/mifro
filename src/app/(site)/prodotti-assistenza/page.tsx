@@ -49,7 +49,7 @@ export default function ProdottiAssistenzaPage() {
       </Section>
       <Section id="settori" gray>
         <SectionHeader title={sectorsIntro.title} subtitle={sectorsIntro.description} />
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {siteConfig.sectors.map((sector) => (
             <Card
               key={sector.title}

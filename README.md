@@ -187,7 +187,7 @@ in una finestra privata prima dell'invio si deve tornare a `/contatti`.
 
 ## Pagine per settore
 
-Le pagine `/soluzioni/bar`, `/soluzioni/ristoranti`, `/soluzioni/parrucchieri-saloni`
+Le pagine `/soluzioni/ristoranti`, `/soluzioni/parrucchieri-saloni`
 e `/soluzioni/ambulanti` sono generate staticamente da `src/content/sectors.ts`
 con il layout condiviso `src/app/(site)/soluzioni/[settore]/page.tsx`.
 Sono raggiungibili dalle schede della home e dal menu «Per la tua attività» e incluse
@@ -197,13 +197,12 @@ il modulo con nome, email, telefono e messaggio obbligatori e oggetto di settore
 
 Non c’è una pagina indice: `/soluzioni` reindirizza a `/#settori` ed è esclusa dalla
 sitemap. I collegamenti generici alle soluzioni puntano direttamente ai settori della
-home. La home presenta prima i quattro settori, poi tre schede «Prodotti e assistenza»
-collegate alle rispettive sezioni. Per negozi e altre attività c’è un invito esplicito
-al contatto, senza una scheda che sembri rimandare a una pagina dedicata.
+home. La home presenta prima i tre settori, poi tre schede «Prodotti e assistenza»
+collegate alle rispettive sezioni.
 `/prodotti-assistenza` raccoglie POS e pagamenti, tecnologia per l’ufficio e
 assistenza/riparazioni, con testi di approfondimento, foto alternate e gli anchor
 `#pagamenti`, `#hardware-ufficio` e `#riparazioni`. Sotto i servizi, la sezione
-«Hai un’attività?» collega direttamente le quattro pagine di settore.
+«Hai un’attività?» collega direttamente le tre pagine di settore.
 
 La top bar contiene un unico pulsante «Per la tua attività» che apre i quattro settori,
 «Prodotti e assistenza», «Chi siamo» e «Contattaci». Il logo torna alla home;

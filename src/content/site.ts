@@ -155,9 +155,9 @@ export const siteConfig = {
       },
       {
         id: "hardware-ufficio",
-        title: "Tecnologia per l’ufficio",
-        description: "PC, stampanti, multifunzioni e materiali di consumo, con supporto nella scelta.",
-        details: "Un PC per il lavoro di ogni giorno, una stampante o una multifunzione: ti aiutiamo a scegliere in base a quello che devi fare e a quanto stampi. Forniamo anche materiali di consumo, così puoi rivolgerti a noi sia per l’attrezzatura sia per le necessità quotidiane dell’ufficio.",
+        title: "Attrezzature per l’ufficio",
+        description: "Sistema di backup, NAS con backup, antivirus Bitdefender, PC, stampanti, multifunzioni e materiali di consumo.",
+        details: "Un sistema di backup per i tuoi dati, NAS con backup e l’antivirus Bitdefender per i computer dell’ufficio. Poi PC per il lavoro di ogni giorno, stampanti e multifunzioni: ti aiutiamo a scegliere in base a quello che devi fare e a quanto stampi. Forniamo anche materiali di consumo, così puoi rivolgerti a noi sia per l’attrezzatura sia per le necessità quotidiane dell’ufficio.",
         icon: "Printer" as const,
         image: "/images/stampanti.jpg",
         imageAlt: "Postazione da ufficio con computer e stampante",
