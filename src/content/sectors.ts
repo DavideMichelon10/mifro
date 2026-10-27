@@ -64,6 +64,7 @@ export type Sector = {
   solutionsHeading: string;
   solutionsIntro: string;
   solutions: Solution[];
+  software?: { title: string; description: string; features: string[] };
   question: string;
   questionText: string;
   faq: { question: string; answer: string }[];
@@ -83,7 +84,7 @@ export const sectors: Sector[] = [
     subject: "Soluzioni di cassa per il mio locale",
     messagePlaceholder: "Dove si trova il locale? Come gestisci oggi le comande?",
     solutionsHeading: "Soluzioni per la tua attività",
-    solutionsIntro: "Sistemi POS touch screen, registratori telematici e software gestionale: scegliamo insieme gli strumenti adatti al tuo locale.",
+    solutionsIntro: "Sistemi POS touch screen e registratori telematici: scegliamo insieme gli strumenti adatti al tuo locale.",
     solutions: [
       {
         name: "Sistemi POS touch screen",
@@ -102,8 +103,12 @@ export const sectors: Sector[] = [
         ],
         features: ["Emissione degli scontrini e invio dei corrispettivi", "Stampante integrata nel punto cassa", "Soluzioni compatte per il tuo banco"],
       },
-      { name: "Software gestionale", features: ["Tavoli, prenotazioni e comande organizzati", "Gestione degli ordini d’asporto", "Incassi e report consultabili da remoto"] },
     ],
+    software: {
+      title: "Software gestionale",
+      description: "Organizza il lavoro del tuo locale, dalla comanda al conto. Ti aiutiamo a scegliere le funzioni adatte alla tua attività, verificando anche la compatibilità con i dispositivi che utilizzi già.",
+      features: ["Tavoli, prenotazioni e comande organizzati", "Gestione degli ordini d’asporto", "Incassi e report consultabili da remoto"],
+    },
     question: "Parliamo del tuo locale",
     questionText: "Raccontaci come gestisci gli ordini e cosa vuoi migliorare.",
     faq: [

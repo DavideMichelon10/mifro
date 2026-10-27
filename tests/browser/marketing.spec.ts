@@ -340,16 +340,21 @@ test("preferenze cookie accessibili anche con elementi della chat sovrapposti", 
   await expect(page.locator(".woot-widget-holder")).toBeVisible();
 });
 
-test("Food: tre soluzioni e gallerie scorrevoli su desktop e mobile", async ({ page }) => {
+test("Food: due prodotti, software dedicato e gallerie su desktop e mobile", async ({ page }) => {
   await page.addInitScript((key) => localStorage.setItem(key, "rejected"), choiceKey);
   for (const width of [1440, 390]) {
     await page.setViewportSize({ width, height: 960 });
     await page.goto("/soluzioni/ristoranti");
     const solutions = page.locator("#soluzioni-rch");
     await expect(solutions.getByRole("heading", { level: 3 })).toHaveText([
-      "Sistemi POS touch screen", "Registratori di cassa telematici", "Software gestionale",
+      "Sistemi POS touch screen", "Registratori di cassa telematici",
     ]);
+    await expect(solutions.locator("article")).toHaveCount(2);
     await expect(solutions.locator("article p")).toHaveCount(0);
+    const software = page.locator("#soluzioni-rch + #software-gestionale");
+    await expect(software.getByRole("heading", { level: 2, name: "Software gestionale", exact: true })).toBeVisible();
+    await expect(software.getByRole("listitem")).toHaveCount(3);
+    await expect(software.getByRole("link", { name: "Parliamo del tuo gestionale" })).toHaveAttribute("href", "#richiedi-proposta");
     await expect(page.locator("main")).not.toContainText(/ATS\s*[23]|A-Touch System|RISTO-PRO/);
     for (const name of ["Sistemi POS touch screen", "Registratori di cassa telematici"]) {
       const gallery = solutions.getByRole("region", { name: `Foto: ${name}` });
