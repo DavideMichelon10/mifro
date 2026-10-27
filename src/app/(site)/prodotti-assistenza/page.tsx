@@ -57,7 +57,6 @@ export default function ProdottiAssistenzaPage() {
               description={sector.description}
               icon={sector.icon}
               href={sector.href}
-              links={sector.links}
               linkLabel="Vedi le soluzioni"
             />
           ))}

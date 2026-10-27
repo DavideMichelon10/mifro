@@ -76,7 +76,6 @@ export default function HomePage() {
                 description={sector.description}
                 icon={sector.icon}
                 href={sector.href}
-                links={sector.links}
                 linkLabel="Vedi le soluzioni"
               />
             </ScrollReveal>

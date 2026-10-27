@@ -59,7 +59,7 @@ export const siteConfig = {
   hero: {
     title: "Registratori di cassa e sistemi POS in Trentino",
     subtitle:
-      "Ti affianchiamo nella scelta delle soluzioni più adatte al tuo punto cassa e al tuo ufficio, con installazione e assistenza tecnica.",
+      "Ti affianchiamo nella scelta delle soluzioni più adatte per il punto cassa e l’ufficio, con installazione e assistenza tecnica personalizzata.",
     tagline: "Al fianco delle imprese dal 1990",
     cta1: { label: "Contattaci", href: "/contatti" },
     cta2: { label: "Soluzioni per la tua attività", href: "/#settori" },
@@ -67,29 +67,12 @@ export const siteConfig = {
   },
 
   /* ── Settori della home ─────────────────────────────── */
-  sectors: [
-    {
-      title: "Food",
-      description: "Bar, pizzerie e ristoranti",
-      icon: "ChefHat",
-      links: sectors.filter((sector) => sector.slug === "bar" || sector.slug === "ristoranti").map((sector) => ({
-        label: sector.label,
-        href: sectorHref(sector.slug),
-      })),
-    },
-    ...sectors.filter((sector) => sector.slug !== "bar" && sector.slug !== "ristoranti").map((sector) => ({
-      title: sector.label,
-      description: sector.summary,
-      icon: sector.icon,
-      href: sectorHref(sector.slug),
-    })),
-  ] as {
-    title: string;
-    description: string;
-    icon: import("@/components/Icons").IconName;
-    href?: string;
-    links?: { label: string; href: string }[];
-  }[],
+  sectors: sectors.map((sector) => ({
+    title: sector.label,
+    description: sector.summary,
+    icon: sector.icon,
+    href: sectorHref(sector.slug),
+  })),
 
   /* ── I nostri marchi ────────────────────────────────── */
   brands: [
@@ -201,7 +184,7 @@ export const siteConfig = {
   about: {
     highlights: [
       { value: "Dal 1990", text: "In Trentino" },
-      { value: "Oltre 1.000 clienti", text: "Negozi, locali e imprese" },
+      { value: "Oltre 1.000 clienti", text: "Negozi, imprese commerciali e artigiane" },
       { value: "Assistenza diretta", text: "Sul posto e da remoto" },
     ],
     localPresence: {

@@ -12,36 +12,21 @@ import Logo from "@/components/Logo";
 function SolutionLinks({ pathname, onNavigate }: { pathname: string; onNavigate: () => void }) {
   return (
     <ul className="space-y-0.5">
-      {siteConfig.sectors.map((category) => {
-        const links = category.links ?? [{ label: category.title, href: category.href! }];
-        return (
-          <li key={category.title}>
-            {category.links && (
-              <div className="px-3 pb-1 pt-2">
-                <p className="text-sm font-semibold text-gray-900">{category.title}</p>
-                <p className="mt-1 text-xs text-gray-500">{category.description}</p>
-              </div>
+      {siteConfig.sectors.map(({ title, href }) => (
+        <li key={href}>
+          <Link
+            href={href}
+            onClick={onNavigate}
+            aria-current={pathname === href ? "page" : undefined}
+            className={cn(
+              "flex min-h-11 items-center rounded-lg px-3 py-2.5 text-sm transition-colors focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-brand-600",
+              pathname === href ? "bg-brand-50 font-semibold text-brand-600" : "text-gray-700 hover:bg-brand-50 hover:text-brand-600"
             )}
-            <ul className={category.links ? "ml-3 border-l border-gray-200 pl-2" : undefined}>
-              {links.map(({ label, href }) => (
-                <li key={href}>
-                  <Link
-                    href={href}
-                    onClick={onNavigate}
-                    aria-current={pathname === href ? "page" : undefined}
-                    className={cn(
-                      "flex min-h-11 items-center rounded-lg px-3 py-2.5 text-sm transition-colors focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-brand-600",
-                      pathname === href ? "bg-brand-50 font-semibold text-brand-600" : "text-gray-700 hover:bg-brand-50 hover:text-brand-600"
-                    )}
-                  >
-                    {label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </li>
-        );
-      })}
+          >
+            {title}
+          </Link>
+        </li>
+      ))}
     </ul>
   );
 }

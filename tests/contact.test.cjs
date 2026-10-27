@@ -136,7 +136,7 @@ test('context accepts only known sector/location pairs and supports legacy paylo
 test('only generic contact allows a missing or blank subject', () => {
   for (const subject of [undefined, '', '   ']) {
     assert.equal(contact.validateContact({ ...valid, subject }).subject, contexts.DEFAULT_CONTACT_SUBJECT);
-    assert.equal(contact.validateContact({ ...valid, phone: '+39 333 123 4567', subject, context: { sector: 'bar', form_location: 'sector_page' } }), null);
+    assert.equal(contact.validateContact({ ...valid, phone: '+39 333 123 4567', subject, context: { sector: 'ristoranti', form_location: 'sector_page' } }), null);
   }
   for (const subject of [null, 12, {}, '\r\nBcc: spam@example.com']) assert.equal(contact.validateContact({ ...valid, subject }), null);
 });

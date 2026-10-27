@@ -1,4 +1,4 @@
-export const contactSectors = ["bar", "ristoranti", "parrucchieri-saloni", "ambulanti", "negozi-altre-attivita", "generico"] as const;
+export const contactSectors = ["ristoranti", "parrucchieri-saloni", "ambulanti", "negozi-altre-attivita", "generico"] as const;
 export type ContactSector = typeof contactSectors[number];
 export type SectorSlug = Exclude<ContactSector, "generico">;
 export const DEFAULT_CONTACT_SUBJECT = "Richiesta di informazioni dal sito";
