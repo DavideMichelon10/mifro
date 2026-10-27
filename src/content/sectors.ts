@@ -82,7 +82,7 @@ export const sectors: Sector[] = [
     cta: "Richiedi informazioni",
     subject: "Soluzioni di cassa per il mio locale",
     messagePlaceholder: "Dove si trova il locale? Come gestisci oggi le comande?",
-    solutionsHeading: "Casse e gestionali per il tuo locale",
+    solutionsHeading: "Soluzioni per la tua attività",
     solutionsIntro: "Sistemi POS touch screen, registratori telematici e software gestionale: scegliamo insieme gli strumenti adatti al tuo locale.",
     solutions: [
       {
