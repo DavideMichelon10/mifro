@@ -39,13 +39,13 @@ export const siteConfig = {
   hours: [
     { days: "Lunedì", time: "08:00 – 12:00 / 14:30 – 18:30" },
     { days: "Martedì", time: "08:00 – 12:00 / 14:30 – 18:30" },
-    { days: "Mercoledì", time: "08:00 – 12:00" },
+    { days: "Mercoledì", time: "08:00 – 12:00 / 14:30 – 18:30" },
     { days: "Giovedì", time: "08:00 – 12:00 / 14:30 – 18:30" },
     { days: "Venerdì", time: "08:00 – 12:00 / 14:30 – 18:30" },
     { days: "Sabato", time: "Chiuso" },
     { days: "Domenica", time: "Chiuso" },
   ],
-  hoursShort: "Lun–Ven 08:00–12:00 / 14:30–18:30 (Mer solo mattina)",
+  hoursShort: "Lun–Ven 08:00–12:00 / 14:30–18:30",
 
   /* ── Navigazione ────────────────────────────────────── */
   nav: [
@@ -59,7 +59,7 @@ export const siteConfig = {
   hero: {
     title: "Registratori di cassa e sistemi POS in Trentino",
     subtitle:
-      "Ti aiutiamo a scegliere la cassa, la installiamo e ti seguiamo nell’assistenza, con tecnici in Trentino.",
+      "Ti affianchiamo nella scelta delle soluzioni più adatte al tuo punto cassa e al tuo ufficio, con installazione e assistenza tecnica.",
     tagline: "Al fianco delle imprese dal 1990",
     cta1: { label: "Contattaci", href: "/contatti" },
     cta2: { label: "Soluzioni per la tua attività", href: "/#settori" },
