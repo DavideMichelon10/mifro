@@ -356,7 +356,7 @@ test("Food: quattro prodotti, software dedicato e gallerie su desktop e mobile",
     await expect.poll(() => cashmaticImage.evaluate((image) => (image as HTMLImageElement).naturalWidth)).toBeGreaterThan(0);
     const software = page.locator("#soluzioni-rch + #software-gestionale");
     await expect(software.getByRole("heading", { level: 2, name: "Software gestionale in cloud", exact: true })).toBeVisible();
-    await expect(software.getByRole("listitem")).toHaveCount(3);
+    await expect(software.getByRole("listitem")).toHaveCount(4);
     await expect(software.getByRole("link", { name: "Parliamo del tuo gestionale" })).toHaveAttribute("href", "#richiedi-proposta");
     const softwareGallery = software.getByRole("region", { name: "Foto: Software gestionale in cloud" });
     await softwareGallery.scrollIntoViewIfNeeded();

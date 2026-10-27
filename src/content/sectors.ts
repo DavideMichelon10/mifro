@@ -163,7 +163,7 @@ export const sectors: Sector[] = [
       ],
       title: "Software gestionale in cloud",
       description: "Organizza il lavoro del tuo locale, dalla comanda al conto. Ti aiutiamo a scegliere le funzioni adatte alla tua attività, verificando anche la compatibilità con i dispositivi che utilizzi già.",
-      features: ["Tavoli, prenotazioni e comande organizzati", "Gestione degli ordini d’asporto", "Accesso tramite app per consultare dati, incassi e report anche da remoto"],
+      features: ["Tavoli, prenotazioni e comande organizzati", "Kitchen display per visualizzare e gestire le comande in cucina", "Gestione degli ordini d’asporto", "Accesso tramite app per consultare dati, incassi e report anche da remoto"],
     },
     question: "Parliamo del tuo locale",
     questionText: "Raccontaci come gestisci gli ordini e cosa vuoi migliorare.",
