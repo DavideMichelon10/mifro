@@ -1,0 +1,18 @@
+{
+  "tool": "image_gen.imagegen (built-in)",
+  "purpose": "Immagini illustrative generate per le tre schede dei settori nella home. Non rappresentano clienti o locali Mifro reali.",
+  "assets": [
+    {
+      "path": "public/images/sectors/food.webp",
+      "prompt": "Use case: photorealistic-natural. Asset type: a sector photograph for a small Italian business website card. Landscape 3:2 photograph, one continuous scene filling the image, no borders or collage. Natural editorial photography, authentic everyday small-business setting in northern Italy, soft daylight, warm neutral wood and cream colors with restrained saturation, realistic textures, 35mm lens, no dramatic effects, no text, no brand names or logos, no watermarks, no posed models. Clear instantly recognizable subject at thumbnail size, key subject centered with generous crop-safe edges; must also work in a 4:3 crop. Avoid a luxurious hotel or showroom look. Primary request: an inviting small Italian café and restaurant. View across a few neatly set wooden tables with simple white plates, clear drinking glasses and folded napkins. The counter with an espresso machine is softly visible behind them. Daylight through large windows. Warm approachable atmosphere, realistic and tidy, nobody in the foreground. Emphasize both café and dining, not a close-up of food."
+    },
+    {
+      "path": "public/images/sectors/beauty.webp",
+      "prompt": "Use case: photorealistic-natural. Asset type: a sector photograph for a small Italian business website card. Landscape 3:2 photograph, one continuous scene filling the image, no borders or collage. Natural editorial photography, authentic everyday small-business setting in northern Italy, soft daylight, warm neutral wood and cream colors with restrained saturation, realistic textures, 35mm lens, no dramatic effects, no text, no brand names or logos, no watermarks, no posed models. Clear instantly recognizable subject at thumbnail size, key subject centered with generous crop-safe edges; must also work in a 4:3 crop. Avoid a luxurious hotel or showroom look. Primary request: an inviting contemporary neighborhood hair and beauty salon. Two stylish charcoal salon chairs and large simple round mirrors above a light oak worktop, a small plant and a few understated unlabeled styling bottles. Soft daylight from side windows. Calm, clean and approachable, realistic salon working environment. View from slightly diagonal at seated eye level, no people."
+    },
+    {
+      "path": "public/images/sectors/ambulanti.webp",
+      "prompt": "Use case: photorealistic-natural. Asset type: a sector photograph for a small Italian business website card. Landscape 3:2 photograph, one continuous scene filling the image, no borders or collage. Natural editorial photography, authentic everyday small-business setting in northern Italy, soft daylight, warm neutral wood and cream colors with restrained saturation, realistic textures, 35mm lens, no dramatic effects, no text, no brand names or logos, no watermarks, no posed models. Clear instantly recognizable subject at thumbnail size, key subject centered with generous crop-safe edges; must also work in a 4:3 crop. Avoid a luxurious hotel or showroom look. Primary request: a neighborhood outdoor produce market stall in a small northern Italian town. Carefully displayed wooden crates with fresh seasonal vegetables, leafy greens, tomatoes, apples and yellow peppers beneath a cream canvas canopy. The stall is the clear foreground subject; a softly blurred modest historic street and further awnings behind. Soft morning daylight, tactile realistic textures, tidy but authentic, no readable price labels, no people in the foreground."
+    }
+  ]
+}

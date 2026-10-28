@@ -71,6 +71,8 @@ export const siteConfig = {
     title: sector.label,
     description: sector.summary,
     icon: sector.icon,
+    image: sector.image,
+    imageAlt: sector.imageAlt,
     href: sectorHref(sector.slug),
   })),
 

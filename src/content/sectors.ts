@@ -78,6 +78,8 @@ export type Sector = {
   slug: SectorSlug;
   label: string;
   icon: IconName;
+  image: string;
+  imageAlt: string;
   summary: string;
   title: string;
   description: string;
@@ -100,6 +102,8 @@ export const sectors: Sector[] = [
     slug: "ristoranti",
     label: "Food",
     icon: "ChefHat",
+    image: "/images/sectors/food.webp",
+    imageAlt: "Interno di un bar e ristorante con tavoli apparecchiati e banco caffetteria",
     summary: "Bar, pizzerie e ristoranti",
     title: "Casse e gestionali per bar e ristoranti in Trentino",
     description: "Soluzioni RCH per bar, pizzerie e ristoranti: cassa, tavoli e comande. Con Mifro scegli la configurazione e il supporto tecnico adatti al tuo locale.",
@@ -177,6 +181,8 @@ export const sectors: Sector[] = [
     slug: "parrucchieri-saloni",
     label: "Beauty e benessere",
     icon: "Scissors",
+    image: "/images/sectors/beauty.webp",
+    imageAlt: "Salone di parrucchieri con poltrone, specchi e postazioni di lavoro",
     summary: "Incassi, prodotti e gestione degli appuntamenti.",
     title: "Gestionali e soluzioni per parrucchieri e saloni in Trentino",
     description: "Appuntamenti, incassi e strumenti fiscali per parrucchieri e saloni in Trentino. Affidati all’esperienza dei tecnici Mifro, dalla scelta all’assistenza.",
@@ -241,6 +247,8 @@ export const sectors: Sector[] = [
     slug: "ambulanti",
     label: "Ambulanti e mercati",
     icon: "Tent",
+    image: "/images/sectors/ambulanti.webp",
+    imageAlt: "Banco di frutta e verdura sotto il tendone di un mercato all’aperto",
     summary: "Casse per lavorare tra mercati e fiere.",
     title: "Registratori di cassa per ambulanti in Trentino",
     description: "Casse RCH per ambulanti, mercati e fiere: WALLE MEC RT Ambulanti e APE J RT. Con Mifro scegli cassa, accessori e collegamenti per il tuo banco.",

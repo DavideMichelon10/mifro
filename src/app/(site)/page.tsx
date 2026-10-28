@@ -75,6 +75,9 @@ export default function HomePage() {
                 title={sector.title}
                 description={sector.description}
                 icon={sector.icon}
+                image={sector.image}
+                imageAlt={sector.imageAlt}
+                imageSizes="(max-width: 639px) calc(100vw - 32px), (max-width: 1023px) calc((100vw - 68px) / 2), (max-width: 1151px) calc((100vw - 88px) / 3), 355px"
                 href={sector.href}
                 linkLabel="Vedi le soluzioni"
               />
