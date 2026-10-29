@@ -42,7 +42,6 @@ export default function RentalPage() {
                 {content.hero.cta}<ArrowRight aria-hidden="true" className="h-4 w-4 shrink-0" />
               </a>
             </div>
-            <p className="mt-3 max-w-lg text-sm leading-relaxed text-gray-600">{content.hero.priceNote}</p>
           </div>
           <figure className="surface-card mx-auto w-full max-w-md p-5 sm:p-6">
             <Image
@@ -74,7 +73,6 @@ export default function RentalPage() {
             );
           })}
         </div>
-        <p className="mt-8 border-t border-gray-200 pt-5 text-sm leading-relaxed text-gray-600">{content.support.note}</p>
       </Section>
 
       <Section id="come-funziona" className="bg-brand-900 text-white">

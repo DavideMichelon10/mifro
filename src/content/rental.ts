@@ -11,7 +11,6 @@ export const rentalContent = {
     pricePeriod: "al mese",
     subtitle: "Con Mifro hai un riferimento professionale sul territorio: ti seguiamo nella scelta della cassa, nella formazione e nell’assistenza anche dopo l’avvio, anche di persona nelle zone servite.",
     cta: "Richiedi un preventivo di noleggio",
-    priceNote: "Modello, condizioni di noleggio e servizi sono specificati nel preventivo.",
     imageCaption: "Un esempio di registratore di cassa RCH. Il modello della tua proposta viene scelto in base all’attività e alla formula di noleggio.",
   },
   support: {
@@ -31,7 +30,6 @@ export const rentalContent = {
         text: "Restiamo un riferimento per dubbi e problemi tecnici, con supporto da remoto e in presenza nelle zone servite.",
       },
     ],
-    note: "Sono servizi disponibili: modalità e costi di formazione e assistenza vengono concordati nella proposta, senza considerarli automaticamente compresi nel canone di partenza.",
   },
   steps: {
     title: "Come funziona",
