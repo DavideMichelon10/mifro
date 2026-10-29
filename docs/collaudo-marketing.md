@@ -1,5 +1,91 @@
 # Collaudo delle modifiche marketing
 
+## Beauty e landing vendita casse — 29 ottobre 2026
+
+**Collaudo in anteprima locale; rilascio tramite commit e push richiesto dall’utente.**
+Rispettato il flusso Next.js/Vercel esistente: il workflow CI verifica il codice;
+non è stato eseguito un deploy manuale. La pubblicazione resta distinta dal push
+e va verificata sul servizio di hosting. Nessuna campagna Google Ads o
+configurazione GA4 è stata modificata.
+
+Anteprima della build di produzione avviata su `http://127.0.0.1:3221`:
+
+- [Beauty](http://127.0.0.1:3221/soluzioni/parrucchieri-saloni)
+- [Vendita casse](http://127.0.0.1:3221/vendita-registratori-di-cassa)
+
+La copia di collaudo è `/tmp/mifro-landing-20261029-8gqdap39`, senza file `.env`
+o credenziali SMTP. Il server usa il solo segreto di test previsto dal progetto.
+Per riaprire le pagine dal repository è sufficiente `npm run dev` e gli stessi
+percorsi su `http://localhost:3000`; per i test usare sempre la configurazione
+Playwright locale documentata nel README.
+
+### Modifiche e coordinamento
+
+Quattro ruoli, con testi e implementazione in parallelo per ogni pagina; il
+coordinatore ha coperto l’implementazione vendita e tutte le modifiche condivise.
+File distinti e revisione congiunta dei contenuti prima del collaudo finale.
+
+- Beauty mantiene URL, menu e sitemap. Primo piano a pagina web del salone,
+  prenotazioni con scelta di operatore/orario e agenda del team; gestionale,
+  formazione e assistenza anche di persona dopo l’avvio, poi casse/POS e FAQ.
+- La vendita riprende la landing noleggio e usa foto reali già nel sito, WALLE MEC
+  RT, WALLE 8T e APE J RT. Distingue prima cassa e sostituzione, scelta, servizi e
+  preventivo; nessun prezzo di acquisto, disponibilità o tempo garantito inventato.
+  Non contiene il prezzo del noleggio. Il percorso «Come ti seguiamo» riassume in
+  tre passaggi ricontatto con Claudio, eventuale prova e preventivo, avvio e supporto.
+  Nessuna aggiunta al menu principale;
+  `noindex, follow` e assenza dalla sitemap in continuità con la landing di riferimento.
+- `/soluzioni/altre-attivita` conserva la presentazione generale e l’offerta
+  noleggio resta invariata. Tutti i moduli sono centrati in una sola colonna;
+  nella pagina Beauty assistenza, casse/POS e presenza locale hanno sezioni
+  distinte con sfondi alternati.
+- Animazioni allo scorrimento tramite `ScrollReveal`, con gli stessi effetti e
+  ritardi delle pagine esistenti. Su smartphone e con movimento ridotto i
+  contenuti restano immediatamente visibili; i moduli sono sempre accessibili.
+- Modulo e invio SMTP esistenti: nome, email e messaggio obbligatori, telefono
+  facoltativo su Beauty/vendita. Privacy, antispam, ricevuta e consenso riutilizzati.
+- Beauty: oggetto «Beauty: pagina web, prenotazioni e agenda per il salone»,
+  contesto `parrucchieri-saloni` / `sector_page`. Vendita: oggetto «Acquisto o
+  sostituzione registratore di cassa», confermato dal server, contesto
+  `generico` / `sales_page`. I messaggi ricevuti distinguono i due interessi.
+- `generate_lead` resta nel solo percorso di invio riuscito. CTA, errori e refresh
+  della conferma non producono conversioni. I parametri dei clic pubblicitari
+  restano nella URL durante il passaggio al modulo; nessun dato del form viene
+  aggiunto agli eventi Analytics.
+
+### Controlli
+
+- Lint, TypeScript e build di produzione superati; 24 pagine generate.
+- 14 test Node superati, con SMTP simulato, inclusi telefono facoltativo,
+  validazione dei numeri forniti, contesto vendita e oggetti email distinti.
+- 59 scenari browser superati nella suite completa. Desktop e smartphone a
+  320, 390, 768 e 1440 px; CTA, link locali,
+  immagini, FAQ da tastiera, menu mobile, privacy, validazione, errori, doppio
+  invio, consensi e assenza di scorrimento orizzontale.
+- 4 scenari con loader Google reale superati (Beauty e ristoranti, statistiche
+  sole oppure anche Ads). Raccolta e invio del form sempre intercettati:
+  nessun messaggio commerciale o conversione di prova inviata ai servizi reali.
+- Audit dipendenze di produzione: zero vulnerabilità. `git diff --check` superato.
+- Screenshot desktop/mobile ispezionati visivamente anche dagli agenti dei testi.
+  Ultimo collaudo: `/tmp/mifro-final-qa/`, con verifiche aggiuntive di centratura
+  dei moduli e comparsa allo scorrimento, anche con movimento ridotto.
+
+### Materiali e limiti
+
+Le funzioni Beauty provengono dall’offerta già presente in `src/content/sectors.ts`
+e dai riscontri in `docs/revisione-pagine-settori.md`. Mancano schermate reali
+utilizzabili di prenotazione e agenda: il percorso è spiegato con uno schema HTML.
+Le didascalie esplicative sono state rimosse su richiesta. La schermata vendite è dimostrativa, con servizi e
+importi di esempio. Esclusi lo screenshot listini con nome account visibile e il
+montaggio generico dei dispositivi.
+
+Non occorrono nuovi prezzi o promesse per completare le pagine: configurazione,
+servizi, modalità e costi si definiscono nella proposta. Le prove locali non
+certificano consegna email reale, attribuzione Ads o prestazioni sul campo.
+Il test Google preesistente conserva le modifiche dell’utente; è stato adeguato
+soltanto il selettore del pulsante al nuovo testo Beauty. Le altre modifiche
+locali già presenti nei documenti di misurazione e Google Ads sono state preservate.
+
 ## Ricontrollo con Tag Assistant — 26 ottobre 2026, ore 19:55
 
 Account Ads Mifro `276-321-8107`, campagna `24392958197`, periodo **24–26 ottobre**:

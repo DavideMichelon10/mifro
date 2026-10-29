@@ -5,7 +5,7 @@ import { siteConfig } from "@/content/site";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { trackContactSubmission } from "@/lib/analytics";
-import { defaultContactContext, type ContactContext } from "@/lib/contact-context";
+import { defaultContactContext, requiresContactPhone, type ContactContext } from "@/lib/contact-context";
 
 interface ContactFormProps {
   context?: ContactContext;
@@ -25,6 +25,8 @@ export default function ContactForm({
   const { formFields, replyNote } = siteConfig.contactPage;
   const isSectorForm = context.form_location === "sector_page";
   const isRentalForm = context.form_location === "rental_page";
+  const isSalesForm = context.form_location === "sales_page";
+  const phoneRequired = requiresContactPhone(context);
   const router = useRouter();
   const [pending, setPending] = useState(false);
   const [error, setError] = useState("");
@@ -127,7 +129,7 @@ export default function ContactForm({
           />
         </div>
 
-        {(isSectorForm || isRentalForm) && (
+        {(isSectorForm || isRentalForm || isSalesForm) && (
           <div>
             <label htmlFor="cf-phone" className="mb-1.5 block text-sm font-medium text-gray-700">{isRentalForm ? "Cellulare" : formFields.phone}</label>
             <input
@@ -137,14 +139,14 @@ export default function ContactForm({
               inputMode="tel"
               autoComplete="tel"
               maxLength={40}
-              required
+              required={phoneRequired}
               value={form.phone}
               onChange={(e) => setForm({ ...form, phone: e.target.value })}
-              aria-describedby={isSectorForm ? "cf-phone-help" : undefined}
+              aria-describedby={!isRentalForm ? "cf-phone-help" : undefined}
               className={inputClass}
               placeholder="Es. +39 333 123 4567"
             />
-            {isSectorForm && <p id="cf-phone-help" className="mt-2 text-sm text-gray-600">Il numero a cui Claudio può richiamarti.</p>}
+            {!isRentalForm && <p id="cf-phone-help" className="mt-2 text-sm text-gray-600">{phoneRequired ? "Il numero a cui Claudio può richiamarti." : "Facoltativo. Lascia un numero se preferisci essere ricontattato per telefono."}</p>}
           </div>
         )}
 
@@ -193,7 +195,7 @@ export default function ContactForm({
           >
             {pending ? "Invio in corso…" : (submitLabel ?? formFields.submit)}
           </button>
-          {!isSectorForm && !isRentalForm && <p className="text-sm leading-relaxed text-gray-600">{replyNote}</p>}
+          {!isSectorForm && !isRentalForm && !isSalesForm && <p className="text-sm leading-relaxed text-gray-600">{replyNote}</p>}
         </div>
       </form>
 

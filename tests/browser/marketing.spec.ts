@@ -79,7 +79,7 @@ for (const sector of [...sectors, "generico"]) {
         await expect(page.locator("#richiedi-proposta")).toBeInViewport();
       }
       await fillContact(page);
-      expect(await page.locator("input[required], textarea[required]").count()).toBe(sector === "generico" ? 3 : 4);
+      expect(await page.locator("input[required], textarea[required]").count()).toBe((sector === "generico" || sector === "parrucchieri-saloni") ? 3 : 4);
       // Two submit events in the same tick exercise the ref guard, independently of button disabling.
       await page.locator("form").evaluate((form: HTMLFormElement) => { form.requestSubmit(); form.requestSubmit(); });
       await expect(page).toHaveURL(/grazie$/);
@@ -108,12 +108,12 @@ test("errore: dati preservati, focus sull’errore, nessuna conversione e possib
   });
   await page.goto("/soluzioni/ristoranti");
   await fillContact(page);
-  await page.getByRole("button", { name: "Richiedi un ricontatto" }).click();
+  await page.locator('form button[type="submit"]').click();
   await expect(page.locator("form").getByRole("alert")).toBeFocused();
   await expect(page.getByLabel("Email", { exact: true })).toHaveValue("test@example.com");
   await expect(page.getByLabel("Numero di telefono", { exact: true })).toHaveValue("+39 333 123 4567");
   expect(await events(page, "generate_lead")).toHaveLength(0);
-  await page.getByRole("button", { name: "Richiedi un ricontatto" }).click();
+  await page.locator('form button[type="submit"]').click();
   await expect.poll(() => attempts).toBe(2);
   await expect(page.getByRole("button", { name: "Richiedi un ricontatto" })).toBeEnabled();
 });
@@ -236,7 +236,7 @@ test("telefono e WhatsApp: soli clic secondari con consenso e contesto dopo navi
 });
 
 for (const sector of sectors) {
-  test(`percorso ${sector}: prima delle FAQ, porta al modulo e richiede il telefono`, async ({ page }) => {
+  if (sector !== "parrucchieri-saloni") test(`percorso ${sector}: prima delle FAQ, porta al modulo e richiede il telefono`, async ({ page }) => {
     await page.addInitScript((key) => localStorage.setItem(key, "rejected"), choiceKey);
     let submissions = 0;
     await page.route("**/api/contact", async (route) => {
@@ -258,11 +258,11 @@ for (const sector of sectors) {
     await fillContact(page);
     const phone = page.getByLabel("Numero di telefono", { exact: true });
     await phone.fill("");
-    await page.getByRole("button", { name: "Richiedi un ricontatto" }).click();
+    await page.locator('form button[type="submit"]').click();
     expect(await phone.evaluate((input: HTMLInputElement) => input.validity.valueMissing)).toBe(true);
     expect(submissions).toBe(0);
     await phone.fill("+39 333 123 4567");
-    await page.getByRole("button", { name: "Richiedi un ricontatto" }).click();
+    await page.locator('form button[type="submit"]').click();
     await expect.poll(() => submissions).toBe(1);
   });
 
@@ -281,7 +281,7 @@ for (const sector of sectors) {
     await expect(page.locator("#mobile-navigation")).toBeHidden();
     await expect(page.locator("#richiedi-proposta")).toBeInViewport();
     await fillContact(page);
-    await page.getByRole("button", { name: "Richiedi un ricontatto" }).click();
+    await page.locator('form button[type="submit"]').click();
     await expect(page).toHaveURL(/grazie$/);
     expect(bodies).toHaveLength(1);
     expect(bodies[0].context).toEqual({ sector, form_location: "sector_page" });
@@ -391,32 +391,7 @@ test("Ristorazione: quattro prodotti, software dedicato e gallerie su desktop e 
   }
 });
 
-test("Beauty: quattro soluzioni e immagini ufficiali del gestionale", async ({ page }) => {
-  await page.addInitScript((key) => localStorage.setItem(key, "rejected"), choiceKey);
-  for (const width of [1440, 390]) {
-    await page.setViewportSize({ width, height: 960 });
-    await page.goto("/soluzioni/parrucchieri-saloni");
-    const solutions = page.locator("#soluzioni-rch");
-    await expect(solutions.getByRole("heading", { level: 3 })).toHaveText([
-      "WALLE 8T", "PRINT! 3.0 RT Full Payments con tastiera", "Registratore telematico APE3 con POS integrato", "POS per pagamenti",
-    ]);
-    for (const card of await solutions.locator("article").all()) {
-      await card.scrollIntoViewIfNeeded();
-      await expect.poll(() => card.locator("img").evaluateAll((images) => images.length > 0 && images.every((image) => (image as HTMLImageElement).naturalWidth > 0))).toBe(true);
-    }
-    const software = page.locator("#software-gestionale");
-    await software.scrollIntoViewIfNeeded();
-    await expect(software.getByRole("heading", { level: 2 })).toHaveText("Software gestionale in cloud");
-    const gallery = software.getByRole("region", { name: "Foto: Software gestionale in cloud" });
-    await expect(gallery.getByRole("img")).toHaveCount(3);
-    await gallery.getByRole("button", { name: "Foto successiva" }).click();
-    await expect(gallery.getByText("2 / 3", { exact: true })).toBeVisible();
-    await expect.poll(() => gallery.locator("img").evaluateAll((images) => images.every((image) => (image as HTMLImageElement).naturalWidth > 0))).toBe(true);
-    expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
-    await software.screenshot({ path: `/tmp/mifro-beauty-software-${width}.png` });
-    await solutions.screenshot({ path: `/tmp/mifro-beauty-products-${width}.png` });
-  }
-});
+
 
 test("Ambulanti: casse esistenti, POS e Smart Order con foto", async ({ page }) => {
   await page.addInitScript((key) => localStorage.setItem(key, "rejected"), choiceKey);

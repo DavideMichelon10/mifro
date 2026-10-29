@@ -1,5 +1,5 @@
 import { createHmac, randomUUID, timingSafeEqual } from "node:crypto";
-import { DEFAULT_CONTACT_SUBJECT, RENTAL_CONTACT_SUBJECT, parseContactContext } from "@/lib/contact-context";
+import { DEFAULT_CONTACT_SUBJECT, RENTAL_CONTACT_SUBJECT, SALES_CONTACT_SUBJECT, parseContactContext, requiresContactPhone } from "@/lib/contact-context";
 
 export const RECEIPT_COOKIE = "mifro_contact_receipt";
 export const RECEIPT_SECONDS = 600;
@@ -38,14 +38,16 @@ export function validateContact(value: unknown) {
   const municipality = isRental ? (data.municipality as string).trim() : "";
   if (data.phone !== undefined && (typeof data.phone !== "string" || data.phone.length > 40 || /[\r\n\x00]/.test(data.phone))) return null;
   const phone = (data.phone as string | undefined)?.trim() || "";
-  if ((context.form_location === "sector_page" || isRental) && !phone) return null;
+  if (requiresContactPhone(context) && !phone) return null;
   if (phone && (!/^\+?[0-9 ()./-]+$/.test(phone) || !/^\d{7,15}$/.test(phone.replace(/\D/g, "")))) return null;
   if (data.subject !== undefined && (typeof data.subject !== "string" || data.subject.length > 200)) return null;
   if (context.sector !== "generico" && (typeof data.subject !== "string" || !data.subject.trim())) return null;
   if (/[\r\n\x00]/.test(String(data.name) + String(data.email) + String(data.subject))) return null;
   const name = (data.name as string).trim();
   const email = (data.email as string).trim();
-  const subject = isRental ? RENTAL_CONTACT_SUBJECT : (data.subject as string | undefined)?.trim() || DEFAULT_CONTACT_SUBJECT;
+  const subject = isRental ? RENTAL_CONTACT_SUBJECT
+    : context.form_location === "sales_page" ? SALES_CONTACT_SUBJECT
+    : (data.subject as string | undefined)?.trim() || DEFAULT_CONTACT_SUBJECT;
   const message = (data.message as string).trim();
   if (/[\r\n\x00]/.test(name + email + subject) || !/^[^\s@<>]+@[^\s@<>]+\.[^\s@<>]+$/.test(email)) return null;
   return { name, email, phone, municipality, subject, message, context };

@@ -192,7 +192,11 @@ e `/soluzioni/ambulanti` sono generate staticamente da `src/content/sectors.ts`
 con il layout condiviso `src/app/(site)/soluzioni/[settore]/page.tsx`.
 Sono raggiungibili dalle schede della home e dal menu «Per la tua attività» e incluse
 nella sitemap. Ogni pagina ha metadati propri, FAQ specifiche, foto delle casse e
-il modulo con nome, email, telefono e messaggio obbligatori e oggetto di settore automatico. Il numero viene validato dal server e incluso nell’email interna, mai nei parametri Analytics. La pagina Contatti conserva nome, email e messaggio obbligatori, con oggetto facoltativo. Le schede prodotto usano
+il modulo con oggetto di settore automatico. Nome, email e messaggio sono
+obbligatori; il telefono è facoltativo per Beauty e obbligatorio negli altri
+settori. Il numero, se fornito, viene validato dal server e incluso nell’email
+interna, mai nei parametri Analytics. La pagina Contatti conserva nome, email e
+messaggio obbligatori, con oggetto facoltativo. Le schede prodotto usano
 `src/components/SolutionCard.tsx`.
 
 Non c’è una pagina indice: `/soluzioni` reindirizza a `/#settori` ed è esclusa dalla
@@ -213,12 +217,45 @@ menu gestiscono tastiera, focus e chiusura dopo la navigazione. Nelle pagine set
 Nelle altre pagine il pulsante porta a `/contatti`. Le pagine di settore
 si aprono direttamente con l’introduzione, senza breadcrumb.
 
-Prima delle FAQ dei quattro settori, `ContactJourney` mostra il percorso in sei
+Prima delle FAQ di ristoranti, ambulanti e altre attività, `ContactJourney` mostra il percorso in sei
 passaggi: modulo, ricontatto di Claudio entro un massimo di due giorni lavorativi,
 eventuale prova in negozio, preventivo, installazione e formazione con un tecnico
 specializzato, assistenza successiva. Testi e impegno di ricontatto, confermati
 dall’utente, sono centralizzati in `siteConfig.contactJourney`. Le CTA delle pagine
 privilegiano il modulo; telefono e WhatsApp aziendali restano disponibili nel footer.
+
+Beauty mantiene `/soluzioni/parrucchieri-saloni`, menu e sitemap esistenti. Il
+template di settore usa `BeautyPage` e `src/content/beauty.ts` per presentare prima
+la pagina web del salone con prenotazione operatore/orario e l’agenda del team,
+poi gestionale, formazione/assistenza e integrazioni di cassa e POS. Lo schema
+di prenotazione illustra il percorso del cliente; la schermata dimostrativa delle
+vendite non mostra dati personali. L’oggetto specifico e il contesto
+`parrucchieri-saloni` / `sector_page` distinguono la richiesta Beauty.
+Assistenza, integrazioni e presenza locale occupano sezioni distinte, con spaziatura
+e sfondi alternati. Tutti i moduli del sito sono centrati in una sola colonna,
+con larghezza massima coerente anche sulle pagine settore e Contatti.
+
+### Landing per acquisto e noleggio
+
+`/vendita-registratori-di-cassa` riprende struttura, componenti e stile di
+`/noleggio-registratori-di-cassa`. I testi della vendita sono in
+`src/content/sales.ts`; modelli e foto provengono dal catalogo esistente. La pagina
+generale `/soluzioni/altre-attivita` conserva i propri contenuti. Le landing non sono aggiunte
+al menu né alla sitemap e mantengono `noindex, follow` per l’anteprima. L’indicizzazione
+potrà essere rivalutata al rilascio.
+
+Nella vendita sono richiesti solo nome, email e messaggio, con telefono facoltativo
+e oggetto automatico «Acquisto o sostituzione registratore di cassa», confermato
+anche dal server. Il contesto controllato `generico` / `sales_page` identifica la
+vendita nell’email e in `generate_lead`. Noleggio conserva `rental_page` e i campi
+esistenti. Le CTA e Contattaci portano al modulo locale, conservando i parametri
+pubblicitari; come nel noleggio, footer e chat della vendita privilegiano il modulo.
+Nessuna conversione viene emessa dal clic sulla CTA.
+
+Beauty e vendita riutilizzano `ScrollReveal` per le animazioni, con contenuti
+immediatamente visibili su smartphone e quando è richiesto movimento ridotto.
+Verifiche, URL dell’anteprima, stato di rilascio e materiali mancanti sono in
+[Collaudo marketing](docs/collaudo-marketing.md).
 
 Fonti e dettagli delle soluzioni sono raccolti nella
 [scheda di revisione tecnica](docs/revisione-pagine-settori.md).

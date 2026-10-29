@@ -67,7 +67,7 @@ test(`tag Google reale, Ads ${ads}: un lead per invio, nessuna conversione su vi
   await page.getByLabel("Email", { exact: true }).fill("review@example.com");
   await page.getByLabel("Numero di telefono", { exact: true }).fill("+39 333 123 4567");
   await page.getByLabel("Messaggio", { exact: true }).fill("Collaudo intercettato: nessuna email o richiesta di raccolta reale.");
-  await page.getByRole("button", { name: "Richiedi un ricontatto" }).click();
+  await page.locator('form button[type="submit"]').click();
   await expect(page).toHaveURL(/grazie$/);
   await expect.poll(() => captured.filter((event) => event.event === "generate_lead").length, { timeout: 15000 }).toBe(1);
   await expect.poll(() => captured.filter((event) => event.event === "page_view" && event.path === "/grazie").length, { timeout: 15000 }).toBe(1);

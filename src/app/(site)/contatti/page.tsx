@@ -14,7 +14,7 @@ export default function ContattiPage() {
     <>
       <PageIntro title={contactPage.title} description={contactPage.description} />
       <Section>
-        <div className="grid items-start gap-8 lg:grid-cols-[1fr_1.2fr] lg:gap-16">
+        <div className="mx-auto max-w-2xl space-y-8">
           <div>
             <h2 className="section-title">Parliamone insieme</h2>
             <div className="mt-6 space-y-5 text-sm leading-relaxed text-gray-600">
@@ -27,7 +27,7 @@ export default function ContattiPage() {
             </div>
           </div>
           <div className="form-panel">
-            <h2 className="mb-6 text-xl font-semibold">{contactPage.formTitle}</h2>
+            <h2 className="mb-6 text-center text-xl font-semibold">{contactPage.formTitle}</h2>
             <ContactForm />
           </div>
         </div>

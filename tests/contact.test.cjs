@@ -22,6 +22,25 @@ const contact = load('src/lib/contact.ts', { '@/lib/contact-context': contexts }
 const secret = 'test-only-secret-at-least-32-characters';
 const valid = { name: 'Mario Rossi', email: 'mario@example.com', subject: 'Informazioni', message: 'Vorrei informazioni.', website: '' };
 
+test('Beauty and sales accept an omitted phone, validate supplied numbers and distinguish requests', () => {
+  const beauty = { sector: 'parrucchieri-saloni', form_location: 'sector_page' };
+  for (const context of [beauty, contexts.salesContactContext]) {
+    for (const phone of [undefined, '', '   ']) {
+      assert.ok(contact.validateContact({ ...valid, context, phone }));
+    }
+    for (const phone of [null, {}, 123456789, '123', 'not-a-number', '+39 333 123 4567\n']) {
+      assert.equal(contact.validateContact({ ...valid, context, phone }), null);
+    }
+    assert.equal(contact.validateContact({ ...valid, context, phone: '+39 333 123 4567' }).phone, '+39 333 123 4567');
+  }
+  for (const subject of [undefined, '', 'Noleggio registratore di cassa']) {
+    assert.equal(contact.validateContact({ ...valid, context: contexts.salesContactContext, subject }).subject, contexts.SALES_CONTACT_SUBJECT);
+  }
+  assert.equal(contexts.contactContextForPath(contexts.SALES_PATH).form_location, 'sales_page');
+  assert.equal(contexts.contactContextForPath(`${contexts.SALES_PATH}/`).form_location, 'sales_page');
+  assert.equal(contexts.parseContactContext({ sector: 'parrucchieri-saloni', form_location: 'sales_page' }), null);
+});
+
 test('rental validates the municipality and fixes the request subject without changing generic forms', () => {
   const payload = { ...valid, name: 'Mario Rossi, Bar Centrale', phone: '+39 333 123 4567', municipality: ' Pergine Valsugana ', context: contexts.rentalContactContext };
   const form = contact.validateContact(payload);
@@ -92,6 +111,31 @@ test('rental email carries activity, municipality and usage period through the e
   assert.doesNotMatch(mail.text, /2 giorni/);
   assert.equal(mail.replyTo.address, valid.email);
   assert.ok(response.cookies.get(contact.RECEIPT_COOKIE));
+});
+
+test('sales and Beauty email carry distinct interests without requiring a phone or sending real mail', async () => {
+  process.env.SMTP_USER = 'sender@gmail.com';
+  process.env.SMTP_PASSWORD = 'test-password';
+  process.env.CONTACT_FORM_SECRET = secret;
+  process.env.CONTACT_TO = 'recipient@example.com';
+  let mail;
+  const route = load('src/app/api/contact/route.ts', {
+    '@/lib/contact': contact,
+    nodemailer: { createTransport: () => ({ sendMail: async (message) => { mail = message; return { accepted: ['recipient@example.com'] }; }, close() {} }) },
+  });
+  for (const [context, subject] of [
+    [contexts.salesContactContext, contexts.SALES_CONTACT_SUBJECT],
+    [{ sector: 'parrucchieri-saloni', form_location: 'sector_page' }, 'Pagina web e agenda online per il mio salone'],
+  ]) {
+    const response = await route.POST(request({ ...valid, subject, context, phone: '' }));
+    assert.equal(response.status, 200);
+    assert.equal(mail.subject, `Nuova richiesta dal sito Mifro: ${subject}`);
+    assert.ok(mail.text.includes(`Settore: ${context.sector}`));
+    assert.ok(mail.text.includes(`Posizione modulo: ${context.form_location}`));
+    assert.doesNotMatch(mail.text, /Telefono:|Claudio richiama/);
+    assert.equal(mail.replyTo.address, valid.email);
+    assert.ok(response.cookies.get(contact.RECEIPT_COOKIE));
+  }
 });
 
 test('route only authorizes thank-you after SMTP acceptance', async () => {
@@ -182,8 +226,8 @@ test('only generic contact allows a missing or blank subject', () => {
   for (const subject of [null, 12, {}, '\r\nBcc: spam@example.com']) assert.equal(contact.validateContact({ ...valid, subject }), null);
 });
 
-test('all sector forms require a usable phone number; generic and legacy requests remain valid', () => {
-  for (const sector of contexts.contactSectors.filter((value) => value !== 'generico')) {
+test('existing callback sector forms require a usable phone number; generic and legacy requests remain valid', () => {
+  for (const sector of contexts.contactSectors.filter((value) => value !== 'generico' && value !== 'parrucchieri-saloni')) {
     const payload = { ...valid, context: { sector, form_location: 'sector_page' } };
     for (const phone of [undefined, '', '   ', null, 3331234567, {}, '123', 'x'.repeat(41), '+'.repeat(8), '1234567890123456', '+39 333 123 4567\r\nBcc: injected@example.com', '\n3331234567', 'chiama Mario']) {
       assert.equal(contact.validateContact({ ...payload, phone }), null);

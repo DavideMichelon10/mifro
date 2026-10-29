@@ -28,6 +28,7 @@ export function trackContactClick(channel: "phone" | "whatsapp", pathname: strin
   if (channel !== "phone" && channel !== "whatsapp") return;
   const { sector, form_location } = contactContextForPath(pathname);
   const page_type = form_location === "rental_page" ? "rental_page"
+    : form_location === "sales_page" ? "sales_page"
     : sector !== "generico" ? "sector_page"
     : pathname === "/" ? "home"
     : pathname === "/contatti" ? "contact_page"

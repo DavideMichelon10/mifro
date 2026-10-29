@@ -9,7 +9,8 @@ import Logo from "@/components/Logo";
 
 export default function Footer() {
   const { contact, footer, hoursShort } = siteConfig;
-  const formOnly = contactContextForPath(usePathname()).form_location === "rental_page";
+  const { form_location } = contactContextForPath(usePathname());
+  const formOnly = form_location === "rental_page" || form_location === "sales_page";
   const year = new Date().getFullYear();
   const linkClass = "inline-flex min-h-11 items-center gap-2 rounded-sm text-sm leading-5 text-gray-600 underline-offset-4 transition-colors hover:text-brand-600 hover:underline";
   const headingClass = "text-xs font-semibold uppercase tracking-[0.14em] text-brand-900";

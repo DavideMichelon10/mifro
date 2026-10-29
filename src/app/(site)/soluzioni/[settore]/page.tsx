@@ -13,6 +13,8 @@ import SolutionCard from "@/components/SolutionCard";
 import ProductGallery from "@/components/ProductGallery";
 import ScrollReveal from "@/components/ScrollReveal";
 import { createPageMetadata } from "@/lib/metadata";
+import BeautyPage from "@/components/BeautyPage";
+import { beautyContent } from "@/content/beauty";
 
 export const dynamicParams = false;
 
@@ -27,8 +29,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const sector = getSector(settore);
   if (!sector) notFound();
   return createPageMetadata({
-    title: sector.title,
-    description: sector.description,
+    title: sector.slug === "parrucchieri-saloni" ? beautyContent.seo.title : sector.title,
+    description: sector.slug === "parrucchieri-saloni" ? beautyContent.seo.description : sector.description,
     path: sectorHref(sector.slug),
     image: sector.slug === "ristoranti" ? "ristoranti" : "generale",
   });
@@ -38,6 +40,7 @@ export default async function SectorPage({ params }: PageProps) {
   const { settore } = await params;
   const sector = getSector(settore);
   if (!sector) notFound();
+  if (sector.slug === "parrucchieri-saloni") return <BeautyPage sector={sector} />;
   const { highlights, localPresence } = siteConfig.about;
   const { contactJourney } = siteConfig;
 
@@ -179,14 +182,14 @@ export default async function SectorPage({ params }: PageProps) {
       </Section>
 
       <Section>
-        <div className="grid items-start gap-6 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
-          <ScrollReveal>
-            <p className="eyebrow">Contatta Mifro</p>
+        <div className="mx-auto max-w-2xl space-y-8">
+          <ScrollReveal className="text-center">
+            <p className="eyebrow justify-center">Contatta Mifro</p>
             <h2 className="section-title mt-4">{sector.question}</h2>
             <p className="mt-5 leading-relaxed text-gray-600">{sector.questionText}</p>
           </ScrollReveal>
           <div id="richiedi-proposta" tabIndex={-1} aria-labelledby="contact-form-title" className="form-panel scroll-mt-24">
-            <h3 id="contact-form-title" className="mb-6 text-xl font-semibold">{siteConfig.contactPage.formTitle}</h3>
+            <h3 id="contact-form-title" className="mb-6 text-center text-xl font-semibold">{siteConfig.contactPage.formTitle}</h3>
             <ContactForm key={sector.slug} context={{ sector: sector.slug, form_location: "sector_page" }} defaultSubject={sector.subject} messagePlaceholder={sector.messagePlaceholder} submitLabel={contactJourney.cta} showSubject={false} />
           </div>
         </div>
