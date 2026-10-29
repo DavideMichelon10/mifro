@@ -454,3 +454,17 @@ test("altre attività: servizi digitali, prodotti e modulo su desktop e mobile",
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
   }
 });
+
+test("prodotti e assistenza: comparsa allo scroll e accesso diretto al NAS", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "no-preference" });
+  await page.goto("/prodotti-assistenza");
+  const nas = page.locator("#nas-backup .animate-on-scroll");
+  await nas.scrollIntoViewIfNeeded();
+  await expect(nas).toHaveClass(/is-visible/);
+  await expect(nas).toHaveCSS("opacity", "1");
+  await page.goto("/prodotti-assistenza#nas-backup");
+  await expect(page.getByRole("heading", { name: "NAS e sistemi di backup", exact: true })).toBeInViewport();
+  await expect(nas).toHaveCSS("opacity", "1");
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await expect(nas).toHaveCSS("transition-duration", "0s");
+});

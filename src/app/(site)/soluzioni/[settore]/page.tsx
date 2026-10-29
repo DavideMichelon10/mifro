@@ -77,7 +77,7 @@ export default async function SectorPage({ params }: PageProps) {
           </ScrollReveal>
           <div className="grid gap-5 md:grid-cols-2">
             {sector.digitalServices.map((service, index) => (
-              <ScrollReveal key={service.title} delay={Math.min(index + 1, 3) as 1 | 2 | 3}>
+              <ScrollReveal key={service.title} delay={Math.min(index + 1, 4) as 1 | 2 | 3 | 4}>
                 <article className="surface-card h-full p-6 sm:p-8">
                   <div className="icon-tile mb-5"><Icon name={service.icon} aria-hidden="true" className="h-6 w-6" /></div>
                   <h3 className="text-2xl font-bold tracking-tight text-brand-900">{service.title}</h3>
@@ -132,7 +132,7 @@ export default async function SectorPage({ params }: PageProps) {
           {sector.solutions.map((solution, index) => (
             <ScrollReveal
               key={solution.name}
-              delay={Math.min(index + 1, 3) as 1 | 2 | 3}
+              delay={Math.min(index + 1, 4) as 1 | 2 | 3 | 4}
               className="md:row-span-3 md:grid md:grid-rows-subgrid md:gap-0"
             >
               <SolutionCard
@@ -141,10 +141,6 @@ export default async function SectorPage({ params }: PageProps) {
               />
             </ScrollReveal>
           ))}
-        </div>
-        <div className="mt-6 rounded-xl border border-brand-100 bg-white p-5 sm:p-6">
-          <h3 className="font-semibold text-brand-900">Installazione e assistenza, con i tecnici Mifro</h3>
-          <p className="mt-2 text-sm leading-relaxed text-gray-600">Configuriamo la soluzione, ti insegniamo a usarla e restiamo al tuo fianco per dubbi e necessità, anche dopo l’avvio.</p>
         </div>
         <a href="#richiedi-proposta" className="text-link mt-5">{sector.cta}<ArrowRight aria-hidden="true" className="h-4 w-4 shrink-0" /></a>
       </Section>
