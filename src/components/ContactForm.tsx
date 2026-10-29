@@ -24,6 +24,7 @@ export default function ContactForm({
 }: ContactFormProps) {
   const { formFields, replyNote } = siteConfig.contactPage;
   const isSectorForm = context.form_location === "sector_page";
+  const isRentalForm = context.form_location === "rental_page";
   const router = useRouter();
   const [pending, setPending] = useState(false);
   const [error, setError] = useState("");
@@ -35,6 +36,7 @@ export default function ContactForm({
     name: "",
     email: "",
     phone: "",
+    municipality: "",
     subject: defaultSubject,
     message: "",
   });
@@ -73,7 +75,7 @@ export default function ContactForm({
         </div>
         <div>
           <label htmlFor="cf-name" className="mb-1.5 block text-sm font-medium text-gray-700">
-            {formFields.name}
+            {isRentalForm ? "Nome e attività" : formFields.name}
           </label>
           <input
             id="cf-name"
@@ -85,9 +87,27 @@ export default function ContactForm({
             value={form.name}
             onChange={(e) => setForm({ ...form, name: e.target.value })}
             className={inputClass}
-            placeholder="Mario Rossi"
+            placeholder={isRentalForm ? "Es. Mario Rossi, Bar Centrale" : "Mario Rossi"}
           />
         </div>
+
+        {isRentalForm && (
+          <div>
+            <label htmlFor="cf-municipality" className="mb-1.5 block text-sm font-medium text-gray-700">Comune dell’attività</label>
+            <input
+              id="cf-municipality"
+              name="municipality"
+              autoComplete="address-level2"
+              maxLength={120}
+              type="text"
+              required
+              value={form.municipality}
+              onChange={(e) => setForm({ ...form, municipality: e.target.value })}
+              className={inputClass}
+              placeholder="Es. Pergine Valsugana"
+            />
+          </div>
+        )}
 
         <div>
           <label htmlFor="cf-email" className="mb-1.5 block text-sm font-medium text-gray-700">
@@ -107,9 +127,9 @@ export default function ContactForm({
           />
         </div>
 
-        {isSectorForm && (
+        {(isSectorForm || isRentalForm) && (
           <div>
-            <label htmlFor="cf-phone" className="mb-1.5 block text-sm font-medium text-gray-700">{formFields.phone}</label>
+            <label htmlFor="cf-phone" className="mb-1.5 block text-sm font-medium text-gray-700">{isRentalForm ? "Cellulare" : formFields.phone}</label>
             <input
               id="cf-phone"
               name="phone"
@@ -120,11 +140,11 @@ export default function ContactForm({
               required
               value={form.phone}
               onChange={(e) => setForm({ ...form, phone: e.target.value })}
-              aria-describedby="cf-phone-help"
+              aria-describedby={isSectorForm ? "cf-phone-help" : undefined}
               className={inputClass}
               placeholder="Es. +39 333 123 4567"
             />
-            <p id="cf-phone-help" className="mt-2 text-sm text-gray-600">Il numero a cui Claudio può richiamarti.</p>
+            {isSectorForm && <p id="cf-phone-help" className="mt-2 text-sm text-gray-600">Il numero a cui Claudio può richiamarti.</p>}
           </div>
         )}
 
@@ -148,7 +168,7 @@ export default function ContactForm({
 
         <div>
           <label htmlFor="cf-message" className="mb-1.5 block text-sm font-medium text-gray-700">
-            {formFields.message}
+            {isRentalForm ? "Esigenza e periodo di utilizzo" : formFields.message}
           </label>
           <textarea
             id="cf-message"
@@ -173,7 +193,7 @@ export default function ContactForm({
           >
             {pending ? "Invio in corso…" : (submitLabel ?? formFields.submit)}
           </button>
-          {!isSectorForm && <p className="text-sm leading-relaxed text-gray-600">{replyNote}</p>}
+          {!isSectorForm && !isRentalForm && <p className="text-sm leading-relaxed text-gray-600">{replyNote}</p>}
         </div>
       </form>
 

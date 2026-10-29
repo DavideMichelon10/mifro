@@ -35,7 +35,7 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [solutionsOpen, setSolutionsOpen] = useState<"desktop" | "mobile" | null>(null);
   const pathname = usePathname();
-  const contactHref = contactContextForPath(pathname).sector === "generico" ? "/contatti" : "#richiedi-proposta";
+  const contactHref = contactContextForPath(pathname).form_location === "contact_page" ? "/contatti" : "#richiedi-proposta";
   const header = useRef<HTMLElement>(null);
   const toggle = useRef<HTMLButtonElement>(null);
   const desktopDropdown = useRef<HTMLLIElement>(null);

@@ -1,0 +1,169 @@
+LANDING NOLEGGIO MIFRO — BOZZA PER REVISIONE
+29 ottobre 2026
+
+Stato: implementata nel progetto; condizioni commerciali da completare.
+Percorso: /noleggio-registratori-di-cassa
+Anteprima interattiva locale: avviare npm run dev e aprire
+http://localhost:3000/noleggio-registratori-di-cassa
+
+CONDIZIONI COMMERCIALI DA COMPLETARE PRIMA DELLA PUBBLICAZIONE
+
+- Confermare il prezzo di partenza di 29 € al mese e la formula a cui si applica.
+- Precisare se l’IVA è inclusa o esclusa.
+- Definire durata minima e condizioni di rinnovo/cessazione.
+- Definire eventuale anticipo, deposito e altri costi iniziali.
+- Specificare il modello previsto e la dotazione della formula da 29 €.
+- Definire modalità e costi di installazione e configurazione.
+- Specificare i servizi compresi nel canone e quelli separati, in particolare formazione e assistenza, comprese le modalità in presenza.
+
+Non sono state aggiunte durate, anticipi, costi di installazione, servizi inclusi,
+recensioni, numeri di clienti, certificazioni o tempi garantiti non confermati.
+Il comune viene raccolto per verificare la possibilità di supporto in presenza;
+la pagina non introduce nuove aree di copertura.
+
+TESTI FINALI DELLA BOZZA
+
+1. PRIMA SCHERMATA
+
+Mifro · Pergine Valsugana
+
+Registratori di cassa a noleggio da 29 € al mese
+
+Con Mifro hai un riferimento professionale sul territorio: ti seguiamo nella scelta della cassa, nella formazione e nell’assistenza anche dopo l’avvio, anche di persona nelle zone servite.
+
+Pulsante: Richiedi un preventivo di noleggio
+
+Modello, condizioni di noleggio e servizi sono specificati nel preventivo.
+
+Didascalia prodotto:
+Un esempio di registratore di cassa RCH. Il modello della tua proposta viene scelto in base all’attività e alla formula di noleggio.
+
+2. IL SUPPORTO DI MIFRO
+
+La cassa giusta. E qualcuno su cui contare.
+
+Scelta in base alla tua attività
+Ascoltiamo come lavori e ti aiutiamo a individuare il registratore adatto alle esigenze del tuo punto vendita.
+
+Formazione pratica
+Ti accompagniamo nell’utilizzo della cassa, per conoscere le funzioni che ti servono nel lavoro quotidiano.
+
+Assistenza anche dopo l’avvio
+Restiamo un riferimento per dubbi e problemi tecnici, con supporto da remoto e in presenza nelle zone servite.
+
+Sono servizi disponibili: modalità e costi di formazione e assistenza vengono concordati nella proposta, senza considerarli automaticamente compresi nel canone di partenza.
+
+3. COME FUNZIONA
+
+Partiamo dalla tua attività, poi definiamo la proposta.
+
+1. Raccontaci la tua attività
+Indicaci che attività hai, in quale comune lavori e per quale periodo ti serve la cassa.
+
+2. Valutiamo la soluzione
+Scegliamo con te il registratore e la formula di noleggio in base alle tue esigenze.
+
+3. Ricevi la proposta
+Nel preventivo trovi modello, durata, canone e servizi specificati.
+
+4. PERSONE E PRESENZA SUL TERRITORIO
+
+Un riferimento a Pergine Valsugana, anche dopo la consegna
+
+Dietro Mifro ci sono persone che conoscono le casse e il lavoro dei punti vendita. Parli con professionisti che ti aiutano a scegliere e restano raggiungibili quando hai bisogno di supporto.
+
+Ci trovi nella nostra sede di Pergine Valsugana. Per l’assistenza valutiamo con te il problema e concordiamo il supporto da remoto o sul posto, nelle zone servite.
+
+Foto: la vetrina e l’ingresso della sede Mifro.
+Didascalia: Via Giuseppe Verdi 13, 38057 Pergine Valsugana (TN)
+Collegamento: Conosci le persone di Mifro
+
+5. RICHIESTA DI PREVENTIVO
+
+La tua proposta di noleggio
+
+Titolo del modulo: Richiedi un preventivo di noleggio
+Il modulo è centrato nella pagina.
+
+Campi obbligatori:
+- Nome e attività — esempio: Mario Rossi, Bar Centrale.
+- Comune dell’attività — esempio: Pergine Valsugana.
+- Email.
+- Cellulare — esempio: +39 333 123 4567.
+- Esigenza e periodo di utilizzo.
+  Esempio nel messaggio: Es. Cerco una cassa per il mio negozio. Vorrei utilizzarla da… per… Ho bisogno di…
+
+Oggetto automatico: Noleggio registratore di cassa.
+Pulsante: Richiedi la proposta di noleggio
+
+I dati saranno utilizzati per gestire la tua richiesta. Leggi l’informativa privacy.
+
+6. DOMANDE FREQUENTI
+
+Come scegliamo il modello di registratore?
+Partiamo dal tipo di attività e dalle tue esigenze di utilizzo. Valutiamo insieme il registratore e la formula di noleggio; il modello proposto viene specificato nel preventivo.
+
+Potete insegnarmi a usare la cassa?
+Sì, Mifro offre formazione pratica sull’utilizzo dei sistemi di cassa. Modalità e costi vengono concordati nella proposta: la formazione non è automaticamente compresa nel canone di partenza.
+
+A chi mi rivolgo se ho bisogno di assistenza?
+Puoi rivolgerti a Mifro anche dopo l’avvio. Valutiamo il problema e concordiamo il supporto da remoto o in presenza nelle zone servite. Modalità e costi dell’assistenza vengono specificati nella proposta.
+
+La mia attività è in una zona servita?
+Mifro ha sede a Pergine Valsugana. Indicaci il comune della tua attività nel modulo: verifichiamo con te la possibilità di seguirti anche di persona e concordiamo le modalità del servizio.
+
+METADATI
+
+Titolo: Noleggio registratori di cassa da 29 € al mese | Mifro
+Descrizione: Registratori di cassa a noleggio da 29 € al mese. Mifro, a Pergine Valsugana: scelta della cassa, formazione e assistenza da concordare nella tua proposta.
+Canonical: https://www.mifro.it/noleggio-registratori-di-cassa
+La bozza ha noindex, follow ed è esclusa dalla sitemap. Rivalutare il noindex
+quando si approvano le condizioni e si decide la pubblicazione.
+Non ci sono link alla landing nella topbar, nel menu o nel footer.
+Il pulsante Contattaci esistente, quando si è sulla landing, porta al modulo locale.
+Anche i contatti nel footer portano al modulo. La landing non mostra recapiti
+telefonici aziendali, email dirette, WhatsApp o collegamenti social. La chat è
+nascosta sulla landing; nelle altre pagine i canali esistenti restano disponibili.
+
+FONTI E IMPLEMENTAZIONE
+
+- Identità, recapiti, supporto e presenza locale: src/content/site.ts.
+- Foto autentica della sede: public/images/vetrina-mifro.jpg, già usata dal sito.
+- Foto prodotto: productImages["WALLE MEC RT"] in src/content/sectors.ts;
+  asset esistente derivato dalla foto RCH. È accompagnata da una didascalia
+  esplicita: non rappresenta il modello garantito al prezzo di partenza.
+- Testi modificabili: src/content/rental.ts.
+- Pagina: src/app/(site)/noleggio-registratori-di-cassa/page.tsx.
+- Riutilizzati layout, navigazione, footer, Section, classi grafiche, ContactForm,
+  endpoint /api/contact, validazione, SMTP, privacy, ricevuta e pagina /grazie.
+- Cinque campi obbligatori: nome e attività insieme, comune, email, cellulare e
+  messaggio. Il messaggio raccoglie esigenza e periodo. Comune, telefono e oggetto
+  sono validati sul server e inseriti nell’email interna. Il destinatario resta
+  quello del sistema esistente.
+
+MISURAZIONE E ATTRIBUZIONE
+
+- generate_lead soltanto dopo la risposta di invio riuscito, con form_id: contact,
+  sector: generico e form_location: rental_page. Nessun evento al refresh di /grazie.
+- I pulsanti che portano al modulo non registrano una conversione. Sulle altre
+  pagine il tracciamento contact_click dei canali diretti resta separato.
+- Riutilizzato il tag Google e il sistema di consenso esistenti, senza nuovi tag,
+  identificativi, archivi di attribuzione o modifiche agli account GA4/Ads.
+- I passaggi al modulo conservano gclid, gbraid, wbraid e i parametri UTM anche
+  prima della scelta del consenso. Il lead viene emesso sulla landing, prima
+  del passaggio a /grazie. La misurazione Ads resta subordinata al suo consenso.
+- Nome, attività, comune, recapito e messaggio non vengono aggiunti ai parametri
+  degli eventi Analytics.
+
+VERIFICA
+
+Build di produzione, controllo TypeScript, 12 test Node e 49 test browser superati.
+Build e controlli browser eseguiti su una copia isolata degli stessi sorgenti.
+I test coprono i moduli preesistenti e quello nuovo: successo, errore, doppio invio,
+consenso, conferma e refresh, classificazione dei clic, parametri pubblicitari,
+metadati, navigazione e FAQ da tastiera. Controllati centratura del modulo,
+cellulare obbligatorio e canali diretti assenti solo sulla landing, anche dopo
+navigazione interna. Layout verificato a 320, 390, 768 e 1440 px.
+SMTP e raccolta esterna sono simulati/intercettati nei test: nessuna email o
+conversione reale è stata inviata. La verifica locale non prova la consegna nella
+casella destinataria né l’attribuzione finale di una campagna Google Ads.

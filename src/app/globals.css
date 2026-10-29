@@ -96,9 +96,9 @@ section:target .animate-on-scroll {
 /* Keep anchor headings clear of the sticky navigation. */
 section[id] { scroll-margin-top: 6rem; }
 
-/* Let the cookie choice remain reachable even when the chat widget is open. */
-body:has([data-cookie-preferences]) .woot-widget-bubble,
-body:has([data-cookie-preferences]) .woot-widget-holder {
+/* Keep cookie choices reachable and direct rental enquiries to the form. */
+body:has([data-cookie-preferences], [data-contact-form-only]) .woot-widget-bubble,
+body:has([data-cookie-preferences], [data-contact-form-only]) .woot-widget-holder {
   visibility: hidden !important;
 }
 

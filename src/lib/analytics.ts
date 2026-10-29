@@ -26,8 +26,9 @@ export function trackContactSubmission(context: ContactContext = defaultContactC
 // Intent only: opening a dialer or WhatsApp does not prove a conversation happened.
 export function trackContactClick(channel: "phone" | "whatsapp", pathname: string) {
   if (channel !== "phone" && channel !== "whatsapp") return;
-  const { sector } = contactContextForPath(pathname);
-  const page_type = sector !== "generico" ? "sector_page"
+  const { sector, form_location } = contactContextForPath(pathname);
+  const page_type = form_location === "rental_page" ? "rental_page"
+    : sector !== "generico" ? "sector_page"
     : pathname === "/" ? "home"
     : pathname === "/contatti" ? "contact_page"
     : pathname === "/prodotti-assistenza" ? "support_page" : "other";

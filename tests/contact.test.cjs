@@ -22,6 +22,24 @@ const contact = load('src/lib/contact.ts', { '@/lib/contact-context': contexts }
 const secret = 'test-only-secret-at-least-32-characters';
 const valid = { name: 'Mario Rossi', email: 'mario@example.com', subject: 'Informazioni', message: 'Vorrei informazioni.', website: '' };
 
+test('rental validates the municipality and fixes the request subject without changing generic forms', () => {
+  const payload = { ...valid, name: 'Mario Rossi, Bar Centrale', phone: '+39 333 123 4567', municipality: ' Pergine Valsugana ', context: contexts.rentalContactContext };
+  const form = contact.validateContact(payload);
+  assert.equal(form.municipality, 'Pergine Valsugana');
+  assert.equal(form.subject, 'Noleggio registratore di cassa');
+  assert.equal(form.phone, '+39 333 123 4567');
+  for (const phone of [undefined, '', '   ', '123', 'not-a-number', '+39 333 123 4567\n']) {
+    assert.equal(contact.validateContact({ ...payload, phone }), null);
+  }
+  for (const municipality of [undefined, '', '   ', 123, {}, 'a'.repeat(121), 'Pergine\nTrento', 'Pergine\x00']) {
+    assert.equal(contact.validateContact({ ...payload, municipality }), null);
+  }
+  assert.equal(contact.validateContact({ ...valid, municipality: 123 }).municipality, '');
+  assert.equal(contexts.contactContextForPath(contexts.RENTAL_PATH).form_location, 'rental_page');
+  assert.equal(contexts.contactContextForPath(`${contexts.RENTAL_PATH}/`).form_location, 'rental_page');
+  assert.equal(contexts.parseContactContext({ sector: 'ristoranti', form_location: 'rental_page' }), null);
+});
+
 test('receipts reject tampering, wrong keys and expiration', () => {
   const token = contact.createReceipt(secret, 1000);
   assert.ok(contact.readReceipt(token, secret, 2000));
@@ -52,6 +70,29 @@ function request(body = valid, options = {}) {
     body: options.raw ?? JSON.stringify(body),
   });
 }
+
+test('rental email carries activity, municipality and usage period through the existing SMTP flow', async () => {
+  process.env.SMTP_USER = 'sender@gmail.com';
+  process.env.SMTP_PASSWORD = 'test-password';
+  process.env.CONTACT_FORM_SECRET = secret;
+  process.env.CONTACT_TO = 'recipient@example.com';
+  let mail;
+  const route = load('src/app/api/contact/route.ts', {
+    '@/lib/contact': contact,
+    nodemailer: { createTransport: () => ({ sendMail: async (message) => { mail = message; return { accepted: ['recipient@example.com'] }; }, close() {} }) },
+  });
+  const response = await route.POST(request({ ...valid, name: 'Mario Rossi, Bar Centrale', phone: '+39 333 123 4567', municipality: 'Pergine Valsugana', message: 'Cassa da dicembre per sei mesi.', context: contexts.rentalContactContext }));
+  assert.equal(response.status, 200);
+  assert.equal(mail.subject, 'Nuova richiesta dal sito Mifro: Noleggio registratore di cassa');
+  assert.match(mail.text, /Nome e attività: Mario Rossi, Bar Centrale/);
+  assert.match(mail.text, /Comune: Pergine Valsugana/);
+  assert.match(mail.text, /Telefono: \+39 333 123 4567/);
+  assert.match(mail.text, /Cassa da dicembre per sei mesi/);
+  assert.match(mail.text, /Posizione modulo: rental_page/);
+  assert.doesNotMatch(mail.text, /2 giorni/);
+  assert.equal(mail.replyTo.address, valid.email);
+  assert.ok(response.cookies.get(contact.RECEIPT_COOKIE));
+});
 
 test('route only authorizes thank-you after SMTP acceptance', async () => {
   process.env.SMTP_USER = 'sender@gmail.com';
