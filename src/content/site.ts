@@ -200,7 +200,7 @@ export const siteConfig = {
       { value: "Assistenza diretta", text: "Sul posto e da remoto" },
     ],
     localPresence: {
-      title: "Strumenti fiscali, esperienza su cui contare",
+      title: "Casse e POS, con tecnici al tuo fianco",
       image: "/images/vetrina-mifro.jpg",
       imageAlt: "La vetrina e l’ingresso della sede Mifro",
       intro:
