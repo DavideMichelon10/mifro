@@ -143,7 +143,7 @@ export const siteConfig = {
 
   /* ── Prodotti e assistenza ──────────────────────────── */
   productsAndSupport: {
-    intro: "Pagamenti, strumenti per l’ufficio e assistenza tecnica, con un unico riferimento sul territorio.",
+    intro: "Pagamenti, strumenti per l’ufficio, NAS e sistemi di backup, con assistenza tecnica e un unico riferimento sul territorio.",
     blocks: [
       {
         id: "pagamenti",
@@ -158,12 +158,22 @@ export const siteConfig = {
       {
         id: "hardware-ufficio",
         title: "Attrezzature per l’ufficio",
-        description: "Sistema di backup, NAS con backup, antivirus Bitdefender, PC, stampanti, multifunzioni e materiali di consumo.",
-        details: "Un sistema di backup per i tuoi dati, NAS con backup e l’antivirus Bitdefender per i computer dell’ufficio. Poi PC per il lavoro di ogni giorno, stampanti e multifunzioni: ti aiutiamo a scegliere in base a quello che devi fare e a quanto stampi. Forniamo anche materiali di consumo, così puoi rivolgerti a noi sia per l’attrezzatura sia per le necessità quotidiane dell’ufficio.",
+        description: "PC, stampanti, multifunzioni, antivirus Bitdefender e materiali di consumo.",
+        details: "PC per il lavoro di ogni giorno, stampanti, multifunzioni e antivirus Bitdefender: ti aiutiamo a scegliere in base a quello che devi fare e a quanto stampi. Forniamo anche materiali di consumo, così puoi rivolgerti a noi sia per l’attrezzatura sia per le necessità quotidiane dell’ufficio.",
         icon: "Printer" as const,
         image: "/images/stampanti.jpg",
         imageAlt: "Postazione da ufficio con computer e stampante",
         imageFit: "cover" as const,
+      },
+      {
+        id: "nas-backup",
+        title: "NAS e sistemi di backup",
+        description: "Archiviazione condivisa e copie di sicurezza per i dati della tua attività.",
+        details: "Ti aiutiamo a scegliere e configurare un NAS per raccogliere i file dell’ufficio e condividerli tra le postazioni di lavoro. Affianchiamo sistemi di backup per conservare copie di sicurezza dei dati e poterli ripristinare in caso di guasti o cancellazioni accidentali. Definiamo la soluzione in base alla quantità di dati, agli accessi e alle esigenze della tua attività.",
+        icon: "HardDrive" as const,
+        image: "/images/nas-backup.svg",
+        imageAlt: "Illustrazione di un NAS con due dischi e un simbolo di backup",
+        imageFit: "contain" as const,
       },
       {
         id: "riparazioni",
@@ -280,7 +290,7 @@ export const siteConfig = {
     },
     prodottiAssistenza: {
       title: "Prodotti e assistenza tecnica in Trentino",
-      description: "POS e pagamenti, PC e stampanti per l’ufficio, assistenza su casse e software e riparazioni. Contatta i tecnici Mifro in Trentino.",
+      description: "POS, PC e stampanti per l’ufficio, NAS e sistemi di backup, assistenza su casse e software e riparazioni. Contatta i tecnici Mifro in Trentino.",
     },
     chiSiamo: {
       title: "Chi siamo: al fianco delle imprese in Trentino",

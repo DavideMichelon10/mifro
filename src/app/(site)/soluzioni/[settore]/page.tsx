@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { ArrowRight, Check, ChevronDown, MonitorCog } from "lucide-react";
 import { siteConfig } from "@/content/site";
 import { getSector, sectors, sectorHref } from "@/content/sectors";
+import { Icon } from "@/components/Icons";
 import Section from "@/components/Section";
 import ContactForm from "@/components/ContactForm";
 import ContactJourney from "@/components/ContactJourney";
@@ -44,7 +45,7 @@ export default async function SectorPage({ params }: PageProps) {
     <>
       <section className="page-intro overflow-hidden">
         <div className="site-container py-8 sm:py-10 lg:py-12">
-          <p className="eyebrow">Soluzioni RCH · {sector.label}</p>
+          <p className="eyebrow">{sector.digitalServices ? "Soluzioni Mifro" : "Soluzioni RCH"} · {sector.label}</p>
           <h1 className="page-title mt-3">{sector.headline}</h1>
           <p className="lead mt-4 max-w-3xl text-pretty">{sector.intro}</p>
           <div className="mt-6 flex flex-col items-stretch gap-2 sm:flex-row sm:items-center sm:gap-5">
@@ -67,6 +68,32 @@ export default async function SectorPage({ params }: PageProps) {
           ))}
         </dl>
       </section>
+
+      {sector.digitalServices && (
+        <Section id="servizi-digitali">
+          <ScrollReveal className="mb-8">
+            <h2 className="section-title">Gestione e presenza online, su misura</h2>
+            <p className="mt-4 leading-relaxed text-gray-600">Mifro ti segue in ogni fase: <strong className="font-semibold text-brand-900">installazione e configurazione</strong>, <strong className="font-semibold text-brand-900">formazione sull’utilizzo</strong> e <strong className="font-semibold text-brand-900">assistenza post-vendita</strong>. Ti aiutiamo a partire e restiamo al tuo fianco nel lavoro quotidiano.</p>
+          </ScrollReveal>
+          <div className="grid gap-5 md:grid-cols-2">
+            {sector.digitalServices.map((service, index) => (
+              <ScrollReveal key={service.title} delay={Math.min(index + 1, 3) as 1 | 2 | 3}>
+                <article className="surface-card h-full p-6 sm:p-8">
+                  <div className="icon-tile mb-5"><Icon name={service.icon} aria-hidden="true" className="h-6 w-6" /></div>
+                  <h3 className="text-2xl font-bold tracking-tight text-brand-900">{service.title}</h3>
+                  <p className="mt-3 leading-relaxed text-gray-600">{service.description}</p>
+                  <ul className="mt-5 space-y-3 border-t border-gray-200 pt-5">
+                    {service.features.map((feature) => (
+                      <li key={feature} className="flex items-start gap-2 text-sm text-gray-700"><Check aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-brand-600" />{feature}</li>
+                    ))}
+                  </ul>
+                </article>
+              </ScrollReveal>
+            ))}
+          </div>
+          <a href="#richiedi-proposta" className="text-link mt-5">Parliamo del tuo progetto<ArrowRight aria-hidden="true" className="h-4 w-4 shrink-0" /></a>
+        </Section>
+      )}
 
       {sector.software && (
         <Section id="software-gestionale" className="border-b border-gray-200">

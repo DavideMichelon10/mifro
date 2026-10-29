@@ -68,7 +68,7 @@ export default function HomePage() {
             subtitle="Scegli il tuo settore e scopri le casse e i gestionali adatti al tuo lavoro."
           />
         </ScrollReveal>
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {sectors.map((sector, index) => (
             <ScrollReveal key={sector.title} delay={(index + 1) as 1 | 2 | 3 | 4}>
               <Card
@@ -77,7 +77,7 @@ export default function HomePage() {
                 icon={sector.icon}
                 image={sector.image}
                 imageAlt={sector.imageAlt}
-                imageSizes="(max-width: 639px) calc(100vw - 32px), (max-width: 1023px) calc((100vw - 68px) / 2), (max-width: 1151px) calc((100vw - 88px) / 3), 355px"
+                imageSizes="(max-width: 639px) calc(100vw - 32px), (max-width: 1023px) calc((100vw - 68px) / 2), (max-width: 1151px) calc((100vw - 108px) / 4), 260px"
                 href={sector.href}
                 linkLabel="Vedi le soluzioni"
               />
@@ -92,12 +92,12 @@ export default function HomePage() {
         <ScrollReveal>
           <SectionHeader
             title="Prodotti e assistenza"
-            subtitle="Pagamenti, strumenti per l’ufficio e supporto tecnico."
+            subtitle="Pagamenti, strumenti per l’ufficio, NAS, backup e supporto tecnico."
           />
         </ScrollReveal>
-        <div className="grid gap-5 sm:grid-cols-3">
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {productsAndSupport.blocks.map((service, index) => (
-            <ScrollReveal key={service.id} delay={(index + 1) as 1 | 2 | 3}>
+            <ScrollReveal key={service.id} delay={(index + 1) as 1 | 2 | 3 | 4}>
               <Card
                 title={service.title}
                 description={service.description}
@@ -105,7 +105,7 @@ export default function HomePage() {
                 image={service.image}
                 imageAlt={service.imageAlt}
                 imageFit={service.imageFit}
-                imageSizes="(max-width: 639px) 96px, (max-width: 1199px) 33vw, 368px"
+                imageSizes="(max-width: 639px) 96px, (max-width: 1023px) calc((100vw - 68px) / 2), (max-width: 1151px) calc((100vw - 108px) / 4), 260px"
                 compactMobile
                 href={`/prodotti-assistenza#${service.id}`}
                 linkLabel="Esplora il servizio"

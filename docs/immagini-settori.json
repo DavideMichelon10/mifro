@@ -1,7 +1,11 @@
 {
   "tool": "image_gen.imagegen (built-in)",
-  "purpose": "Immagini illustrative generate per le tre schede dei settori nella home. Non rappresentano clienti o locali Mifro reali.",
+  "purpose": "Immagini illustrative generate per le schede dei settori nella home. Non rappresentano clienti o locali Mifro reali.",
   "assets": [
+    {
+      "path": "public/images/sectors/altre-attivita.webp",
+      "prompt": "Use case: photorealistic-natural. Asset type: photograph for the 'Altre attività' category card on an Italian small-business website. Primary request: a very generic small shop interior, without identifying any specific retail sector. Natural editorial photograph, landscape 3:2. View from entrance toward a simple light wood checkout counter and orderly shelves with assorted plain neutral boxes, small unbranded packages and paper shopping bags, merchandise secondary and slightly out of focus. An inviting everyday Italian neighborhood shop, modest and authentic, soft daylight, cream walls, warm neutral wood, restrained colors, realistic surfaces, eye-level 35mm photography. Strong readable composition at thumbnail size, central subject with generous crop-safe margins for 4:3 crop. No people, no logos, no writing, no watermark, no recognizable specialist goods, no clothing racks, no food, no luxury showroom, no collage."
+    },
     {
       "path": "public/images/sectors/food.webp",
       "prompt": "Use case: photorealistic-natural. Asset type: a sector photograph for a small Italian business website card. Landscape 3:2 photograph, one continuous scene filling the image, no borders or collage. Natural editorial photography, authentic everyday small-business setting in northern Italy, soft daylight, warm neutral wood and cream colors with restrained saturation, realistic textures, 35mm lens, no dramatic effects, no text, no brand names or logos, no watermarks, no posed models. Clear instantly recognizable subject at thumbnail size, key subject centered with generous crop-safe edges; must also work in a 4:3 crop. Avoid a luxurious hotel or showroom look. Primary request: an inviting small Italian café and restaurant. View across a few neatly set wooden tables with simple white plates, clear drinking glasses and folded napkins. The counter with an espresso machine is softly visible behind them. Daylight through large windows. Warm approachable atmosphere, realistic and tidy, nobody in the foreground. Emphasize both café and dining, not a close-up of food."

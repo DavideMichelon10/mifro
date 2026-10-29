@@ -92,6 +92,7 @@ export type Sector = {
   solutionsIntro: string;
   solutions: Solution[];
   software?: { title: string; description: string; features: string[]; gallery: ProductImage[]; cta?: string };
+  digitalServices?: { title: string; description: string; icon: IconName; features: string[] }[];
   question: string;
   questionText: string;
   faq: { question: string; answer: string }[];
@@ -100,7 +101,7 @@ export type Sector = {
 export const sectors: Sector[] = [
   {
     slug: "ristoranti",
-    label: "Food",
+    label: "Ristorazione",
     icon: "ChefHat",
     image: "/images/sectors/food.webp",
     imageAlt: "Interno di un bar e ristorante con tavoli apparecchiati e banco caffetteria",
@@ -294,6 +295,64 @@ export const sectors: Sector[] = [
       { question: "APE J RT invia i corrispettivi?", answer: "Sì: è un registratore telematico con stampante integrata. Dopo l’attivazione, trasmette i corrispettivi tramite Wi-Fi o rete mobile." },
       { question: "Come collego la cassa al mercato?", answer: "APE J RT usa Wi-Fi o SIM dati. Per WALLE MEC RT Ambulanti definiamo il collegamento e gli accessori adatti al tuo banco." },
       { question: "Posso accettare pagamenti elettronici?", answer: "Con APE J RT puoi attivare RCH Pay SoftPOS per il contactless. Per WALLE MEC RT Ambulanti abbiniamo un POS. Servizi e costi sono indicati nel preventivo." },
+    ],
+  },
+  {
+    slug: "altre-attivita",
+    label: "Altre attività",
+    icon: "Store",
+    image: "/images/sectors/altre-attivita.webp",
+    imageAlt: "Interno di un negozio con banco in legno e scaffali espositivi",
+    summary: "Casse, gestionali e servizi digitali per la tua attività.",
+    title: "Soluzioni su misura per la tua attività in Trentino",
+    description: "Casse, POS, gestionali su misura, siti web, e-commerce e agenda appuntamenti per la tua attività in Trentino. Scopri le soluzioni Mifro.",
+    headline: "Strumenti su misura per il tuo lavoro",
+    intro: "Ogni attività ha esigenze diverse. Con Mifro scegli gli strumenti per gestire vendite, clienti e lavoro quotidiano, nella tua sede e online.",
+    cta: "Richiedi informazioni",
+    subject: "Soluzioni per la mia attività",
+    messagePlaceholder: "Di cosa si occupa la tua attività? Raccontaci come lavori e cosa vorresti migliorare.",
+    solutionsHeading: "Casse e pagamenti per la tua attività",
+    solutionsIntro: "Dalla cassa compatta alla postazione con gestionale: definiamo la configurazione in base ai tuoi prodotti, ai servizi e al volume di lavoro.",
+    solutions: [
+      { name: "WALLE 8T", features: ["Cassa touch compatta per il banco", "Stampante integrata per gli scontrini", "Prodotti e servizi organizzati per reparto", "Adatta a chi cerca semplicità nelle operazioni quotidiane"] },
+      { name: "PC POS Touch Screen", features: ["Postazione per la vendita al banco", "Configurazione con un gestionale adatto all’attività", "Possibilità di abbinare lettori di codici a barre e stampanti compatibili", "Una soluzione da definire in base a catalogo e flussi di lavoro"] },
+      { name: "POS per pagamenti", gallery: paymentPosGallery, features: ["Pagamenti con carta e contactless", "Integrazione con i sistemi di cassa RCH compatibili", "Scelta del terminale in base al punto vendita", "Assistenza Mifro per cassa e POS"] },
+      { name: "Cassetti automatici Cashmatic", features: ["Gestione automatizzata di banconote e monete", "Supporto alle operazioni di incasso e resto", "Una soluzione per i punti vendita che gestiscono contanti", "Verifica di spazi e compatibilità con il sistema di cassa"] },
+    ],
+    digitalServices: [
+      {
+        title: "Gestionali su misura",
+        description: "Partiamo dal tuo modo di lavorare per definire funzioni, personalizzazioni e collegamenti utili alla tua attività.",
+        icon: "MonitorCog",
+        features: ["Prodotti, servizi e listini", "Catalogo, magazzino e scorte", "Clienti, preventivi e ordini", "Attività, scadenze e consegne"],
+      },
+      {
+        title: "Sito web",
+        description: "Presenta la tua attività con un sito chiaro, curato e consultabile anche da smartphone.",
+        icon: "PanelsTopLeft",
+        features: ["Pagine dedicate a prodotti e servizi", "Foto della tua attività, dei prodotti e dei lavori realizzati", "Orari, posizione e contatti facili da trovare", "Moduli per richieste di informazioni e preventivi"],
+      },
+      {
+        title: "E-commerce",
+        description: "Porta online il tuo catalogo con un negozio digitale progettato intorno ai prodotti che vendi.",
+        icon: "ShoppingCart",
+        features: ["Schede prodotto con immagini e varianti", "Carrello e pagamenti online", "Gestione degli ordini, spedizioni e ritiro in negozio", "Collegamenti con magazzino e gestionale da valutare insieme"],
+      },
+      {
+        title: "Agenda per appuntamenti",
+        description: "Organizza appuntamenti e servizi su prenotazione, con un’agenda adatta ai tuoi orari e al tuo modo di lavorare.",
+        icon: "CalendarDays",
+        features: ["Calendario con disponibilità e durata dei servizi", "Appuntamenti assegnati a operatori e postazioni", "Dati del cliente e note sul lavoro da svolgere", "Possibilità di prenotazioni online e promemoria, in base alla soluzione scelta"],
+      },
+    ],
+    question: "Di cosa ha bisogno la tua attività?",
+    questionText: "Raccontaci cosa vendi o quali servizi offri. Costruiamo insieme una proposta per la cassa, la gestione del lavoro e la tua presenza online.",
+    faq: [
+      { question: "Come scelgo le soluzioni adatte alla mia attività?", answer: "Raccontaci come lavori, quali strumenti utilizzi e cosa vorresti migliorare. Valutiamo insieme le tue esigenze per proporti una configurazione adatta alla tua attività." },
+      { question: "Cosa significa gestionale su misura?", answer: "Partiamo dalle tue esigenze e definiamo le funzioni necessarie: vendite, scorte, clienti, preventivi o commesse. Configurazioni, eventuali sviluppi e integrazioni vengono concordati nella proposta." },
+      { question: "Posso richiedere solo il sito web o l’agenda?", answer: "Sì. Puoi partire dal servizio che ti serve: sito web, e-commerce, agenda, gestionale oppure strumenti per cassa e pagamenti. Definiamo insieme l’ambito del progetto." },
+      { question: "L’e-commerce può collegarsi al gestionale?", answer: "Valutiamo il software che utilizzi e i collegamenti disponibili, per capire come gestire prodotti, ordini e disponibilità. Compatibilità e modalità di sincronizzazione vengono verificate prima di definire il progetto." },
+      { question: "Seguite anche configurazione e assistenza?", answer: "Mifro ti accompagna nella configurazione e nell’avvio degli strumenti scelti. Formazione, assistenza ed eventuali canoni vengono specificati nella proposta." },
     ],
   },
 

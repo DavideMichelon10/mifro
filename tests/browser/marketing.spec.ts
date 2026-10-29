@@ -5,7 +5,7 @@ import { articles } from "../../src/content/articles";
 const secret = "browser-test-only-secret-at-least-32-characters";
 const choiceKey = "mifro-analytics-consent";
 const adsChoiceKey = "mifro-ads-measurement-consent";
-const sectors = ["ristoranti", "parrucchieri-saloni", "ambulanti"];
+const sectors = ["ristoranti", "parrucchieri-saloni", "ambulanti", "altre-attivita"];
 
 // No SMTP or third-party data collection: requests are simulated in the browser.
 test.beforeEach(async ({ page, baseURL }) => {
@@ -118,22 +118,23 @@ test("errore: dati preservati, focus sull’errore, nessuna conversione e possib
   await expect(page.getByRole("button", { name: "Richiedi un ricontatto" })).toBeEnabled();
 });
 
-test("categorie: tre settori raggiungibili da home e menu", async ({ page }) => {
+test("categorie: quattro settori raggiungibili da home e menu", async ({ page }) => {
   for (const width of [1440, 390]) {
     await page.setViewportSize({ width, height: 960 });
     await page.goto("/");
     const categories = page.locator("#settori");
     await expect(categories.getByRole("heading", { level: 3 })).toHaveText([
-      "Food", "Beauty e benessere", "Ambulanti e mercati",
+      "Ristorazione", "Beauty e benessere", "Ambulanti e mercati", "Altre attività",
     ]);
     await expect(categories.getByRole("link", { name: "Bar e caffetterie" })).toHaveCount(0);
-    await expect(categories.getByRole("link", { name: /Food.*Vedi le soluzioni/ })).toHaveAttribute("href", "/soluzioni/ristoranti");
+    await expect(categories.getByRole("link", { name: /Ristorazione.*Vedi le soluzioni/ })).toHaveAttribute("href", "/soluzioni/ristoranti");
     if (width < 1024) await page.getByRole("button", { name: "Apri menu di navigazione" }).click();
     await page.getByRole("button", { name: "Per la tua attività", exact: true }).click();
     const menu = page.locator(width < 1024 ? "#mobile-solutions" : "#desktop-solutions");
-    await expect(menu.getByRole("link", { name: "Food", exact: true })).toHaveAttribute("href", "/soluzioni/ristoranti");
+    await expect(menu.getByRole("link", { name: "Ristorazione", exact: true })).toHaveAttribute("href", "/soluzioni/ristoranti");
     await expect(menu.getByRole("link", { name: "Beauty e benessere" })).toBeVisible();
-    await expect(menu.getByRole("link")).toHaveCount(3);
+    await expect(menu.getByRole("link")).toHaveCount(4);
+    await expect(menu.getByRole("link", { name: "Altre attività", exact: true })).toHaveAttribute("href", "/soluzioni/altre-attivita");
     await menu.getByRole("link", { name: "Ambulanti e mercati", exact: true }).click();
     await expect(page).toHaveURL(/soluzioni\/ambulanti$/);
   }
@@ -144,7 +145,7 @@ test("navigazione tra settori: modulo azzerato e oggetto aggiornato", async ({ p
   await page.goto("/soluzioni/parrucchieri-saloni");
   await fillContact(page);
   await page.getByRole("button", { name: "Per la tua attività", exact: true }).click();
-  await page.getByRole("link", { name: "Food", exact: true }).first().click();
+  await page.getByRole("link", { name: "Ristorazione", exact: true }).first().click();
   await expect(page).toHaveURL(/soluzioni\/ristoranti$/);
   await expect(page.getByLabel("Nome e cognome")).toHaveValue("");
   await expect(page.getByLabel("Numero di telefono", { exact: true })).toHaveValue("");
@@ -337,7 +338,7 @@ test("preferenze cookie accessibili anche con elementi della chat sovrapposti", 
   await expect(page.locator(".woot-widget-holder")).toBeVisible();
 });
 
-test("Food: quattro prodotti, software dedicato e gallerie su desktop e mobile", async ({ page }) => {
+test("Ristorazione: quattro prodotti, software dedicato e gallerie su desktop e mobile", async ({ page }) => {
   await page.addInitScript((key) => localStorage.setItem(key, "rejected"), choiceKey);
   for (const width of [1440, 390]) {
     await page.setViewportSize({ width, height: 960 });
@@ -435,5 +436,21 @@ test("Ambulanti: casse esistenti, POS e Smart Order con foto", async ({ page }) 
     await expect.poll(() => gallery.locator("img").evaluateAll((images) => images.every((image) => (image as HTMLImageElement).naturalWidth > 0))).toBe(true);
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
     await software.screenshot({ path: `/tmp/mifro-smart-order-${width}.png` });
+  }
+});
+
+test("altre attività: servizi digitali, prodotti e modulo su desktop e mobile", async ({ page }) => {
+  for (const width of [1440, 390]) {
+    await page.setViewportSize({ width, height: 960 });
+    await page.goto("/soluzioni/altre-attivita");
+    await expect(page.getByRole("heading", { level: 1 })).toHaveText("Strumenti su misura per il tuo lavoro");
+    await expect(page.locator("#servizi-digitali h3")).toHaveText([
+      "Gestionali su misura", "Sito web", "E-commerce", "Agenda per appuntamenti",
+    ]);
+    await expect(page.locator("#soluzioni-rch article")).toHaveCount(4);
+    await page.getByRole("link", { name: "Parliamo del tuo progetto" }).click();
+    await expect(page.getByLabel("Nome e cognome")).toBeInViewport();
+    await expect(page.locator('input[name="subject"]')).toHaveValue("Soluzioni per la mia attività");
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
   }
 });
