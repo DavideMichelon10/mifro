@@ -5,7 +5,7 @@ import PageIntro from "@/components/PageIntro";
 import { createPageMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = {
-  ...createPageMetadata({ title: "Privacy Policy", description: "Informativa sul trattamento dei dati personali di Mifro S.a.s. ai sensi del Regolamento UE 2016/679 (GDPR).", path: "/privacy" }),
+  ...createPageMetadata({ title: "Informativa privacy", description: "Informativa sul trattamento dei dati personali di Mifro S.a.s. ai sensi del Regolamento UE 2016/679 (GDPR).", path: "/privacy" }),
   robots: { index: false },
 };
 
@@ -16,8 +16,8 @@ export default function PrivacyPage() {
   return (
     <>
       <PageIntro
-        title="Privacy Policy"
-        description="Informativa sul trattamento dei dati personali ai sensi del Regolamento UE 2016/679 (GDPR)"
+        title="Informativa privacy"
+        description="Informativa sul trattamento dei dati personali ai sensi del Regolamento UE 2016/679 (GDPR)."
       />
     <Section>
       <div className="mx-auto max-w-3xl text-base leading-relaxed text-gray-600 [&_h2]:mb-3 [&_h2]:text-lg [&_p+p]:mt-3">
@@ -27,19 +27,19 @@ export default function PrivacyPage() {
           <strong>Mifro S.a.s.</strong><br />
           {contact.fullAddress}<br />
           Email: <a href={`mailto:${contact.email}`} className="text-brand-600 hover:underline">{contact.email}</a><br />
-          Tel: {contact.phone}
+          Tel.: {contact.phone}
         </p>
 
         <h2 className="mt-8 text-base font-semibold text-gray-800">2. Dati raccolti e finalità</h2>
         <p>
           Il modulo di contatto raccoglie nome, indirizzo email e messaggio, con oggetto
-          facoltativo nella pagina Contatti o automatico nelle pagine settore.
-          Nelle quattro pagine settore è richiesto anche il numero di telefono per il ricontatto da parte di Claudio.
+          facoltativo nella pagina Contatti o automatico nelle pagine dedicate ai settori.
+          Nelle quattro pagine dedicate ai settori è richiesto anche il numero di telefono per il ricontatto da parte di Claudio.
           La richiesta include il settore e la posizione del modulo sul sito.
           I dati vengono elaborati dal sito ospitato su Vercel e inviati tramite Gmail
           al gestore del sito, Davide Michelon, che inoltra la richiesta a Mifro per la risposta.
           Non viene creato un archivio delle richieste nel database del sito.
-          Se acconsenti alle statistiche, Google Analytics rileva le visite e gli invii
+          Se acconsenti alle statistiche, Google Analytics rileva le visite, gli invii
           riusciti del modulo e i clic su telefono e WhatsApp, distinti per settore e tipo di pagina. I clic non indicano che sia avvenuta una conversazione; nome, email, numero di telefono, oggetto e
           contenuto del messaggio non vengono inviati nei parametri Analytics del modulo.
         </p>
@@ -59,12 +59,12 @@ export default function PrivacyPage() {
 
         <h2 className="mt-8 text-base font-semibold text-gray-800">3. Cookie</h2>
         <p>
-          Il sito utilizza un cookie tecnico di dieci minuti per confermare l’invio del modulo
+          Il sito utilizza un cookie tecnico con una durata di dieci minuti per confermare l’invio del modulo
           e consentire l’accesso alla pagina di ringraziamento. Le preferenze per statistiche
           e misurazione pubblicitaria vengono memorizzate separatamente nel browser.
           Il tag Google viene caricato solo dopo l’accettazione delle statistiche;
           i segnali per la misurazione pubblicitaria vengono abilitati solo se scegli anche questa finalità.
-          Puoi rifiutare entrambe, accettare solo le statistiche oppure entrambe le finalità.
+          Puoi rifiutare entrambe le finalità, accettare solo le statistiche oppure accettare entrambe.
           Puoi modificare o revocare la scelta tramite “Preferenze cookie”: vengono
           rimossi i relativi cookie Google accessibili al sito. Il rifiuto non impedisce l’invio di richieste.
         </p>
@@ -75,7 +75,7 @@ export default function PrivacyPage() {
         </p>
         <p>
           La home include una mappa fornita da <strong>Google Maps</strong> (Google LLC).
-          La mappa viene caricata solo su esplicita azione dell&apos;utente (click sul riquadro). Al momento
+          La mappa viene caricata solo su esplicita azione dell&apos;utente (clic sul riquadro). Al momento
           del caricamento, Google Maps può installare propri cookie secondo la sua{" "}
           <a
             href="https://policies.google.com/privacy"
@@ -83,7 +83,7 @@ export default function PrivacyPage() {
             rel="noopener noreferrer"
             className="text-brand-600 hover:underline"
           >
-            Privacy Policy
+            informativa privacy
           </a>.
         </p>
 

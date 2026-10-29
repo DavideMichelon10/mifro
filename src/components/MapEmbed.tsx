@@ -35,7 +35,7 @@ export default function MapEmbed({ src, title = "Mappa" }: MapEmbedProps) {
         Clicca per caricare la mappa
       </span>
       <span className="text-xs text-gray-500">
-        Google Maps potrebbe impostare cookie
+        Google Maps potrebbe impostare cookie.
       </span>
     </button>
   );

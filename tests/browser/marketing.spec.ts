@@ -352,7 +352,7 @@ test("Ristorazione: quattro prodotti, software dedicato e gallerie su desktop e 
     const cashmaticImage = solutions.getByRole("img", { name: "Cassetto automatico Cashmatic SelfPay 860 per banconote e monete" });
     await cashmaticImage.scrollIntoViewIfNeeded();
     await expect.poll(() => cashmaticImage.evaluate((image) => (image as HTMLImageElement).naturalWidth)).toBeGreaterThan(0);
-    const software = page.locator("#soluzioni-rch + #software-gestionale");
+    const software = page.locator("#software-gestionale");
     await expect(software.getByRole("heading", { level: 2, name: "Software gestionale in cloud", exact: true })).toBeVisible();
     await expect(software.getByRole("listitem")).toHaveCount(4);
     await expect(software.getByRole("link", { name: "Parliamo del tuo gestionale" })).toHaveAttribute("href", "#richiedi-proposta");
@@ -398,13 +398,13 @@ test("Beauty: quattro soluzioni e immagini ufficiali del gestionale", async ({ p
     await page.goto("/soluzioni/parrucchieri-saloni");
     const solutions = page.locator("#soluzioni-rch");
     await expect(solutions.getByRole("heading", { level: 3 })).toHaveText([
-      "WALLE 8T", "PRINT! 3.0 RT Full Payments con tastiera", "Registratore telematico APE3 con POS integrato", "POS per gestionale",
+      "WALLE 8T", "PRINT! 3.0 RT Full Payments con tastiera", "Registratore telematico APE3 con POS integrato", "POS per pagamenti",
     ]);
     for (const card of await solutions.locator("article").all()) {
       await card.scrollIntoViewIfNeeded();
       await expect.poll(() => card.locator("img").evaluateAll((images) => images.length > 0 && images.every((image) => (image as HTMLImageElement).naturalWidth > 0))).toBe(true);
     }
-    const software = page.locator("#soluzioni-rch + #software-gestionale");
+    const software = page.locator("#software-gestionale");
     await software.scrollIntoViewIfNeeded();
     await expect(software.getByRole("heading", { level: 2 })).toHaveText("Software gestionale in cloud");
     const gallery = software.getByRole("region", { name: "Foto: Software gestionale in cloud" });
@@ -425,14 +425,18 @@ test("Ambulanti: casse esistenti, POS e Smart Order con foto", async ({ page }) 
     await page.goto("/soluzioni/ambulanti");
     const solutions = page.locator("#soluzioni-rch");
     await expect(solutions.getByRole("heading", { level: 3 })).toHaveText(["WALLE MEC RT Ambulanti", "APE J RT", "POS per pagamenti"]);
-    const software = page.locator("#soluzioni-rch + #software-gestionale");
+    const software = page.locator("#software-gestionale");
     await software.scrollIntoViewIfNeeded();
     await expect(software.getByRole("heading", { level: 2 })).toHaveText("RCH Smart Order 3.0");
     await expect(software.getByRole("link", { name: "Richiedi informazioni su Smart Order" })).toHaveAttribute("href", "#richiedi-proposta");
     const gallery = software.getByRole("region", { name: "Foto: RCH Smart Order 3.0" });
     await expect(gallery.getByRole("img")).toHaveCount(5);
-    await gallery.getByRole("button", { name: "Foto successiva" }).click();
-    await expect(gallery.getByText("2 / 5", { exact: true })).toBeVisible();
+    // Visit each slide so off-screen images can load lazily before checking them.
+    for (let index = 0; index < 5; index++) {
+      await expect(gallery.getByText(`${index + 1} / 5`, { exact: true })).toBeVisible();
+      await expect.poll(() => gallery.getByRole("img").nth(index).evaluate((image) => (image as HTMLImageElement).naturalWidth > 0)).toBe(true);
+      if (index < 4) await gallery.getByRole("button", { name: "Foto successiva" }).click();
+    }
     await expect.poll(() => gallery.locator("img").evaluateAll((images) => images.every((image) => (image as HTMLImageElement).naturalWidth > 0))).toBe(true);
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
     await software.screenshot({ path: `/tmp/mifro-smart-order-${width}.png` });

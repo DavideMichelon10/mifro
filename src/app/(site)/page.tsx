@@ -192,8 +192,7 @@ export default function HomePage() {
               <div className="flex h-64 items-center justify-center rounded-xl bg-gray-100 text-sm text-gray-500">
                 <div className="text-center">
                   <MapPin className="mx-auto mb-2 h-8 w-8" />
-                  <p>Mappa – inserire embed di Google Maps</p>
-                  <p className="text-xs">in siteConfig.contact.googleMapsEmbed</p>
+                  <p>La mappa non è disponibile. Puoi aprire l’indirizzo su Google Maps.</p>
                 </div>
               </div>
             )}

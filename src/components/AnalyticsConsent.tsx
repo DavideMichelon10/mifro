@@ -113,7 +113,7 @@ export default function AnalyticsConsent() {
         <div role="dialog" aria-label="Preferenze cookie" data-cookie-preferences className="fixed bottom-0 left-0 right-0 z-50 max-h-[85dvh] overflow-y-auto rounded-t-2xl border border-gray-200 bg-white p-5 shadow-lg sm:bottom-4 sm:left-4 sm:right-auto sm:max-w-lg sm:rounded-2xl sm:p-6">
           <p className="font-semibold text-gray-900">Statistiche e misurazione pubblicitaria</p>
           <p className="mt-2 text-sm text-gray-600">Puoi consentire a Google Analytics di misurare visite, invii del modulo e clic su telefono e WhatsApp. Puoi anche consentire l’uso di cookie e dati di navigazione per collegare le richieste agli annunci Google Ads e migliorarne il rendimento. La misurazione pubblicitaria non attiva annunci personalizzati.</p>
-          <p className="mt-2 text-sm text-gray-600">Puoi rifiutare e usare comunque il modulo, oppure cambiare scelta da “Preferenze cookie”. <Link href="/privacy" className="underline">Informativa privacy</Link></p>
+          <p className="mt-2 text-sm text-gray-600">Puoi rifiutare e usare comunque il modulo, oppure cambiare scelta da “Preferenze cookie”. <Link href="/privacy" className="underline">Informativa privacy</Link>.</p>
           <div className="mt-4 flex flex-wrap gap-3">
             <button type="button" onClick={() => choose(false, false)} className="button button-secondary">Rifiuta</button>
             <button type="button" onClick={() => choose(true, false)} className="button button-secondary">Solo statistiche</button>

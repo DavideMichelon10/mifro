@@ -81,13 +81,13 @@ export const siteConfig = {
     { name: "RCH", description: "Soluzioni per il punto cassa", logo: "/images/brands/rch.svg" },
     { name: "Epson", description: "Stampanti telematiche", logo: "/images/brands/epson.svg" },
     { name: "Cashmatic", description: "Cassetti automatici", logo: "/images/brands/cashmatic.svg" },
-    { name: "Canon", description: "Stampanti multifunzioni", logo: "/images/brands/canon.svg" },
+    { name: "Canon", description: "Stampanti multifunzione", logo: "/images/brands/canon.svg" },
   ],
 
   /* ── Certificazioni ─────────────────────────────────── */
   certifications: {
     title: "Qualità e certificazioni",
-    text: "Mifro è certificata ISO 9001 / UNI EN ISO 9001:2008 per le verificazioni periodiche dei Misuratori Fiscali multimarca, in quanto laboratorio abilitato.",
+    text: "Come laboratorio abilitato, Mifro è certificata ISO 9001 / UNI EN ISO 9001:2008 per le verificazioni periodiche dei misuratori fiscali multimarca.",
     badge: "ISO 9001",
   },
 
@@ -103,9 +103,9 @@ export const siteConfig = {
     territory: "Assistenza in Trentino, con sede a Pergine Valsugana.",
     methods: "Interventi sul posto e da remoto, in base al problema e alla configurazione.",
     requestNote: "Indicaci il modello, cosa succede e il comune in cui lavori. I nostri tecnici ti ricontattano per capire quale intervento serve.",
-    hoursNote: "Gli orari indicati sono quelli di contatto della sede. Modalità e copertura dell’assistenza dipendono dagli accordi di servizio.",
+    hoursNote: "Puoi contattare la sede negli orari indicati. Modalità e copertura dell’assistenza dipendono dagli accordi di servizio.",
   },
-  privacyRevisedAt: "2026-10-24",
+  privacyRevisedAt: "2026-10-29",
 
   /* ── Percorso delle richieste dai settori ───────────── */
   contactJourney: {
@@ -119,8 +119,8 @@ export const siteConfig = {
       },
       {
         title: "Ti richiama Claudio",
-        description: "Ti contatta Claudio, il titolare di Mifro, che fa questo lavoro da oltre 30 anni. Ascolta le tue esigenze per capire come lavori e quale soluzione può aiutarti.",
-        badge: "Claudio ti richiama entro un massimo di 2 giorni lavorativi.",
+        description: "Ti contatta Claudio, il titolare di Mifro, che lavora nel settore da oltre 30 anni. Ascolta le tue esigenze per capire come lavori e quale soluzione può aiutarti.",
+        badge: "Claudio ti richiama entro 2 giorni lavorativi.",
       },
       {
         title: "Tocca con mano in negozio",
@@ -136,7 +136,7 @@ export const siteConfig = {
       },
       {
         title: "Ci siamo anche dopo",
-        description: "Per ogni dubbio futuro puoi contare sulla nostra assistenza. Il rapporto con Mifro continua anche dopo l’avvio.",
+        description: "Se hai dubbi o bisogno di supporto, puoi contare sulla nostra assistenza. Il rapporto con Mifro continua anche dopo l’avvio.",
       },
     ],
   },
@@ -158,8 +158,8 @@ export const siteConfig = {
       {
         id: "hardware-ufficio",
         title: "Attrezzature per l’ufficio",
-        description: "PC, stampanti, multifunzioni, antivirus Bitdefender e materiali di consumo.",
-        details: "PC per il lavoro di ogni giorno, stampanti, multifunzioni e antivirus Bitdefender: ti aiutiamo a scegliere in base a quello che devi fare e a quanto stampi. Forniamo anche materiali di consumo, così puoi rivolgerti a noi sia per l’attrezzatura sia per le necessità quotidiane dell’ufficio.",
+        description: "PC, stampanti, dispositivi multifunzione, antivirus Bitdefender e materiali di consumo.",
+        details: "PC per il lavoro di ogni giorno, stampanti, dispositivi multifunzione e antivirus Bitdefender: ti aiutiamo a scegliere in base a quello che devi fare e a quanto stampi. Forniamo anche materiali di consumo, così puoi rivolgerti a noi sia per l’attrezzatura sia per le necessità quotidiane dell’ufficio.",
         icon: "Printer" as const,
         image: "/images/stampanti.jpg",
         imageAlt: "Postazione da ufficio con computer e stampante",
@@ -169,7 +169,7 @@ export const siteConfig = {
         id: "nas-backup",
         title: "NAS e sistemi di backup",
         description: "Archiviazione condivisa e copie di sicurezza per i dati della tua attività.",
-        details: "Ti aiutiamo a scegliere e configurare un NAS per raccogliere i file dell’ufficio e condividerli tra le postazioni di lavoro. Affianchiamo sistemi di backup per conservare copie di sicurezza dei dati e poterli ripristinare in caso di guasti o cancellazioni accidentali. Definiamo la soluzione in base alla quantità di dati, agli accessi e alle esigenze della tua attività.",
+        details: "Ti aiutiamo a scegliere e configurare un NAS per raccogliere i file dell’ufficio e condividerli tra le postazioni di lavoro. Al NAS affianchiamo sistemi di backup per conservare copie di sicurezza dei dati e poterli ripristinare in caso di guasti o cancellazioni accidentali. Definiamo la soluzione in base alla quantità di dati, agli accessi e alle esigenze della tua attività.",
         icon: "HardDrive" as const,
         image: "/images/nas-backup.svg",
         imageAlt: "Illustrazione di un NAS con due dischi e un simbolo di backup",
@@ -179,7 +179,7 @@ export const siteConfig = {
         id: "riparazioni",
         title: "Assistenza e riparazioni",
         description: "Supporto su casse e software, diagnosi e riparazioni di PC e stampanti.",
-        details: "La cassa dà problemi o il gestionale si blocca? Ci occupiamo di assistenza su registratori di cassa e gestionali, oltre a diagnosi e riparazioni di PC e stampanti.",
+        details: "La cassa dà problemi o il gestionale si blocca? Ci occupiamo di assistenza su registratori di cassa e gestionali, oltre che della diagnosi e della riparazione di PC e stampanti.",
         icon: "Wrench" as const,
         image: "/images/assistenza-riparazioni-uomo.jpg",
         imageAlt: "Mani di un tecnico durante la sostituzione di un SSD in un computer portatile",
@@ -209,26 +209,26 @@ export const siteConfig = {
         "Per strumenti fiscali, gestionali e POS hai un riferimento diretto a Pergine Valsugana. Ti aiutiamo a risolvere i dubbi e interveniamo sul posto o da remoto.",
     },
     intro:
-      "Dal 1990 affianchiamo le imprese trentine nella scelta, installazione e gestione delle tecnologie per il punto vendita e l'ufficio.",
+      "Dal 1990 affianchiamo le imprese trentine nella scelta, nell’installazione e nella gestione delle tecnologie per il punto vendita e l’ufficio.",
     story:
-      "Mifro nasce nel 1990 in Trentino con l'obiettivo di offrire soluzioni informatiche affidabili alle attività commerciali del territorio. In oltre trent'anni di attività, abbiamo accompagnato centinaia di aziende nella transizione tecnologica, mantenendo un approccio diretto e personale che ci distingue ancora oggi.",
+      "Mifro nasce nel 1990 in Trentino con l’obiettivo di offrire soluzioni informatiche affidabili alle attività commerciali del territorio. In oltre trent’anni di attività, abbiamo accompagnato centinaia di aziende nella transizione tecnologica, mantenendo un approccio diretto e personale che ci distingue ancora oggi.",
     approach:
-      "Il nostro metodo parte dall'ascolto: comprendiamo le esigenze specifiche di ogni cliente per proporre soluzioni concrete, senza complicazioni inutili. Dalla consulenza alla fornitura, dall'installazione all'assistenza continuativa, siamo il riferimento unico per tutta la filiera tecnologica del punto vendita.",
+      "Il nostro metodo parte dall’ascolto: comprendiamo le esigenze specifiche di ogni cliente per proporre soluzioni concrete, senza complicazioni inutili. Dalla consulenza alla fornitura, dall’installazione all’assistenza continuativa, siamo il riferimento unico per tutta la filiera tecnologica del punto vendita.",
     team: [
       {
         name: "Claudio",
         role: "Titolare",
-        bio: "Fondatore di Mifro, guida l'azienda con oltre trent'anni di esperienza nel settore delle tecnologie per il punto vendita.",
+        bio: "Fondatore di Mifro, guida l’azienda con oltre trent’anni di esperienza nel settore delle tecnologie per il punto vendita.",
       },
       {
         name: "Fabio",
         role: "Tecnico – Sistemi di cassa",
-        bio: "Specializzato su registratori di cassa telematici RT e sistemi punto vendita. Gestisce installazioni, configurazioni e assistenza tecnica on-site e da remoto.",
+        bio: "Specializzato nei registratori telematici e nei sistemi per il punto vendita. Si occupa di installazione, configurazione e assistenza tecnica sul posto e da remoto.",
       },
       {
         name: "Alessandro",
         role: "Tecnico – Software gestionale",
-        bio: "Esperto di software gestionali per la ristorazione e il retail. Conosce a fondo anche i sistemi di cassa e segue i clienti a 360° sull'intera soluzione.",
+        bio: "Esperto di software gestionali per la ristorazione e il commercio al dettaglio. Conosce a fondo anche i sistemi di cassa e segue i clienti nell’utilizzo dell’intera soluzione.",
       },
       {
         name: "Fabrizio",
@@ -250,7 +250,7 @@ export const siteConfig = {
       {
         title: "Soluzioni su misura",
         description:
-          "Ogni proposta è studiata sulle reali esigenze dell'attività del cliente.",
+          "Ogni proposta è studiata sulle reali esigenze dell’attività del cliente.",
       },
       {
         title: "Partner affidabili",
@@ -265,7 +265,7 @@ export const siteConfig = {
     title: "Contattaci",
     description:
       "Hai bisogno di informazioni o assistenza? Lasciaci un messaggio e ti ricontatteremo.",
-    formTitle: "Scrivici, ti ricontattiamo noi.",
+    formTitle: "Scrivici: ti ricontattiamo noi",
     replyNote: "Il gestore del sito inoltra la richiesta a Mifro, che ti ricontatterà all’indirizzo email indicato.",
     formFields: {
       name: "Nome e cognome",
@@ -295,7 +295,7 @@ export const siteConfig = {
     chiSiamo: {
       title: "Chi siamo: al fianco delle imprese in Trentino",
       description:
-        "Dal 1990 Mifro affianca le imprese trentine con soluzioni IT per il punto vendita e l'ufficio. Scopri la nostra storia, i valori e l'approccio.",
+        "Dal 1990 Mifro affianca le imprese trentine con soluzioni IT per il punto vendita e l’ufficio. Scopri la nostra storia, i valori e l’approccio.",
     },
     contatti: {
       title: "Contatti e assistenza in Trentino",
@@ -315,7 +315,7 @@ export const siteConfig = {
       { label: "Guida RT–POS", href: "/news/guida-ade-collegamento-rt-pos" },
       { label: "Contatti", href: "/contatti" },
     ],
-    piva: "P.IVA 01301350227",
+    piva: "P. IVA 01301350227",
     credits: "Mifro S.a.s. – Tutti i diritti riservati.",
   },
 } as const;

@@ -18,7 +18,7 @@ interface ContactFormProps {
 export default function ContactForm({
   context = defaultContactContext,
   defaultSubject = "",
-  messagePlaceholder = "Descrivi le tue esigenze…",
+  messagePlaceholder = "Descrivi le tue esigenze.",
   submitLabel,
   showSubject = true,
 }: ContactFormProps) {
