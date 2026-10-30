@@ -152,8 +152,9 @@ arbitrari nei propri parametri.
 
 Configurazione GA4/Ads, rilevamento dei clic, registro commerciale e collaudo sono
 descritti in [Misurazione e gestione richieste](docs/misurazione-conversioni.md).
-Le chiamate usano il numero aziendale Mifro; i pulsanti WhatsApp usano il recapito
-del gestore del sito, Davide Michelon: +39 351 688 8890. Le chiamate ricevute e la
+Il pulsante «Chiamaci» e i pulsanti WhatsApp usano il recapito del gestore del sito,
+Davide Michelon: +39 351 688 8890. Gli altri riferimenti telefonici della sede usano
+il numero aziendale Mifro. Le chiamate ricevute e la
 provenienza dichiarata dal cliente si annotano nel registro commerciale.
 Il consenso Analytics non abilita automaticamente finalità pubblicitarie.
 

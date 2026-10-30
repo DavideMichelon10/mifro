@@ -35,7 +35,7 @@ export default function ContactSection({
                 ))}
               </ol>
               <div className="contact-direct">
-                {showDirectContacts && <a href={`tel:${contact.phone.replace(/\s/g, "")}`} className="button button-outline-light"><Phone aria-hidden="true" className="h-4 w-4 shrink-0" />Chiamaci</a>}
+                {showDirectContacts && <a href={`tel:${contact.whatsapp}`} className="button button-outline-light"><Phone aria-hidden="true" className="h-4 w-4 shrink-0" />Chiamaci</a>}
                 <WhatsAppLink className="button button-outline-light" />
               </div>
             </div>
