@@ -92,7 +92,8 @@ for (const consent of ["accepted", "rejected"]) {
     expect(await page.locator("#cf-email").evaluate((input: HTMLInputElement) => input.validity.typeMismatch)).toBe(true);
     expect(bodies).toHaveLength(0);
     await page.locator("#cf-email").fill("test@example.com");
-    expect(await page.locator("input[required], textarea[required]").count()).toBe(3);
+    await page.locator("#cf-privacy").check();
+    expect(await page.locator("input[required], textarea[required]").count()).toBe(4);
     await expect(page.locator("#cf-phone")).not.toHaveAttribute("required", "");
     await expect(page.locator("#cf-subject")).toHaveValue(subject);
     await page.getByRole("button", { name: "Invia la richiesta", exact: true }).click();

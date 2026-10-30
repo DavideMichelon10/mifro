@@ -14,9 +14,9 @@
   --color-brand-800: #12466e;
   --color-brand-900: #12334d;
   --color-accent-500: #f2a000;
-  --color-gray-50: #f5f7fa;
-  --color-gray-100: #eaf0f5;
-  --color-gray-200: #d8e2eb;
+  --color-gray-50: #f5f5f4;
+  --color-gray-100: #efefee;
+  --color-gray-200: #e0e2e3;
   --color-gray-300: #b6c5d3;
   --color-gray-400: #738598;
   --color-gray-500: #5d7083;
@@ -45,18 +45,45 @@
   .eyebrow::before { content: ""; @apply h-0.5 w-6 shrink-0 rounded-full bg-accent-500; }
   .lead { @apply text-base leading-relaxed text-gray-600 sm:text-lg; }
 
-  .surface-card { @apply rounded-2xl border border-gray-200 bg-white shadow-[0_2px_8px_0_rgb(18_51_77/0.03)]; }
+  .surface-card { @apply rounded-3xl border border-gray-200 bg-white shadow-[0_2px_8px_0_rgb(18_51_77/0.03)]; }
   .interactive-card { @apply transition-[border-color,box-shadow] duration-200 hover:border-brand-200 hover:shadow-[0_8px_24px_0_rgb(18_51_77/0.07)]; }
-  .form-panel { @apply rounded-2xl border border-gray-200 bg-gray-50 p-5 sm:p-8; }
+  .form-panel { @apply min-w-0 rounded-[1.625rem] bg-white p-5 text-gray-900 sm:p-7; }
   .icon-tile { @apply flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-600; }
   .text-link { @apply inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-brand-600 underline-offset-4 hover:text-brand-700 hover:underline; }
 
-  .button { @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-transparent px-5 py-3 text-center text-sm font-semibold leading-5 transition-colors disabled:cursor-wait disabled:opacity-60; }
-  .button-primary { @apply bg-brand-600 text-white; }
-  .button-primary:hover:not(:disabled) { @apply bg-brand-700; }
+  .button { @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-2xl border border-transparent px-5 py-3 text-center text-sm font-semibold leading-5 transition-colors disabled:cursor-wait disabled:opacity-60; }
+  .button-primary { @apply bg-accent-500 text-brand-900; }
+  .button-primary:hover:not(:disabled) { background: #e99800; }
   .button-secondary { @apply border-brand-200 bg-white text-brand-700 hover:bg-brand-50; }
   .button-inverse { @apply bg-white text-brand-900 hover:bg-brand-100 focus-visible:outline-white; }
-  .form-input { @apply block min-h-12 w-full rounded-lg border border-gray-300 bg-white px-3.5 py-3 text-base text-gray-900 transition-colors placeholder:text-gray-500 focus:border-brand-600 focus:ring-1 focus:ring-brand-600 focus-visible:outline-none; }
+  .button-outline-light { @apply border-white/30 text-white hover:border-white hover:bg-white/10 focus-visible:outline-white; }
+  .contact-shell { @apply relative overflow-hidden rounded-[1.75rem] bg-brand-900 px-4 py-8 text-white sm:rounded-[2.5rem] sm:p-10 lg:p-14; }
+  .contact-shell::before { content: ""; position: absolute; inset: auto 0 0; height: 8rem; background: repeating-linear-gradient(115deg, transparent 0 5rem, rgb(255 255 255 / 0.06) 5rem 5.3rem); mask-image: linear-gradient(transparent, #000); pointer-events: none; }
+  .contact-grid { @apply relative grid items-start gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-12; }
+  .contact-copy { @apply min-w-0; }
+  .contact-copy .eyebrow { @apply text-accent-500; }
+  .contact-copy h2 { @apply mt-4 text-balance text-3xl font-bold leading-[1.15] tracking-tight text-white sm:text-4xl; }
+  .contact-description { @apply mt-5 text-base leading-relaxed text-white/80 sm:text-lg; }
+  .contact-steps { @apply mt-8 grid gap-4; }
+  .contact-steps li { @apply grid grid-cols-[2rem_minmax(0,1fr)] items-center gap-3 text-sm font-medium leading-relaxed; }
+  .contact-steps li > span { @apply flex h-8 w-8 items-center justify-center rounded-full bg-accent-500 font-bold text-brand-900; }
+  .contact-direct { @apply mt-8 flex flex-wrap gap-3; }
+  .contact-form { @apply grid gap-5; }
+  .form-fields { @apply grid gap-4 sm:grid-cols-2; }
+  .form-field { @apply relative min-w-0; }
+  .form-field-wide { @apply sm:col-span-2; }
+  .form-input { @apply block min-h-[3.75rem] w-full rounded-2xl border border-transparent bg-gray-100 px-4 pb-2 pt-6 text-base text-gray-900 transition-colors hover:bg-gray-200/70 focus:border-accent-500 focus:bg-white focus:ring-4 focus:ring-accent-500/15 focus-visible:outline-none; }
+  .form-input::placeholder { color: transparent; }
+  .form-input:focus::placeholder { @apply text-gray-500; }
+  .form-label { @apply pointer-events-none absolute left-[1.0625rem] right-3 top-5 text-sm font-medium leading-5 text-gray-600; transition: top 0.18s ease, font-size 0.18s ease; }
+  .form-input:focus + .form-label,
+  .form-input:not(:placeholder-shown) + .form-label,
+  .form-input:autofill + .form-label { @apply top-2 text-xs; }
+  textarea.form-input { @apply min-h-32 resize-y; }
+  .form-help { @apply mt-2 text-xs leading-relaxed text-gray-600; }
+  .form-privacy { @apply grid cursor-pointer grid-cols-[1.375rem_minmax(0,1fr)] items-start gap-3 text-sm leading-relaxed text-gray-700; }
+  .form-privacy input { @apply mt-0.5 h-[1.375rem] w-[1.375rem] cursor-pointer accent-brand-700; }
+  .contact-form .button { @apply min-h-14 text-base; }
 }
 
 html {

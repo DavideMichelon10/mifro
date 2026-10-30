@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowDown, ArrowRight, BookOpen, CalendarDays, Check, ChevronDown, Globe, Headset, MapPin, Settings } from "lucide-react";
 import ContactForm from "@/components/ContactForm";
+import ContactSection from "@/components/ContactSection";
 import Section from "@/components/Section";
 import SolutionCard from "@/components/SolutionCard";
 import ScrollReveal from "@/components/ScrollReveal";
@@ -181,19 +182,9 @@ export default function BeautyPage({ sector }: { sector: Sector }) {
         </div>
       </Section>
 
-      <Section gray>
-        <div className="mx-auto max-w-2xl space-y-8">
-          <ScrollReveal className="text-center">
-            <p className="eyebrow justify-center">{content.form.eyebrow}</p>
-            <h2 className="section-title mt-4">{content.form.title}</h2>
-            <p className="mt-5 leading-relaxed text-gray-600">{content.form.intro}</p>
-          </ScrollReveal>
-          <div id="richiedi-proposta" tabIndex={-1} aria-labelledby="beauty-form-title" className="form-panel scroll-mt-24 bg-white">
-            <h3 id="beauty-form-title" className="mb-6 text-center text-xl font-semibold">{siteConfig.contactPage.formTitle}</h3>
-            <ContactForm context={{ sector: "parrucchieri-saloni", form_location: "sector_page" }} defaultSubject={content.form.subject} messagePlaceholder={content.form.messagePlaceholder} submitLabel={content.form.submitLabel} showSubject={false} />
-          </div>
-        </div>
-      </Section>
+      <ContactSection title={content.form.title} description={content.form.intro} eyebrow={content.form.eyebrow}>
+        <ContactForm context={{ sector: "parrucchieri-saloni", form_location: "sector_page" }} defaultSubject={content.form.subject} messagePlaceholder={content.form.messagePlaceholder} submitLabel={content.form.submitLabel} showSubject={false} />
+      </ContactSection>
     </>
   );
 }

@@ -20,7 +20,14 @@ function load(path, overrides = {}) {
 const contexts = load('src/lib/contact-context.ts');
 const contact = load('src/lib/contact.ts', { '@/lib/contact-context': contexts });
 const secret = 'test-only-secret-at-least-32-characters';
-const valid = { name: 'Mario Rossi', email: 'mario@example.com', subject: 'Informazioni', message: 'Vorrei informazioni.', website: '' };
+const valid = { name: 'Mario Rossi', email: 'mario@example.com', subject: 'Informazioni', message: 'Vorrei informazioni.', website: '', privacyAccepted: true };
+
+test('privacy acknowledgement must be an explicit boolean true', () => {
+  for (const privacyAccepted of [undefined, false, null, 'true', 'false', 1, {}, []]) {
+    assert.equal(contact.validateContact({ ...valid, privacyAccepted }), null);
+  }
+  assert.ok(contact.validateContact(valid));
+});
 
 test('Beauty and sales accept an omitted phone, validate supplied numbers and distinguish requests', () => {
   const beauty = { sector: 'parrucchieri-saloni', form_location: 'sector_page' };
@@ -90,6 +97,24 @@ function request(body = valid, options = {}) {
   });
 }
 
+test('endpoint rejects missing privacy acknowledgement before sending mail or setting a receipt', async () => {
+  process.env.SMTP_USER = 'sender@gmail.com';
+  process.env.SMTP_PASSWORD = 'test-password';
+  process.env.CONTACT_FORM_SECRET = secret;
+  process.env.CONTACT_TO = 'recipient@example.com';
+  let deliveries = 0;
+  const route = load('src/app/api/contact/route.ts', {
+    '@/lib/contact': contact,
+    nodemailer: { createTransport: () => { deliveries++; throw new Error('Must not send'); } },
+  });
+  for (const privacyAccepted of [undefined, false, 'true']) {
+    const response = await route.POST(request({ ...valid, privacyAccepted }));
+    assert.equal(response.status, 400);
+    assert.equal(response.cookies.get(contact.RECEIPT_COOKIE), undefined);
+  }
+  assert.equal(deliveries, 0);
+});
+
 test('rental email carries activity, municipality and usage period through the existing SMTP flow', async () => {
   process.env.SMTP_USER = 'sender@gmail.com';
   process.env.SMTP_PASSWORD = 'test-password';
@@ -132,7 +157,7 @@ test('sales and Beauty email carry distinct interests without requiring a phone 
     assert.equal(mail.subject, `Nuova richiesta dal sito Mifro: ${subject}`);
     assert.ok(mail.text.includes(`Settore: ${context.sector}`));
     assert.ok(mail.text.includes(`Posizione modulo: ${context.form_location}`));
-    assert.doesNotMatch(mail.text, /Telefono:|Claudio richiama/);
+    assert.doesNotMatch(mail.text, /Telefono:|Richiama subito/);
     assert.equal(mail.replyTo.address, valid.email);
     assert.ok(response.cookies.get(contact.RECEIPT_COOKIE));
   }
@@ -269,7 +294,7 @@ test('missing recipient fails closed; accepted mail carries validated context an
   assert.match(mail.text, /Settore: ristoranti/);
   assert.match(mail.text, /Posizione modulo: sector_page/);
   assert.match(mail.text, /Telefono: \+39 333 123 4567/);
-  assert.match(mail.text, /Claudio richiama il visitatore entro un massimo di 2 giorni lavorativi/);
+  assert.match(mail.text, /Richiama subito il visitatore/);
   response = await route.POST(request({ ...valid, subject: undefined }));
   assert.equal(response.status, 200);
   assert.match(mail.subject, /Richiesta di informazioni dal sito/);

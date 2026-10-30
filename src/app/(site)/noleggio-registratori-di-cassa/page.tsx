@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, BookOpen, ChevronDown, Headset, MapPin, MonitorCheck } from "lucide-react";
 import ContactForm from "@/components/ContactForm";
+import ContactSection from "@/components/ContactSection";
 import Section from "@/components/Section";
 import { rentalContent as content } from "@/content/rental";
 import { productImages } from "@/content/sectors";
@@ -114,11 +115,7 @@ export default function RentalPage() {
         </div>
       </Section>
 
-      <Section gray>
-        <div className="mx-auto max-w-2xl">
-          <p className="eyebrow mb-5 justify-center">{content.form.eyebrow}</p>
-          <div id="richiedi-proposta" tabIndex={-1} aria-labelledby="rental-form-title" className="form-panel scroll-mt-24 bg-white">
-            <h2 id="rental-form-title" className="mb-6 text-center text-xl font-semibold">{content.form.titlePanel}</h2>
+      <ContactSection title={content.form.titlePanel} description="Indicaci la tua attività, il comune e il periodo di utilizzo. Ti aiutiamo a trovare il registratore di cassa adatto." eyebrow={content.form.eyebrow} showDirectContacts={false}>
             <ContactForm
               context={rentalContactContext}
               defaultSubject={RENTAL_CONTACT_SUBJECT}
@@ -126,9 +123,7 @@ export default function RentalPage() {
               submitLabel={content.form.submitLabel}
               showSubject={false}
             />
-          </div>
-        </div>
-      </Section>
+      </ContactSection>
 
       <Section>
         <div className="grid gap-8 lg:grid-cols-[1fr_1.25fr] lg:gap-16">

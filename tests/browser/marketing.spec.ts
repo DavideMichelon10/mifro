@@ -30,6 +30,7 @@ async function fillContact(page: Page) {
   const phone = page.getByLabel("Numero di telefono", { exact: true });
   if (await phone.count()) await phone.fill("+39 333 123 4567");
   await page.getByLabel("Messaggio", { exact: true }).fill("Richiesta di prova, nessun invio reale.");
+  await page.locator("#cf-privacy").check();
 }
 
 test("consenso: prima visita, rifiuto, accettazione, navigazione, revoca e nuova accettazione", async ({ page, context }) => {
@@ -78,14 +79,21 @@ for (const sector of [...sectors, "generico"]) {
         await expect(page).toHaveURL(new RegExp(`/soluzioni/${sector}#richiedi-proposta$`));
         await expect(page.locator("#richiedi-proposta")).toBeInViewport();
       }
+      await expect(page.locator("#cf-privacy")).not.toBeChecked();
       await fillContact(page);
-      expect(await page.locator("input[required], textarea[required]").count()).toBe((sector === "generico" || sector === "parrucchieri-saloni") ? 3 : 4);
+      await page.locator("#cf-privacy").uncheck();
+      await page.locator('form button[type="submit"]').click();
+      await expect(page.locator("#cf-privacy")).toBeFocused();
+      expect(bodies).toHaveLength(0);
+      await page.locator("#cf-privacy").check();
+      expect(await page.locator("input[required], textarea[required]").count()).toBe((sector === "generico" || sector === "parrucchieri-saloni") ? 4 : 5);
       // Two submit events in the same tick exercise the ref guard, independently of button disabling.
       await page.locator("form").evaluate((form: HTMLFormElement) => { form.requestSubmit(); form.requestSubmit(); });
       await expect(page).toHaveURL(/grazie$/);
       await expect(page.getByRole("heading", { name: "Grazie per averci contattato" })).toBeVisible();
       expect(bodies).toHaveLength(1);
       const expectedContext = { sector, form_location: sector === "generico" ? "contact_page" : "sector_page" };
+      expect(bodies[0].privacyAccepted).toBe(true);
       expect(bodies[0].context).toEqual(expectedContext);
       if (sector !== "generico") expect(bodies[0].phone).toBe("+39 333 123 4567");
       const leads = await events(page, "generate_lead");
@@ -446,4 +454,27 @@ test("prodotti e assistenza: comparsa allo scroll e accesso diretto al NAS", asy
   await expect(nas).toHaveCSS("opacity", "1");
   await page.emulateMedia({ reducedMotion: "reduce" });
   await expect(nas).toHaveCSS("transition-duration", "0s");
+});
+
+
+test("WhatsApp usa il recapito aggiornato in tutte le pagine e la privacy si legge senza perdere i dati", async ({ page, context }) => {
+  await page.addInitScript((key) => localStorage.setItem(key, "rejected"), choiceKey);
+  for (const path of ["/", "/contatti", "/chi-siamo", "/prodotti-assistenza", "/noleggio-registratori-di-cassa", "/vendita-registratori-di-cassa", ...sectors.map((sector) => `/soluzioni/${sector}`)]) {
+    await page.goto(path);
+    const links = page.locator('a[href^="https://wa.me/"]');
+    expect(await links.count()).toBeGreaterThan(0);
+    for (const link of await links.all()) {
+      await expect(link).toHaveAttribute("href", "https://wa.me/393516888890");
+      await expect(link).toHaveAttribute("target", "_blank");
+    }
+  }
+  await page.goto("/contatti");
+  await page.getByLabel("Nome e cognome").fill("Persona Test");
+  const newTab = context.waitForEvent("page");
+  await page.locator('form a[href="/privacy"]').click();
+  const privacy = await newTab;
+  await expect(privacy).toHaveURL(/privacy$/);
+  await privacy.close();
+  await expect(page.getByLabel("Nome e cognome")).toHaveValue("Persona Test");
+  await expect(page.locator("#cf-privacy")).not.toBeChecked();
 });

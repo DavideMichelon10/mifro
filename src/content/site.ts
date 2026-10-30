@@ -28,7 +28,8 @@ export const siteConfig = {
     phone: "+39 0461 512777",
     fax: "+39 0461 539340",
     email: "mifro@mifro.it",
-    whatsapp: "+390461512777",
+    whatsapp: "+393516888890",
+    whatsappDisplay: "+39 351 688 8890",
     facebook: "https://www.facebook.com/mifrosas",
     googleMapsQuery:
       "Mifro+S.a.s.+Via+Giuseppe+Verdi+13+Pergine+Valsugana+TN",
@@ -95,7 +96,7 @@ export const siteConfig = {
   ctaFinal: {
     title: "Parliamo della tua attività",
     description:
-      "Raccontaci di cosa hai bisogno. Ti ricontattiamo per parlarne insieme.",
+      "Raccontaci di cosa hai bisogno. Ti ricontattiamo subito per parlarne insieme.",
     cta: { label: "Contattaci", href: "/contatti" },
   },
 
@@ -105,7 +106,15 @@ export const siteConfig = {
     requestNote: "Indicaci il modello, cosa succede e il comune in cui lavori. I nostri tecnici ti ricontattano per capire quale intervento serve.",
     hoursNote: "Puoi contattare la sede negli orari indicati. Modalità e copertura dell’assistenza dipendono dagli accordi di servizio.",
   },
-  privacyRevisedAt: "2026-10-29",
+  privacyRevisedAt: "2026-10-30",
+
+  contactPanel: {
+    steps: [
+      "Lasci i tuoi contatti e ci racconti cosa ti serve",
+      "Ti richiamiamo subito per capire le tue esigenze",
+      "Troviamo insieme la soluzione per la tua attività",
+    ],
+  },
 
   /* ── Percorso delle richieste dai settori ───────────── */
   contactJourney: {
@@ -118,9 +127,9 @@ export const siteConfig = {
         description: "Compila il modulo e raccontaci come lavori oggi e cosa vorresti migliorare nella tua attività.",
       },
       {
-        title: "Ti richiama Claudio",
-        description: "Ti contatta Claudio, il titolare di Mifro, che lavora nel settore da oltre 30 anni. Ascolta le tue esigenze per capire come lavori e quale soluzione può aiutarti.",
-        badge: "Claudio ti richiama entro 2 giorni lavorativi.",
+        title: "Ti richiamiamo",
+        description: "Ascoltiamo le tue esigenze per capire come lavori e quale soluzione può aiutarti.",
+        badge: "Ti richiamiamo subito.",
       },
       {
         title: "Tocca con mano in negozio",
@@ -264,9 +273,8 @@ export const siteConfig = {
   contactPage: {
     title: "Contattaci",
     description:
-      "Hai bisogno di informazioni o assistenza? Lasciaci un messaggio e ti ricontatteremo.",
-    formTitle: "Scrivici: ti ricontattiamo noi",
-    replyNote: "Il gestore del sito inoltra la richiesta a Mifro, che ti ricontatterà all’indirizzo email indicato.",
+      "Hai bisogno di informazioni o assistenza? Lasciaci un messaggio e ti ricontattiamo subito.",
+    formTitle: "Scrivici: ti ricontattiamo subito",
     formFields: {
       name: "Nome e cognome",
       email: "Email",

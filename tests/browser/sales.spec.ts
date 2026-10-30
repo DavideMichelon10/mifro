@@ -45,7 +45,8 @@ for (const consent of ["accepted", "rejected"]) {
     expect(bodies).toHaveLength(0);
     await expect(page.getByLabel("Email", { exact: true })).toBeFocused();
     await page.getByLabel("Email", { exact: true }).fill("test@example.com");
-    expect(await page.locator("input[required], textarea[required]").count()).toBe(3);
+    await page.locator("#cf-privacy").check();
+    expect(await page.locator("input[required], textarea[required]").count()).toBe(4);
     await expect(page.getByLabel("Numero di telefono", { exact: true })).not.toHaveAttribute("required", "");
     await submit.click();
     await expect(page.locator("form").getByRole("alert")).toBeFocused();
@@ -105,7 +106,7 @@ for (const width of [320, 390, 768, 1440]) {
     await expect(page.locator("#richiedi-proposta")).toBeInViewport();
     expect(new URL(page.url()).search).toBe(query);
     await expect(page.locator("#mobile-navigation")).toBeHidden();
-    await expect(page.locator('a[href^="tel:"], a[href^="mailto:"], a[href*="wa.me"]')).toHaveCount(0);
+    await expect(page.locator('a[href^="tel:"], a[href^="mailto:"]')).toHaveCount(0);
     expect(await events(page, "generate_lead")).toHaveLength(0);
     await page.screenshot({ path: testInfo.outputPath(`vendita-${width}.png`), fullPage: true });
   });

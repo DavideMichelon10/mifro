@@ -32,7 +32,7 @@ File distinti e revisione congiunta dei contenuti prima del collaudo finale.
   RT, WALLE 8T e APE J RT. Distingue prima cassa e sostituzione, scelta, servizi e
   preventivo; nessun prezzo di acquisto, disponibilità o tempo garantito inventato.
   Non contiene il prezzo del noleggio. Il percorso «Come ti seguiamo» riassume in
-  tre passaggi ricontatto con Claudio, eventuale prova e preventivo, avvio e supporto.
+  tre passaggi ricontatto («Ti richiamiamo subito»), eventuale prova e preventivo, avvio e supporto.
   Nessuna aggiunta al menu principale;
   `noindex, follow` e assenza dalla sitemap in continuità con la landing di riferimento.
 - `/soluzioni/altre-attivita` conserva la presentazione generale e l’offerta

@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, BookOpen, ChevronDown, Headset, MapPin, MonitorCheck } from "lucide-react";
 import ContactForm from "@/components/ContactForm";
+import ContactSection from "@/components/ContactSection";
 import Section from "@/components/Section";
 import SolutionCard from "@/components/SolutionCard";
 import ScrollReveal from "@/components/ScrollReveal";
@@ -164,12 +165,7 @@ export default function SalesPage() {
         </div>
       </Section>
 
-      <Section gray>
-        <div className="mx-auto max-w-2xl">
-          <p className="eyebrow mb-5 justify-center">{content.form.eyebrow}</p>
-          <div id="richiedi-proposta" tabIndex={-1} aria-labelledby="sales-form-title" className="form-panel scroll-mt-24 bg-white">
-            <h2 id="sales-form-title" className="text-center text-xl font-semibold">{content.form.titlePanel}</h2>
-            <p className="mb-6 mt-3 text-sm leading-relaxed text-gray-600">{content.form.intro}</p>
+      <ContactSection title={content.form.titlePanel} description={content.form.intro} eyebrow={content.form.eyebrow} showDirectContacts={false}>
             <ContactForm
               context={salesContactContext}
               defaultSubject={SALES_CONTACT_SUBJECT}
@@ -177,9 +173,7 @@ export default function SalesPage() {
               submitLabel={content.form.submitLabel}
               showSubject={false}
             />
-          </div>
-        </div>
-      </Section>
+      </ContactSection>
     </>
   );
 }

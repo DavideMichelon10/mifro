@@ -84,8 +84,8 @@ export const salesContent = {
     title: "Come ti seguiamo",
     items: [
       {
-        title: "Parli con Claudio",
-        text: "Compila il modulo: Claudio ti ricontatta per capire cosa serve alla tua attività, dalla prima cassa alla sostituzione.",
+        title: "Ti richiamiamo",
+        text: "Compila il modulo: ti richiamiamo subito per capire cosa serve alla tua attività, dalla prima cassa alla sostituzione.",
       },
       {
         title: "Scegli con una proposta chiara",

@@ -27,6 +27,71 @@ Il modulo funziona senza consenso Analytics. Con consenso rifiutato o strumenti
 bloccati le email possono superare il numero di eventi. SMTP accettato non prova
 il recapito in posta in entrata; controllare anche Spam e inoltro al referente.
 
+## Verifica Beauty e benessere — 28 ottobre 2026
+
+L’utente conferma di promuovere per ora soltanto Beauty e benessere. Gli altri
+gruppi osservati in Ads sono in pausa; nessuna modifica a gruppi, offerte o budget
+è stata applicata in questa verifica.
+
+Verificata nell’account Mifro l’azione Form (7869328228): GA4 `mifro.it`, evento
+`generate_lead`, primaria, conteggio Una, nessun valore, attribuzione basata sui
+dati sui canali Google a pagamento. Il dettaglio indica **Awaiting conversions**
+e specifica che non sono state registrate conversioni negli ultimi sette giorni.
+Auto-tagging è Yes. L’avviso generale di configurazione incompleta non è, da solo,
+prova di un tag mancante. È presente anche l’azione primaria Google hosted
+“Conversation started”, distinta dall’invio del modulo; non è stata modificata.
+
+Collaudata la pagina pubblicata `/soluzioni/parrucchieri-saloni` con il loader
+Google reale e raccolta intercettata. Con consenso Ads: un invio intercettato,
+un solo caricamento tag e un `generate_lead` destinato a `G-PHX0Y4MJH3`, settore
+`parrucchieri-saloni`, `gcs=G111`, `gcd=13r3r3r2q7l1`, `npa=1`. Con rifiuto:
+il modulo procede ma non carica il tag e non genera eventi. SMTP, raccolta e
+risposta `/grazie` sono simulati: non sono state inviate email o conversioni reali.
+
+Esteso il collaudo ripetibile del loader reale al settore Beauty: `npm run build`
+riuscito e `npm run test:analytics` con **4 test superati**. I test locali verificano
+anche il refresh di `/grazie` e l’assenza di duplicati, sia con sole statistiche
+sia con consenso Ads. Nessuna correzione al codice di produzione è risultata
+necessaria. Rimane da osservare una richiesta autentica attribuita a un clic
+pubblicitario: questi controlli non provano l’attribuzione finale in Ads e non
+permettono di dichiarare scomparso l’avviso.
+
+### Invio reale di collaudo autorizzato — 28 ottobre 2026
+
+Su successiva richiesta esplicita dell’utente (“genera una richiesta fittizia”),
+inviata **una sola** richiesta dal modulo Beauty sul sito pubblicato, con nome
+“TEST TECNICO - NON RICONTATTARE”, recapiti segnaposto e messaggio che chiede di
+non telefonare, rispondere o inoltrare come richiesta commerciale. Identificativo:
+`MIFRO-BEAUTY-TEST-20261028`.
+
+Osservati un solo POST `/api/contact`, risposta HTTP 200 con `ok: true` e pagina
+`/grazie`. Questo conferma l’accettazione SMTP secondo il codice dell’endpoint,
+non la presenza in posta in arrivo. Osservata una sola risposta HTTP 204 dalla
+raccolta Google per `generate_lead`, settore `parrucchieri-saloni`, destinazione
+`G-PHX0Y4MJH3`, consenso `G111`. La ricezione nei report GA4 non è stata verificata.
+La visita è diretta, senza clic su annunci né identificativi pubblicitari simulati:
+non prova l’attribuzione di una conversione alla campagna Ads. Escludere questo
+contatto fittizio dalle valutazioni commerciali; può comparire nei conteggi GA4.
+
+### Riscontro nei report dopo il test — 28 ottobre 2026, circa 17:40
+
+L’utente conferma che l’email di collaudo è arrivata. In GA4 Mifro, Tempo reale,
+sono visibili due utenti, due visualizzazioni della pagina Beauty e gli eventi
+`first_visit`, `page_view`, `session_start`, ma **non `generate_lead`**; il riquadro
+eventi chiave è vuoto. La schermata Eventi conferma `generate_lead` marcato come
+evento chiave e dati dello stream Mifro negli ultimi 28 giorni, senza dimostrare
+la ricezione di questo test. L’unico filtro visibile, Internal Traffic, è in Testing.
+
+In Ads, report aggiornato al **24–28 ottobre**, Form resta **Awaiting conversions**
+con zero conversioni. Non è stato generato un altro test né un clic pubblicitario.
+L’invio precedente ha ricevuto HTTP 204 dalla raccolta ma la registrazione del
+lead nel report GA4 **non è ancora confermata**: non dichiarare verificata tutta
+la catena. L’assenza in Ads è compatibile con la visita diretta del collaudo;
+l’attribuzione pubblicitaria rimane non verificata. I report standard GA4 possono
+richiedere 24–48 ore, mentre Tempo reale normalmente pochi minuti: un ritardo
+è possibile, ma non è stata accertata la causa dell’assenza del lead.
+Fonte: https://support.google.com/analytics/answer/11198161
+
 ## GA4 e Google Ads
 
 1. Nella proprietà `mifro.it` (526284251), stream `G-PHX0Y4MJH3`, sono state

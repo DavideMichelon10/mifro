@@ -95,7 +95,7 @@ export const beautyContent = {
   form: {
     eyebrow: "Parliamo del tuo salone",
     title: "Richiedi una proposta per il tuo salone",
-    intro: "Raccontaci come lavori e cosa ti serve: pagina web, prenotazioni, agenda o gestionale. Ti ricontattiamo per approfondire.",
+    intro: "Raccontaci come lavori e cosa ti serve: pagina web, prenotazioni, agenda o gestionale. Ti ricontattiamo subito per approfondire.",
     subject: "Beauty: pagina web, prenotazioni e agenda per il salone",
     messagePlaceholder: "In quale comune si trova il salone? Quanti operatori lavorano con te? Raccontaci cosa ti serve e quali strumenti usi già.",
     submitLabel: "Invia la richiesta",

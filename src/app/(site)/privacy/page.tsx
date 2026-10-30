@@ -34,7 +34,10 @@ export default function PrivacyPage() {
         <p>
           Il modulo di contatto raccoglie nome, indirizzo email e messaggio, con oggetto
           facoltativo nella pagina Contatti o automatico nelle pagine dedicate ai settori.
-          Nelle quattro pagine dedicate ai settori è richiesto anche il numero di telefono per il ricontatto da parte di Claudio.
+          Il telefono è richiesto nelle pagine ristoranti, ambulanti, altre attività e noleggio;
+          è facoltativo nelle pagine Beauty e vendita. Nel modulo noleggio raccogliamo anche il comune dell’attività.
+          Per inviare il modulo è necessario selezionare la casella di lettura e accettazione dell’informativa:
+          questa conferma è inclusa nell’email della richiesta.
           La richiesta include il settore e la posizione del modulo sul sito.
           I dati vengono elaborati dal sito ospitato su Vercel e inviati tramite Gmail
           al gestore del sito, Davide Michelon, che inoltra la richiesta a Mifro per la risposta.
@@ -45,6 +48,11 @@ export default function PrivacyPage() {
         </p>
         <p>
           I dati del modulo sono utilizzati per gestire la richiesta, senza iscrizione automatica a comunicazioni promozionali.
+        </p>
+        <p>
+          I pulsanti WhatsApp aprono una conversazione con il gestore del sito, Davide Michelon,
+          al numero {contact.whatsappDisplay}, che gestisce e inoltra le richieste a Mifro.
+          Il messaggio viene inviato solo quando lo confermi in WhatsApp.
         </p>
         <p>
           Se scegli anche la misurazione pubblicitaria, Google Analytics e Google Ads

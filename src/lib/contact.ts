@@ -26,6 +26,7 @@ export function readReceipt(token: string | undefined, secret: string, now = Dat
 export function validateContact(value: unknown) {
   if (!value || typeof value !== "object") return null;
   const data = value as Record<string, unknown>;
+  if (data.privacyAccepted !== true) return null;
   const context = parseContactContext(data.context);
   if (!context) return null;
   const limits = { name: 120, email: 254, message: 5000 };

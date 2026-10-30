@@ -152,7 +152,8 @@ arbitrari nei propri parametri.
 
 Configurazione GA4/Ads, rilevamento dei clic, registro commerciale e collaudo sono
 descritti in [Misurazione e gestione richieste](docs/misurazione-conversioni.md).
-Il sito utilizza sempre il numero aziendale Mifro. Le chiamate ricevute e la
+Le chiamate usano il numero aziendale Mifro; i pulsanti WhatsApp usano il recapito
+del gestore del sito, Davide Michelon: +39 351 688 8890. Le chiamate ricevute e la
 provenienza dichiarata dal cliente si annotano nel registro commerciale.
 Il consenso Analytics non abilita automaticamente finalità pubblicitarie.
 
@@ -218,11 +219,11 @@ Nelle altre pagine il pulsante porta a `/contatti`. Le pagine di settore
 si aprono direttamente con l’introduzione, senza breadcrumb.
 
 Prima delle FAQ di ristoranti, ambulanti e altre attività, `ContactJourney` mostra il percorso in sei
-passaggi: modulo, ricontatto di Claudio entro un massimo di due giorni lavorativi,
+passaggi: modulo, ricontatto con il messaggio «Ti richiamiamo subito»,
 eventuale prova in negozio, preventivo, installazione e formazione con un tecnico
 specializzato, assistenza successiva. Testi e impegno di ricontatto, confermati
 dall’utente, sono centralizzati in `siteConfig.contactJourney`. Le CTA delle pagine
-privilegiano il modulo; telefono e WhatsApp aziendali restano disponibili nel footer.
+privilegiano il modulo; telefono aziendale e WhatsApp del gestore restano disponibili nel footer.
 
 Beauty mantiene `/soluzioni/parrucchieri-saloni`, menu e sitemap esistenti. Il
 template di settore usa `BeautyPage` e `src/content/beauty.ts` per presentare prima
@@ -232,8 +233,12 @@ di prenotazione illustra il percorso del cliente; la schermata dimostrativa dell
 vendite non mostra dati personali. L’oggetto specifico e il contesto
 `parrucchieri-saloni` / `sector_page` distinguono la richiesta Beauty.
 Assistenza, integrazioni e presenza locale occupano sezioni distinte, con spaziatura
-e sfondi alternati. Tutti i moduli del sito sono centrati in una sola colonna,
-con larghezza massima coerente anche sulle pagine settore e Contatti.
+e sfondi alternati. Tutti i moduli usano `ContactSection`: riquadro blu scuro, introduzione e passaggi
+a sinistra, scheda bianca con campi chiari a destra; su mobile le colonne si impilano.
+Lo stile riprende il modulo di piazzale.app/#chiamata, con colori e contenuti Mifro.
+La casella privacy è obbligatoria e inizialmente vuota in tutti i moduli: il server
+accetta soltanto `privacyAccepted: true` e riporta la conferma nell’email interna.
+Il link all’informativa si apre in una nuova scheda per preservare i dati compilati.
 
 ### Landing per acquisto e noleggio
 
@@ -250,6 +255,7 @@ anche dal server. Il contesto controllato `generico` / `sales_page` identifica l
 vendita nell’email e in `generate_lead`. Noleggio conserva `rental_page` e i campi
 esistenti. Le CTA e Contattaci portano al modulo locale, conservando i parametri
 pubblicitari; come nel noleggio, footer e chat della vendita privilegiano il modulo.
+Il pulsante WhatsApp al recapito del gestore è disponibile anche su queste landing.
 Nessuna conversione viene emessa dal clic sulla CTA.
 
 Beauty e vendita riutilizzano `ScrollReveal` per le animazioni, con contenuti

@@ -8,6 +8,7 @@ import { getSector, sectors, sectorHref } from "@/content/sectors";
 import { Icon } from "@/components/Icons";
 import Section from "@/components/Section";
 import ContactForm from "@/components/ContactForm";
+import ContactSection from "@/components/ContactSection";
 import ContactJourney from "@/components/ContactJourney";
 import SolutionCard from "@/components/SolutionCard";
 import ProductGallery from "@/components/ProductGallery";
@@ -181,19 +182,9 @@ export default async function SectorPage({ params }: PageProps) {
         </div>
       </Section>
 
-      <Section>
-        <div className="mx-auto max-w-2xl space-y-8">
-          <ScrollReveal className="text-center">
-            <p className="eyebrow justify-center">Contatta Mifro</p>
-            <h2 className="section-title mt-4">{sector.question}</h2>
-            <p className="mt-5 leading-relaxed text-gray-600">{sector.questionText}</p>
-          </ScrollReveal>
-          <div id="richiedi-proposta" tabIndex={-1} aria-labelledby="contact-form-title" className="form-panel scroll-mt-24">
-            <h3 id="contact-form-title" className="mb-6 text-center text-xl font-semibold">{siteConfig.contactPage.formTitle}</h3>
-            <ContactForm key={sector.slug} context={{ sector: sector.slug, form_location: "sector_page" }} defaultSubject={sector.subject} messagePlaceholder={sector.messagePlaceholder} submitLabel={contactJourney.cta} showSubject={false} />
-          </div>
-        </div>
-      </Section>
+      <ContactSection title={sector.question} description={sector.questionText} eyebrow="Contatta Mifro">
+        <ContactForm key={sector.slug} context={{ sector: sector.slug, form_location: "sector_page" }} defaultSubject={sector.subject} messagePlaceholder={sector.messagePlaceholder} submitLabel={contactJourney.cta} showSubject={false} />
+      </ContactSection>
 
     </>
   );

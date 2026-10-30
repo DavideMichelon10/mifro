@@ -17,13 +17,12 @@ ATS 2 e ATS 3 sono software gestionali. Come precisato dall’utente, ATS 3 può
 Le funzioni sono accompagnate dall’indicazione che dipendono dai moduli e dalla configurazione scelta.
 
 Su richiesta successiva dell’utente, tutti e quattro i settori includono prima delle
-FAQ un percorso numerato: invio del modulo, ricontatto di Claudio (titolare con oltre
-30 anni di esperienza) entro un massimo di due giorni lavorativi, eventuale prova
+FAQ un percorso numerato: invio del modulo, ricontatto con il messaggio «Ti richiamiamo subito», eventuale prova
 in negozio, preventivo, installazione e formazione con un tecnico specializzato,
 assistenza per i dubbi futuri. Il telefono è obbligatorio nei quattro moduli e arriva
 nell’email interna, senza entrare nei parametri Analytics. Queste indicazioni
 superano le precedenti note sulla rimozione dei percorsi e sui moduli a tre campi.
-Il termine di due giorni riguarda il primo ricontatto, non gli interventi tecnici.
+Il messaggio «Ti richiamiamo subito», richiesto dall’utente, riguarda il primo ricontatto, non gli interventi tecnici.
 
 ## Verifiche dei tecnici prima della pubblicazione
 

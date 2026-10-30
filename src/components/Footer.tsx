@@ -2,10 +2,11 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ArrowRight, MapPin, Phone, Mail, Clock, Facebook, MessageCircle } from "lucide-react";
+import { ArrowRight, MapPin, Phone, Mail, Clock, Facebook } from "lucide-react";
 import { siteConfig } from "@/content/site";
 import { contactContextForPath } from "@/lib/contact-context";
 import Logo from "@/components/Logo";
+import WhatsAppLink from "@/components/WhatsAppLink";
 
 export default function Footer() {
   const { contact, footer, hoursShort } = siteConfig;
@@ -22,19 +23,9 @@ export default function Footer() {
           <div className="sm:col-span-2 lg:col-span-1">
             <div className="flex max-w-sm items-center justify-between gap-4">
               <Link href="/" aria-label="Mifro — Torna alla home" className="inline-flex min-h-11 items-center rounded-sm"><Logo size={30} /></Link>
-              {!formOnly && <div className="flex gap-1">
-                <a
-                  href={`https://wa.me/${contact.whatsapp.replace(/\+/g, "")}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex h-12 w-16 shrink-0 flex-col items-center justify-center gap-1 rounded-lg text-xs leading-4 text-brand-700 transition-colors hover:bg-brand-100"
-                  aria-label="Contattaci su WhatsApp Business"
-                  title="WhatsApp Business · 0461 512777"
-                >
-                  <MessageCircle aria-hidden="true" className="h-4 w-4" />
-                  <span>WhatsApp</span>
-                </a>
-                <a
+              <div className="flex gap-1">
+                <WhatsAppLink compact className="inline-flex h-12 w-16 shrink-0 flex-col items-center justify-center gap-1 rounded-xl text-xs leading-4 text-brand-700 transition-colors hover:bg-brand-100" />
+                {!formOnly && <a
                   href={contact.facebook}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -44,8 +35,8 @@ export default function Footer() {
                 >
                   <Facebook aria-hidden="true" className="h-4 w-4" />
                   <span>Facebook</span>
-                </a>
-              </div>}
+                </a>}
+              </div>
             </div>
             <p className="mt-3 max-w-sm text-sm leading-relaxed text-gray-600">
               {footer.description}

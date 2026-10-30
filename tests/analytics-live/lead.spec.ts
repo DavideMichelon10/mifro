@@ -12,8 +12,9 @@ test.beforeAll(async () => {
   script = await loader.text();
 });
 
+for (const sector of ["ristoranti", "parrucchieri-saloni"]) {
 for (const ads of [false, true]) {
-test(`tag Google reale, Ads ${ads}: un lead per invio, nessuna conversione su visita o refresh di grazie`, async ({ page, context, baseURL }, testInfo) => {
+test(`tag Google reale, ${sector}, Ads ${ads}: un lead per invio, nessuna conversione su visita o refresh di grazie`, async ({ page, context, baseURL }, testInfo) => {
   const origin = new URL(baseURL!).origin;
   if (!["127.0.0.1", "localhost", "[::1]"].includes(new URL(origin).hostname)) {
     throw new Error("Il collaudo Analytics deve utilizzare esclusivamente un server locale di test.");
@@ -57,16 +58,17 @@ test(`tag Google reale, Ads ${ads}: un lead per invio, nessuna conversione su vi
     }
     return route.fulfill({ status: 200, body: "" });
   });
-  await page.goto("/soluzioni/ristoranti");
+  await page.goto(`/soluzioni/${sector}`);
   expect(tagLoads).toBe(0);
   expect(captured).toHaveLength(0);
   await page.getByRole("button", { name: ads ? "Accetta statistiche e misurazione Ads" : "Solo statistiche", exact: true }).click();
-  await expect.poll(() => captured.filter((event) => event.event === "page_view" && event.path === "/soluzioni/ristoranti").length, { timeout: 15000 }).toBe(1);
+  await expect.poll(() => captured.filter((event) => event.event === "page_view" && event.path === `/soluzioni/${sector}`).length, { timeout: 15000 }).toBe(1);
   await page.locator("header").getByRole("link", { name: "Contattaci", exact: true }).click();
   await page.getByLabel("Nome e cognome").fill("Verifica locale");
   await page.getByLabel("Email", { exact: true }).fill("review@example.com");
   await page.getByLabel("Numero di telefono", { exact: true }).fill("+39 333 123 4567");
   await page.getByLabel("Messaggio", { exact: true }).fill("Collaudo intercettato: nessuna email o richiesta di raccolta reale.");
+  await page.locator("#cf-privacy").check();
   await page.locator('form button[type="submit"]').click();
   await expect(page).toHaveURL(/grazie$/);
   await expect.poll(() => captured.filter((event) => event.event === "generate_lead").length, { timeout: 15000 }).toBe(1);
@@ -83,7 +85,7 @@ test(`tag Google reale, Ads ${ads}: un lead per invio, nessuna conversione su vi
   expect(leadConsentSignals[0].npa).toBe("1");
   expect(submissions).toHaveLength(1);
   expect(captured.filter((event) => event.event === "generate_lead")).toEqual([
-    { event: "generate_lead", path: "/soluzioni/ristoranti", sector: "ristoranti", location: "sector_page" },
+    { event: "generate_lead", path: `/soluzioni/${sector}`, sector, location: "sector_page" },
   ]);
   expect(captured.filter((event) => event.event?.startsWith("ads_conversion_") && event.path === "/grazie"),
     "Rimuovere nell’account Google la conversione derivata dalla visita a /grazie: duplica l’invio e ricompare al refresh.",
@@ -91,4 +93,5 @@ test(`tag Google reale, Ads ${ads}: un lead per invio, nessuna conversione su vi
   expect(await page.evaluate((key) => localStorage.getItem(key), CONSENT_KEY)).toBe("accepted");
   expect(await page.evaluate((key) => localStorage.getItem(key), ADS_CONSENT_KEY)).toBe(ads ? "accepted" : "rejected");
 });
+}
 }
