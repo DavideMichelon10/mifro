@@ -106,7 +106,7 @@ export const siteConfig = {
     requestNote: "Indicaci il modello, cosa succede e il comune in cui lavori. I nostri tecnici ti ricontattano per capire quale intervento serve.",
     hoursNote: "Puoi contattare la sede negli orari indicati. Modalità e copertura dell’assistenza dipendono dagli accordi di servizio.",
   },
-  privacyRevisedAt: "2026-10-30",
+  privacyRevisedAt: "2026-11-03",
 
   contactPanel: {
     steps: [
