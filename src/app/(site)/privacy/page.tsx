@@ -33,10 +33,12 @@ export default function PrivacyPage() {
         <h2 className="mt-8 text-base font-semibold text-gray-800">2. Dati raccolti e finalità</h2>
         <h3 className="mb-3 mt-5 font-semibold text-gray-800">Moduli del sito e contatti diretti</h3>
         <p>
-          Il modulo di contatto raccoglie nome, indirizzo email e messaggio, con oggetto
-          facoltativo nella pagina Contatti o automatico nelle pagine dedicate ai settori.
-          Il telefono è richiesto nelle pagine ristoranti, ambulanti, altre attività e noleggio;
-          è facoltativo nelle pagine Beauty e vendita. Nel modulo noleggio raccogliamo anche il comune dell’attività.
+          Il modulo di contatto raccoglie nome e messaggio, con oggetto facoltativo
+          nella pagina Contatti o automatico nelle pagine dedicate alle soluzioni.
+          Il telefono è richiesto nelle pagine ristoranti, parrucchieri e saloni, ambulanti,
+          altre attività, vendita e noleggio. L’indirizzo email è facoltativo nelle pagine
+          parrucchieri e saloni, vendita e noleggio; è richiesto negli altri moduli.
+          Nel modulo noleggio raccogliamo anche il comune dell’attività.
           Per inviare il modulo è necessario selezionare la casella di lettura e accettazione dell’informativa:
           questa conferma è inclusa nell’email della richiesta.
           La richiesta include il settore e la posizione del modulo sul sito.
@@ -51,8 +53,8 @@ export default function PrivacyPage() {
           I dati del modulo sono utilizzati per gestire la richiesta, senza iscrizione automatica a comunicazioni promozionali.
         </p>
         <p>
-          I pulsanti WhatsApp aprono una conversazione con il gestore del sito,
-          al numero {contact.whatsappDisplay}, che gestisce e inoltra le richieste a Mifro.
+          I pulsanti WhatsApp aprono una conversazione con Mifro
+          al numero aziendale {contact.whatsappDisplay}.
           Il messaggio viene inviato solo quando lo confermi in WhatsApp.
         </p>
         <h3 id="contatti-meta" className="mb-3 mt-5 scroll-mt-28 font-semibold text-gray-800">Moduli di contatto su Facebook e Instagram</h3>

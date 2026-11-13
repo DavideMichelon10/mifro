@@ -4,22 +4,31 @@
 // Esclusa la schermata listini, che contiene un nome account.
 export const beautyContent = {
   seo: {
-    title: "Pagina web e agenda online per parrucchieri e saloni",
-    description: "Pagina web del salone con prenotazioni online, scelta dell’operatore e agenda per il team. Configurazione, formazione e assistenza Mifro in Trentino.",
+    title: "Cassa e gestionale per parrucchieri e saloni",
+    description: "Cassa, gestionale RCH Beauty e moduli per agenda e prenotazioni del salone. Configurazione, compatibilità, formazione e assistenza da definire con Mifro.",
   },
   hero: {
+    whatsappMessage: "Buongiorno Mifro, vi contatto dalla pagina cassa e gestionale per saloni. Vorrei informazioni per il mio salone.",
     eyebrow: "Mifro · Parrucchieri e saloni",
-    title: "Pagina web e agenda online per il tuo salone",
-    subtitle: "I clienti prenotano scegliendo operatore e orario. Tu gestisci gli appuntamenti del team, con formazione e assistenza Mifro anche di persona nelle zone servite.",
+    title: "Cassa e gestionale per il tuo salone",
+    subtitle: "Mifro, a Pergine Valsugana, ti aiuta a scegliere cassa e gestionale per il tuo salone. Definiamo i moduli per agenda e prenotazioni online e verifichiamo i collegamenti compatibili nella proposta.",
     cta: "Richiedi una proposta per il tuo salone",
   },
   booking: {
     eyebrow: "Per i tuoi clienti",
     title: "Dal tuo salone all’appuntamento online",
+    example: {
+      customer: "Giulia",
+      stylist: "Francesca",
+      service: "Taglio e piega",
+      day: "Martedì",
+      time: "09:30",
+      caption: "Esempio illustrativo con nomi di fantasia.",
+    },
     steps: [
-      { title: "Aprono la pagina del salone", text: "Il cliente accede alla pagina dedicata alle prenotazioni della tua attività." },
-      { title: "Scelgono operatore e orario", text: "La prenotazione segue le disponibilità che hai impostato per il team." },
-      { title: "La prenotazione entra in agenda", text: "L’appuntamento viene inserito automaticamente nell’agenda del salone." },
+      { title: "Giulia apre la pagina del salone", text: "Vuole prenotare un taglio con piega e accede alla pagina degli appuntamenti." },
+      { title: "Sceglie Francesca e un orario", text: "Tra le disponibilità della sua parrucchiera trova martedì alle 9:30." },
+      { title: "Il salone ritrova la prenotazione", text: "L’appuntamento di Giulia entra automaticamente nell’agenda di Francesca." },
     ],
   },
   team: {
@@ -51,7 +60,7 @@ export const beautyContent = {
   },
   support: {
     eyebrow: "Il supporto di Mifro",
-    title: "Ti aiutiamo a partire. E restiamo raggiungibili.",
+    title: "Ti aiutiamo a partire e restiamo raggiungibili",
     intro: "Da Pergine Valsugana affianchiamo le attività del territorio, con persone a cui rivolgerti anche dopo l’avvio.",
     items: [
       { title: "Configurazione per il tuo salone", text: "Partiamo da come lavori, dal numero di operatori e dagli strumenti che usi già per definire e configurare la soluzione." },
@@ -62,7 +71,7 @@ export const beautyContent = {
     peopleText: "Nella sede di Pergine Valsugana trovi un riferimento per il gestionale e l’organizzazione del tuo salone. Ti seguiamo anche dopo l’avvio, con formazione e assistenza anche di persona nelle zone servite, secondo le modalità concordate nella proposta.",
   },
   integrations: {
-    title: "Se ti servono anche cassa e POS",
+    title: "Cassa e POS per il tuo salone",
     intro: "Valutiamo gli strumenti per gli incassi e i pagamenti insieme al gestionale. Verifichiamo i dispositivi che possiedi già, i collegamenti compatibili e gli eventuali servizi da attivare.",
     posFeatures: [
       "Pagamenti con carta e contactless",
@@ -95,9 +104,9 @@ export const beautyContent = {
   form: {
     eyebrow: "Parliamo del tuo salone",
     title: "Richiedi una proposta per il tuo salone",
-    intro: "Raccontaci come lavori e cosa ti serve: pagina web, prenotazioni, agenda o gestionale. Ti ricontattiamo subito per approfondire.",
-    subject: "Beauty: pagina web, prenotazioni e agenda per il salone",
+    intro: "Raccontaci come lavori e cosa ti serve: cassa, gestionale, agenda o prenotazioni. Ti ricontattiamo subito per approfondire.",
+    subject: "Beauty: cassa, gestionale e agenda per il salone",
     messagePlaceholder: "In quale comune si trova il salone? Quanti operatori lavorano con te? Raccontaci cosa ti serve e quali strumenti usi già.",
-    submitLabel: "Invia la richiesta",
+    submitLabel: "Richiedi una proposta per il tuo salone",
   },
 };

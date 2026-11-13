@@ -36,6 +36,7 @@ export const salesContent = {
     description: "Acquista o sostituisci il registratore di cassa con Mifro a Pergine Valsugana. Scelta, installazione, formazione e assistenza: richiedi un preventivo.",
   },
   hero: {
+    whatsappMessage: "Buongiorno Mifro, vi contatto dalla pagina vendita registratori di cassa. Vorrei informazioni per acquistare o sostituire la cassa della mia attività.",
     eyebrow: "Vendita registratori di cassa · Mifro",
     title: "Registratori di cassa per la tua attività",
     subtitle: "Ti aiutiamo a scegliere il registratore adatto al tuo lavoro, con installazione, formazione e assistenza anche dopo l’avvio.",

@@ -28,8 +28,8 @@ export const siteConfig = {
     phone: "+39 0461 512777",
     fax: "+39 0461 539340",
     email: "mifro@mifro.it",
-    whatsapp: "+393516888890",
-    whatsappDisplay: "+39 351 688 8890",
+    whatsapp: "+390461512777",
+    whatsappDisplay: "+39 0461 512777",
     facebook: "https://www.facebook.com/mifrosas",
     googleMapsQuery:
       "Mifro+S.a.s.+Via+Giuseppe+Verdi+13+Pergine+Valsugana+TN",
@@ -52,6 +52,7 @@ export const siteConfig = {
   nav: [
     { label: "Per la tua attività", href: "/#settori" },
     { label: "Prodotti e assistenza", href: "/prodotti-assistenza" },
+    { label: "Guide", href: "/news" },
     { label: "Chi siamo", href: "/chi-siamo" },
     { label: "Contatti", href: "/contatti" },
   ],
@@ -106,7 +107,7 @@ export const siteConfig = {
     requestNote: "Indicaci il modello, cosa succede e il comune in cui lavori. I nostri tecnici ti ricontattano per capire quale intervento serve.",
     hoursNote: "Puoi contattare la sede negli orari indicati. Modalità e copertura dell’assistenza dipendono dagli accordi di servizio.",
   },
-  privacyRevisedAt: "2026-11-03",
+  privacyRevisedAt: "2026-11-08",
 
   contactPanel: {
     steps: [
@@ -262,9 +263,9 @@ export const siteConfig = {
           "Ogni proposta è studiata sulle reali esigenze dell’attività del cliente.",
       },
       {
-        title: "Partner affidabili",
+        title: "Marchi che conosciamo",
         description:
-          "Collaboriamo con i migliori marchi del settore per garantire qualità e aggiornamento.",
+          "Lavoriamo con produttori come RCH, Epson, Cashmatic e Canon.",
       },
     ],
   },
@@ -320,7 +321,7 @@ export const siteConfig = {
       { label: "Per la tua attività", href: "/#settori" },
       { label: "Prodotti e assistenza", href: "/prodotti-assistenza" },
       { label: "Chi siamo", href: "/chi-siamo" },
-      { label: "Guida RT–POS", href: "/news/guida-ade-collegamento-rt-pos" },
+      { label: "Guide", href: "/news" },
       { label: "Contatti", href: "/contatti" },
     ],
     piva: "P. IVA 01301350227",

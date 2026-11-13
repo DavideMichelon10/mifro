@@ -1,5 +1,5 @@
 import { createHmac, randomUUID, timingSafeEqual } from "node:crypto";
-import { DEFAULT_CONTACT_SUBJECT, RENTAL_CONTACT_SUBJECT, SALES_CONTACT_SUBJECT, parseContactContext, requiresContactPhone } from "@/lib/contact-context";
+import { DEFAULT_CONTACT_SUBJECT, RENTAL_CONTACT_SUBJECT, SALES_CONTACT_SUBJECT, parseContactContext, requiresContactEmail, requiresContactPhone } from "@/lib/contact-context";
 
 export const RECEIPT_COOKIE = "mifro_contact_receipt";
 export const RECEIPT_SECONDS = 600;
@@ -29,10 +29,14 @@ export function validateContact(value: unknown) {
   if (data.privacyAccepted !== true) return null;
   const context = parseContactContext(data.context);
   if (!context) return null;
-  const limits = { name: 120, email: 254, message: 5000 };
+  const limits = { name: 120, message: 5000 };
   for (const [key, max] of Object.entries(limits)) {
     if (typeof data[key] !== "string" || !data[key].trim() || data[key].length > max) return null;
   }
+  if (data.email !== undefined && (typeof data.email !== "string" || data.email.length > 254 || /[\r\n\x00]/.test(data.email))) return null;
+  const email = (data.email as string | undefined)?.trim() || "";
+  if (requiresContactEmail(context) && !email) return null;
+  if (email && !/^[^\s@<>]+@[^\s@<>]+\.[^\s@<>]+$/.test(email)) return null;
   if (typeof data.website !== "string" || data.website !== "") return null;
   const isRental = context.form_location === "rental_page";
   if (isRental && (typeof data.municipality !== "string" || !data.municipality.trim() || data.municipality.length > 120 || /[\r\n\x00]/.test(data.municipality))) return null;
@@ -45,12 +49,11 @@ export function validateContact(value: unknown) {
   if (context.sector !== "generico" && (typeof data.subject !== "string" || !data.subject.trim())) return null;
   if (/[\r\n\x00]/.test(String(data.name) + String(data.email) + String(data.subject))) return null;
   const name = (data.name as string).trim();
-  const email = (data.email as string).trim();
   const subject = isRental ? RENTAL_CONTACT_SUBJECT
     : context.form_location === "sales_page" ? SALES_CONTACT_SUBJECT
     : (data.subject as string | undefined)?.trim() || DEFAULT_CONTACT_SUBJECT;
   const message = (data.message as string).trim();
-  if (/[\r\n\x00]/.test(name + email + subject) || !/^[^\s@<>]+@[^\s@<>]+\.[^\s@<>]+$/.test(email)) return null;
+  if (/[\r\n\x00]/.test(name + email + subject)) return null;
   return { name, email, phone, municipality, subject, message, context };
 }
 

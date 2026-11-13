@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowDown, ArrowRight, BookOpen, CalendarDays, Check, ChevronDown, Globe, Headset, MapPin, Settings } from "lucide-react";
 import ContactForm from "@/components/ContactForm";
 import ContactSection from "@/components/ContactSection";
+import WhatsAppLink from "@/components/WhatsAppLink";
 import Section from "@/components/Section";
 import SolutionCard from "@/components/SolutionCard";
 import ScrollReveal from "@/components/ScrollReveal";
@@ -13,31 +14,35 @@ import { siteConfig } from "@/content/site";
 const supportIcons = [Settings, BookOpen, Headset];
 
 function BookingIllustration() {
+  const example = content.booking.example;
+
   return (
     <figure className="surface-card mx-auto w-full max-w-md p-5 sm:p-6">
       <div className="flex items-center gap-3 border-b border-gray-200 pb-4">
         <Globe aria-hidden="true" className="h-5 w-5 shrink-0 text-brand-600" />
         <p className="text-sm font-semibold text-brand-900">La pagina web del tuo salone</p>
       </div>
-      <p className="mt-5 text-lg font-semibold text-brand-900">Il cliente sceglie</p>
+      <p className="mt-5 text-lg font-semibold text-brand-900">{example.customer} prenota</p>
+      <p className="mt-1 text-sm text-gray-600">{example.service} nel suo salone</p>
       <dl className="mt-3 grid grid-cols-2 gap-3 text-sm">
         <div className="rounded-lg border border-brand-200 bg-brand-50 p-3">
-          <dt className="text-gray-600">Operatore</dt>
-          <dd className="mt-1 font-semibold text-brand-900">Operatore A</dd>
+          <dt className="text-gray-600">Parrucchiera</dt>
+          <dd className="mt-1 font-semibold text-brand-900">{example.stylist}</dd>
         </div>
         <div className="rounded-lg border border-brand-200 bg-brand-50 p-3">
-          <dt className="text-gray-600">Orario</dt>
-          <dd className="mt-1 font-semibold text-brand-900">09:30</dd>
+          <dt className="text-gray-600">Quando</dt>
+          <dd className="mt-1 font-semibold text-brand-900">{example.day}<span className="block">{example.time}</span></dd>
         </div>
       </dl>
       <div className="flex justify-center py-4"><ArrowDown aria-hidden="true" className="h-5 w-5 text-brand-600" /></div>
       <div className="rounded-xl bg-brand-900 p-4 text-white">
         <div className="flex items-center gap-2 text-sm font-semibold"><CalendarDays aria-hidden="true" className="h-5 w-5 shrink-0 text-brand-200" />L’agenda del team si aggiorna</div>
         <div className="mt-4 flex items-start gap-3 border-l-2 border-accent-500 pl-3 text-sm">
-          <span className="font-semibold">09:30</span>
-          <p>Appuntamento<span className="mt-1 block text-brand-100">Operatore A</span></p>
+          <span className="font-semibold">{example.time}</span>
+          <p>{example.customer} · {example.service}<span className="mt-1 block text-brand-100">Con {example.stylist} · {example.day.toLowerCase()}</span></p>
         </div>
       </div>
+      <figcaption className="mt-4 text-xs leading-relaxed text-gray-500">{example.caption}</figcaption>
     </figure>
   );
 }
@@ -56,14 +61,31 @@ export default function BeautyPage({ sector }: { sector: Sector }) {
             <p className="eyebrow">{content.hero.eyebrow}</p>
             <h1 className="page-title mt-4 max-w-xl">{content.hero.title}</h1>
             <p className="lead mt-5 max-w-xl text-pretty">{content.hero.subtitle}</p>
-            <div className="mt-6 flex flex-col items-stretch gap-2 sm:items-start">
-              <a href="#richiedi-proposta" className="button button-primary">{content.hero.cta}<ArrowRight aria-hidden="true" className="h-4 w-4 shrink-0" /></a>
-              <a href="#come-funziona" className="text-link justify-center sm:justify-start">Come funziona<ChevronDown aria-hidden="true" className="h-4 w-4 shrink-0" /></a>
+            <div className="mt-6 flex flex-col items-stretch gap-3 sm:items-start">
+              <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap">
+                <a href="#richiedi-proposta" className="button button-primary">{content.hero.cta}<ArrowRight aria-hidden="true" className="h-4 w-4 shrink-0" /></a>
+                <WhatsAppLink className="button button-secondary" label="Scrivi a Mifro su WhatsApp" message={content.hero.whatsappMessage} />
+              </div>
+              <a href="#come-funziona" className="text-link justify-center sm:justify-start">Come funzionano le prenotazioni<ChevronDown aria-hidden="true" className="h-4 w-4 shrink-0" /></a>
             </div>
           </div>
           <BookingIllustration />
         </div>
       </section>
+
+      <Section id="soluzioni-rch">
+        <ScrollReveal>
+          <h2 className="section-title max-w-2xl">{content.integrations.title}</h2>
+          <p className="mt-4 max-w-3xl leading-relaxed text-gray-600">{content.integrations.intro}</p>
+        </ScrollReveal>
+        <div className="mt-7 grid gap-5 md:grid-cols-2">
+          {integrations.map((solution, index) => (
+            <ScrollReveal key={solution.name} delay={(index + 1) as 1 | 2} className="md:row-span-3 md:grid md:grid-rows-subgrid md:gap-0">
+              <SolutionCard solution={solution} imageSizes="(max-width: 767px) calc(100vw - 80px), 480px" />
+            </ScrollReveal>
+          ))}
+        </div>
+      </Section>
 
       <Section id="come-funziona">
         <ScrollReveal>
@@ -86,8 +108,8 @@ export default function BeautyPage({ sector }: { sector: Sector }) {
       <Section id="agenda-team" className="bg-brand-900 text-white">
         <ScrollReveal className="grid items-start gap-7 lg:grid-cols-2 lg:gap-12">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-widest text-brand-100">{content.team.eyebrow}</p>
-            <h2 className="mt-3 text-2xl font-bold tracking-tight sm:text-3xl">{content.team.title}</h2>
+            <p className="text-sm font-medium text-brand-100">{content.team.eyebrow}</p>
+            <h2 className="mt-3 text-2xl font-semibold tracking-tight sm:text-3xl">{content.team.title}</h2>
             <p className="mt-4 leading-relaxed text-brand-100">{content.team.intro}</p>
           </div>
           <ul className="space-y-5 lg:pt-8">
@@ -136,20 +158,6 @@ export default function BeautyPage({ sector }: { sector: Sector }) {
               </ScrollReveal>
             );
           })}
-        </div>
-      </Section>
-
-      <Section id="soluzioni-rch">
-        <ScrollReveal>
-          <h2 className="section-title max-w-2xl">{content.integrations.title}</h2>
-          <p className="mt-4 max-w-3xl leading-relaxed text-gray-600">{content.integrations.intro}</p>
-        </ScrollReveal>
-        <div className="mt-7 grid gap-5 md:grid-cols-2">
-          {integrations.map((solution, index) => (
-            <ScrollReveal key={solution.name} delay={(index + 1) as 1 | 2} className="md:row-span-3 md:grid md:grid-rows-subgrid md:gap-0">
-              <SolutionCard solution={solution} imageSizes="(max-width: 767px) calc(100vw - 80px), 480px" />
-            </ScrollReveal>
-          ))}
         </div>
       </Section>
 

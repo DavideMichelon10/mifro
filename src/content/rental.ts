@@ -4,6 +4,7 @@ export const rentalContent = {
     description: "Registratori di cassa a noleggio da 29 € al mese. Mifro, a Pergine Valsugana: scelta della cassa, formazione e assistenza da concordare nella tua proposta.",
   },
   hero: {
+    whatsappMessage: "Buongiorno Mifro, vi contatto dalla pagina noleggio registratori di cassa. Vorrei un preventivo di noleggio per la mia attività.",
     eyebrow: "Mifro · Pergine Valsugana",
     title: "Registratori di cassa a noleggio",
     pricePrefix: "da",
@@ -11,11 +12,11 @@ export const rentalContent = {
     pricePeriod: "al mese",
     subtitle: "Con Mifro hai un riferimento professionale sul territorio: ti seguiamo nella scelta della cassa, nella formazione e nell’assistenza anche dopo l’avvio, anche di persona nelle zone servite.",
     cta: "Richiedi un preventivo di noleggio",
-    imageCaption: "Un esempio di registratore di cassa RCH. Il modello della tua proposta viene scelto in base all’attività e alla formula di noleggio.",
+    imageCaption: "RCH WALLE 8T touch a noleggio da 29 € al mese. Scrivici per valutare la configurazione adatta alla tua attività e ricevere un preventivo.",
   },
   support: {
     eyebrow: "Il supporto di Mifro",
-    title: "La cassa giusta. E qualcuno su cui contare.",
+    title: "La cassa giusta e qualcuno su cui contare",
     items: [
       {
         title: "Scelta in base alla tua attività",
@@ -51,7 +52,7 @@ export const rentalContent = {
     eyebrow: "La tua proposta di noleggio",
     titlePanel: "Richiedi un preventivo di noleggio",
     messagePlaceholder: "Es. Cerco una cassa per il mio negozio. Vorrei utilizzarla da… per… Ho bisogno di…",
-    submitLabel: "Richiedi la proposta di noleggio",
+    submitLabel: "Richiedi un preventivo di noleggio",
   },
   faq: [
     {

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowRight, BookOpen, ChevronDown, Headset, MapPin, MonitorCheck } from "lucide-react";
 import ContactForm from "@/components/ContactForm";
 import ContactSection from "@/components/ContactSection";
+import WhatsAppLink from "@/components/WhatsAppLink";
 import Section from "@/components/Section";
 import { rentalContent as content } from "@/content/rental";
 import { productImages } from "@/content/sectors";
@@ -11,17 +12,13 @@ import { siteConfig } from "@/content/site";
 import { rentalContactContext, RENTAL_CONTACT_SUBJECT, RENTAL_PATH } from "@/lib/contact-context";
 import { createPageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  ...createPageMetadata({ ...content.seo, path: RENTAL_PATH }),
-  // Review draft: keep out of organic search until the commercial terms are approved.
-  robots: { index: false, follow: true },
-};
+export const metadata: Metadata = createPageMetadata({ ...content.seo, path: RENTAL_PATH });
 
 const supportIcons = [MonitorCheck, BookOpen, Headset];
 
 export default function RentalPage() {
   const { contact, about } = siteConfig;
-  const product = productImages["WALLE MEC RT"];
+  const product = productImages["WALLE 8T"];
 
   return (
     <>
@@ -38,10 +35,11 @@ export default function RentalPage() {
               </span>
             </h1>
             <p className="lead mt-5 max-w-xl text-pretty">{content.hero.subtitle}</p>
-            <div className="mt-6 flex flex-col items-stretch gap-2 sm:items-start">
+            <div className="mt-6 flex flex-col gap-2 sm:flex-row sm:flex-wrap">
               <a href="#richiedi-proposta" className="button button-primary">
                 {content.hero.cta}<ArrowRight aria-hidden="true" className="h-4 w-4 shrink-0" />
               </a>
+              <WhatsAppLink className="button button-secondary" label="Scrivi a Mifro su WhatsApp" message={content.hero.whatsappMessage} />
             </div>
           </div>
           <figure className="surface-card mx-auto w-full max-w-md p-5 sm:p-6">
@@ -77,7 +75,7 @@ export default function RentalPage() {
       </Section>
 
       <Section id="come-funziona" className="bg-brand-900 text-white">
-        <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">{content.steps.title}</h2>
+        <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">{content.steps.title}</h2>
         <p className="mt-3 text-brand-100">{content.steps.intro}</p>
         <ol className="mt-8 grid gap-7 md:grid-cols-3 md:gap-10">
           {content.steps.items.map((step, index) => (

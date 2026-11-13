@@ -161,7 +161,7 @@ test("navigazione tra settori: modulo azzerato e oggetto aggiornato", async ({ p
 });
 
 test("route, redirect, sitemap e metadati specifici", async ({ page, request }) => {
-  for (const path of ["/", "/contatti", "/chi-siamo", "/prodotti-assistenza", ...articles.map((article) => `/news/${article.slug}`), ...sectors.map((s) => `/soluzioni/${s}`)]) {
+  for (const path of ["/", "/contatti", "/chi-siamo", "/prodotti-assistenza", "/news", ...articles.map((article) => `/news/${article.slug}`), ...sectors.map((s) => `/soluzioni/${s}`)]) {
     const response = await page.goto(path);
     expect(response!.status()).toBe(200);
     await expect(page.locator("h1")).toHaveCount(1);
@@ -172,7 +172,7 @@ test("route, redirect, sitemap e metadati specifici", async ({ page, request }) 
     const image = await page.locator('meta[property="og:image"]').getAttribute("content");
     expect(image).toBe(`https://www.mifro.it/images/og/${path === "/soluzioni/ristoranti" ? "ristoranti" : "generale"}`);
   }
-  for (const [path, destination] of [["/soluzioni", "/#settori"], ["/news", "/news/guida-ade-collegamento-rt-pos"]]) {
+  for (const [path, destination] of [["/soluzioni", "/#settori"]]) {
     const response = await request.get(path, { maxRedirects: 0 });
     expect(response.status()).toBe(308);
     expect(response.headers().location).toBe(destination);
@@ -183,7 +183,7 @@ test("route, redirect, sitemap e metadati specifici", async ({ page, request }) 
   for (const article of articles) {
     expect(xml).toContain(`<loc>https://www.mifro.it/news/${article.slug}</loc>\n<lastmod>${new Date(article.revisedAt ?? article.date).toISOString()}</lastmod>`);
   }
-  expect(xml).not.toMatch(/<loc>[^<]*(?:\/grazie|\/privacy|\/news|\/soluzioni)<\/loc>/);
+  expect(xml).not.toMatch(/<loc>[^<]*(?:\/grazie|\/privacy|\/soluzioni)<\/loc>/);
   await page.goto("/grazie");
   await expect(page).toHaveURL(/contatti$/);
 });
@@ -464,7 +464,10 @@ test("WhatsApp usa il recapito aggiornato in tutte le pagine e la privacy si leg
     const links = page.locator('a[href^="https://wa.me/"]');
     expect(await links.count()).toBeGreaterThan(0);
     for (const link of await links.all()) {
-      await expect(link).toHaveAttribute("href", "https://wa.me/393516888890");
+      const whatsappUrl = new URL((await link.getAttribute("href"))!);
+      expect(whatsappUrl.origin).toBe("https://wa.me");
+      expect(whatsappUrl.pathname).toBe("/390461512777");
+      expect([...whatsappUrl.searchParams.keys()].every((key) => key === "text")).toBe(true);
       await expect(link).toHaveAttribute("target", "_blank");
     }
   }

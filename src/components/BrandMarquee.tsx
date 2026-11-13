@@ -20,7 +20,7 @@ export default function BrandMarquee({ brands }: { brands: readonly Brand[] }) {
               alt={`Logo ${brand.name}`}
               width={160}
               height={64}
-              className="h-full w-auto object-contain grayscale transition-all group-hover:grayscale-0"
+              className="h-full w-auto object-contain grayscale transition-[filter] group-hover:grayscale-0"
             />
           </div>
           <span className="text-sm font-medium text-gray-600">

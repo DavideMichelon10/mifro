@@ -4,7 +4,7 @@ import { ADS_CONSENT_KEY, CONSENT_KEY } from "../../src/lib/analytics";
 
 const path = "/soluzioni/parrucchieri-saloni";
 const secret = "browser-test-only-secret-at-least-32-characters";
-const subject = "Beauty: pagina web, prenotazioni e agenda per il salone";
+const subject = "Beauty: cassa, gestionale e agenda per il salone";
 const context = { sector: "parrucchieri-saloni", form_location: "sector_page" };
 
 // All form submissions and external services are intercepted: no email or Google collection.
@@ -30,8 +30,14 @@ for (const width of [320, 390, 768, 1440]) {
     }, { analytics: CONSENT_KEY, ads: ADS_CONSENT_KEY });
     const response = await page.goto(path);
     expect(response!.status()).toBe(200);
-    await expect(page.locator("h1")).toHaveText("Pagina web e agenda online per il tuo salone");
+    await expect(page.locator("h1")).toHaveText("Cassa e gestionale per il tuo salone");
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", `https://www.mifro.it${path}`);
+    const whatsapp = page.locator(".page-intro").getByRole("link", { name: "Scrivi a Mifro su WhatsApp", exact: true });
+    await expect(whatsapp).toBeVisible();
+    const whatsappUrl = new URL((await whatsapp.getAttribute("href"))!);
+    expect(whatsappUrl.origin + whatsappUrl.pathname).toBe("https://wa.me/390461512777");
+    expect(whatsappUrl.searchParams.get("text")).toContain("saloni");
+    expect(whatsappUrl.searchParams.get("text")).not.toMatch(/Google Ads|annuncio Google/i);
     const primaryCta = page.locator(".page-intro").getByRole("link", { name: "Richiedi una proposta per il tuo salone", exact: true });
     await expect(primaryCta).toBeInViewport({ ratio: 1 });
     await expect(page.locator("#software-gestionale img")).toHaveCount(1);
@@ -39,7 +45,7 @@ for (const width of [320, 390, 768, 1440]) {
     await expect(page.locator('img[src*="beauty-gestionale-listini"]')).toHaveCount(0);
     await expect(page.locator("#soluzioni-rch h3")).toHaveText(["WALLE 8T", "POS per pagamenti"]);
     expect(await page.evaluate(() => {
-      const ids = ["come-funziona", "agenda-team", "software-gestionale", "supporto-mifro", "soluzioni-rch", "richiedi-proposta"];
+      const ids = ["soluzioni-rch", "come-funziona", "agenda-team", "software-gestionale", "supporto-mifro", "richiedi-proposta"];
       return ids.slice(1).every((id, index) => Boolean(document.getElementById(ids[index])!.compareDocumentPosition(document.getElementById(id)!) & Node.DOCUMENT_POSITION_FOLLOWING));
     })).toBe(true);
     for (const image of await page.locator("main img").all()) await image.scrollIntoViewIfNeeded();
@@ -82,21 +88,28 @@ for (const consent of ["accepted", "rejected"]) {
     expect(new URL(page.url()).search).toBe(query);
     expect(await events(page, "generate_lead")).toHaveLength(0);
     expect(bodies).toHaveLength(0);
-    await page.getByRole("button", { name: "Invia la richiesta", exact: true }).click();
+    await page.getByRole("button", { name: "Richiedi una proposta per il tuo salone", exact: true }).click();
     expect(await page.locator("#cf-name").evaluate((input: HTMLInputElement) => input.validity.valueMissing)).toBe(true);
     expect(bodies).toHaveLength(0);
     await page.locator("#cf-name").fill("Persona Test");
     await page.locator("#cf-email").fill("email-non-valida");
     await page.locator("#cf-message").fill("Salone di prova con due operatori, nessun invio reale.");
-    await page.getByRole("button", { name: "Invia la richiesta", exact: true }).click();
+    await page.getByRole("button", { name: "Richiedi una proposta per il tuo salone", exact: true }).click();
     expect(await page.locator("#cf-email").evaluate((input: HTMLInputElement) => input.validity.typeMismatch)).toBe(true);
     expect(bodies).toHaveLength(0);
-    await page.locator("#cf-email").fill("test@example.com");
+    await page.locator("#cf-email").fill("");
+    await expect(page.locator("#cf-email")).not.toHaveAttribute("required", "");
+    await expect(page.locator("#cf-email-help")).toContainText("Facoltativa.");
+    await expect(page.locator("#cf-message-help")).toContainText("cassa, gestionale o agenda");
     await page.locator("#cf-privacy").check();
     expect(await page.locator("input[required], textarea[required]").count()).toBe(4);
-    await expect(page.locator("#cf-phone")).not.toHaveAttribute("required", "");
+    await expect(page.locator("#cf-phone")).toHaveAttribute("required", "");
     await expect(page.locator("#cf-subject")).toHaveValue(subject);
-    await page.getByRole("button", { name: "Invia la richiesta", exact: true }).click();
+    await page.locator('form button[type="submit"]').click();
+    expect(bodies).toHaveLength(0);
+    expect(await page.locator("#cf-phone").evaluate((input: HTMLInputElement) => input.validity.valueMissing)).toBe(true);
+    await page.locator("#cf-phone").fill("+39 333 123 4567");
+    await page.getByRole("button", { name: "Richiedi una proposta per il tuo salone", exact: true }).click();
     await expect(page.locator("form").getByRole("alert")).toBeFocused();
     await expect(page.locator("#cf-message")).toHaveValue("Salone di prova con due operatori, nessun invio reale.");
     expect(await events(page, "generate_lead")).toHaveLength(0);
@@ -104,7 +117,7 @@ for (const consent of ["accepted", "rejected"]) {
     await page.locator("form").evaluate((form: HTMLFormElement) => { form.requestSubmit(); form.requestSubmit(); });
     await expect(page).toHaveURL(/grazie$/);
     expect(bodies).toHaveLength(2);
-    expect(bodies[1]).toMatchObject({ phone: "", subject, context });
+    expect(bodies[1]).toMatchObject({ email: "", phone: "+39 333 123 4567", subject, context });
     const leads = await events(page, "generate_lead");
     expect(leads).toHaveLength(consent === "accepted" ? 1 : 0);
     if (consent === "accepted") expect(leads[0][2]).toEqual({ form_id: "contact", ...context, transport_type: "beacon" });

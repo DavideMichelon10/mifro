@@ -14,33 +14,31 @@ export default function Footer() {
   const formOnly = form_location === "rental_page" || form_location === "sales_page";
   const year = new Date().getFullYear();
   const linkClass = "inline-flex min-h-11 items-center gap-2 rounded-sm text-sm leading-5 text-gray-600 underline-offset-4 transition-colors hover:text-brand-600 hover:underline";
-  const headingClass = "text-xs font-semibold uppercase tracking-[0.14em] text-brand-900";
+  const headingClass = "text-sm font-semibold text-brand-900";
 
   return (
     <footer className="border-t border-gray-200 bg-gray-50">
       <div className="site-container pt-8 sm:pt-10">
         <div className="grid gap-7 sm:grid-cols-2 sm:gap-x-10 lg:grid-cols-[1fr_1.3fr_0.8fr] lg:gap-12">
           <div className="sm:col-span-2 lg:col-span-1">
-            <div className="flex max-w-sm items-center justify-between gap-4">
-              <Link href="/" aria-label="Mifro — Torna alla home" className="inline-flex min-h-11 items-center rounded-sm"><Logo size={30} /></Link>
-              <div className="flex gap-1">
-                <WhatsAppLink compact className="inline-flex h-12 w-16 shrink-0 flex-col items-center justify-center gap-1 rounded-xl text-xs leading-4 text-brand-700 transition-colors hover:bg-brand-100" />
+            <Link href="/" aria-label="Mifro — Torna alla home" className="inline-flex min-h-11 items-center rounded-sm"><Logo size={30} /></Link>
+            <p className="mt-3 max-w-sm text-sm leading-relaxed text-gray-600">
+              {footer.description}
+            </p>
+            <div className="mt-2 flex flex-wrap gap-x-5">
+                <WhatsAppLink compact className={`${linkClass} font-medium`} />
                 {!formOnly && <a
                   href={contact.facebook}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex h-12 w-16 shrink-0 flex-col items-center justify-center gap-1 rounded-lg text-xs leading-4 text-brand-700 transition-colors hover:bg-brand-100"
+                  className={linkClass}
                   aria-label="Mifro su Facebook"
                   title="Facebook"
                 >
-                  <Facebook aria-hidden="true" className="h-4 w-4" />
+                  <Facebook aria-hidden="true" className="h-4 w-4 shrink-0 text-brand-600" />
                   <span>Facebook</span>
                 </a>}
-              </div>
             </div>
-            <p className="mt-3 max-w-sm text-sm leading-relaxed text-gray-600">
-              {footer.description}
-            </p>
           </div>
 
           <section aria-labelledby="footer-contact-title" className="min-w-0">

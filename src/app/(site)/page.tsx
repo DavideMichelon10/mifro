@@ -17,18 +17,18 @@ export default function HomePage() {
     <>
       {/* ── Hero ──────────────────────────────────────── */}
       <section className="page-intro overflow-hidden">
-        <div className="site-container py-10 sm:py-14 lg:py-16">
-          <div className="mx-auto max-w-4xl text-left sm:text-center">
-            <p className="eyebrow mb-4 sm:justify-center">
+        <div className="site-container grid items-center gap-8 py-10 sm:py-14 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-12 lg:py-16">
+          <div>
+            <p className="eyebrow mb-4">
               {hero.tagline}
             </p>
             <h1 className="page-title">
               {hero.title}
             </h1>
-            <p className="lead mx-auto mt-5 max-w-2xl">
+            <p className="lead mt-5 max-w-xl">
               {hero.subtitle}
             </p>
-            <div className="mt-6 grid grid-cols-1 gap-3 sm:mt-10 sm:flex sm:flex-wrap sm:items-center sm:justify-center sm:gap-4">
+            <div className="mt-6 grid grid-cols-1 gap-3 sm:mt-8 sm:flex sm:flex-wrap sm:items-center">
               <Link
                 href={hero.cta1.href}
                 className="button button-primary"
@@ -45,15 +45,14 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="surface-card mt-8 overflow-hidden sm:mt-10">
+          <div className="surface-card relative aspect-[5/3] overflow-hidden">
             <Image
               src={hero.image}
               alt="Sede Mifro con i mezzi aziendali davanti al negozio"
-              width={1536}
-              height={927}
+              fill
               quality={85}
-              className="h-auto w-full"
-              sizes="(max-width: 639px) calc(100vw - 32px), (max-width: 1151px) calc(100vw - 48px), 1104px"
+              className="object-cover"
+              sizes="(max-width: 639px) calc(100vw - 32px), (max-width: 1023px) calc(100vw - 48px), 600px"
               priority
             />
           </div>
@@ -65,7 +64,7 @@ export default function HomePage() {
         <ScrollReveal>
           <SectionHeader
             title="Per la tua attività"
-            subtitle="Scegli il tuo settore e scopri le casse e i gestionali adatti al tuo lavoro."
+            subtitle="Scegli il tuo settore e scopri le casse e i gestionali adatti al tuo lavoro"
           />
         </ScrollReveal>
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
@@ -92,7 +91,7 @@ export default function HomePage() {
         <ScrollReveal>
           <SectionHeader
             title="Prodotti e assistenza"
-            subtitle="Pagamenti, strumenti per l’ufficio, NAS, backup e supporto tecnico."
+            subtitle="Pagamenti, strumenti per l’ufficio, NAS, backup e supporto tecnico"
           />
         </ScrollReveal>
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
@@ -120,7 +119,7 @@ export default function HomePage() {
         <ScrollReveal>
           <SectionHeader
             title="I nostri principali marchi"
-            subtitle="Collaboriamo con i migliori produttori del settore per offrirti soluzioni affidabili e certificate."
+            subtitle="I produttori con cui lavoriamo per il punto cassa, la stampa e l’ufficio"
           />
         </ScrollReveal>
         <ScrollReveal delay={1}>
@@ -151,32 +150,32 @@ export default function HomePage() {
       </Section>
 
       {/* ── Dove siamo ────────────────────────────────── */}
-      <Section id="dove-siamo">
+      <Section id="dove-siamo" className="pb-0 sm:pb-0">
         <ScrollReveal>
-          <SectionHeader title="Dove siamo" />
-        </ScrollReveal>
-        <ScrollReveal delay={1}>
-          <div className="grid gap-6 sm:grid-cols-2">
-            <div className="space-y-4 text-sm text-gray-600">
-              <div className="flex items-start gap-3">
-                <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-brand-600" />
-                <div>
-                  <p className="font-medium text-gray-900">Sede</p>
-                  <p>{contact.fullAddress}</p>
+          <div className="grid items-center gap-8 sm:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)] sm:gap-12">
+            <div>
+              <h2 className="section-title">Dove siamo</h2>
+              <div className="mt-6 space-y-4 text-sm text-gray-600">
+                <div className="flex items-start gap-3">
+                  <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-brand-600" />
+                  <div>
+                    <p className="font-medium text-gray-900">Sede</p>
+                    <p>{contact.fullAddress}</p>
+                  </div>
                 </div>
-              </div>
-              <div className="flex items-start gap-3">
-                <Clock className="mt-0.5 h-5 w-5 shrink-0 text-brand-600" />
-                <div>
-                  <p className="font-medium text-gray-900">Orari</p>
-                  <p>{hoursShort}</p>
+                <div className="flex items-start gap-3">
+                  <Clock className="mt-0.5 h-5 w-5 shrink-0 text-brand-600" />
+                  <div>
+                    <p className="font-medium text-gray-900">Orari</p>
+                    <p>{hoursShort}</p>
+                  </div>
                 </div>
               </div>
               <a
                 href={`https://www.google.com/maps/search/?api=1&query=${contact.googleMapsQuery}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex min-h-12 items-center gap-1.5 text-sm font-medium text-brand-600 hover:text-brand-700"
+                className="mt-2 inline-flex min-h-12 items-center gap-1.5 text-sm font-medium text-brand-600 hover:text-brand-700"
               >
                 Apri su Google Maps
                 <ExternalLink className="h-3.5 w-3.5" />
@@ -189,7 +188,7 @@ export default function HomePage() {
                 title="Posizione Mifro su Google Maps"
               />
             ) : (
-              <div className="flex h-64 items-center justify-center rounded-xl bg-gray-100 text-sm text-gray-500">
+              <div className="flex h-64 items-center justify-center rounded-2xl bg-gray-100 text-sm text-gray-500">
                 <div className="text-center">
                   <MapPin className="mx-auto mb-2 h-8 w-8" />
                   <p>La mappa non è disponibile. Puoi aprire l’indirizzo su Google Maps.</p>
@@ -199,7 +198,6 @@ export default function HomePage() {
           </div>
         </ScrollReveal>
       </Section>
-
 
       {/* ── CTA finale ────────────────────────────────── */}
       <ContactCta />

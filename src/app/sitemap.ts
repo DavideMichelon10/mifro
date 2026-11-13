@@ -38,6 +38,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly" as const,
       priority: 0.8,
     })),
+    {
+      url: `${base}/noleggio-registratori-di-cassa`,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${base}/news`,
+      changeFrequency: "weekly",
+      priority: 0.7,
+    },
     ...newsPages,
   ];
 }

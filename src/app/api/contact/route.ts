@@ -55,9 +55,9 @@ export async function POST(request: NextRequest) {
     const result = await transport.sendMail({
       from: { name: "Sito Mifro", address: user },
       to: recipient,
-      replyTo: { name: form.name, address: form.email },
+      ...(form.email ? { replyTo: { name: form.name, address: form.email } } : {}),
       subject: `Nuova richiesta dal sito Mifro: ${form.subject}`,
-      text: `Nuova richiesta dal modulo Contattaci\nSettore: ${form.context.sector}\nPosizione modulo: ${form.context.form_location}\n\n${form.context.form_location === "rental_page" ? "Nome e attività" : "Nome"}: ${form.name}${form.municipality ? `\nComune: ${form.municipality}` : ""}\nEmail: ${form.email}${form.phone ? `\nTelefono: ${form.phone}` : ""}\nOggetto: ${form.subject}\nInformativa privacy: letta e accettata\n\n${form.message}\n\nPresa in carico: il gestore del sito inoltra questa richiesta a Mifro.${form.context.form_location === "sector_page" && form.phone ? " Richiama subito il visitatore." : " Mifro risponde al visitatore."} Usa Reply-To per rispondere all’indirizzo email indicato.`,
+      text: `Nuova richiesta dal modulo Contattaci\nSettore: ${form.context.sector}\nPosizione modulo: ${form.context.form_location}\n\n${form.context.form_location === "rental_page" ? "Nome e attività" : "Nome"}: ${form.name}${form.municipality ? `\nComune: ${form.municipality}` : ""}\nEmail: ${form.email || "Non indicata"}${form.phone ? `\nTelefono: ${form.phone}` : ""}\nOggetto: ${form.subject}\nInformativa privacy: letta e accettata\n\n${form.message}\n\nPresa in carico: il gestore del sito inoltra questa richiesta a Mifro.${form.context.form_location === "sector_page" && form.phone ? " Richiama subito il visitatore." : " Mifro risponde al visitatore."} ${form.email ? "Usa Reply-To per rispondere all’indirizzo email indicato." : "Ricontattare al telefono indicato; il visitatore non ha fornito un indirizzo email."}`,
       disableFileAccess: true, disableUrlAccess: true,
     });
     if (!result.accepted.length) throw new Error("Recipient not accepted");

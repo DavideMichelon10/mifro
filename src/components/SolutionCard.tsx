@@ -29,7 +29,7 @@ export default function SolutionCard({
           </div>
         )}
       </div>
-      <Heading className="text-2xl font-bold tracking-tight text-brand-900">{solution.name}</Heading>
+      <Heading className="text-2xl font-semibold tracking-tight text-brand-900">{solution.name}</Heading>
       <ul className="mt-5 space-y-3 border-t border-gray-200 pt-5">
         {solution.features.map((feature) => (
           <li key={feature} className="flex items-start gap-2 text-sm text-gray-700">

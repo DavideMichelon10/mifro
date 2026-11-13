@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowRight, BookOpen, ChevronDown, Headset, MapPin, MonitorCheck } from "lucide-react";
 import ContactForm from "@/components/ContactForm";
 import ContactSection from "@/components/ContactSection";
+import WhatsAppLink from "@/components/WhatsAppLink";
 import Section from "@/components/Section";
 import SolutionCard from "@/components/SolutionCard";
 import ScrollReveal from "@/components/ScrollReveal";
@@ -33,10 +34,13 @@ export default function SalesPage() {
             <p className="eyebrow">{content.hero.eyebrow}</p>
             <h1 className="page-title mt-4 max-w-xl">{content.hero.title}</h1>
             <p className="lead mt-5 max-w-xl text-pretty">{content.hero.subtitle}</p>
-            <div className="mt-6 flex flex-col items-stretch gap-2 sm:items-start">
-              <a href="#richiedi-proposta" className="button button-primary">
-                {content.hero.cta}<ArrowRight aria-hidden="true" className="h-4 w-4 shrink-0" />
-              </a>
+            <div className="mt-6 flex flex-col items-stretch gap-3 sm:items-start">
+              <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap">
+                <a href="#richiedi-proposta" className="button button-primary">
+                  {content.hero.cta}<ArrowRight aria-hidden="true" className="h-4 w-4 shrink-0" />
+                </a>
+                <WhatsAppLink className="button button-secondary" label="Scrivi a Mifro su WhatsApp" message={content.hero.whatsappMessage} />
+              </div>
               <a href="#modelli" className="text-link justify-center">Scopri alcuni modelli<ChevronDown aria-hidden="true" className="h-4 w-4 shrink-0" /></a>
             </div>
           </div>
@@ -135,7 +139,7 @@ export default function SalesPage() {
       </Section>
 
       <Section id="come-funziona" className="bg-brand-900 text-white">
-        <ScrollReveal><h2 className="text-2xl font-bold tracking-tight sm:text-3xl">{content.steps.title}</h2></ScrollReveal>
+        <ScrollReveal><h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">{content.steps.title}</h2></ScrollReveal>
         <ol className="mt-6 grid gap-6 md:grid-cols-3 md:gap-10">
           {content.steps.items.map((step, index) => (
             <li key={step.title}>

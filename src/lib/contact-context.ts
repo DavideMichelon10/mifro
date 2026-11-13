@@ -17,7 +17,14 @@ export const salesContactContext: ContactContext = { sector: "generico", form_lo
 
 export function requiresContactPhone(context: ContactContext): boolean {
   return context.form_location === "rental_page"
-    || (context.form_location === "sector_page" && context.sector !== "parrucchieri-saloni");
+    || context.form_location === "sales_page"
+    || context.form_location === "sector_page";
+}
+
+export function requiresContactEmail(context: ContactContext): boolean {
+  return context.form_location !== "rental_page"
+    && context.form_location !== "sales_page"
+    && !(context.form_location === "sector_page" && context.sector === "parrucchieri-saloni");
 }
 
 export function parseContactContext(value: unknown): ContactContext | null {

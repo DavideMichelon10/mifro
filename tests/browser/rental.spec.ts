@@ -21,7 +21,6 @@ async function events(page: Page, name: string) {
 async function fillRental(page: Page) {
   await page.getByLabel("Nome e attività", { exact: true }).fill("Persona Test, Negozio Test");
   await page.getByLabel("Comune dell’attività").fill("Pergine Valsugana");
-  await page.getByLabel("Email", { exact: true }).fill("test@example.com");
   await page.getByLabel("Cellulare", { exact: true }).fill("+39 333 123 4567");
   await page.getByLabel("Esigenza e periodo di utilizzo").fill("Una cassa da dicembre per sei mesi.");
   await page.locator("#cf-privacy").check();
@@ -50,8 +49,16 @@ for (const consent of ["accepted", "rejected"]) {
     expect(await events(page, "contact_click")).toHaveLength(0);
     expect(await events(page, "generate_lead")).toHaveLength(0);
     await fillRental(page);
-    expect(await page.locator("input[required], textarea[required]").count()).toBe(6);
-    await page.getByRole("button", { name: "Richiedi la proposta di noleggio" }).click();
+    expect(await page.locator("input[required], textarea[required]").count()).toBe(5);
+    await expect(page.locator("#cf-email")).not.toHaveAttribute("required", "");
+    await expect(page.locator("#cf-email-help")).toContainText("Facoltativa.");
+    await expect(page.locator("#cf-message-help")).toContainText("per quale periodo");
+    await page.locator("#cf-email").fill("email-non-valida");
+    await page.locator('form button[type="submit"]').click();
+    expect(bodies).toHaveLength(0);
+    expect(await page.locator("#cf-email").evaluate((input: HTMLInputElement) => input.validity.typeMismatch)).toBe(true);
+    await page.locator("#cf-email").fill("");
+    await page.getByRole("button", { name: "Richiedi un preventivo di noleggio" }).click();
     await expect(page.locator("form").getByRole("alert")).toBeFocused();
     await expect(page.getByLabel("Comune dell’attività")).toHaveValue("Pergine Valsugana");
     expect(await events(page, "generate_lead")).toHaveLength(0);
@@ -59,7 +66,7 @@ for (const consent of ["accepted", "rejected"]) {
     await page.locator("form").evaluate((form: HTMLFormElement) => { form.requestSubmit(); form.requestSubmit(); });
     await expect(page).toHaveURL(/grazie$/);
     expect(bodies).toHaveLength(2);
-    expect(bodies[1]).toMatchObject({ name: "Persona Test, Negozio Test", municipality: "Pergine Valsugana", email: "test@example.com", phone: "+39 333 123 4567", subject: "Noleggio registratore di cassa", message: "Una cassa da dicembre per sei mesi.", context: rentalContactContext });
+    expect(bodies[1]).toMatchObject({ name: "Persona Test, Negozio Test", municipality: "Pergine Valsugana", email: "", phone: "+39 333 123 4567", subject: "Noleggio registratore di cassa", message: "Una cassa da dicembre per sei mesi.", context: rentalContactContext });
     const leads = await events(page, "generate_lead");
     expect(leads).toHaveLength(consent === "accepted" ? 1 : 0);
     if (consent === "accepted") expect(leads[0][2]).toEqual({ form_id: "contact", ...rentalContactContext, transport_type: "beacon" });
@@ -81,7 +88,7 @@ for (const width of [320, 390, 768, 1440]) {
     expect(response!.status()).toBe(200);
     await expect(page.locator("h1")).toHaveText("Registratori di cassa a noleggio da 29 € al mese");
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", `https://www.mifro.it${RENTAL_PATH}`);
-    await expect(page.locator('meta[name="robots"]')).toHaveAttribute("content", "noindex, follow");
+    await expect(page.locator('meta[name="robots"]')).toHaveCount(0);
     await expect(page.locator(`header a[href="${RENTAL_PATH}"]`)).toHaveCount(0);
     await expect(page.locator("body")).not.toContainText("Bastano poche informazioni per iniziare");
     await expect(page.locator("body")).not.toContainText("Riceverai una proposta con modello, durata, canone e servizi specificati.");
@@ -96,6 +103,12 @@ for (const width of [320, 390, 768, 1440]) {
       expect(Math.abs(formBox!.x + formBox!.width / 2 - width / 2)).toBeLessThan(2);
     }
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+    const whatsapp = page.locator(".page-intro").getByRole("link", { name: "Scrivi a Mifro su WhatsApp", exact: true });
+    await expect(whatsapp).toBeVisible();
+    const whatsappUrl = new URL((await whatsapp.getAttribute("href"))!);
+    expect(whatsappUrl.origin + whatsappUrl.pathname).toBe("https://wa.me/390461512777");
+    expect(whatsappUrl.searchParams.get("text")).toContain("noleggio");
+    expect(whatsappUrl.searchParams.get("text")).not.toMatch(/Google Ads|annuncio Google/i);
     const primaryCta = page.getByRole("link", { name: "Richiedi un preventivo di noleggio", exact: true });
     await expect(primaryCta).toBeInViewport({ ratio: 1 });
     await page.locator("main img").last().scrollIntoViewIfNeeded();

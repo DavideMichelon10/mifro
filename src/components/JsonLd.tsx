@@ -57,3 +57,83 @@ export function OrganizationJsonLd() {
     />
   );
 }
+
+function JsonLdScript({ data }: { data: unknown }) {
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(data).replace(/</g, "\\u003c") }}
+    />
+  );
+}
+
+export function BreadcrumbJsonLd({ items }: { items: { name: string; path: string }[] }) {
+  return (
+    <JsonLdScript
+      data={{
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: items.map((item, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          name: item.name,
+          item: new URL(item.path, siteConfig.url).href,
+        })),
+      }}
+    />
+  );
+}
+
+export function ArticleJsonLd({
+  path,
+  title,
+  description,
+  published,
+  revised,
+  section,
+  faq,
+}: {
+  path: string;
+  title: string;
+  description: string;
+  published: string;
+  revised: string;
+  section: string;
+  faq?: readonly { question: string; answer: string }[];
+}) {
+  const url = new URL(path, siteConfig.url).href;
+  const organization = {
+    "@type": "Organization",
+    name: siteConfig.name,
+    url: siteConfig.url,
+    logo: { "@type": "ImageObject", url: `${siteConfig.url}/images/logo-mifro.png` },
+  };
+  const graph: unknown[] = [
+    {
+      "@type": "Article",
+      "@id": `${url}#article`,
+      headline: title,
+      description,
+      inLanguage: "it-IT",
+      articleSection: section,
+      datePublished: published,
+      dateModified: revised,
+      mainEntityOfPage: url,
+      image: `${siteConfig.url}/images/og/generale`,
+      author: organization,
+      publisher: organization,
+    },
+  ];
+  if (faq?.length) {
+    graph.push({
+      "@type": "FAQPage",
+      "@id": `${url}#faq`,
+      mainEntity: faq.map((item) => ({
+        "@type": "Question",
+        name: item.question,
+        acceptedAnswer: { "@type": "Answer", text: item.answer },
+      })),
+    });
+  }
+  return <JsonLdScript data={{ "@context": "https://schema.org", "@graph": graph }} />;
+}

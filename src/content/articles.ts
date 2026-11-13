@@ -1,33 +1,39 @@
-type ArticleLink = { label: string; href: string };
+import type { Article } from "./article-types";
+import { article as registratoreTelematicoNonTrasmetteCorrispettivi } from "./guide/registratore-telematico-non-trasmette-corrispettivi";
+import { article as registratoreDiCassaGuastoCosaFare } from "./guide/registratore-di-cassa-guasto-cosa-fare";
+import { article as scontrinoSbagliatoAnnulloReso } from "./guide/scontrino-sbagliato-annullo-reso";
+import { article as internetOCorrenteAssentiCassaFunziona } from "./guide/internet-o-corrente-assenti-cassa-funziona";
+import { article as quantoCostaRegistratoreDiCassa } from "./guide/quanto-costa-registratore-di-cassa";
+import { article as noleggioOAcquistoRegistratoreDiCassa } from "./guide/noleggio-o-acquisto-registratore-di-cassa";
+import { article as cassaTradizionaleOTouchComeScegliere } from "./guide/cassa-tradizionale-o-touch-come-scegliere";
+import { article as registratoreDiCassaAttivitaStagionali } from "./guide/registratore-di-cassa-attivita-stagionali";
+import { article as registratoreDiCassaAmbulantiMercatini } from "./guide/registratore-di-cassa-ambulanti-mercatini";
+import { article as registratoreTelematicoCoseComeFunziona } from "./guide/registratore-telematico-cose-come-funziona";
 
-export type Article = {
-  slug: string;
-  title: string;
-  date: string;
-  revisedAt?: string;
-  description: string;
-  content: string;
-  sources?: { title: string; url: string }[];
-  relatedLinks?: ArticleLink[];
-  faq?: { question: string; answer: string }[];
-  cta?: {
-    title: string;
-    description: string;
-    label?: string;
-    href?: string;
-    showPhone?: boolean;
-  };
-} & (
-  | { type: "news"; file?: never; fileLabel?: never }
-  | { type: "pdf" | "link"; file: string; fileLabel: string }
-);
+export type { Article, ArticleBlock, ArticleCategory } from "./article-types";
+export { articleCategories } from "./article-types";
+
+const guide: Article[] = [
+  registratoreTelematicoNonTrasmetteCorrispettivi,
+  registratoreDiCassaGuastoCosaFare,
+  scontrinoSbagliatoAnnulloReso,
+  internetOCorrenteAssentiCassaFunziona,
+  quantoCostaRegistratoreDiCassa,
+  noleggioOAcquistoRegistratoreDiCassa,
+  cassaTradizionaleOTouchComeScegliere,
+  registratoreDiCassaAttivitaStagionali,
+  registratoreDiCassaAmbulantiMercatini,
+  registratoreTelematicoCoseComeFunziona,
+];
 
 export const articles: Article[] = [
+    ...guide,
     {
       slug: "guida-ade-collegamento-rt-pos",
       title: "Guida operativa AdE per il collegamento logico RT–POS",
       date: "2026-02-27",
       revisedAt: "2026-10-24",
+      category: "normativa",
       sources: [
         { title: "AdE: FAQ sul collegamento POS–RT (25 marzo 2026)", url: "https://www.agenziaentrate.gov.it/portale/documents/d/guest/faq_collegamento_pos_rt_2503" },
         { title: "AdE: scadenzario della prima comunicazione (20 aprile 2026)", url: "https://www1.agenziaentrate.gov.it/servizi/scadenzario/main.php?chi=3982&come=549&cosa=11494&entroil=20-04-2026&op=4&vista=0" },

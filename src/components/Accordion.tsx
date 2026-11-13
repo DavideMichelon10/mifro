@@ -32,7 +32,7 @@ export default function Accordion({ items }: { items: AccordionItem[] }) {
           </button>
           <div
             className={cn(
-              "overflow-hidden transition-all",
+              "overflow-hidden transition-[max-height] duration-200 ease-out",
               openIndex === i ? "max-h-96" : "max-h-0"
             )}
           >

@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { trackContactSubmission } from "@/lib/analytics";
-import { defaultContactContext, requiresContactPhone, type ContactContext } from "@/lib/contact-context";
+import { defaultContactContext, requiresContactEmail, requiresContactPhone, type ContactContext } from "@/lib/contact-context";
 
 interface ContactFormProps {
   context?: ContactContext;
@@ -28,6 +28,11 @@ export default function ContactForm({
   const isRentalForm = context.form_location === "rental_page";
   const isSalesForm = context.form_location === "sales_page";
   const phoneRequired = requiresContactPhone(context);
+  const emailRequired = requiresContactEmail(context);
+  const messageHelp = isRentalForm ? "Indica la tua attività e per quale periodo ti serve la cassa."
+    : isSalesForm ? "Indica attività, comune e se ti serve la prima cassa o una sostituzione."
+    : context.sector === "parrucchieri-saloni" ? "Indica il comune e cosa ti serve: cassa, gestionale o agenda."
+    : undefined;
   const router = useRouter();
   const [pending, setPending] = useState(false);
   const [error, setError] = useState("");
@@ -122,7 +127,8 @@ export default function ContactForm({
             autoComplete="email"
             maxLength={254}
             type="email"
-            required
+            required={emailRequired}
+            aria-describedby={!emailRequired ? "cf-email-help" : undefined}
             value={form.email}
             onChange={(e) => setForm({ ...form, email: e.target.value })}
             className={inputClass}
@@ -131,6 +137,7 @@ export default function ContactForm({
           <label htmlFor="cf-email" className="form-label">
             {formFields.email}
           </label>
+          {!emailRequired && <p id="cf-email-help" className="form-help">Facoltativa. Lasciala se preferisci essere ricontattato anche via email.</p>}
         </div>
 
         {(isSectorForm || isRentalForm || isSalesForm) && (
@@ -179,6 +186,7 @@ export default function ContactForm({
             maxLength={5000}
             required
             rows={4}
+            aria-describedby={messageHelp ? "cf-message-help" : undefined}
             value={form.message}
             onChange={(e) => setForm({ ...form, message: e.target.value })}
             className={inputClass}
@@ -187,6 +195,7 @@ export default function ContactForm({
           <label htmlFor="cf-message" className="form-label">
             {isRentalForm ? "Esigenza e periodo di utilizzo" : formFields.message}
           </label>
+          {messageHelp && <p id="cf-message-help" className="form-help">{messageHelp}</p>}
         </div>
 
         </div>

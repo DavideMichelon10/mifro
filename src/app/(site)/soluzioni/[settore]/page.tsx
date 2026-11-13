@@ -63,7 +63,7 @@ export default async function SectorPage({ params }: PageProps) {
         <dl className="site-container grid divide-y divide-gray-200 md:grid-cols-3 md:divide-x md:divide-y-0">
           {highlights.map((item) => (
             <div key={item.value} className="relative min-w-0 py-3 pl-5 md:px-6 md:py-1 md:first:pl-0 md:last:pr-0 lg:px-10">
-              <dt className="text-2xl font-bold leading-tight tracking-tight text-brand-700 md:text-xl lg:text-2xl xl:text-3xl">
+              <dt className="text-2xl font-semibold leading-tight tracking-tight text-brand-700 md:text-xl lg:text-2xl xl:text-3xl">
                 <span aria-hidden="true" className="absolute left-0 top-5 h-5 w-0.5 rounded-full bg-accent-500 md:static md:mb-3 md:block md:h-0.5 md:w-7" />
                 {item.value}
               </dt>
@@ -84,7 +84,7 @@ export default async function SectorPage({ params }: PageProps) {
               <ScrollReveal key={service.title} delay={Math.min(index + 1, 4) as 1 | 2 | 3 | 4}>
                 <article className="surface-card h-full p-6 sm:p-8">
                   <div className="icon-tile mb-5"><Icon name={service.icon} aria-hidden="true" className="h-6 w-6" /></div>
-                  <h3 className="text-2xl font-bold tracking-tight text-brand-900">{service.title}</h3>
+                  <h3 className="text-2xl font-semibold tracking-tight text-brand-900">{service.title}</h3>
                   <p className="mt-3 leading-relaxed text-gray-600">{service.description}</p>
                   <ul className="mt-5 space-y-3 border-t border-gray-200 pt-5">
                     {service.features.map((feature) => (

@@ -63,7 +63,7 @@ export default function ChiSiamoPage() {
       <Section>
         <SectionHeader
           title="Il nostro team"
-          subtitle="Le persone che ogni giorno lavorano al tuo fianco."
+          subtitle="Le persone che ogni giorno lavorano al tuo fianco"
         />
         <div className="mt-2 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {about.team.map((member) => (
@@ -71,11 +71,11 @@ export default function ChiSiamoPage() {
               key={member.name}
               className="surface-card p-6 sm:row-span-3 sm:grid sm:grid-rows-subgrid sm:gap-0"
             >
-              <h3 className="text-xl font-bold text-brand-900">
+              <h3 className="text-xl font-semibold text-brand-900">
                 <span aria-hidden="true" className="mb-4 block h-0.5 w-7 rounded-full bg-accent-500" />
                 {member.name}
               </h3>
-              <p className="mt-2 text-xs font-medium uppercase tracking-wide text-brand-600">
+              <p className="mt-2 text-sm font-medium text-brand-600">
                 {member.role}
               </p>
               <p className="mt-4 text-sm leading-relaxed text-gray-600">{member.bio}</p>

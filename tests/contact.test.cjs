@@ -29,11 +29,11 @@ test('privacy acknowledgement must be an explicit boolean true', () => {
   assert.ok(contact.validateContact(valid));
 });
 
-test('Beauty and sales accept an omitted phone, validate supplied numbers and distinguish requests', () => {
+test('Beauty and sales require a usable phone and distinguish requests', () => {
   const beauty = { sector: 'parrucchieri-saloni', form_location: 'sector_page' };
   for (const context of [beauty, contexts.salesContactContext]) {
     for (const phone of [undefined, '', '   ']) {
-      assert.ok(contact.validateContact({ ...valid, context, phone }));
+      assert.equal(contact.validateContact({ ...valid, context, phone }), null);
     }
     for (const phone of [null, {}, 123456789, '123', 'not-a-number', '+39 333 123 4567\n']) {
       assert.equal(contact.validateContact({ ...valid, context, phone }), null);
@@ -41,7 +41,7 @@ test('Beauty and sales accept an omitted phone, validate supplied numbers and di
     assert.equal(contact.validateContact({ ...valid, context, phone: '+39 333 123 4567' }).phone, '+39 333 123 4567');
   }
   for (const subject of [undefined, '', 'Noleggio registratore di cassa']) {
-    assert.equal(contact.validateContact({ ...valid, context: contexts.salesContactContext, subject }).subject, contexts.SALES_CONTACT_SUBJECT);
+    assert.equal(contact.validateContact({ ...valid, phone: "+39 333 123 4567", context: contexts.salesContactContext, subject }).subject, contexts.SALES_CONTACT_SUBJECT);
   }
   assert.equal(contexts.contactContextForPath(contexts.SALES_PATH).form_location, 'sales_page');
   assert.equal(contexts.contactContextForPath(`${contexts.SALES_PATH}/`).form_location, 'sales_page');
@@ -64,6 +64,35 @@ test('rental validates the municipality and fixes the request subject without ch
   assert.equal(contexts.contactContextForPath(contexts.RENTAL_PATH).form_location, 'rental_page');
   assert.equal(contexts.contactContextForPath(`${contexts.RENTAL_PATH}/`).form_location, 'rental_page');
   assert.equal(contexts.parseContactContext({ sector: 'ristoranti', form_location: 'rental_page' }), null);
+});
+
+test('email is optional only for the three callback landings, with supplied addresses always validated', () => {
+  const optionalContexts = [
+    contexts.salesContactContext,
+    contexts.rentalContactContext,
+    { sector: 'parrucchieri-saloni', form_location: 'sector_page' },
+  ];
+  const allContexts = [
+    ...optionalContexts,
+    contexts.defaultContactContext,
+    ...contexts.contactSectors.filter((sector) => !['generico', 'parrucchieri-saloni'].includes(sector))
+      .map((sector) => ({ sector, form_location: 'sector_page' })),
+  ];
+  for (const context of allContexts) {
+    const payload = { ...valid, context, phone: '+39 333 123 4567', municipality: 'Pergine Valsugana' };
+    for (const email of [undefined, '', '   ']) {
+      const result = contact.validateContact({ ...payload, email });
+      if (optionalContexts.includes(context)) {
+        assert.ok(result);
+        assert.equal(result.email, '');
+      } else assert.equal(result, null);
+    }
+    for (const email of [null, false, 42, {}, [], 'invalid', 'a@b', 'a b@example.com', 'a@example.com\n', '\ra@example.com', 'a@example.com\x00', 'a'.repeat(255)]) {
+      assert.equal(contact.validateContact({ ...payload, email }), null);
+    }
+    assert.equal(contact.validateContact({ ...payload, email: '  visitor@example.com  ' }).email, 'visitor@example.com');
+  }
+  assert.equal(contact.validateContact({ ...valid, email: '' }), null);
 });
 
 test('receipts reject tampering, wrong keys and expiration', () => {
@@ -138,7 +167,7 @@ test('rental email carries activity, municipality and usage period through the e
   assert.ok(response.cookies.get(contact.RECEIPT_COOKIE));
 });
 
-test('sales and Beauty email carry distinct interests without requiring a phone or sending real mail', async () => {
+test('sales and Beauty email carry distinct interests and phone without sending real mail', async () => {
   process.env.SMTP_USER = 'sender@gmail.com';
   process.env.SMTP_PASSWORD = 'test-password';
   process.env.CONTACT_FORM_SECRET = secret;
@@ -152,15 +181,65 @@ test('sales and Beauty email carry distinct interests without requiring a phone 
     [contexts.salesContactContext, contexts.SALES_CONTACT_SUBJECT],
     [{ sector: 'parrucchieri-saloni', form_location: 'sector_page' }, 'Pagina web e agenda online per il mio salone'],
   ]) {
-    const response = await route.POST(request({ ...valid, subject, context, phone: '' }));
+    const response = await route.POST(request({ ...valid, subject, context, phone: '+39 333 123 4567' }));
     assert.equal(response.status, 200);
     assert.equal(mail.subject, `Nuova richiesta dal sito Mifro: ${subject}`);
     assert.ok(mail.text.includes(`Settore: ${context.sector}`));
     assert.ok(mail.text.includes(`Posizione modulo: ${context.form_location}`));
-    assert.doesNotMatch(mail.text, /Telefono:|Richiama subito/);
+    assert.match(mail.text, /Telefono: \+39 333 123 4567/);
     assert.equal(mail.replyTo.address, valid.email);
     assert.ok(response.cookies.get(contact.RECEIPT_COOKIE));
   }
+});
+
+test('callback landings without email omit Reply-To and keep SMTP acceptance as the success boundary', async () => {
+  process.env.SMTP_USER = 'sender@gmail.com';
+  process.env.SMTP_PASSWORD = 'test-password';
+  process.env.CONTACT_FORM_SECRET = secret;
+  process.env.CONTACT_TO = 'recipient@example.com';
+  let mail;
+  let deliveries = 0;
+  let accepted = true;
+  const route = load('src/app/api/contact/route.ts', {
+    '@/lib/contact': contact,
+    nodemailer: { createTransport: () => ({
+      sendMail: async (message) => { deliveries++; mail = message; return { accepted: accepted ? ['recipient@example.com'] : [] }; },
+      close() {},
+    }) },
+  });
+  for (const context of [
+    contexts.salesContactContext,
+    contexts.rentalContactContext,
+    { sector: 'parrucchieri-saloni', form_location: 'sector_page' },
+  ]) {
+    const payload = { ...valid, email: '', phone: '+39 333 123 4567', municipality: 'Pergine Valsugana', context };
+    const response = await route.POST(request(payload));
+    assert.equal(response.status, 200);
+    assert.equal(mail.to, 'recipient@example.com');
+    assert.equal(Object.hasOwn(mail, 'replyTo'), false);
+    assert.match(mail.text, /Email: Non indicata/);
+    assert.match(mail.text, /Telefono: \+39 333 123 4567/);
+    assert.match(mail.text, /Ricontattare al telefono indicato/);
+    assert.doesNotMatch(mail.text, /Usa Reply-To/);
+    assert.ok(response.cookies.get(contact.RECEIPT_COOKIE));
+    const previousDeliveries = deliveries;
+    for (const invalid of [
+      { ...payload, email: 'invalid' },
+      { ...payload, phone: '' },
+      { ...payload, name: '' },
+      { ...payload, message: '' },
+      { ...payload, privacyAccepted: false },
+    ]) {
+      const rejected = await route.POST(request(invalid));
+      assert.equal(rejected.status, 400);
+      assert.equal(rejected.cookies.get(contact.RECEIPT_COOKIE), undefined);
+    }
+    assert.equal(deliveries, previousDeliveries);
+  }
+  accepted = false;
+  const failed = await route.POST(request({ ...valid, email: '', phone: '+39 333 123 4567', context: contexts.salesContactContext }));
+  assert.equal(failed.status, 502);
+  assert.equal(failed.cookies.get(contact.RECEIPT_COOKIE), undefined);
 });
 
 test('route only authorizes thank-you after SMTP acceptance', async () => {
@@ -252,7 +331,7 @@ test('only generic contact allows a missing or blank subject', () => {
 });
 
 test('existing callback sector forms require a usable phone number; generic and legacy requests remain valid', () => {
-  for (const sector of contexts.contactSectors.filter((value) => value !== 'generico' && value !== 'parrucchieri-saloni')) {
+  for (const sector of contexts.contactSectors.filter((value) => value !== 'generico')) {
     const payload = { ...valid, context: { sector, form_location: 'sector_page' } };
     for (const phone of [undefined, '', '   ', null, 3331234567, {}, '123', 'x'.repeat(41), '+'.repeat(8), '1234567890123456', '+39 333 123 4567\r\nBcc: injected@example.com', '\n3331234567', 'chiama Mario']) {
       assert.equal(contact.validateContact({ ...payload, phone }), null);

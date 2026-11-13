@@ -98,7 +98,7 @@ restano conservate insieme alle relative note in `docs/`.
 Il form invia JSON a `/api/contact`. Il server valida i campi, invia un'email
 in testo semplice via Gmail SMTP (TLS, porta 465) e, solo dopo l'accettazione SMTP,
 rilascia un cookie HttpOnly firmato valido dieci minuti per `/grazie`.
-L'indirizzo del visitatore è il Reply-To; mittente e destinatario sono configurati
+L'indirizzo del visitatore, quando fornito, è il Reply-To; mittente e destinatario sono configurati
 sul server, mai scelti dal visitatore. Nessun database delle richieste.
 
 ### Attivazione su Vercel
@@ -152,10 +152,10 @@ arbitrari nei propri parametri.
 
 Configurazione GA4/Ads, rilevamento dei clic, registro commerciale e collaudo sono
 descritti in [Misurazione e gestione richieste](docs/misurazione-conversioni.md).
-Il pulsante «Chiamaci» e i pulsanti WhatsApp usano il recapito del gestore del sito,
-Davide Michelon: +39 351 688 8890. Gli altri riferimenti telefonici della sede usano
-il numero aziendale Mifro. Le chiamate ricevute e la
-provenienza dichiarata dal cliente si annotano nel registro commerciale.
+Tutti i collegamenti telefonici, incluso il pulsante «Chiamaci», e i pulsanti
+WhatsApp usano il numero fisso aziendale Mifro **+39 0461 512777**, attivo anche
+su WhatsApp. I recapiti sono centralizzati in `src/content/site.ts`. Le chiamate
+ricevute e la provenienza dichiarata dal cliente si annotano nel registro commerciale.
 Il consenso Analytics non abilita automaticamente finalità pubblicitarie.
 
 ### Protezioni e limiti
@@ -194,9 +194,8 @@ e `/soluzioni/ambulanti` sono generate staticamente da `src/content/sectors.ts`
 con il layout condiviso `src/app/(site)/soluzioni/[settore]/page.tsx`.
 Sono raggiungibili dalle schede della home e dal menu «Per la tua attività» e incluse
 nella sitemap. Ogni pagina ha metadati propri, FAQ specifiche, foto delle casse e
-il modulo con oggetto di settore automatico. Nome, email e messaggio sono
-obbligatori; il telefono è facoltativo per Beauty e obbligatorio negli altri
-settori. Il numero, se fornito, viene validato dal server e incluso nell’email
+il modulo con oggetto di settore automatico. Nome, telefono, messaggio e consenso privacy sono obbligatori. L’email è
+facoltativa per Beauty e obbligatoria negli altri settori; se fornita deve essere valida. Il numero, se fornito, viene validato dal server e incluso nell’email
 interna, mai nei parametri Analytics. La pagina Contatti conserva nome, email e
 messaggio obbligatori, con oggetto facoltativo. Le schede prodotto usano
 `src/components/SolutionCard.tsx`.
@@ -224,12 +223,13 @@ passaggi: modulo, ricontatto con il messaggio «Ti richiamiamo subito»,
 eventuale prova in negozio, preventivo, installazione e formazione con un tecnico
 specializzato, assistenza successiva. Testi e impegno di ricontatto, confermati
 dall’utente, sono centralizzati in `siteConfig.contactJourney`. Le CTA delle pagine
-privilegiano il modulo; telefono aziendale e WhatsApp del gestore restano disponibili nel footer.
+privilegiano il modulo; telefono e WhatsApp aziendali restano disponibili nel footer.
 
 Beauty mantiene `/soluzioni/parrucchieri-saloni`, menu e sitemap esistenti. Il
 template di settore usa `BeautyPage` e `src/content/beauty.ts` per presentare prima
-la pagina web del salone con prenotazione operatore/orario e l’agenda del team,
-poi gestionale, formazione/assistenza e integrazioni di cassa e POS. Lo schema
+cassa e gestionale con le soluzioni per incassi e POS, poi prenotazioni online,
+agenda del team, gestionale e formazione/assistenza. Compatibilità e servizi
+sono definiti nella proposta. Lo schema
 di prenotazione illustra il percorso del cliente; la schermata dimostrativa delle
 vendite non mostra dati personali. L’oggetto specifico e il contesto
 `parrucchieri-saloni` / `sector_page` distinguono la richiesta Beauty.
@@ -250,14 +250,17 @@ generale `/soluzioni/altre-attivita` conserva i propri contenuti. Le landing non
 al menu né alla sitemap e mantengono `noindex, follow` per l’anteprima. L’indicizzazione
 potrà essere rivalutata al rilascio.
 
-Nella vendita sono richiesti solo nome, email e messaggio, con telefono facoltativo
-e oggetto automatico «Acquisto o sostituzione registratore di cassa», confermato
+Nella vendita sono richiesti nome, telefono, messaggio e consenso privacy,
+con email facoltativa e oggetto automatico «Acquisto o sostituzione registratore di cassa», confermato
 anche dal server. Il contesto controllato `generico` / `sales_page` identifica la
-vendita nell’email e in `generate_lead`. Noleggio conserva `rental_page` e i campi
-esistenti. Le CTA e Contattaci portano al modulo locale, conservando i parametri
+vendita nell’email e in `generate_lead`. Noleggio conserva `rental_page`, comune e telefono obbligatori, con email facoltativa. Le CTA e Contattaci portano al modulo locale, conservando i parametri
 pubblicitari; come nel noleggio, footer e chat della vendita privilegiano il modulo.
-Il pulsante WhatsApp al recapito del gestore è disponibile anche su queste landing.
-Nessuna conversione viene emessa dal clic sulla CTA.
+Le hero di vendita, noleggio e Beauty affiancano al preventivo «Scrivi a Mifro su
+WhatsApp», al numero già configurato. Il testo precompilato identifica la pagina,
+non la sorgente Ads. Il clic resta `contact_click`, distinto dalla richiesta ricevuta.
+L’email è facoltativa solo in questi tre moduli; se manca, l’email interna invita
+al ricontatto telefonico e omette Reply-To. `generate_lead` resta successivo al
+successo del server e all’accettazione SMTP.
 
 Beauty e vendita riutilizzano `ScrollReveal` per le animazioni, con contenuti
 immediatamente visibili su smartphone e quando è richiesto movimento ridotto.
